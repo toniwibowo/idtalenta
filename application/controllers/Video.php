@@ -9,10 +9,16 @@ class Video extends CI_Controller{
     //Codeigniter : Write Less Do More
   }
 
-  function index()
+  function view($id,$slug)
   {
+    $data = [
+      'mentorClass' => $this->db->where('category_product_id', $id)->get('mentor_class')
+    ];
 
+    $this->load->view('include/header');
+    $this->load->view('video',$data);
+    $this->load->view('include/footer');
   }
 
-  
+
 }

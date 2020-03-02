@@ -83,6 +83,10 @@
 										<h4 class="text-warning">Define Your Choice</h4>
 										<h1><strong><?= $value->category_product_name ?></strong></h1>
 										<?= $value->description ?>
+										<div class="button-action">
+											<a class="btn btn-dark btn-modern btn-rounded" href="<?= site_url('video/view/'.$value->category_product_id.'/'.url_title($value->category_product_name,'-',true)) ?>">VIDEO</a>
+											<a class="btn btn-warning btn-modern btn-rounded" href="#">MENTOR</a>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -113,12 +117,8 @@
 						<?php if ($queryMentor->num_rows() > 0): ?>
 							<?php foreach ($queryMentor->result() as $key => $value): ?>
 								<div class="card">
-									<a href="<?= site_url('mentor/detail/'.$value->id_mentor.'/'.url_title($value->full_name,'-',true)) ?>">
-										<?php if ($value->photo != ''): ?>
-											<img alt="<?= substr($value->photo,0,-4) ?>" class="img-fluid" src="<?= base_url('images/avatars/'.$value->photo) ?>">
-										<?php else: ?>
-											<img alt="ARTAdemi" class="img-fluid" src="<?= base_url('images/avatars/avatar.jpg') ?>">
-										<?php endif; ?>
+									<a href="<?= site_url('mentor/detail/'.$value->id_mentor.'/'.url_title($value->full_name,'-',true)) ?>" style="background-image:url(<?= $value->photo != '' ? base_url('images/avatars/'.$value->photo) : base_url('images/avatars/avatar.jpg') ?>)">
+
 									</a>
 
 									<div class="card-body p-3">
