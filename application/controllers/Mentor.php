@@ -20,6 +20,16 @@ class Mentor extends CI_Controller{
     $this->load->view('include/footer');
   }
 
+  public function view($id,$slug)
+  {
+
+    $data['queryMentor'] = $this->db->where('mentor.active',1)->where('category_class_id',$id)->order_by('mentor.mentor_id','desc')->select('mentor.*,mentor.mentor_id as id_mentor, users.*')->from('mentor')->join('users','users.id = mentor.user_id')->get();
+
+    $this->load->view('include/header');
+    $this->load->view('mentor',$data);
+    $this->load->view('include/footer');
+  }
+
   public function dashboard($action='', $id='')
   {
     if (!$this->ion_auth->logged_in()) {
@@ -259,11 +269,39 @@ class Mentor extends CI_Controller{
 
   }
 
-  public function video()
+  public function review()
   {
-    if (!$this->ion_auth->logged_in()) {
-      redirect('/');
+    $data = [
+      'mentor_class_id'  => $this->input->post('class_id',true),
+      'user_id' 		     => $this->input->post('user_id',true),
+      'star'             => $this->input->post('star',true),
+		  'description'	     => $this->input->post('review',true)
+    ];
+
+    if (isset($_POST['star']) && $_POST['star'] != 0) {
+
+      if ($this->mentor->check_review($data['user_id'], $data['mentor_class_id'])) {
+
+        $insertReview = $this->db->insert('review', $data);
+
+        if ($insertReview) {
+          $this->session->set_flashdata('rating-alert','Terima kasih telah memberikan review pada kelas ini');
+        }else {
+          $this->session->set_flashdata('rating-alert','Maaf, anda gagal memberikan review');
+        }
+      }else {
+
+        $this->db->where('mentor_class_id', $data['mentor_class_id']) -> where('user_id', $data['user_id']) -> set($data) -> update('review');
+
+        $this->session->set_flashdata('rating-alert','Anda pernah memberikan review pada kelas ini, review berhasil diupdate');
+      }
+
+    }else {
+
+      $this->session->set_flashdata('rating-alert','Review gagal, star rating harus diisi.');
     }
+
+    redirect('mentor/videodetail/'.$_POST['class_id'].'/'.$_POST['slug']);
   }
 
   public function videodetail($id,$slug)
@@ -276,6 +314,8 @@ class Mentor extends CI_Controller{
     $data['mentor'] = $this->db->where('user_id',$row->user_id)->get('mentor')->row();
 
     $data['videoDetail'] = $this->db->where('video_id',$row->video_id)->get('mentor_video');
+
+    $data['queryReview'] = $this->db->where('mentor_class_id', $id) -> from('review') -> join('users','users.id = review.user_id') -> get();
 
     $this->load->view('include/header');
     $this->load->view('video-detail', $data);

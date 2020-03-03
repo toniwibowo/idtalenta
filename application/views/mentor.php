@@ -17,8 +17,8 @@
               <?php foreach ($queryMentor->result() as $key => $value): ?>
                 <div class="col-lg-4">
                   <div class="card mb-4">
-                    <a href="<?= site_url('mentor/detail/'.$value->id_mentor.'/'.url_title($value->full_name,'-',true)) ?>">
-                      <img alt="" class="img-fluid" src="<?= base_url('images/avatars/'.$value->photo) ?>">
+                    <a href="<?= site_url('mentor/detail/'.$value->id_mentor.'/'.url_title($value->full_name,'-',true)) ?>" style="background-image:url('<?= base_url('images/avatars/'.$value->photo) ?>')">
+                      <!-- <img alt="" class="img-fluid" src=""> -->
                     </a>
 
       							<div class="card-body p-3">

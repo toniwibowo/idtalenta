@@ -85,7 +85,7 @@
 										<?= $value->description ?>
 										<div class="button-action">
 											<a class="btn btn-dark btn-modern btn-rounded" href="<?= site_url('video/view/'.$value->category_product_id.'/'.url_title($value->category_product_name,'-',true)) ?>">VIDEO</a>
-											<a class="btn btn-warning btn-modern btn-rounded" href="#">MENTOR</a>
+											<a class="btn btn-warning btn-modern btn-rounded" href="<?= site_url('mentor/view/'.$value->category_product_id.'/'.url_title($value->category_product_name,'-',true)) ?>">MENTOR</a>
 										</div>
 									</div>
 								</div>
@@ -117,7 +117,7 @@
 						<?php if ($queryMentor->num_rows() > 0): ?>
 							<?php foreach ($queryMentor->result() as $key => $value): ?>
 								<div class="card">
-									<a href="<?= site_url('mentor/detail/'.$value->id_mentor.'/'.url_title($value->full_name,'-',true)) ?>" style="background-image:url(<?= $value->photo != '' ? base_url('images/avatars/'.$value->photo) : base_url('images/avatars/avatar.jpg') ?>)">
+									<a href="<?= site_url('mentor/detail/'.$value->id_mentor.'/'.url_title($value->full_name,'-',true)) ?>" style="background-image:url('<?= $value->photo != '' ? base_url('images/avatars/'.$value->photo) : base_url('images/avatars/avatar.jpg') ?>')">
 
 									</a>
 
