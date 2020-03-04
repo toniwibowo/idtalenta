@@ -5,7 +5,7 @@
         <div class="col parallax m-0 p-0" data-plugin-parallax data-plugin-options="{'speed': 1.5}" data-image-src="<?= base_url('images/video/video-3.jpg')  ?>">
           <div class="row dashboard-banner-box align-items-center">
             <div class="col text-center">
-              
+
             </div>
           </div>
         </div>
@@ -16,7 +16,7 @@
   <section class="section section-dashboard-content m-0 border-0 pt-0">
     <div class="container">
       <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-3 d-none">
           <div class="featured-box featured-box-primary nav-left-sidebar member ">
             <div class="box-content p-0 text-left">
               <h4 class="p-4 mb-0"><strong>Navigation</strong></h4>
@@ -63,7 +63,7 @@
           </div>
         </div>
 
-        <div class="col-lg-9">
+        <div class="col-lg-12">
 
           <div class="latest-video mt-5">
             <div class="entry-title text-right">
