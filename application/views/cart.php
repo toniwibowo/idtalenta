@@ -43,7 +43,11 @@
               </div>
               <div class="btn-action">
                 <?php if ($this->ion_auth->logged_in()): ?>
-                  <a class="btn btn-rounded btn-outline btn-warning btn-block mb-2" href="#">Beli(<?= $cartItem->num_rows() ?>)</a>
+                  <form class="" action="<?= site_url('checkout/docheckout') ?>" method="post" enctype="application/x-www-form-urlencoded">
+                    <input type="hidden" name="sid" value="<?= $_COOKIE['cart'] ?>">
+                    <button class="btn btn-rounded btn-outline btn-warning btn-block mb-2" type="submit">Beli(<?= $cartItem->num_rows() ?>)</button>
+                  </form>
+
                 <?php else: ?>
                   <a class="btn btn-rounded btn-outline btn-warning btn-block mb-2" href="#" data-toggle="modal" data-target="#defaultModal">Beli(<?= $cartItem->num_rows() ?>)</a>
                 <?php endif; ?>

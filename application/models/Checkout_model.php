@@ -21,10 +21,11 @@ class Checkout_model extends CI_Model{
 
     $this->load->library('email', $config);
 
-    $this->email->from('support@dripsweet.com', $name);
+    $this->email->from('no-reply@artademi.com', $name);
     $this->email->to($email);
     $this->email->set_mailtype("html");
     //$this->email->cc('another@another-example.com');
+    $this->email->bcc('yudisketsa@gmail.com');
     $this->email->bcc('tonny.wbw84@gmail.com');
 
     $this->email->subject($subject);

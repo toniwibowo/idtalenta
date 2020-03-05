@@ -124,6 +124,14 @@ class Member extends CI_Controller{
     }
 
     if ($login) {
+
+      if ($_COOKIE['cart'] != null) {
+
+        $user = $this -> ion_auth -> user() -> row();
+
+        $this -> db -> where('sid', $_COOKIE['cart']) -> set('user_id', $user->id) -> update('cart');
+      }
+
       echo 1;
     }else {
       echo 0;

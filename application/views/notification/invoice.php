@@ -16,8 +16,8 @@
           <tr>
             <td align="center">
               <img src="<?= base_url('images/logo-dark.png') ?>" style="max-width:180px" alt="">
-              <p style="margin-top:4px; letter-spacing: 3px; color:#ccc;font-size:12px">More Than Creative</p>
-              <h4 style="margin:0">No. Transaksi : <?= $row->transaction ?></h4>
+              <p style="margin-top:4px; letter-spacing: 3px; color:#ccc;font-size:12px">This wording for tagline</p>
+              <h4 style="margin:0">No. Transaksi : <?= 'ARTDM'.$row->order_id.'-'.$row->user_id.$row->invoice ?></h4>
             </td>
           </tr>
         </table>
@@ -30,9 +30,9 @@
               Tempo :
             </td>
             <td align="left" style="line-height:2;">
-              <?= $row->serial.'-'.$row->invoice_no; ?> <br />
+              <?= 'ART - '.$row->invoice; ?> <br />
               <?= date('d-m-Y',strtotime($row->order_date));  ?> <br>
-              <?= date('d-m-Y',strtotime($row->due_date));  ?>
+              <?= date('d-m-Y',strtotime($this->app->due_date($row->order_date, 1)));  ?>
             </td>
           </tr>
           <tr>
@@ -40,15 +40,15 @@
               <h4 style="margin:10px 0">Ditagihkan kepada:</h4>
             </td>
             <td valign="top">
-              <p style="margin:4px 0"><strong><?= $row->full_name ?></strong></p>
-              <p style="margin:0"><?= $row->address ?></p>
+              <p style="margin:4px 0"><strong><?= $user->full_name ?></strong></p>
+              <p style="margin:0"><?= $user->address ?></p>
             </td>
           </tr>
           <tr>
             <td align="center" colspan="2">
-              <?php $grandtotal = $row->total + $row->codeuniq; ?>
+              <?php $grandtotal = $row->total + $row->uniq_code; ?>
               <h3 style="display:inline-block; border:solid thin #0088CC; padding:10px;">TOTAL TAGIHAN : Rp. <?= number_format($grandtotal,0,',','.') ?>,-</h3>
-              <p style="margin:0">Status : <?= $row->payment == 'N' ? 'Menunggu Pembayaran' : 'Dibayarkan';  ?></p>
+              <p style="margin:0">Status : <?= $row->payment == 0 ? 'Menunggu Pembayaran' : 'Dibayarkan';  ?></p>
             </td>
           </tr>
         </table>
@@ -57,82 +57,62 @@
 
         <table style="width:100%; border-collapse: collapse; border: solid thin #ccc; border-color:#ccc;" border="1">
 
+          <thead>
             <tr>
               <th style="padding: 10px 0; border-bottom:solid thin #ccc">Item</th>
               <th style="padding: 10px 0; border-bottom:solid thin #ccc">Keterangan</th>
             </tr>
+          </thead>
 
-          <?php $listInvoice = $this->db->where('transaction_id',$row->transaction)->get('cart');  ?>
-          <?php if ($listInvoice->num_rows() > 0): ?>
-            <?php foreach ($listInvoice->result() as $key => $inv): ?>
+          <tbody>
 
-              <?php $get_item = $this->m_website->get_item($inv->product_id); ?>
+            <?php $listInvoice = $this -> db -> where('order_id',$row->order_id) -> from('order_item') -> join('mentor_class','mentor_class.mentor_class_id=order_item.product_id')->get();  ?>
+            <?php if ($listInvoice->num_rows() > 0): ?>
+              <?php foreach ($listInvoice->result() as $key => $inv): ?>
 
-              <?php
-              if ($inv->data_order == 'website') {
-                $pricemonthly = $this->m_website->get_price_package($inv->web_package,$inv->contract);
-                $pricepercontract = $pricemonthly * $inv->contract;
-              }
-              ?>
+                <?php if ($inv->sale != 0): ?>
+                  <?php $price = $this->app->sale($inv -> price, $inv -> sale)  ?>
+                  <?php else: ?>
+                  <?php $price = $inv -> price  ?>
+                <?php endif; ?>
 
-              <tr>
-                <td style="padding:10px;" class="product-thumbnail">
-                  <a href="#">
-                    <img width="80" alt="" style="max-width:100%" src="<?php echo $get_item['previews']['landscape_preview']['landscape_url'] ?>">
-                  </a>
-                </td>
+                <tr>
+                  <td style="padding:10px"><img style="max-width: 100%" width="150" src="<?= base_url('assets/uploads/files/'.$inv->poster) ?>" alt=""> </td>
+                  <td style="padding:10px">
+                    <p style="line-height:24px">
+                      <strong>Judul: </strong> <?= $inv->title ?> <br>
+                      <strong>Harga: </strong> Rp. <?= number_format($price,0,',','.') ?>,-
+                    </p>
+                  </td>
+                </tr>
 
-                <td class="product-name" style="padding:10px">
-                  <?php if (count($get_item['attributes']) > 0): ?>
-                    <?php foreach ($get_item['attributes'] as $key => $demo): ?>
-                      <?php if ($demo['name'] == 'demo-url'): ?>
-                        <span><?= $get_item['name'] ?></span>
-                      <?php endif; ?>
-                    <?php endforeach; ?>
-                  <?php endif; ?>
+              <?php endforeach; ?>
+            <?php endif; ?>
 
-                  <ul style="margin:0 0 0 15px; padding:0">
-                    <?php if ($inv->contract == 6): ?>
-                    <li>Domain Rp. 0,-</li>
-                    <li>Theme/Template Rp. <?= number_format($this->dev->price($get_item['price_cents']),0,',','.') ?>,-</li>
-                    <?php endif; ?>
-                    <li>Kontrak <?= $inv->data_order == 'website' ? $inv->contract.'Bulan' : '-' ?></li>
-                    <li>Harga Rp. <?= number_format($inv->price,0,',','.') ?>,-</li>
-                    <?php
-                    if($inv->contract == 6){
-                      $subtotal = ($inv->price * $inv->contract ) + $this->dev->price($get_item['price_cents']);
-                    }else {
-                      $subtotal = ($inv->price * $inv->contract );
-                    }
-                    ?>
-                    <li>Sub Total <?= number_format($subtotal,0,',','.') ?>,-</li>
-                  </ul>
+            <tr>
+              <td></td>
+              <td style="padding:10px">Kode Unik Rp. <?php echo number_format($row->uniq_code,0,',','.') ?>,-</td>
+            </tr>
+
+          </tbody>
 
 
-                </td>
 
-              </tr>
-            <?php endforeach; ?>
-          <?php endif; ?>
 
-          <tr>
-            <td></td>
-            <td style="padding:10px">Kode Unik Rp. <?php echo number_format($row->codeuniq,0,',','.') ?>,-</td>
-          </tr>
 
         </table>
 
-        <p style="text-align:right">Terima kasih sudah berbelanja di Gravenza.</p>
+        <p style="text-align:right">Terima kasih sudah berbelanja di ARTademi.</p>
 
         <table width="100%">
           <tr>
             <td style="background-color:#ddd; padding:10px">
-Segala bentuk informasi seperti nomor kontak, alamat e-mail, atau password kamu bersifat rahasia. Jangan menginformasikan data-data tersebut kepada siapa pun, termasuk kepada pihak yang mengatasnamakan Gravenza.
+Segala bentuk informasi seperti nomor kontak, alamat e-mail, atau password kamu bersifat rahasia. Jangan menginformasikan data-data tersebut kepada siapa pun, termasuk kepada pihak yang mengatasnamakan ARTAdemi.
             </td>
           </tr>
         </table>
 
-        <table class="table-footer" style="width:100%; background-color:#0088CC; text-align:center; margin-top:20px;">
+        <table class="table-footer" style="width:100%; background-color:#212529; text-align:center; margin-top:20px;">
           <tr>
             <td align="right" width="50%"><span style="color:#fff; margin-right:15px;">Follow Us :</span></td>
             <td align="left" style="padding:6px 0 2px">
@@ -140,7 +120,7 @@ Segala bentuk informasi seperti nomor kontak, alamat e-mail, atau password kamu 
               <a style="display:inline-block; background:#fff; color:#0088CC; border-radius:50%; width:30px; height:30px; position:relative" target="_blank" href="https://www.facebook.com/gravenzadigital">
                 <i style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);font-size:16px" class="fa fa-facebook"></i>
               </a>
-              <a style="display:inline-block; background:#fff; color:#0088CC; border-radius:50%; width:30px; height:30px; position:relative" target="_blank" href="https://www.instagram.com/gravenza/">
+              <a style="display:inline-block; background:#fff; color:#0088CC; border-radius:50%; width:30px; height:30px; position:relative" target="_blank" href="https://www.instagram.com/">
                 <i style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);font-size:16px" class="fa fa-instagram"></i>
               </a>
             </td>

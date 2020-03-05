@@ -7,34 +7,46 @@ class Checkout extends CI_Controller{
   {
     parent::__construct();
     //Codeigniter : Write Less Do More
-    $this->load->library('store');
+    $this->load->library('app');
+    $this->load->helper('cookie');
     $this->load->model('checkout_model','checkout');
     $this->load->model('member_model','member');
 
     if (!isset($_COOKIE['checkout'])) {
 			$sid = session_id().date('His');
-			setcookie('cart', $sid, time() + (86400), "/"); // 86400 = 1 day
+			setcookie('checkout', $sid, time() + (86400), "/"); // 86400 = 1 day
 		}
 
   }
 
-  function index()
+  function index($sid='')
   {
-    if (!isset($_COOKIE['checkout']) || !$this->ion_auth->logged_in()) {
+    if (!$this->ion_auth->logged_in() || !empty($sid)) {
+
+      if (isset($_POST['sid']) && $_POST['sid'] == $_COOKIE['cart']) {
+
+      }
+
+      delete_cookie('cart');
+
+      $user = $this->ion_auth->user()->row();
+
+
+
+
+      $data['queryCheckout'] = $this->db->where('user_id',$user->id)->where('checkout',1)->order_by('cart_id','desc')->get('cart');
+      $data['add'] = $this->db->where('user_id',$user->id)->order_by('address_id','desc')->get('address')->row();
+
+      $this->load->view('include/header');
+      $this->load->view('checkout',$data);
+      $this->load->view('include/footer');
+
+    }else {
       redirect('/');
     }
-
-    $user = $this->ion_auth->user()->row();
-
-    $data['queryCheckout'] = $this->db->where('user_id',$user->id)->where('checkout',1)->order_by('cart_id','desc')->get('cart');
-    $data['add'] = $this->db->where('user_id',$user->id)->order_by('address_id','desc')->get('address')->row();
-
-    $this->load->view('include/header');
-    $this->load->view('checkout',$data);
-    $this->load->view('include/footer');
   }
 
-  public function view($id)
+  public function order($id)
   {
     if (!isset($_COOKIE['checkout']) || !$this->ion_auth->logged_in()) {
       redirect('/');
@@ -57,36 +69,45 @@ class Checkout extends CI_Controller{
 			setcookie('checkout', $sid, time() + (86400), "/"); // 86400 = 1 day
 		}
 
-    $user = $this->ion_auth->user()->row();
+    if (isset($_POST['sid'])) {
 
-    $data = array(
-      'user_id' => $user->id,
-      'checkout' => 1,
-      'sid' => $_COOKIE['checkout']
-    );
+      $sid = $this->input->post('sid',true);
 
-    if ($this->ion_auth->logged_in()) {
+      //GET DATA FROM CART
+      $getCart = $this->db->query("INSERT INTO orders SELECT * FROM cart WHERE sid='".$sid."'");
 
-      $user = $this->ion_auth->user()->row();
-      $cart = $this->db->where('user_id',$user->id)->where('checkout',0)->order_by('cart_id','desc')->get('cart')->row();
+      //GET ITEM ORDER
+      $cart   = $this->db->where('sid', $sid)->get('cart')->row();
+      $order  = $this->db->order_by('order_id','desc')->get('orders')->row();
 
-      $updateCheckout = $this->db->where('user_id',$user->id)->where('cart_id',$cart->cart_id)->set($data)->update('cart');
+      $insertItem = $this->db->query('INSERT INTO order_item (order_id, product_id, qty, order_date, order_time) SELECT cart_id, product_id, qty, order_date, order_time FROM cart_item WHERE cart_id = "'.$cart->cart_id.'"');
 
-      if ($updateCheckout) {
-        $data['queryInvoice'] = $this->db->where('user_id',$user->id)->where('checkout',1)->order_by('cart_id','desc')->get('cart');
-        $data['add'] = $this->db->where('user_id',$user->id)->order_by('address_id','desc')->get('address')->row();
+      if ($getCart) {
+        $this->db->where('sid', $sid)->delete('cart');
+      }
 
-        $cart = $data['queryInvoice']->row();
+      if ($insertItem) {
+        //$this->db->where('order_id', $cart->cart_id)->set('order_id',$order->order_id)->update('order_item');
+        $this->db->where('cart_id', $cart->cart_id)->delete('cart_item');
 
-        $name = "Billing Dripsweet";
+        // MAKE INVOICE FOR BUYER
+        $data = [
+
+          'queryInvoice' => $this->db->where('sid', $sid)->order_by('cart_id','desc')->get('orders'),
+          'user' => $this->ion_auth->user()->row()
+        ];
+
+        $row = $data['queryInvoice']->row();
+
+        $name = "Billing ARTAdemi";
         $email = $user->email;
-        $subject = "Invoice - ".$cart->invoice.' telah dibuat.';
+        $subject = "Invoice - ".$row->invoice.' telah dibuat.';
         $message = $this->load->view('notification/invoice',$data,true);
 
         $this->checkout->email($email,$subject,$message,$name);
+
       }
-    }else {
-      $this->db->where('sid',$_COOKIE['cart'])->set($data)->update('cart');
+
     }
 
     delete_cookie('cart');
@@ -163,10 +184,12 @@ class Checkout extends CI_Controller{
 
   public function invoice()
   {
-    $user = $this->ion_auth->user()->row();
+    $sid = $this -> db -> order_by('order_id','desc') -> get('orders')->row();
 
-    $data['queryInvoice'] = $this->db->where('user_id',$user->id)->where('checkout',1)->order_by('cart_id','desc')->get('cart');
-    $data['add'] = $this->db->where('user_id',$user->id)->order_by('address_id','desc')->get('address')->row();
+    $sid = $sid -> sid;
+
+    $data['queryInvoice'] = $this->db->where('sid', $sid)->order_by('order_id','desc')->get('orders');
+    $data['user'] = $this->ion_auth->user()->row();
 
     $this->load->view('notification/invoice',$data);
   }

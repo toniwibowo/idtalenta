@@ -193,9 +193,13 @@ class App {
       return $html;
     }
 
+  }
 
-
-
+  public function due_date($date,$due)
+  {
+    $date = date_create($date);
+    date_add($date,date_interval_create_from_date_string($due." days"));
+    return date_format($date,"Y-m-d");
   }
 
 }
