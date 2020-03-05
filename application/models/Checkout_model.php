@@ -37,4 +37,27 @@ class Checkout_model extends CI_Model{
 
   }
 
+  public function notif_purchase_mentor($class_id, $sid)
+  {
+    $data = [
+      'queryInvoice' => $this->db->where('sid', $sid)->order_by('order_id','desc')->get('orders'),
+      'user' => $this->ion_auth->user()->row(),
+      'mentorClass' => $this->db->where('mentor_class_id', $class_id)->from('mentor_class')->join('users','users.id=mentor_class.user_id')->get()->row()
+    ];
+
+    $kelas = $data['mentorClass'];
+
+    $email = $kelas->email;
+    $name = "Billing ARTademi";
+    $subject = "Hai ".$kelas->full_name." kelas anda dengan #ID".$kelas->mentor_class_id.$kelas->user_id." telah dipesan";
+    $message = $this->load->view('notification/mentor-purchased',$data,true);
+
+    //return $this->load->view('notification/mentor-purchased',$data);
+
+    $this->email($email,$subject,$message,$name);
+
+    return true;
+
+  }
+
 }

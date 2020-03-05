@@ -19,20 +19,16 @@ class Checkout extends CI_Controller{
 
   }
 
-  function index($sid='')
+  function index($sid)
   {
     if (!$this->ion_auth->logged_in() || !empty($sid)) {
 
-      if (isset($_POST['sid']) && $_POST['sid'] == $_COOKIE['cart']) {
-
-      }
-
-      delete_cookie('cart');
+      if (!isset($_COOKIE['cart'])) {
+  			$sid = session_id().date('His');
+  			setcookie('cart', $sid, time() + (86400), "/"); // 86400 = 1 day
+  		}
 
       $user = $this->ion_auth->user()->row();
-
-
-
 
       $data['queryCheckout'] = $this->db->where('user_id',$user->id)->where('checkout',1)->order_by('cart_id','desc')->get('cart');
       $data['add'] = $this->db->where('user_id',$user->id)->order_by('address_id','desc')->get('address')->row();
@@ -90,10 +86,10 @@ class Checkout extends CI_Controller{
         //$this->db->where('order_id', $cart->cart_id)->set('order_id',$order->order_id)->update('order_item');
         $this->db->where('cart_id', $cart->cart_id)->delete('cart_item');
 
-        // MAKE INVOICE FOR BUYER
+        // SEND EMAIL INVOICE FOR BUYER
         $data = [
 
-          'queryInvoice' => $this->db->where('sid', $sid)->order_by('cart_id','desc')->get('orders'),
+          'queryInvoice' => $this->db->where('sid', $sid)->order_by('order_id','desc')->get('orders'),
           'user' => $this->ion_auth->user()->row()
         ];
 
@@ -106,13 +102,23 @@ class Checkout extends CI_Controller{
 
         $this->checkout->email($email,$subject,$message,$name);
 
+        // NOTIFICATION TO MENTOR
+        $dataEmail = $this->db->where('order_id', $row->order_id)->get('order_item');
+
+        if ($dataEmail->num_rows() > 0) {
+          foreach ($dataEmail->result() as $key => $mail) {
+            $this->checkout->notif_purchase_mentor($mail->product_id, $sid);
+          }
+        }
+
+
       }
 
     }
 
     delete_cookie('cart');
 
-    redirect('checkout');
+    redirect('checkout/index/'.$sid);
   }
 
   public function payment()
@@ -188,10 +194,12 @@ class Checkout extends CI_Controller{
 
     $sid = $sid -> sid;
 
-    $data['queryInvoice'] = $this->db->where('sid', $sid)->order_by('order_id','desc')->get('orders');
-    $data['user'] = $this->ion_auth->user()->row();
+    $this->checkout->notif_purchase_mentor(1,$sid);
 
-    $this->load->view('notification/invoice',$data);
+    //$data['queryInvoice'] = $this->db->where('sid', $sid)->order_by('order_id','desc')->get('orders');
+    //$data['user'] = $this->ion_auth->user()->row();
+
+    //$this->load->view('notification/invoice',$data);
   }
 
 }
