@@ -105,7 +105,7 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-3 text-center">
 					<div class="heading text-primary heading-border heading-bottom-border">
-						<h1 class="text-white"><strong class="font-weight-extra-bold">KONTRIBUTOR</strong></h1>
+						<h1 class="text-white"><strong class="font-weight-extra-bold">MENTOR</strong></h1>
 					</div>
 				</div>
 			</div>

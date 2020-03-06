@@ -121,10 +121,19 @@
 																<a class="dropdown-item dropdown-toggle" href="#"><i class="fa fa-user-circle"></i> <span class="pl-3"><?= $user->full_name ?></span></a>
 																<ul class="dropdown-menu">
 																	<li>
+																		<a class="dropdown-item text-warning" href="#!">MEMBER AREA</a>
+																	</li>
+																	<li>
 																		<a class="dropdown-item" href="<?= site_url('member/dashboard') ?>">Dashboard</a>
 																	</li>
 																	<li>
 																		<a class="dropdown-item" href="<?= site_url('member/myaccount') ?>">My Profile</a>
+																	</li>
+																	<li>
+																		<a class="dropdown-item text-light" href="<?= site_url('mentor/purchased') ?>">Video yang dibeli</a>
+																	</li>
+																	<li>
+																		<a class="dropdown-item text-light" href="<?= site_url('mentor/wishlist') ?>">Wishlist</a>
 																	</li>
 																	<?php if ($this->ion_auth->in_group(4)): ?>
 																	<?php $check_mentor_active = $this->db->where('user_id',$user->id)->where('active',1)->get('mentor'); ?>
@@ -140,12 +149,6 @@
 																		</li>
 																		<li>
 																			<a class="dropdown-item text-light" href="<?= site_url('mentor/dashboard') ?>">Video yang diupload</a>
-																		</li>
-																		<li>
-																			<a class="dropdown-item text-light" href="<?= site_url('mentor/purchased') ?>">Video yang dibeli</a>
-																		</li>
-																		<li>
-																			<a class="dropdown-item text-light" href="<?= site_url('mentor/wishlist') ?>">Wishlist</a>
 																		</li>
 																	<?php endif; ?>
 																	<!-- END CHECK MENTOR ACTIVE -->

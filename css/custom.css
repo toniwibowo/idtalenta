@@ -55,6 +55,8 @@ h1, h2, h3, h4, h5, h6{
 
 .section-mentor .card .card-body{
   background: #F5C52C;
+  height: 123px;
+  overflow: hidden;
 }
 
 .section-videos .thumb-info.thumb-info-centered-icons .thumb-info-action-icon{

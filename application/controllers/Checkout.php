@@ -19,7 +19,7 @@ class Checkout extends CI_Controller{
 
   }
 
-  function index($sid)
+  function index($sid='')
   {
     if (!$this->ion_auth->logged_in()) {
       redirect('/');
@@ -32,9 +32,11 @@ class Checkout extends CI_Controller{
   			setcookie('cart', $sess_id, time() + (86400), "/"); // 86400 = 1 day
   		}
 
+
+
       $user = $this->ion_auth->user()->row();
 
-      $data['queryOrder'] = $this->db->where('sid',$sid)->where('user_id',$user->id)->get('orders');
+      $data['queryOrder'] = $this->db->where('sid',$sid)->get('orders');
 
       $row  = $data['queryOrder']->row();
 
@@ -43,6 +45,7 @@ class Checkout extends CI_Controller{
       $data['orderItem'] = $this->db->where('order_id',$row->order_id)->order_by('order_id','asc')->from('order_item')->join('mentor_class','mentor_class.mentor_class_id=order_item.product_id')->get();
 
       $this->load->view('include/header');
+
       $this->load->view('checkout',$data);
       $this->load->view('include/footer');
 
