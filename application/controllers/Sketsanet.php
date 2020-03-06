@@ -1206,7 +1206,7 @@ class Sketsanet extends MX_Controller
         $crud->change_field_type('password_confirm', 'password');
         $crud->change_field_type('old_password', 'password');
         $crud->change_field_type('new_password', 'password');
-        $crud->set_field_upload('photo', 'assets/uploads/image');
+        $crud->set_field_upload('photo', 'assets/uploads/files');
 
         // Callbacks
         $crud->callback_insert(array($this, 'create_user_callback'));
