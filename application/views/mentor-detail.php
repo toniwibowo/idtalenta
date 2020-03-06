@@ -105,7 +105,7 @@
         <div class="col">
           <div class="media">
             <?php if ($row->photo != ''): ?>
-              <img class="img-fluid" src="<?= base_url('images/avatars/'.$row->photo) ?>" alt="<?= substr($row->photo,0,-4) ?>">
+              <img class="img-fluid" width="50%" src="<?= base_url('images/avatars/'.$row->photo) ?>" alt="<?= substr($row->photo,0,-4) ?>">
             <?php else: ?>
               <img class="img-fluid" src="<?= base_url('images/avatars/avatar.jpg') ?>" alt="ARTademi">
             <?php endif; ?>
