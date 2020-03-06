@@ -19,7 +19,7 @@ class Checkout extends CI_Controller{
 
   }
 
-  function index($sid='')
+  function index($sid)
   {
     if (!$this->ion_auth->logged_in()) {
       redirect('/');
