@@ -21,7 +21,11 @@ class Checkout extends CI_Controller{
 
   function index($sid='')
   {
-    if (!$this->ion_auth->logged_in() || !empty($sid)) {
+    if (!$this->ion_auth->logged_in()) {
+      redirect('/');
+    }
+
+    if (!empty($sid)) {
 
       if (!isset($_COOKIE['cart'])) {
   			$sid = session_id().date('His');
