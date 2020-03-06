@@ -28,8 +28,8 @@ class Checkout extends CI_Controller{
     if (!empty($sid)) {
 
       if (!isset($_COOKIE['cart'])) {
-  			$sid = session_id().date('His');
-  			setcookie('cart', $sid, time() + (86400), "/"); // 86400 = 1 day
+  			$sess_id = session_id().date('His');
+  			setcookie('cart', $sess_id, time() + (86400), "/"); // 86400 = 1 day
   		}
 
       $user = $this->ion_auth->user()->row();
@@ -37,6 +37,7 @@ class Checkout extends CI_Controller{
       $data['queryOrder'] = $this->db->where('sid',$sid)->where('user_id',$user->id)->get('orders');
 
       $row  = $data['queryOrder']->row();
+
       $data['user'] = $this->ion_auth->user($row->user_id)->row();
 
       $data['orderItem'] = $this->db->where('order_id',$row->order_id)->order_by('order_id','asc')->from('order_item')->join('mentor_class','mentor_class.mentor_class_id=order_item.product_id')->get();
