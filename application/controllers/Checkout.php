@@ -32,10 +32,10 @@ class Checkout extends CI_Controller{
 
       $data['queryOrder'] = $this->db->where('sid',$sid)->where('user_id',$user->id)->get('orders');
 
-      $data['row']  = $data['queryOrder']->row();
-      $data['user'] = $this->ion_auth->user($data['row']->user_id)->row(); 
+      $row  = $data['queryOrder']->row();
+      $data['user'] = $this->ion_auth->user($row->user_id)->row();
 
-      $data['orderItem'] = $this->db->where('order_id',$data['row']->order_id)->order_by('order_id','asc')->from('order_item')->join('mentor_class','mentor_class.mentor_class_id=order_item.product_id')->get();
+      $data['orderItem'] = $this->db->where('order_id',$row->order_id)->order_by('order_id','asc')->from('order_item')->join('mentor_class','mentor_class.mentor_class_id=order_item.product_id')->get();
 
       $this->load->view('include/header');
       $this->load->view('checkout',$data);
