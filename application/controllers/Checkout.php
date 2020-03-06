@@ -19,7 +19,7 @@ class Checkout extends CI_Controller{
 
   }
 
-  function index($sid)
+  function index($sid='')
   {
     if (!$this->ion_auth->logged_in() || !empty($sid)) {
 
@@ -30,8 +30,12 @@ class Checkout extends CI_Controller{
 
       $user = $this->ion_auth->user()->row();
 
-      $data['queryCheckout'] = $this->db->where('user_id',$user->id)->where('checkout',1)->order_by('cart_id','desc')->get('cart');
-      $data['add'] = $this->db->where('user_id',$user->id)->order_by('address_id','desc')->get('address')->row();
+      $data['queryOrder'] = $this->db->where('sid',$sid)->where('user_id',$user->id)->get('orders');
+
+      $data['row']  = $data['queryOrder']->row();
+      $data['user'] = $this->ion_auth->user($data['row']->user_id)->row(); 
+
+      $data['orderItem'] = $this->db->where('order_id',$data['row']->order_id)->order_by('order_id','asc')->from('order_item')->join('mentor_class','mentor_class.mentor_class_id=order_item.product_id')->get();
 
       $this->load->view('include/header');
       $this->load->view('checkout',$data);
@@ -93,12 +97,13 @@ class Checkout extends CI_Controller{
           'user' => $this->ion_auth->user()->row()
         ];
 
-        $row = $data['queryInvoice']->row();
+        $row      = $data['queryInvoice']->row();
+        $user     = $this->ion_auth->user()->row();
 
-        $name = "Billing ARTAdemi";
-        $email = $user->email;
-        $subject = "Invoice - ".$row->invoice.' telah dibuat.';
-        $message = $this->load->view('notification/invoice',$data,true);
+        $name     = "Billing ARTAdemi";
+        $email    = $user->email;
+        $subject  = "Invoice - ".$row->invoice.' telah dibuat.';
+        $message  = $this->load->view('notification/invoice',$data,true);
 
         $this->checkout->email($email,$subject,$message,$name);
 
