@@ -162,7 +162,8 @@ $(document).ready(function(){
         return jqXHR;
       },
       success : success
-    })
+    });
+    return false;
   }
 
   $('form#updateMentorProfile').each(function(){
@@ -281,6 +282,36 @@ $(document).ready(function(){
         }
       }
     });
+
+    $('input#filemateri').on('change',function(){
+      var thisfield = $(this);
+      var x         = document.getElementById("filemateri");
+      var files     = x.files;
+      var videoID   = $('input#videoID').val();
+      var userID    = $('input[name="user_id"]').val();
+
+      var formData = new FormData();
+      formData.append('video_id', videoID);
+      formData.append('user_id', userID);
+
+      for (var i = 0; i < files.length; i++) {
+        formData.append('filemateri[]',files[i]);
+      }
+
+      var url       = baseUrl +'/artademidemo/mentor/uploadvideo';
+      var data      = formData;
+      var progress  = $(this);
+      var success   = function(val){
+        thisfield.parent().parent().find('.progress').find('.progress-bar').hide();
+        thisfield.parent().parent().find('#preview').find('.row').prepend(val);
+        console.log(val);
+      }
+
+      ajaxFunction(url, data, progress, success);
+
+
+      console.log('data id saya: '+ userID);
+    })
 
   });
 

@@ -116,7 +116,9 @@ class Home extends MX_Controller
       //$this->output_view->output($template);
 
       $data['querySlider']    = $this->db->where('start_date <=', date('Y-m-d'))->where('end_date >=',date('Y-m-d'))->get('slider');
+
       $data['queryCategory']  = $this->db->order_by('category_product_id', 'asc')->get('category_product');
+
       $data['queryArticles']  = $this->db->order_by('posting_date', 'desc')->limit(3)->get('articles');
       $data['queryMentor']    = $this->db->where('mentor.active',1)->order_by('mentor.mentor_id', 'desc')->select('mentor.*,mentor.mentor_id as id_mentor, users.*')->from('mentor')->join('users','users.id = mentor.user_id')->get();
       $data['queryPartners']  = $this->db->order_by('partners_id', 'asc')->get('partners');
@@ -125,6 +127,13 @@ class Home extends MX_Controller
       $this->load->view('home',$data);
       $this->load->view('include/footer');
 
+    }
+
+    public function ajax_category()
+    {
+      if (!$this->input->is_ajax_request()) {
+        redirect('/');
+      }
     }
 
 

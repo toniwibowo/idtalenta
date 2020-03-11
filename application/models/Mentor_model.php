@@ -80,6 +80,68 @@ class Mentor_model extends CI_Model{
 
   }
 
+  public function multiple_upload($name, $data)
+  {
+    $files  = $_FILES[$name]['name'];
+    $user   = $this->ion_auth->user()->row();
+    $message = array();
+
+    foreach ($files as $key => $value) {
+      $file_name  = $_FILES[$name]['name'][$key];
+      $filename   = random_string('alnum',5).'-'.str_replace(' ','-',$file_name);
+      $tmp_name   = $_FILES[$name]['tmp_name'][$key];
+
+      $makediruser = './assets/uploads/materi/'.$user->id;
+      $makedirdate = './assets/uploads/materi/'.$user->id.'/'.date('dmY');
+
+      if (!is_dir($makediruser)) {
+        mkdir($makediruser);
+
+        if (!is_dir($makedirdate)) {
+          mkdir($makedirdate);
+        }
+
+      }
+
+      $directory = $makedirdate.'/';
+
+      $EXT = pathinfo($filename, PATHINFO_EXTENSION);
+
+
+      if ($EXT == 'jpg' || $EXT == 'jpeg' || $EXT == 'png' || $EXT == 'gif') {
+        if ($_FILES[$name]['size'][$key] <= 30000) {
+          if (move_uploaded_file($tmp_name,$directory.$filename)) {
+            $datamateri = array('materi_name' => $filename);
+            $insertData = array_merge($data, $datamateri );
+            $this->db->insert('mentor_materi', $insertData);
+
+            $message[$key] = "File ".$filename." sukses diupload";
+          }else {
+            $message[$key] = "File ".$filename." gagal diupload";
+          }
+        }else {
+          $message[$key] = "File ".$filename." gagal diupload, ukuranya terlalu besar";
+        }
+      }else {
+        $message[$key] = "Tipe file ".$filename." tidak diizinkan";
+      }
+
+      $message['images'][$key] = $filename;
+
+      //$message .='Data yang saya upload adalah <br />';
+      //$message .= $filename. '<br />';
+
+      // if ($this->upload->do_upload($name)) {
+      //   $message[] = "Success";
+      // }else {
+      //   $message[] = array('error' => $this->upload->display_errors());
+      // }
+
+    }
+
+    return $message;
+  }
+
   public function star($id)
   {
     $star5  = $this -> db -> where('mentor_class_id',$id) -> where('star',5.00) -> get('review') -> num_rows();

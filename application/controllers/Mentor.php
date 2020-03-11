@@ -461,6 +461,40 @@ class Mentor extends CI_Controller{
           echo $filename.' upload failed - error: '.$_FILES['videomentor']['error'];
         }
 
+      }elseif (isset($_FILES['filemateri']['name'])) {
+
+        $name = 'filemateri';
+        $data = array(
+          'video_id' => $this->input->post('video_id',true),
+          'user_id' => $this->input->post('user_id',true),
+          'posting_date' => date('Y-m-d')
+        );
+
+        $upload = $this->mentor->multiple_upload($name, $data);
+
+        //print_r($upload);
+
+        foreach ($upload['images'] as $key => $image) {
+          echo '
+
+            <div class="col-lg-3 mb-4">
+              <div class="card">
+                <div class="card-body p-2">
+                  <img class="img-fluid" src="'.base_url('assets/uploads/materi/'.$data['user_id'].'/'.date('dmY').'/'.$image).'" alt="" />
+                </div>
+              </div>
+
+            </div>
+          ';
+        }
+
+        // $files = $_FILES['filemateri']['name'];
+        //
+        // foreach ($files as $key => $value) {
+        //   $filename = random_string('alnum',5).'-'. $_FILES['filemateri']['name'][$key];
+        //   echo $filename.'<br />';
+        // }
+
       }
       else {
         redirect('mentor/upload');
@@ -636,21 +670,39 @@ class Mentor extends CI_Controller{
 
   public function testing()
   {
-    if (isset($_POST['button'])) {
-      $jakarta = $_POST['jakarta'];
-      print_r($jakarta);
 
-      foreach ($jakarta as $key => $value) {
-        echo $value.'<br />';
+    $this->db->where('mentor_materi_id <=', 45)->delete('mentor_materi');
+
+    $this->db->where('video_id', $this->session->userdata('video_id'))->set('posting_date',date('Y-m-d'))->update('mentor_materi');
+    $user = $this->ion_auth->user()->row();
+
+    $makediruser = './assets/uploads/materi/'.$user->id;
+    $makedirdate = './assets/uploads/materi/'.$user->id.'/'.date('dmY');
+
+    if (!is_dir($makediruser)) {
+      mkdir($makediruser);
+      if (!is_dir($makedirdate)) {
+        mkdir($makedirdate);
       }
+      echo "Not Exist";
+    }else {
+      echo "Exist";
     }
 
+    // if (isset($_POST['button'])) {
+    //   $jakarta = $_POST['jakarta'];
+    //   print_r($jakarta);
+    //
+    //   foreach ($jakarta as $key => $value) {
+    //     echo $value.'<br />';
+    //   }
+    // }
+
     echo '
-    <form class="" action="" method="post" enctype="application/x-www-form-urlencoded">
-      <input type="text" name="jakarta[]" value="">
-      <input type="text" name="jakarta[]" value="">
-      <input type="text" name="jakarta[]" value="">
-      <input type="text" name="jakarta[]" value="">
+    <form class="" action="'.site_url('mentor/uploadvideo').'" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="video_id" value="12356">
+      <input type="hidden" name="user_id" value="10">
+      <input type="file" name="filemateri[]" value="" multiple>
 
       <button type="submit" name="button">Test</button>
     </form>

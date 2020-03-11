@@ -72,26 +72,68 @@
 			<div class="sort-destination-loader sort-destination-loader-showing">
 				<div class="row my-5 portfolio-list sort-destination" data-sort-id="portfolio">
 
-					<?php if ($queryCategory->num_rows() > 0): ?>
-						<?php foreach ($queryCategory->result() as $key => $value): ?>
-							<div class="col-12 isotope-item <?= url_title($value->category_product_name,'-',true) ?>">
-								<div class="row">
-									<div class="col-lg-6 appear-animation" data-appear-animation="bounceInLeft" data-appear-animation-delay="300" data-appear-animation-duration="1s">
-										<img class="img-fluid" src="<?= base_url('assets/uploads/files/').$value->big_image ?>" alt="<?= substr($value->big_image,0,-4) ?>">
-									</div>
-									<div class="col-lg-6 appear-animation" data-appear-animation="bounceInRight" data-appear-animation-delay="300" data-appear-animation-duration="1s">
-										<h4 class="text-warning">Define Your Choice</h4>
-										<h1><strong><?= $value->category_product_name ?></strong></h1>
-										<?= $value->description ?>
-										<div class="button-action">
-											<a class="btn btn-dark btn-modern btn-rounded" href="<?= site_url('video/view/'.$value->category_product_id.'/'.url_title($value->category_product_name,'-',true)) ?>">VIDEO</a>
-											<a class="btn btn-warning btn-modern btn-rounded" href="<?= site_url('mentor/view/'.$value->category_product_id.'/'.url_title($value->category_product_name,'-',true)) ?>">MENTOR</a>
-										</div>
-									</div>
+
+
+						<?php if ($queryCategory->num_rows() > 0): ?>
+							<?php foreach ($queryCategory->result() as $key => $value): ?>
+
+								<div class="col-12 isotope-item <?= url_title($value->category_product_name,'-',true) ?>">
+
+								<div class="owl-carousel owl-theme stage-margin" data-plugin-options="{'items': 4, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
+
+									<?php $videoCategory = $this->db->where('approve',1)->where('mentor_class.category_product_id', $value->category_product_id)->from('mentor_class')->join('category_product','category_product.category_product_id=mentor_class.category_product_id')->get(); ?>
+
+									<?php if ($videoCategory->num_rows() > 0): ?>
+										<?php foreach ($videoCategory->result() as $key => $vid): ?>
+											<div class="<?= url_title($vid->category_product_name,'-',true) ?>">
+												<span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-centered-icons">
+													<span class="thumb-info-wrapper">
+														<div class="poster" style="background-image: url('<?= base_url('assets/uploads/files/'.$vid->poster) ?>')">
+
+														</div>
+														<!-- <img src="" class="img-fluid" alt="<?= substr($vid->poster,0,-4) ?>"> -->
+														<span class="thumb-info-action">
+															<a href="#">
+																<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
+															</a>
+														</span>
+													</span>
+												</span>
+												<h4 class="mt-2 text-center text-3">
+													<a class="text-dark" href="#">
+														<?= $vid->title ?>
+													</a>
+												</h4>
+
+												<div class="button-action">
+													<div class="row">
+														<div class="col">
+															<a class="btn btn-warning btn-rounded btn-outline btn-block" href="<?= site_url('mentor/videodetail/'.$vid->mentor_class_id.'/'.url_title($vid->title,'-',true)) ?>">Video Detail</a>
+														</div>
+														<div class="col">
+															<form class="" action="<?= site_url('cart/addtocart') ?>" method="post" enctype="application/x-www-form-urlencoded">
+						                    <input type="hidden" name="product_id" value="<?= $vid->mentor_class_id ?>">
+						                    <input type="hidden" name="qty" value="1">
+						                    <button type="submit" name="button" class="btn btn-outline btn-rounded btn-dark btn-block">Buy</button>
+						                  </form>
+														</div>
+													</div>
+
+												</div>
+											</div>
+										<?php endforeach; ?>
+									<?php endif; ?>
+
 								</div>
-							</div>
-						<?php endforeach; ?>
-					<?php endif; ?>
+								</div>
+
+							<?php endforeach; ?>
+						<?php endif; ?>
+
+
+
+
+
 
 				</div>
 			</div>
