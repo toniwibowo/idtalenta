@@ -93,22 +93,29 @@
 														</div>
 														<!-- <img src="" class="img-fluid" alt="<?= substr($vid->poster,0,-4) ?>"> -->
 														<span class="thumb-info-action">
-															<a href="#">
+															<a href="<?= site_url('video/detail/'.$vid->mentor_class_id.'/'.url_title($vid->title,'-',true)) ?>">
 																<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
 															</a>
 														</span>
 													</span>
 												</span>
 												<h4 class="mt-2 text-center text-3">
-													<a class="text-dark" href="#">
+													<a class="text-dark" href="<?= site_url('video/detail/'.$vid->mentor_class_id.'/'.url_title($vid->title,'-',true)) ?>">
 														<?= $vid->title ?>
 													</a>
 												</h4>
 
+												<?php if ($vid->sale != 0): ?>
+					                <h3 class="text-center mb-1"><strong>Rp. <?= number_format($this->app->sale($vid->price,$vid->sale),0,',','.')  ?>,-</strong></h3>
+					                <h5 class="text-center"><del>Rp. <?= number_format($vid->price,0,',','.')  ?>,- </del></h5>
+					              <?php else: ?>
+					                <h3 class="text-center"><strong>Rp. <?= number_format($vid->price,0,',','.')  ?>,-</strong></h3>
+					              <?php endif; ?>
+
 												<div class="button-action">
 													<div class="row">
 														<div class="col">
-															<a class="btn btn-warning btn-rounded btn-outline btn-block" href="<?= site_url('mentor/videodetail/'.$vid->mentor_class_id.'/'.url_title($vid->title,'-',true)) ?>">Video Detail</a>
+															<a class="btn btn-warning btn-rounded btn-outline btn-block" href="<?= site_url('video/detail/'.$vid->mentor_class_id.'/'.url_title($vid->title,'-',true)) ?>">Video Detail</a>
 														</div>
 														<div class="col">
 															<form class="" action="<?= site_url('cart/addtocart') ?>" method="post" enctype="application/x-www-form-urlencoded">
