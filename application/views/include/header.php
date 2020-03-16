@@ -130,7 +130,7 @@
 																		<a class="dropdown-item" href="<?= site_url('member/myaccount') ?>">My Profile</a>
 																	</li>
 																	<li>
-																		<a class="dropdown-item text-light" href="<?= site_url('mentor/purchased') ?>">Video yang dibeli</a>
+																		<a class="dropdown-item text-light" href="<?= site_url('mentor/purchased') ?>">Video yang dibeli</a>																		
 																	</li>
 																	<li>
 																		<a class="dropdown-item text-light" href="<?= site_url('mentor/wishlist') ?>">Wishlist</a>

@@ -352,7 +352,7 @@ class Mentor extends CI_Controller{
       $data['address']            = $this->input->post('address',true);
       $data['postal_code']        = $this->input->post('postal_code',true);
       $data['resume']             = $this->input->post('resume',true);
-      $data['profile']        = $this->input->post('description',true);
+      $data['profile']            = $this->input->post('description',true);
       $id = $this->input->post('mentor_id',true);
 
       $updateMentorPrifile = $this->db->where('mentor_id', $id)->set($data)->update('mentor');
@@ -532,8 +532,16 @@ class Mentor extends CI_Controller{
 
   public function purchased()
   {
+    if (!$this->ion_auth->logged_in()) {
+      redirect('/');
+    }
+
+    $user = $this->ion_auth->user()->row();
+
+    $data['getOrder'] = $this->db->where('payment', 0)->where('user_id', $user->id)->get('orders');
+
     $this->load->view('include/header');
-    //$this->load->view('mentor-detail');
+    $this->load->view('purchased',$data);
     $this->load->view('include/footer');
   }
 
