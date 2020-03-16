@@ -123,6 +123,8 @@ class Home extends MX_Controller
       $data['queryMentor']    = $this->db->where('mentor.active',1)->order_by('mentor.mentor_id', 'desc')->select('mentor.*,mentor.mentor_id as id_mentor, users.*')->from('mentor')->join('users','users.id = mentor.user_id')->get();
       $data['queryPartners']  = $this->db->order_by('partners_id', 'asc')->get('partners');
 
+      $data['queryPromo'] = $this->db->where('start_date <=', date('Y-m-d'))->where('end_date >=', date('Y-m-d'))->from('mentor_promo')->join('mentor_class','mentor_class.mentor_class_id=mentor_promo.mentor_class_id')->get();
+
       $this->load->view('include/header');
       $this->load->view('home',$data);
       $this->load->view('include/footer');

@@ -352,9 +352,11 @@ class Mentor extends MX_Controller
       $crud->callback_column('poster',array($this,'countvideo'));
 
       // Field view
-      $crud->fields('user_id','category_product_id','title','resume','description','posting_date','tags','price','sale','poster','thriller','video_id','approve');
+      $crud->fields('user_id','category_product_id','title','resume','description','posting_date','tags','price','sale','poster','thriller','video_id','approve','promo_start_date','promo_end_date');
 
       $crud->field_type('approve','dropdown', array('0' => 'No', '1' => 'Yes'));
+      $crud->field_type('promo_start_date','date');
+      $crud->field_type('promo_end_date','date');
 
       $crud->display_as('user_id','Mentor');
       $crud->display_as('category_product_id','Class Category');
@@ -362,6 +364,9 @@ class Mentor extends MX_Controller
       $crud->set_relation('user_id','users','full_name');
 
       $crud->set_relation('category_product_id','category_product','category_product_name');
+
+      $crud->callback_before_update(array($this, 'unset_date_promo_callback'));
+      $crud->callback_after_update(array($this, 'set_date_promo_callback'));
 
       //$crud->set_relation_n_n('group_name','users_groups','groups','user_id','group_id','name');
 
@@ -426,6 +431,43 @@ class Mentor extends MX_Controller
 
       }
     }
+
+    public function unset_date_promo_callback($post,$primary_key)
+    {
+
+      $startdate  = date('Y-m-d',strtotime(str_replace('/','-',$post['promo_start_date'])));
+      $enddate    = date('Y-m-d',strtotime(str_replace('/','-',$post['promo_end_date'])));
+
+      $cekPrimary = $this->db->where('mentor_class_id', $primary_key)->get('mentor_promo')->num_rows();
+
+      if ($cekPrimary > 0) {
+
+        $data = array(
+          'start_date' => $startdate,
+          'end_date' => $enddate
+        );
+
+        $this->db->where('mentor_class_id', $primary_key)->set($data)->update('mentor_promo');
+
+      }else {
+
+        $data = array(
+          'mentor_class_id' => $primary_key,
+          'start_date' => $startdate,
+          'end_date' => $enddate
+        );
+
+        $this->db->insert('mentor_promo',$data);
+
+      }
+
+      unset($post['promo_start_date']);
+      unset($post['promo_end_date']);
+
+      return $post;
+    }
+
+
 
     public function countvideo($value,$row)
     {
