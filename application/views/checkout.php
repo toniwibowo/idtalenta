@@ -64,7 +64,7 @@
                 </div>
               </div>
               <div class="btn-action">
-                <a class="btn btn-rounded btn-outline btn-warning btn-block mb-2" href="#">Pembayaran</a>
+                <a class="btn btn-rounded btn-outline btn-warning btn-block mb-2" href="<?= site_url('payment/'.$row->sid) ?>">Pembayaran</a>
               </div>
             </div>
           </div>

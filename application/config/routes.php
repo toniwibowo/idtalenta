@@ -81,7 +81,7 @@ $route['kebijakan-privasi']           	 = 'pages/view/5/kebijakan';
 
 
 $route['blog/view'] = "articles/view";
-$route['blog/detail/(:num)/(:any)'] = "articles/detail/$1/$2";
+$route['payment/(:any)'] = "checkout/payment/$1";
 
 
 
