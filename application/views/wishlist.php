@@ -72,9 +72,11 @@
             <?php endif; ?>
           <?php endforeach; ?>
         <?php else: ?>
-          <div class="alert alert-info" role="alert">
-            You don't have product wishlist.
-          </div>
+          <div class="col">
+            <div class="alert alert-info" role="alert">
+              You don't have product wishlist.
+            </div>
+          </div>          
         <?php endif; ?>
       </div>
     </div>
