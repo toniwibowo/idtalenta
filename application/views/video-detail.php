@@ -163,7 +163,12 @@
               <a class="btn btn-lg btn-warning btn-outline btn-rounded btn-block" href="#">Beli</a>
             </div>
             <div class="col">
-              <a class="btn btn-lg btn-dark btn-outline btn-rounded btn-block" id="btn-wishlist" data-class="<?= $row->mentor_class_id ?>" data-user="<?= $user->id ?>" href="#">Wishlist</a>
+              <?php if ($this->ion_auth->logged_in()): ?>
+                <a class="btn btn-lg btn-dark btn-outline btn-rounded btn-block" id="btn-wishlist" data-class="<?= $row->mentor_class_id ?>" data-user="<?= $user->id ?>" href="#">Wishlist</a>
+                <?php else: ?>
+                <a class="btn btn-lg btn-dark btn-outline btn-rounded btn-block" data-toggle="modal" data-target="#defaultModal" href="#">Wishlist</a>  
+              <?php endif; ?>
+
             </div>
           </div>
         </div>
