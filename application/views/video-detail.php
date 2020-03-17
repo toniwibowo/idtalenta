@@ -163,7 +163,7 @@
               <a class="btn btn-lg btn-warning btn-outline btn-rounded btn-block" href="#">Beli</a>
             </div>
             <div class="col">
-              <a class="btn btn-lg btn-dark btn-outline btn-rounded btn-block" href="#">Wishlist</a>
+              <a class="btn btn-lg btn-dark btn-outline btn-rounded btn-block" id="btn-wishlist" data-class="<?= $row->mentor_class_id ?>" data-user="<?= $user->id ?>" href="#">Wishlist</a>
             </div>
           </div>
         </div>

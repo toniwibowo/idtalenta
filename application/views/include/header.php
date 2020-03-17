@@ -130,10 +130,10 @@
 																		<a class="dropdown-item" href="<?= site_url('member/myaccount') ?>">My Profile</a>
 																	</li>
 																	<li>
-																		<a class="dropdown-item text-light" href="<?= site_url('mentor/purchased') ?>">Video yang dibeli</a>																		
+																		<a class="dropdown-item text-light" href="<?= site_url('mentor/purchased') ?>">Video yang dibeli</a>
 																	</li>
 																	<li>
-																		<a class="dropdown-item text-light" href="<?= site_url('mentor/wishlist') ?>">Wishlist</a>
+																		<a class="dropdown-item text-light" href="<?= site_url('wishlist') ?>">Wishlist</a>
 																	</li>
 																	<?php if ($this->ion_auth->in_group(4)): ?>
 																	<?php $check_mentor_active = $this->db->where('user_id',$user->id)->where('active',1)->get('mentor'); ?>

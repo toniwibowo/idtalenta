@@ -111,6 +111,18 @@ $(document).ready(function(){
   })
   // END SUBSCRIBE
 
+  // WISHLIST START
+  $('a#btn-wishlist').click(function(){
+    var class_id = $(this).data('class'),
+    user_id = $(this).data('user');
+
+    $.post(baseUrl +'/artademidemo/wishlist/add',{user_id: user_id, mentor_class_id: class_id})
+    .done(function(val){
+      alert(val)
+    })
+  })
+  // WISHLIST END
+
   //TEXTAREA
   $('textarea').each(function(index){
 
