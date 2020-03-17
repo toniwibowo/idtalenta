@@ -56,6 +56,9 @@ class App {
   public function getcart()
   {
     $html = '<div class="header-nav-feature header-nav-features-cart d-inline-flex ml-2">';
+
+    $sid = session_id().date('His');
+
     if ($this->CI->ion_auth->logged_in()) {
 
       $user = $this->getuser();
@@ -63,8 +66,6 @@ class App {
       //$where = array('user_id' => $user->id);
       $where = array('sid' => $_COOKIE['cart']);
     }else {
-
-      $sid = session_id().date('His');
 
       if (isset($_COOKIE['cart'])) {
   			//$sid = session_id().date('His');

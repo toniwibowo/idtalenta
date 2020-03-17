@@ -82,7 +82,7 @@ class Checkout extends CI_Controller{
       $sid = $this->input->post('sid',true);
 
       //GET DATA FROM CART
-      $getCart = $this->db->query("INSERT INTO orders SELECT * FROM cart WHERE sid='".$sid."'");
+      $getCart = $this->db->query("INSERT INTO orders (invoice, user_id, sid, ip_address, checkout, payment, uniq_code, total, order_date, order_time) SELECT invoice, user_id, sid, ip_address, checkout, payment, uniq_code, total, order_date, order_time FROM cart WHERE sid='".$sid."'");
 
       //GET ITEM ORDER
       $cart   = $this->db->where('sid', $sid)->get('cart')->row();
@@ -131,7 +131,12 @@ class Checkout extends CI_Controller{
 
     delete_cookie('cart');
 
-    redirect('checkout/index/'.$sid);
+    $newID = session_id().date('His');
+
+    setcookie('cart', $newID, time() + (86400 * 1), "/"); // 86400 = 1 day
+
+
+    redirect('checkout/index/'.$sid,'refresh');
   }
 
   public function payment()
