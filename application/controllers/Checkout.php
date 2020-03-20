@@ -82,7 +82,7 @@ class Checkout extends CI_Controller{
       $sid = $this->input->post('sid',true);
 
       //GET DATA FROM CART
-      $getCart = $this->db->query("INSERT INTO orders (invoice, user_id, sid, ip_address, checkout, payment, uniq_code, total, order_date, order_time) SELECT invoice, user_id, sid, ip_address, checkout, payment, uniq_code, total, order_date, order_time FROM cart WHERE sid='".$sid."'");
+      $getCart = $this->db->query("INSERT INTO orders (order_id, user_id, sid, ip_address, checkout, payment, uniq_code, total, order_date, order_time) SELECT cart_id, user_id, sid, ip_address, checkout, payment, uniq_code, total, order_date, order_time FROM cart WHERE sid='".$sid."'");
 
       //GET ITEM ORDER
       $cart   = $this->db->where('sid', $sid)->get('cart')->row();
@@ -98,6 +98,7 @@ class Checkout extends CI_Controller{
         //$this->db->where('order_id', $cart->cart_id)->set('order_id',$order->order_id)->update('order_item');
         $this->db->where('cart_id', $cart->cart_id)->delete('cart_item');
 
+
         // SEND EMAIL INVOICE FOR BUYER
         $data = [
 
@@ -108,9 +109,17 @@ class Checkout extends CI_Controller{
         $row      = $data['queryInvoice']->row();
         $user     = $this->ion_auth->user()->row();
 
+        // UPDATE INVOICE
+
+        $inv = $this->db->order_by('invoice', 'DESC')->get('orders')->row();
+
+        $invoice = $inv->invoice + 1;
+
+        $this->db->where('sid',$sid)->set('invoice', $invoice)->update('orders');
+
         $name     = "Billing ARTAdemi";
         $email    = $user->email;
-        $subject  = "Invoice - ".$row->invoice.' telah dibuat.';
+        $subject  = "Invoice - ".$invoice.' telah dibuat.';
         $message  = $this->load->view('notification/invoice',$data,true);
 
         $this->checkout->email($email,$subject,$message,$name);

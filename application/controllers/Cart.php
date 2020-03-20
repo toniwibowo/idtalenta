@@ -56,11 +56,11 @@ class Cart extends CI_Controller{
       $user_id = 0;
     }
 
-    $cekinvoice = $this->db->get('cart');
+    $cekinvoice = $this->db->get('invoice');
 
     if ($cekinvoice->num_rows() > 0) {
       $str = $this->db->insert_id() - 1;
-      $get = $this->db->order_by('cart_id','desc')->get('cart')->row();
+      $get = $this->db->order_by('invoice_id','desc')->get('orders')->row();
 
       $invoice = $get->invoice + 1;
 
@@ -110,7 +110,6 @@ class Cart extends CI_Controller{
 
     }else {
       $data = array(
-        'invoice' => $invoice,
         'user_id' => $user_id,
         'sid' => $sid,
         'ip_address' => $ip_address,
