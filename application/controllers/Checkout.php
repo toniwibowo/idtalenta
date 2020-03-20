@@ -99,40 +99,42 @@ class Checkout extends CI_Controller{
         $this->db->where('cart_id', $cart->cart_id)->delete('cart_item');
 
 
-        // SEND EMAIL INVOICE FOR BUYER
-        $data = [
-
-          'queryInvoice' => $this->db->where('sid', $sid)->order_by('order_id','desc')->get('orders'),
-          'user' => $this->ion_auth->user()->row()
-        ];
-
-        $row      = $data['queryInvoice']->row();
-        $user     = $this->ion_auth->user()->row();
-
         // UPDATE INVOICE
 
         $inv = $this->db->order_by('invoice', 'DESC')->get('orders')->row();
 
         $invoice = $inv->invoice + 1;
 
-        $this->db->where('sid',$sid)->set('invoice', $invoice)->update('orders');
+        $updateInvoice = $this->db->where('sid',$sid)->set('invoice', $invoice)->update('orders');
 
-        $name     = "Billing ARTAdemi";
-        $email    = $user->email;
-        $subject  = "Invoice - ".$invoice.' telah dibuat.';
-        $message  = $this->load->view('notification/invoice',$data,true);
+        if ($updateInvoice) {
 
-        $this->checkout->email($email,$subject,$message,$name);
+          // SEND EMAIL INVOICE FOR BUYER
+          $data = [
 
-        // NOTIFICATION TO MENTOR
-        $dataEmail = $this->db->where('order_id', $row->order_id)->get('order_item');
+            'queryInvoice' => $this->db->where('sid', $sid)->order_by('order_id','desc')->get('orders'),
+            'user' => $this->ion_auth->user()->row()
+          ];
 
-        if ($dataEmail->num_rows() > 0) {
-          foreach ($dataEmail->result() as $key => $mail) {
-            $this->checkout->notif_purchase_mentor($mail->product_id, $sid);
+          $row      = $data['queryInvoice']->row();
+          $user     = $this->ion_auth->user()->row();
+          
+          $name     = "Billing ARTAdemi";
+          $email    = $user->email;
+          $subject  = "Invoice - ".$invoice.' telah dibuat.';
+          $message  = $this->load->view('notification/invoice',$data,true);
+
+          $this->checkout->email($email,$subject,$message,$name);
+
+          // NOTIFICATION TO MENTOR
+          $dataEmail = $this->db->where('order_id', $row->order_id)->get('order_item');
+
+          if ($dataEmail->num_rows() > 0) {
+            foreach ($dataEmail->result() as $key => $mail) {
+              $this->checkout->notif_purchase_mentor($mail->product_id, $sid);
+            }
           }
         }
-
 
       }
 
