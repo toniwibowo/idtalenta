@@ -320,6 +320,18 @@ class Mentor extends MX_Controller
       return $mentor->full_name;
     }
 
+    public function promo_start_date_callback($value,$primary_key)
+    {
+      $row = $this->db->where('mentor_class_id', $primary_key)->get('mentor_promo')->row();
+      return '<input type="text" class="datepicker-input form-control" id="field-promo_start_date" name="promo_start_date" value="'.$row->start_date.'" /> <a class="datepicker-input-clear" tabindex="-1">Clear</a> (dd/mm/yyyy)';
+    }
+
+    public function promo_end_date_callback($value,$primary_key)
+    {
+      $row = $this->db->where('mentor_class_id', $primary_key)->get('mentor_promo')->row();
+      return '<input type="text" class="datepicker-input form-control" id="field-promo_start_date" name="promo_start_date" value="'.$row->end_date.'" /> <a class="datepicker-input-clear" tabindex="-1">Clear</a> (dd/mm/yyyy)';
+    }
+
     public function mentorclass()
     {
       if (!$this->ion_auth->logged_in()) {
@@ -355,8 +367,13 @@ class Mentor extends MX_Controller
       $crud->fields('user_id','category_product_id','title','resume','description','posting_date','tags','price','sale','poster','thriller','video_id','approve','promo_start_date','promo_end_date');
 
       $crud->field_type('approve','dropdown', array('0' => 'No', '1' => 'Yes'));
-      $crud->field_type('promo_start_date','date');
-      $crud->field_type('promo_end_date','date');
+
+      $classID = $this->uri->segment(5);
+
+      $crud->field_type('promo_start_date','date', $classID);
+      $crud->field_type('promo_end_date','date', date('d/m/Y'));
+      $crud->callback_edit_field('promo_start_date',array($this,'promo_start_date_callback'));
+      $crud->callback_edit_field('promo_end_date',array($this,'promo_end_date_callback'));
 
       $crud->display_as('user_id','Mentor');
       $crud->display_as('category_product_id','Class Category');
