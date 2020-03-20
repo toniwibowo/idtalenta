@@ -139,15 +139,19 @@ class Checkout extends CI_Controller{
     redirect('checkout/index/'.$sid,'refresh');
   }
 
-  public function payment()
+  public function payment($sid)
   {
 
     if (!isset($_COOKIE['checkout']) || !$this->ion_auth->logged_in() ) {
       redirect('/');
     }
 
+    $data['sid'] = $sid;
+
+    $data['payment'] = $this->db->where('sid', $sid)->get('orders')->row();
+
     $this->load->view('include/header');
-    $this->load->view('payment');
+    $this->load->view('payment',$data);
     $this->load->view('include/footer');
   }
 
@@ -156,6 +160,7 @@ class Checkout extends CI_Controller{
     $emailuser    = $this->input->post('email',true);
     $user_id      = $this->input->post('user_id',true);
     $invoice      = $this->input->post('invoice',true);
+    $sid          = $this->input->post('sid',true);
     //$bankaccount  = $this->input->post('bank-account',true);
     //$bankfrom     = $this->input->post('bankfrom',true);
     //$bankto       = $this->input->post('bankto',true);
@@ -178,21 +183,18 @@ class Checkout extends CI_Controller{
         'user_id' => $user_id,
         'invoice' => $invoice,
         'ammount' => $ammount,
-        'transfer_date' => $transferdate
+        'payment_date' => $transferdate
       );
 
-      $insertData = $this->db->insert('confirmation',$data);
+      $insertData = $this->db->insert('payment_confirmation',$data);
 
       if ($insertData) {
-        $name = "Support Dripsweet";
-        $email = "dripsweet.id@gmail.com";
+        $name = "Billing ARTAdemi";
+        $email = "yudisketsa@gmail.com";
         $subject = "Konfirmasi Pembayaran Invoice ".$invoice;
         $message = "Data Konfirmasi: <br>
         Email : ".$emailuser."<br>
         No. Invoice : ".$invoice."<br>
-        Rekening Pengirim : ".$bankaccount."<br>
-        Bank Dari : ".$bankfrom."<br>
-        Bank Tujuan :".$bankto."<br>
         Jumlah Transfer : ".$ammount."<br>
         Tgl. Transfer : ".$transferdate;
 
@@ -200,7 +202,7 @@ class Checkout extends CI_Controller{
 
         $this->session->set_flashdata('confirmation',true);
 
-        redirect('checkout/payment');
+        redirect('payment/'.$sid);
       }
     }
 
@@ -214,10 +216,10 @@ class Checkout extends CI_Controller{
 
     $this->checkout->notif_purchase_mentor(1,$sid);
 
-    //$data['queryInvoice'] = $this->db->where('sid', $sid)->order_by('order_id','desc')->get('orders');
-    //$data['user'] = $this->ion_auth->user()->row();
+    $data['queryInvoice'] = $this->db->where('sid', $sid)->order_by('order_id','desc')->get('orders');
+    $data['user'] = $this->ion_auth->user()->row();
 
-    //$this->load->view('notification/invoice',$data);
+    $this->load->view('notification/invoice',$data);
   }
 
 }
