@@ -66,7 +66,7 @@
 
           <tbody>
 
-            <?php $listInvoice = $this -> db -> where('order_id',$row->order_id) -> from('order_item') -> join('mentor_class','mentor_class.mentor_class_id=order_item.product_id')->get();  ?>
+            <?php $listInvoice = $this->db->where('order_id',$row->order_id) -> from('order_item')->join('mentor_class','mentor_class.mentor_class_id=order_item.product_id')->get();  ?>
             <?php if ($listInvoice->num_rows() > 0): ?>
               <?php foreach ($listInvoice->result() as $key => $inv): ?>
 
@@ -117,7 +117,7 @@ Segala bentuk informasi seperti nomor kontak, alamat e-mail, atau password kamu 
             <td align="right" width="50%"><span style="color:#fff; margin-right:15px;">Follow Us :</span></td>
             <td align="left" style="padding:6px 0 2px">
 
-              <a style="display:inline-block; background:#fff; color:#0088CC; border-radius:50%; width:30px; height:30px; position:relative" target="_blank" href="https://www.facebook.com/gravenzadigital">
+              <a style="display:inline-block; background:#fff; color:#0088CC; border-radius:50%; width:30px; height:30px; position:relative" target="_blank" href="https://www.facebook.com/">
                 <i style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);font-size:16px" class="fa fa-facebook"></i>
               </a>
               <a style="display:inline-block; background:#fff; color:#0088CC; border-radius:50%; width:30px; height:30px; position:relative" target="_blank" href="https://www.instagram.com/">
