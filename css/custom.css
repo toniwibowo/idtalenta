@@ -316,3 +316,20 @@ nav.collapse ul.nav .fa-user-circle{
   }
 
 }
+
+@media screen and (max-width:500px) {
+  #header .header-logo img{
+    width: 150px;
+    height: auto;
+  }
+
+  #header .header-nav-features{
+    padding-left: 0;
+    margin-left: 5px;
+    margin-right: 10px;
+  }
+
+  #header .header-nav-features .mx-3{
+    margin: 0 0.3rem !important;
+  }
+}
