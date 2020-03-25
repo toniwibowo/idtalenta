@@ -23,6 +23,13 @@
 		<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light%7CPlayfair+Display:400" rel="stylesheet" type="text/css"> -->
 		<link href="https://fonts.googleapis.com/css?family=Public+Sans&display=swap" rel="stylesheet">
 
+		<?php $uri = $this->uri->segment(1); ?>
+
+		<?php if ($uri == 'course'): ?>
+		<link rel="stylesheet" href="<?= base_url() ?>vendor/video.js/dist/video-js.css">
+		<link rel="stylesheet" href="<?= base_url() ?>css/video-slide.css">
+		<?php endif; ?>
+
 		<!-- Vendor CSS -->
 		<link rel="stylesheet" href="<?= base_url() ?>vendor/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="<?= base_url() ?>vendor/fontawesome-free/css/all.min.css">

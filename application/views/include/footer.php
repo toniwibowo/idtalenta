@@ -126,6 +126,8 @@
 
 </footer>
 
+<?php $uri = $this->uri->segment(1); ?>
+
 <!-- Vendor -->
 <script src="<?= base_url() ?>vendor/jquery/jquery.min.js"></script>
 <script src="<?= base_url() ?>vendor/jquery.appear/jquery.appear.min.js"></script>
@@ -145,6 +147,12 @@
 <script src="<?= base_url() ?>vendor/vivus/vivus.min.js"></script>
 <script src="<?= base_url() ?>vendor/bootstrap-star-rating/js/star-rating.min.js"></script>
 <script src="<?= base_url() ?>vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.js"></script>
+
+<?php if ($uri == 'course'): ?>
+<script src="<?= base_url() ?>vendor/video.js/dist/video.min.js"></script>
+<script src="<?= base_url() ?>js/video-handlers.js"></script>	
+<?php endif; ?>
+
 <script src="<?= base_url() ?>js/tagsinput.js"></script>
 
 <!-- Theme Base, Components and Settings -->
