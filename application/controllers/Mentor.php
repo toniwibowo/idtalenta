@@ -38,6 +38,8 @@ class Mentor extends CI_Controller{
 
     $user = $this->ion_auth->user()->row();
 
+    $data['userID'] = $user->id;
+
     $this->load->view('include/header');
 
     if ($action == 'edit') {
@@ -678,6 +680,8 @@ class Mentor extends CI_Controller{
 
   public function testing()
   {
+
+    echo 'total dibeli: '. $this->mentor->video_puchased_by_id(1);
 
     $this->db->where('mentor_materi_id <=', 45)->delete('mentor_materi');
 

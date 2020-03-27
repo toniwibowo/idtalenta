@@ -68,7 +68,7 @@
                   <div class="card-body p-3">
                     <div class="row no-gutters">
                       <div class="col-lg-8">
-                        <h2 class="mb-0 text-warning"><strong>21</strong></h2>
+                        <h2 class="mb-0 text-warning"><strong><?= $this->mentor->get_class_by_user($userID)->num_rows() ?></strong></h2>
                         <p class="mb-0">Total unggah video</p>
                       </div>
                       <div class="col-lg-4 align-self-center">
@@ -84,7 +84,7 @@
                   <div class="card-body p-3">
                     <div class="row no-gutters">
                       <div class="col-lg-8">
-                        <h2 class="mb-0 text-warning"><strong>235</strong></h2>
+                        <h2 class="mb-0 text-warning"><strong><?= $this->mentor->total_video_purchased($userID) ?></strong></h2>
                         <p class="mb-0">Total video terbeli</p>
                       </div>
                       <div class="col-lg-4 align-self-center">
@@ -125,7 +125,10 @@
                   <div class="col-lg-4">
           					<span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-centered-icons">
           						<span class="thumb-info-wrapper">
-          							<img src="<?= base_url('assets/uploads/files/'.$value->poster) ?>" class="img-fluid" alt="">
+                        <div class="poster" style="background-image: url('<?= base_url('assets/uploads/files/'.$value->poster) ?>')">
+
+      									</div>
+          							<!-- <img src="<?= base_url('assets/uploads/files/'.$value->poster) ?>" class="img-fluid" alt=""> -->
           							<span class="thumb-info-action">
           								<a href="#">
           									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
@@ -138,7 +141,7 @@
           							<?= $value->title ?>
           						</a>
           					</h5>
-                    <p class="text-center">Dibeli oleh <strong>104 member</strong><br><strong>1074 member</strong> total view</p>
+                    <p class="text-center">Dibeli oleh <strong><?= $this->mentor->video_puchased_by_id($value->mentor_class_id) ?> member</strong><br><strong><?= $value->hits ?> member</strong> total view</p>
                     <div class="button-action text-center mb-4">
                       <a class="btn btn-dark" href="<?= site_url('mentor/dashboard/edit/'.$value->mentor_class_id.'/'.url_title($value->title,'-',true)) ?>"><i class="fa fa-edit"></i> Edit</a>
                       <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i> Delete</a>

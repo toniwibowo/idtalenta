@@ -194,4 +194,48 @@ class Mentor_model extends CI_Model{
     }
   }
 
+  public function get_class_by_user($user)
+  {
+    return $this->db->where('user_id', $user)->where('approve', 1)->get('mentor_class');
+  }
+
+  public function video_puchased_by_id($id)
+  {
+    $purchased = array();
+    $getVideo = $this->db->where('product_id', $id)->get('order_item');
+
+    if ($getVideo->num_rows() > 0) {
+      foreach ($getVideo->result() as $key => $value) {
+        $checkPayment = $this->db->where('order_id', $value->order_id)->get('orders')->row_array();
+
+        if ($checkPayment['payment'] == 0) { //SAAT PRODUCTION PARAMETER DIRUBAH JADI 1
+          $purchased[] = $value->product_id;
+        }
+      }
+    }
+
+    return count($purchased);
+  }
+
+  public function total_video_purchased($user)
+  {
+    $purchased = array();
+    $orders = $this->db->where('user_id', $user)->where('payment', 0)->get('orders');
+
+    if ($orders->num_rows() > 0) {
+      foreach ($orders->result_array() as $key => $value) {
+
+        $getItem = $this->db->where('order_id', $value['order_id'])->get('order_item');
+
+        foreach ($getItem->result_array() as $key => $val) {
+          $purchased[] = $val['product_id'];
+        }
+      }
+    }
+
+    return count($purchased);
+
+
+  }
+
 }
