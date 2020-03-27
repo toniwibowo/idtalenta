@@ -56,17 +56,19 @@ class Cart extends CI_Controller{
       $user_id = 0;
     }
 
-    $cekinvoice = $this->db->get('invoice');
+    //$cekinvoice = $this->db->get('invoice');
 
-    if ($cekinvoice->num_rows() > 0) {
-      $str = $this->db->insert_id() - 1;
-      $get = $this->db->order_by('invoice_id','desc')->get('orders')->row();
+    // if ($cekinvoice->num_rows() > 0) {
+    //   $str = $this->db->insert_id() - 1;
+    //   $get = $this->db->order_by('invoice_id','desc')->get('orders')->row();
+    //
+    //   $invoice = $get->invoice + 1;
+    //
+    // }else {
+    //   $invoice = 4010;
+    // }
 
-      $invoice = $get->invoice + 1;
-
-    }else {
-      $invoice = 4010;
-    }
+    $invoice = 4010;
 
     $product_id = $this->input->post('product_id',true);
     $qty = $this->input->post('qty',true);

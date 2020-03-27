@@ -160,7 +160,11 @@
 
           <div class="row">
             <div class="col">
-              <a class="btn btn-lg btn-warning btn-outline btn-rounded btn-block" href="#">Beli</a>
+              <form class="" action="<?= site_url('cart/addtocart') ?>" method="post" enctype="application/x-www-form-urlencoded">
+                <input type="hidden" name="product_id" value="<?= $row->mentor_class_id ?>">
+                <input type="hidden" name="qty" value="1">
+                <button type="submit" name="button" class="btn btn-outline btn-rounded btn-dark btn-block">Buy</button>
+              </form>
             </div>
             <div class="col">
               <?php if ($this->ion_auth->logged_in()): ?>
