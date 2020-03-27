@@ -166,7 +166,7 @@
               <?php if ($this->ion_auth->logged_in()): ?>
                 <a class="btn btn-lg btn-dark btn-outline btn-rounded btn-block" id="btn-wishlist" data-class="<?= $row->mentor_class_id ?>" data-user="<?= $user->id ?>" href="#">Wishlist</a>
                 <?php else: ?>
-                <a class="btn btn-lg btn-dark btn-outline btn-rounded btn-block" data-toggle="modal" data-target="#defaultModal" href="#">Wishlist</a>  
+                <a class="btn btn-lg btn-dark btn-outline btn-rounded btn-block" data-toggle="modal" data-target="#defaultModal" href="#">Wishlist</a>
               <?php endif; ?>
 
             </div>
@@ -184,80 +184,25 @@
 
       <div class="row">
         <div class="col">
-          <div class="card mb-4">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col">
-                  <h4 class="mb-0">
-                    <span class="text-left"><strong>1. Introduction</strong></span>
-                    <span class="float-right text-warning">
-                      <i class="fa fa-caret-right"></i>
-                    </span>
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="card mb-4">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col">
-                  <h4 class="mb-0">
-                    <span class="text-left"><strong>2. There are many variations of passages of Lorem Ipsum available, but the majority have suffered</strong></span>
-                    <span class="float-right text-warning">
-                      <i class="fa fa-caret-right"></i>
-                    </span>
-                  </h4>
+          <?php if ($materi->num_rows() > 0): ?>
+            <?php foreach ($materi->result() as $key => $mtr): ?>
+              <div class="card mb-4">
+                <div class="card-body p-3">
+                  <div class="row">
+                    <div class="col">
+                      <h4 class="mb-0">
+                        <span class="text-left"><strong><?= ($key + 1).'. '.$mtr->description ?></strong></span>
+                        <span class="float-right text-warning">
+                          <i class="fa fa-caret-right"></i>
+                        </span>
+                      </h4>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="card mb-4">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col">
-                  <h4 class="mb-0">
-                    <span class="text-left"><strong>3. It is a long established fact that a reader will be distracted by the readable</strong></span>
-                    <span class="float-right text-warning">
-                      <i class="fa fa-caret-right"></i>
-                    </span>
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-4">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col">
-                  <h4 class="mb-0">
-                    <span class="text-left"><strong>4. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</strong></span>
-                    <span class="float-right text-warning">
-                      <i class="fa fa-caret-right"></i>
-                    </span>
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-4">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col">
-                  <h4 class="mb-0">
-                    <span class="text-left"><strong>5. Conclusion</strong></span>
-                    <span class="float-right text-warning">
-                      <i class="fa fa-caret-right"></i>
-                    </span>
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </div>
+            <?php endforeach; ?>
+          <?php endif; ?>
 
         </div>
       </div>
@@ -275,177 +220,55 @@
 			</div>
 
 			<div class="row mt-4 appear-animation" data-appear-animation="bounceInLeft" data-appear-animation-delay="300" data-appear-animation-duration="1s">
-				<div class="col-lg-4 mb-5">
-					<span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-centered-icons">
-						<span class="thumb-info-wrapper">
-							<img src="<?= base_url('images/video/video-1.jpg') ?>" class="img-fluid" alt="">
-							<span class="thumb-info-action">
-								<a href="#">
-									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
-								</a>
+
+        <?php if ($classPopular->num_rows() > 0): ?>
+          <?php foreach ($classPopular->result() as $key => $pop): ?>
+            <div class="col-lg-4 mb-4">
+							<span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-centered-icons">
+								<span class="thumb-info-wrapper">
+									<div class="poster" style="background-image: url('<?= base_url('assets/uploads/files/'.$pop->poster) ?>')">
+
+									</div>
+									<!-- <img src="" class="img-fluid" alt="<?= substr($pop->poster,0,-4) ?>"> -->
+									<span class="thumb-info-action">
+										<a href="<?= site_url('video/detail/'.$pop->mentor_class_id.'/'.url_title($pop->title,'-',true)) ?>">
+											<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
+										</a>
+									</span>
+								</span>
 							</span>
-						</span>
-					</span>
-					<h4 class="mt-2 text-center">
-						<a class="text-dark" href="#">
-							4 Steps of The Creative Process
-						</a>
-					</h4>
-          <h3 class="text-center"><strong>Rp. 400.000,-</strong></h3>
-          <div class="row">
-            <div class="col">
-              <a class="btn btn-outline btn-rounded btn-warning btn-block" href="#">Buy</a>
-            </div>
-            <div class="col">
-              <a class="btn btn-outline btn-rounded btn-dark btn-block" href="#">Buy</a>
-            </div>
-          </div>
-				</div>
-
-				<div class="col-lg-4">
-					<span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-centered-icons">
-						<span class="thumb-info-wrapper">
-							<img src="<?= base_url('images/video/video-2.jpg') ?>" class="img-fluid" alt="">
-							<span class="thumb-info-action">
-								<a href="#">
-									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
+							<h4 class="mt-2 text-center text-3">
+								<a class="text-dark" href="<?= site_url('video/detail/'.$pop->mentor_class_id.'/'.url_title($pop->title,'-',true)) ?>">
+									<?= $pop->title ?>
 								</a>
-							</span>
-						</span>
-					</span>
-					<h4 class="mt-2 text-center">
-						<a class="text-dark" href="#">
-							How to Make a Clay Pot by Wheel
-						</a>
-					</h4>
+							</h4>
 
-          <h3 class="text-center"><strong>Rp. 500.000,-</strong></h3>
-          <div class="row">
-            <div class="col">
-              <a class="btn btn-outline btn-rounded btn-warning btn-block" href="#">Buy</a>
-            </div>
-            <div class="col">
-              <a class="btn btn-outline btn-rounded btn-dark btn-block" href="#">Buy</a>
-            </div>
-          </div>
+							<?php if ($pop->sale != 0): ?>
+								<h3 class="text-center mb-1"><strong>Rp. <?= number_format($this->app->sale($pop->price,$pop->sale),0,',','.')  ?>,-</strong></h3>
+								<h5 class="text-center"><del>Rp. <?= number_format($pop->price,0,',','.')  ?>,- </del></h5>
+							<?php else: ?>
+								<h3 class="text-center"><strong>Rp. <?= number_format($pop->price,0,',','.')  ?>,-</strong></h3>
+							<?php endif; ?>
 
-				</div>
+							<div class="button-action">
+								<div class="row">
+									<div class="col">
+										<a class="btn btn-danger btn-rounded btn-outline btn-block" href="<?= site_url('video/detail/'.$pop->mentor_class_id.'/'.url_title($pop->title,'-',true)) ?>">Video Detail</a>
+									</div>
+									<div class="col">
+										<form class="" action="<?= site_url('cart/addtocart') ?>" method="post" enctype="application/x-www-form-urlencoded">
+											<input type="hidden" name="product_id" value="<?= $pop->mentor_class_id ?>">
+											<input type="hidden" name="qty" value="1">
+											<button type="submit" name="button" class="btn btn-outline btn-rounded btn-dark btn-block">Buy</button>
+										</form>
+									</div>
+								</div>
 
-				<div class="col-lg-4">
-					<span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-centered-icons">
-						<span class="thumb-info-wrapper">
-							<img src="<?= base_url('images/video/video-3.jpg') ?>" class="img-fluid" alt="">
-							<span class="thumb-info-action">
-								<a href="#">
-									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
-								</a>
-							</span>
-						</span>
-					</span>
-					<h4 class="mt-2 text-center">
-						<a class="text-dark" href="#">
-							Dig Into Digital Illustration with Procreate
-						</a>
-					</h4>
+							</div>
+						</div>
+          <?php endforeach; ?>
+        <?php endif; ?>
 
-          <h3 class="text-center"><strong>Rp. 600.000,-</strong></h3>
-          <div class="row">
-            <div class="col">
-              <a class="btn btn-outline btn-rounded btn-warning btn-block" href="#">Buy</a>
-            </div>
-            <div class="col">
-              <a class="btn btn-outline btn-rounded btn-dark btn-block" href="#">Buy</a>
-            </div>
-          </div>
-
-				</div>
-
-				<div class="col-lg-4">
-					<span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-centered-icons">
-						<span class="thumb-info-wrapper">
-							<img src="<?= base_url('images/video/video-4.jpg') ?>" class="img-fluid" alt="">
-							<span class="thumb-info-action">
-								<a href="#">
-									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
-								</a>
-							</span>
-						</span>
-					</span>
-					<h4 class="mt-2 text-center">
-						<a class="text-dark" href="#">
-							17 Types of Photography: Which Niche is Right for You?
-						</a>
-					</h4>
-
-          <h3 class="text-center"><strong>Rp. 700.000,-</strong></h3>
-          <div class="row">
-            <div class="col">
-              <a class="btn btn-outline btn-rounded btn-warning btn-block" href="#">Buy</a>
-            </div>
-            <div class="col">
-              <a class="btn btn-outline btn-rounded btn-dark btn-block" href="#">Buy</a>
-            </div>
-          </div>
-
-				</div>
-
-				<div class="col-lg-4">
-					<span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-centered-icons">
-						<span class="thumb-info-wrapper">
-							<img src="<?= base_url('images/video/video-5.jpg') ?>" class="img-fluid" alt="">
-							<span class="thumb-info-action">
-								<a href="#">
-									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
-								</a>
-							</span>
-						</span>
-					</span>
-					<h4 class="mt-2 text-center">
-						<a class="text-dark" href="#">
-							Steps to Create a Compelling 2D Animation That Everyone Will Love
-						</a>
-					</h4>
-
-          <h3 class="text-center"><strong>Rp. 800.000,-</strong></h3>
-          <div class="row">
-            <div class="col">
-              <a class="btn btn-outline btn-rounded btn-warning btn-block" href="#">Buy</a>
-            </div>
-            <div class="col">
-              <a class="btn btn-outline btn-rounded btn-dark btn-block" href="#">Buy</a>
-            </div>
-          </div>
-
-				</div>
-
-				<div class="col-lg-4">
-					<span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-centered-icons">
-						<span class="thumb-info-wrapper">
-							<img src="<?= base_url('images/video/video-6.jpg') ?>" class="img-fluid" alt="">
-							<span class="thumb-info-action">
-								<a href="#">
-									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
-								</a>
-							</span>
-						</span>
-					</span>
-					<h4 class="mt-2 text-center">
-						<a class="text-dark" href="#">
-							High-Low Collaborations Democratised Fashion
-						</a>
-					</h4>
-
-          <h3 class="text-center"><strong>Rp. 900.000,-</strong></h3>
-          <div class="row">
-            <div class="col">
-              <a class="btn btn-outline btn-rounded btn-warning btn-block" href="#">Buy</a>
-            </div>
-            <div class="col">
-              <a class="btn btn-outline btn-rounded btn-dark btn-block" href="#">Buy</a>
-            </div>
-          </div>
-
-				</div>
 			</div>
 		</div>
 	</section>
