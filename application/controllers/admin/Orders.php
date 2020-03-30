@@ -182,11 +182,8 @@ class Orders extends MX_Controller
       if ($post_array['payment'] == 1) {
 
         $data['queryInvoice'] = $this->db->where('order_id', $primary_key)->get('orders');
-
-        $data['user'] = $this->ion_auth->user($post_array['user_id'])->row();
-
-        $row      = $data['queryInvoice']->row();
-
+        $data['user']         = $this->ion_auth->user($post_array['user_id'])->row();
+        $row                  = $data['queryInvoice']->row();
 
         $email    = $data['user']->email;
         $subject  = "Selamat order anda dengan Invoice - ".$post_array['invoice'].' telah selesai diproses.';
@@ -194,6 +191,15 @@ class Orders extends MX_Controller
         $name     = "Billing ARTAdemi";
 
         $this->email($email, $subject, $message, $name);
+
+        // NOTIFICATION TO MENTOR
+        $dataEmail = $this->db->where('order_id', $value)->get('order_item');
+
+        if ($dataEmail->num_rows() > 0) {
+          foreach ($dataEmail->result() as $key => $mail) {
+            $this->notif_purchase_mentor($mail->product_id, $sid);
+          }
+        }
       }
     }
 
@@ -220,6 +226,29 @@ class Orders extends MX_Controller
       $this->email->message($message);
 
       return $this->email->send();
+
+    }
+
+    public function notif_purchase_mentor($class_id, $sid)
+    {
+      $data = [
+        'queryInvoice' => $this->db->where('sid', $sid)->order_by('order_id','desc')->get('orders'),
+        'user' => $this->ion_auth->user()->row(),
+        'mentorClass' => $this->db->where('mentor_class_id', $class_id)->from('mentor_class')->join('users','users.id=mentor_class.user_id')->get()->row()
+      ];
+
+      $kelas = $data['mentorClass'];
+
+      $email = $kelas->email;
+      $name = "Billing ARTademi";
+      $subject = "Hai ".$kelas->full_name." kelas anda dengan #ID".$kelas->mentor_class_id.$kelas->user_id." telah dibayarkan";
+      $message = $this->load->view('notification/mentor-purchased',$data,true);
+
+      //return $this->load->view('notification/mentor-purchased',$data);
+
+      $this->email($email,$subject,$message,$name);
+
+      return true;
 
     }
 

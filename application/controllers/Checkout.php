@@ -115,7 +115,6 @@ class Checkout extends CI_Controller{
 
           // SEND EMAIL INVOICE FOR BUYER
           $data = [
-
             'queryInvoice' => $this->db->where('sid', $sid)->order_by('order_id','desc')->get('orders'),
             'user' => $this->ion_auth->user()->row()
           ];
