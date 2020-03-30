@@ -103,7 +103,11 @@ class Checkout extends CI_Controller{
 
         $inv = $this->db->order_by('invoice', 'DESC')->get('orders')->row();
 
-        $invoice = $inv->invoice + 1;
+        if ($this->checkout->getAllOrders()->num_rows() > 0) {
+          $invoice = 4010;
+        }else {
+          $invoice = $inv->invoice + 1;
+        }
 
         $updateInvoice = $this->db->where('sid',$sid)->set('invoice', $invoice)->update('orders');
 
@@ -118,7 +122,7 @@ class Checkout extends CI_Controller{
 
           $row      = $data['queryInvoice']->row();
           $user     = $this->ion_auth->user()->row();
-          
+
           $name     = "Billing ARTAdemi";
           $email    = $user->email;
           $subject  = "Invoice - ".$invoice.' telah dibuat.';

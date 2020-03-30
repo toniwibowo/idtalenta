@@ -72,8 +72,8 @@ class Orders extends MX_Controller
             if ($this->default_page == '') {
                 $this->login();
             } else {
-               $this->page($this->default_page);
-                //echo $this->default_page;
+               //$this->page($this->default_page);
+              redirect('login');
             }
         } else {
 
@@ -92,10 +92,28 @@ class Orders extends MX_Controller
         $crud->set_table($table_name);
         $crud->set_subject('Orders');
 
+        $crud->fields('invoice','user_id', 'total', 'uniq_code', 'payment', 'order_date','order_time');
+
+        $crud->callback_column('user_id',array($this, 'customer_name_callback'));
+
+        $crud->callback_after_update(array($this, 'email_order_callback'));
+
         $crud->columns('invoice','user_id', 'total', 'uniq_code', 'payment', 'order_date','order_time');
+
         $crud->unset_add();
 
-        //$crud->field_type('active','dropdown',array('0' => 'NO', '1' => 'YES'));
+        $crud->callback_edit_field('invoice', function ($value, $primary_key) {
+          return '<input type="text" maxlength="50" value="'.$value.'" name="invoice" readonly>';
+        });
+
+        $crud->callback_edit_field('user_id', function ($value, $primary_key) {
+
+          $name = $this->db->where('id', $value)->get('users')->row()->full_name;
+
+          return '<select name="user_id" class="form-control"><option value="'.$value.'" selected>'.$name.'</option> </select>';
+        });
+
+        $crud->field_type('payment','dropdown',array('0' => 'UNPAID', '1' => 'PAID'));
         //$crud->set_field_upload($field_upload, 'assets/uploads/files');
 
          //============TAMBAHAN MULTIUPLOAD =================================================
@@ -147,456 +165,62 @@ class Orders extends MX_Controller
         //print_r($template_data);
         $this->output_view->output($template, $template_data);
 
-
-              /*===============end tampilan grocery crud================================================*/
-
-
+        /*===============end tampilan grocery crud================================================*/
 
         }
     }
 
-   public function view()
+    public function customer_name_callback($value, $row)
     {
-        if (!$this->ion_auth->logged_in()) {
-            if ($this->default_page == '') {
-                $this->login();
-            } else {
-               $this->page($this->default_page);
-                //echo $this->default_page;
-            }
-        } else {
+      $name = $this->db->where('id', $value)->get('users')->row()->full_name;
 
-
-              /*==============tampilan grucery crud====================================================*/
-        $table_name = 'users';
-        //echo $table->action.'';
-
-        $this->load->library('Grocery_CRUD');
-        $this->load->library('Grocery_CRUD_Multiuploader');
-        //$crud = new grocery_CRUD();
-        $crud = new Grocery_CRUD_Multiuploader();
-
-        $crud->set_table($table_name);
-        $crud->set_subject('Member');
-        $crud->where('mentor_id', 4);
-        $crud->unset_add();
-
-        // Required field
-        $crud->required_fields();
-
-        // Columns view
-        $crud->columns('full_name','email','referal_code','active');
-
-        //$crud->callback_column('full_name',array($this,'list_member'));
-
-        // Field view
-        $crud->fields('username','email','full_name','photo','password');
-
-        //$crud->set_relation('user_id','users','username');
-
-        //$crud->set_relation_n_n('group_name','users_groups','groups','user_id','group_id','name');
-
-        // Field upload
-        $crud->set_field_upload('photo', 'assets/uploads/files');
-
-         //============TAMBAHAN MULTIUPLOAD =================================================
-
-         // Field upload
-
-         $config = array(
-
-        /* Destination directory */
-        "path_to_directory"       =>'assets/uploads/files/',
-
-        /* Allowed upload type */
-        "allowed_types"           =>'gif|jpeg|jpg|png',
-
-        /* Show allowed file types while editing ? */
-        "show_allowed_types"      => true,
-
-        /* No file text */
-        "no_file_text"            =>'No Pictures',
-
-        /* enable full path or not for anchor during list state */
-        "enable_full_path"        => false,
-
-        /* Download button will appear during read state */
-        "enable_download_button"  => true,
-
-        /* One can restrict this button for specific types...*/
-        "download_allowed"        => 'jpg'
-        );
-
-        //$crud->new_multi_upload($field_upload,$config);
-
-
-        //============END TAMBAHAN MULTIUPLOAD =================================================
-
-
-        $crud->set_theme('flexigrid');
-        $data = (array) $crud->render();
-
-        $this->output_view->set_wrapper('page', 'grocery', $data, false);
-        $this->output_view->auth();
-
-        $template_data['grocery_css'] = $data['css_files'];
-        $template_data['grocery_js'] = $data['js_files'];
-
-        $template_data['judul'] = 'Member';
-        $template_data['crumb'] = ['member' => 'admin/member'];
-        $template = $this->admin_template;
-
-        //print_r($template_data);
-       $this->output_view->output($template, $template_data);
-
-
-              /*===============end tampilan grocery crud================================================*/
-
-
-
-        }
+      return $name;
     }
 
-    public function mentor_name($value,$row)
+    public function email_order_callback($post_array, $primary_key)
     {
-      $mentor = $this->db->where('id',$value)->get('users')->row();
+      if ($post_array['payment'] == 1) {
 
-      return $mentor->full_name;
-    }
+        $data['queryInvoice'] = $this->db->where('order_id', $primary_key)->get('orders');
 
-    public function promo_start_date_callback($value,$primary_key)
-    {
-      $row = $this->db->where('mentor_class_id', $primary_key)->get('mentor_promo')->row();
-      return '<input type="text" class="datepicker-input form-control" id="field-promo_start_date" name="promo_start_date" value="'.$row->start_date.'" /> <a class="datepicker-input-clear" tabindex="-1">Clear</a> (dd/mm/yyyy)';
-    }
+        $data['user'] = $this->ion_auth->user($post_array['user_id'])->row();
 
-    public function promo_end_date_callback($value,$primary_key)
-    {
-      $row = $this->db->where('mentor_class_id', $primary_key)->get('mentor_promo')->row();
-      return '<input type="text" class="datepicker-input form-control" id="field-promo_start_date" name="promo_start_date" value="'.$row->end_date.'" /> <a class="datepicker-input-clear" tabindex="-1">Clear</a> (dd/mm/yyyy)';
-    }
-
-    public function mentorclass()
-    {
-      if (!$this->ion_auth->logged_in()) {
-        redirect('login');
-      } else {
+        $row      = $data['queryInvoice']->row();
 
 
-            /*==============tampilan grucery crud====================================================*/
-      $table_name = 'mentor_class';
-      //echo $table->action.'';
+        $email    = $data['user']->email;
+        $subject  = "Selamat order anda dengan Invoice - ".$post_array['invoice'].' telah selesai diproses.';
+        $message  = $this->load->view('notification/invoice',$data,true);
+        $name     = "Billing ARTAdemi";
 
-      $this->load->library('Grocery_CRUD');
-      $this->load->library('Grocery_CRUD_Multiuploader');
-      //$crud = new grocery_CRUD();
-      $crud = new Grocery_CRUD_Multiuploader();
-
-      $crud->set_table($table_name);
-      $crud->set_subject('Mentor Class');
-      $crud->add_action('Video', '', 'admin/mentor/list_video','admin-list-video');
-
-      $crud->unset_add();
-      $crud->unset_read();
-
-      // Required field
-      $crud->required_fields();
-
-      // Columns view
-      $crud->columns('user_id','category_product_id','title','poster','posting_date','approve');
-
-      $crud->callback_column('poster',array($this,'countvideo'));
-
-      // Field view
-      $crud->fields('user_id','category_product_id','title','resume','description','posting_date','tags','price','sale','poster','thriller','video_id','approve','promo_start_date','promo_end_date');
-
-      $crud->field_type('approve','dropdown', array('0' => 'No', '1' => 'Yes'));
-
-      $classID = $this->uri->segment(5);
-
-      $crud->field_type('promo_start_date','date', $classID);
-      $crud->field_type('promo_end_date','date', date('d/m/Y'));
-      $crud->callback_edit_field('promo_start_date',array($this,'promo_start_date_callback'));
-      $crud->callback_edit_field('promo_end_date',array($this,'promo_end_date_callback'));
-
-      $crud->display_as('user_id','Mentor');
-      $crud->display_as('category_product_id','Class Category');
-
-      $crud->set_relation('user_id','users','full_name');
-
-      $crud->set_relation('category_product_id','category_product','category_product_name');
-
-      $crud->callback_before_update(array($this, 'unset_date_promo_callback'));
-      $crud->callback_after_update(array($this, 'set_date_promo_callback'));
-
-      //$crud->set_relation_n_n('group_name','users_groups','groups','user_id','group_id','name');
-
-      // Field upload
-      $crud->set_field_upload('poster', 'assets/uploads/files');
-      $crud->set_field_upload('thriller', 'assets/uploads/videos');
-
-       //============TAMBAHAN MULTIUPLOAD =================================================
-
-       // Field upload
-
-       $config = array(
-
-      /* Destination directory */
-      "path_to_directory"       =>'assets/uploads/videos/',
-
-      /* Allowed upload type */
-      "allowed_types"           =>'.3gp|mp4|flv|ogg',
-
-      /* Show allowed file types while editing ? */
-      "show_allowed_types"      => true,
-
-      /* No file text */
-      "no_file_text"            =>'No Video',
-
-      /* enable full path or not for anchor during list state */
-      "enable_full_path"        => false,
-
-      /* Download button will appear during read state */
-      "enable_download_button"  => true,
-
-      /* One can restrict this button for specific types...*/
-      "download_allowed"        => 'jpg'
-      );
-
-      //$crud->new_multi_upload('thriller',$config);
-
-
-      //============END TAMBAHAN MULTIUPLOAD =================================================
-
-
-      $crud->set_theme('flexigrid');
-      $data = (array) $crud->render();
-
-      $this->output_view->set_wrapper('page', 'grocery', $data, false);
-      $this->output_view->auth();
-
-      $template_data['grocery_css'] = $data['css_files'];
-      $template_data['grocery_js'] = $data['js_files'];
-
-      $template_data['judul'] = 'Member';
-      $template_data['crumb'] = ['member' => 'admin/member'];
-      $template = $this->admin_template;
-
-      //print_r($template_data);
-     $this->output_view->output($template, $template_data);
-
-
-    /*===============end tampilan grocery crud================================================*/
-
-
-
+        $this->email($email, $subject, $message, $name);
       }
     }
 
-    public function unset_date_promo_callback($post,$primary_key)
+    public function email($email,$subject,$message,$name)
     {
+      $config['protocol']   = 'smtp';
+      $config['smtp_host']  = 'mail.gravenza.com';
+      $config['smtp_user']  = 'info@gravenza.com';
+      $config['smtp_pass']  = 'gravenza2015';
+      $config['smtp_port']  = 465;
+      $config['mailtype']   = 'html';
+      $config['newline']    = "\r\n";
 
-      $startdate  = date('Y-m-d',strtotime(str_replace('/','-',$post['promo_start_date'])));
-      $enddate    = date('Y-m-d',strtotime(str_replace('/','-',$post['promo_end_date'])));
+      $this->load->library('email', $config);
 
-      $cekPrimary = $this->db->where('mentor_class_id', $primary_key)->get('mentor_promo')->num_rows();
+      $this->email->from('no-reply@artademi.com', $name);
+      $this->email->to($email);
+      $this->email->set_mailtype("html");
+      //$this->email->cc('another@another-example.com');
+      $this->email->bcc('yudisketsa@gmail.com');
+      $this->email->bcc('tonny.wbw84@gmail.com');
 
-      if ($cekPrimary > 0) {
+      $this->email->subject($subject);
+      $this->email->message($message);
 
-        $data = array(
-          'start_date' => $startdate,
-          'end_date' => $enddate
-        );
-
-        $this->db->where('mentor_class_id', $primary_key)->set($data)->update('mentor_promo');
-
-      }else {
-
-        $data = array(
-          'mentor_class_id' => $primary_key,
-          'start_date' => $startdate,
-          'end_date' => $enddate
-        );
-
-        $this->db->insert('mentor_promo',$data);
-
-      }
-
-      unset($post['promo_start_date']);
-      unset($post['promo_end_date']);
-
-      return $post;
-    }
-
-
-
-    public function countvideo($value,$row)
-    {
-      //$datavideo = $this->db->where('mentor_class_id',$row->video_id)->get('mentor_class')->row();
-
-      $countvideo = $this->db->where('video_id',$row->video_id)->get('mentor_video')->num_rows();
-
-      return '<div style="position:relative"><img width="100" src="'.base_url('assets/uploads/files/'.$value).'" alt="" /> <span style="position:absolute;top:5px; right:5px; background:red; color:white;padding: 0px 6px; border-radius: 20px; font-weight: 700;">'.$countvideo.'</span> </div>';
-    }
-
-
-
-    public function list_video($id)
-    {
-      if (!$this->ion_auth->logged_in()) {
-        redirect('login');
-      } else {
-
-
-            /*==============tampilan grucery crud====================================================*/
-      $table_name = 'mentor_video';
-      //echo $table->action.'';
-
-      $this->load->library('Grocery_CRUD');
-      $this->load->library('Grocery_CRUD_Multiuploader');
-      //$crud = new grocery_CRUD();
-      $crud = new Grocery_CRUD_Multiuploader();
-
-      $crud->set_table($table_name);
-
-      $crud->set_theme('flexigrid');
-      $data = (array) $crud->render();
-
-      $row = $this->db->where('mentor_class_id',$id)->get('mentor_class')->row();
-
-      $data['queryVideo'] = $this->db->where('video_id',$row->video_id)->get('mentor_video');
-
-      $this->output_view->set_wrapper('page', 'template/mentor-video', $data, false);
-      $this->output_view->auth();
-
-      $template_data['grocery_css'] = $data['css_files'];
-      $template_data['grocery_js'] = $data['js_files'];
-
-      $template_data['judul'] = 'Mentor Video';
-      $template_data['crumb'] = ['Mentor' => 'admin/mentor','Mentor Class' => 'admin/mentor/mentorclass','Video' => '#'];
-      $template = $this->admin_template;
-
-
-
-      //print_r($template_data);
-     $this->output_view->output($template, $template_data);
-
-
-    /*===============end tampilan grocery crud================================================*/
-
-
-
-      }
-    }
-
-    public function uploadvideo()
-    {
-      if (!$this->ion_auth->logged_in()) {
-        redirect('sketsanet/dashboard');
-      }
-
-      if (isset($_POST['videodescription'])) {
-
-        $id  = $this->input->post('id',true);
-        $vd  = $this->input->post('videodescription',true);
-
-        $updateDescription = $this->db->where('mentor_video_id',$id)->set('description',$vd)->update('mentor_video');
-
-        if ($updateDescription) {
-          echo 1;
-        }else {
-          echo 0;
-        }
-      }
-
-      if (isset($_FILES['videomentor']['name'])) {
-
-        $filename = $_FILES['videomentor']['name'];
-        $filename = random_string('alnum',5).'-'.str_replace(' ','-',$filename);
-        $tmpname  = $_FILES['videomentor']['tmp_name'];
-
-        $video_id  = $this->input->post('videoid',true);
-
-
-
-        $config['upload_path']      = './assets/uploads/videos/';
-        $config['allowed_types']    = '3gp|flv|mp4|mp3|avi';
-        $config['file_name']        = $filename;
-        $config['max_size']         = 15000;
-
-        //print_r($_FILES);
-
-        $this->upload->initialize($config);
-
-        if (! $this->upload->do_upload('videomentor')) {
-          $error = array('error' => $this->upload->display_errors());
-          echo 'Video failed to upload. '.$error['error'];
-        }else {
-          $updatevideo = $this->db->where('mentor_video_id',$video_id)->set('video',$filename)->update('mentor_video');
-
-          if ($updatevideo) {
-
-            echo 'Upload '.$this->upload->data('file_name').' success.';
-          }else {
-            echo "video gagal update";
-          }
-
-        }
-
-        // if (move_uploaded_file($tmpname,$upload_path.$filename)) {
-        //
-        //   $inserVideo = $this->db->insert('mentor_video',$datavideo);
-        //
-        //   echo $_FILES['videomentor']['name']." 100% upload completed";
-        //
-        // }else {
-        //
-        //   echo $filename.' upload failed - error: '.$_FILES['videomentor']['error'];
-        // }
-
-      }
+      return $this->email->send();
 
     }
-
-    public function preview($id)
-    {
-      if (!$this->ion_auth->logged_in() || !$this->input->is_ajax_request()) {
-        redirect('login');
-      }
-
-      $data = $this->db->where('mentor_video_id',$id)->get('mentor_video')->row();
-      $videoType = substr($data->video,-3);
-
-      echo '<div class="embed-responsive embed-responsive-16by9">
-        <video controls controlsList="nodownload">
-          <source src="'.base_url('assets/uploads/videos/'.$data->video) .'" type="video/'.$videoType.'">
-        </video>
-      </div>';
-    }
-
-    public function delete()
-    {
-      if (!$this->input->is_ajax_request()) {
-        redirect('admin/mentor');
-      }
-
-      $id = $this->input->post('id',true);
-
-      $row = $this->db->where('mentor_video_id',$id)->get('mentor_video')->row();
-
-      unlink('./assets/uploads/videos/'.$row->video);
-
-      $deleteVideo = $this->db->where('mentor_video_id',$id)->delete('mentor_video');
-
-      if ($deleteVideo) {
-        echo 1;
-      }else {
-        echo 0;
-      }
-
-    }
-
-
-
 
 }

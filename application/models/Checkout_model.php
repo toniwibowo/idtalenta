@@ -9,6 +9,11 @@ class Checkout_model extends CI_Model{
     //Codeigniter : Write Less Do More
   }
 
+  public function getAllOrders()
+  {
+    return $this->db->get('orders');
+  }
+
   public function email($email,$subject,$message,$name)
   {
     $config['protocol']   = 'smtp';
