@@ -1,41 +1,45 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Search extends CI_Controller{
+
+  public function __construct()
+  {
+    parent::__construct();
+    //Codeigniter : Write Less Do More
+  }
+
+  function index()
+  {
+		$keywords = $this->input->get('src');
+
+		$keyword = explode(' ', $keywords);
+
+		//print_r($keyword);
+
+		$like = '';
+
+		$countKeyword = count($keyword);
+
+		for ($i=0; $i < $countKeyword  ; $i++) {
+			$like .= 'LIKE \'%'.$keyword[$i].'%\' ESCAPE \'!\' ';
+
+			if ($i - 1) {
+				$like .= ' OR title ';
+			}
+
+		}
+
+		//echo $like;
+
+		$data['queryResult'] = $this->db->query("SELECT * FROM mentor_class WHERE title $like");
+
+		//print_r($data['queryResult']->result_array());
 
 
-
-class Search extends CI_Controller {
-
-
-
-	function __construct()
-      {
-            parent::__construct();
-    
-		
-		$this->load->model("M_searchhome");
-
-		//session_start();
-
-      }
-
-	
-
-	
-
-	function view()
-
-	{
-
-		//print_r($_POST);
-		
-		$data = $this->M_searchhome->view();
-		  //$data['query2'] = $this->db->query("select * from article  order by posting_date limit 3 " );
-		//$data['query2'] = $this->db->query("select * from articles   order by posting_date desc limit 3 " );
-		  //$data['s'] = $_GET['key'];
-		//echo $data['string_query'];
-		$this->load->view('search',$data);
-
-	}
+    $this->load->view('include/header');
+		$this->load->view('search', $data);
+		$this->load->view('include/footer');
+  }
 
 }
-
-?>

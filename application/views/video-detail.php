@@ -241,11 +241,14 @@
 									</span>
 								</span>
 							</span>
-							<h4 class="mt-2 text-center text-3">
+							<h4 class="mt-2 text-center text-3 mb-0">
 								<a class="text-dark" href="<?= site_url('video/detail/'.$pop->mentor_class_id.'/'.url_title($pop->title,'-',true)) ?>">
 									<?= $pop->title ?>
 								</a>
 							</h4>
+
+              <?php $mentor = $this->ion_auth->user($pop->user_id)->row(); ?>
+              <p class="text-center"><small class="text-2">Mentor: <?= $mentor->full_name ?></small></p>
 
 							<?php if ($pop->sale != 0): ?>
 								<h3 class="text-center mb-1"><strong>Rp. <?= number_format($this->app->sale($pop->price,$pop->sale),0,',','.')  ?>,-</strong></h3>

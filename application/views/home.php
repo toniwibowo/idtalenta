@@ -99,11 +99,14 @@
 														</span>
 													</span>
 												</span>
-												<h4 class="mt-2 text-center text-3">
+												<h4 class="mt-2 text-center mb-0 text-3">
 													<a class="text-dark" href="<?= site_url('video/detail/'.$vid->mentor_class_id.'/'.url_title($vid->title,'-',true)) ?>">
 														<?= $vid->title ?>
 													</a>
 												</h4>
+
+												<?php $mentor = $this->ion_auth->user($vid->user_id)->row(); ?>
+												<p class="text-center mb-2"><small class="text-2">Mentor: <?= $mentor->full_name ?></small></p>
 
 												<?php if ($vid->sale != 0): ?>
 					                <h3 class="text-center mb-1"><strong>Rp. <?= number_format($this->app->sale($vid->price,$vid->sale),0,',','.')  ?>,-</strong></h3>
@@ -177,11 +180,14 @@
 									</span>
 								</span>
 							</span>
-							<h4 class="mt-2 text-center text-3">
+							<h4 class="mt-2 text-center text-3 mb-0">
 								<a class="text-dark" href="<?= site_url('video/detail/'.$promo->mentor_class_id.'/'.url_title($promo->title,'-',true)) ?>">
 									<?= $promo->title ?>
 								</a>
 							</h4>
+
+							<?php $mentor = $this->ion_auth->user($promo->user_id)->row(); ?>
+							<p class="text-center mb-2"><small class="text-2">Mentor: <?= $mentor->full_name ?></small></p>
 
 							<?php if ($promo->sale != 0): ?>
 								<h3 class="text-center mb-1"><strong>Rp. <?= number_format($this->app->sale($promo->price,$promo->sale),0,',','.')  ?>,-</strong></h3>

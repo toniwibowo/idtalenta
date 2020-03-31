@@ -53,11 +53,15 @@
     							</span>
     						</span>
     					</span>
-    					<h4 class="mt-2 text-center">
+    					<h4 class="mt-2 text-center mb-0">
     						<a class="text-dark" href="<?= site_url('video/detail/'.$video->mentor_class_id.'/'.url_title($video->title,'-',true)) ?>">
     							<?= $video->title ?>
     						</a>
     					</h4>
+
+              <?php $mentor = $this->ion_auth->user($video->user_id)->row(); ?>
+              <p class="text-center"><small class="text-2">Mentor: <?= $mentor->full_name ?></small></p>
+
               <?php if ($video->sale != 0): ?>
                 <h3 class="text-center mb-1"><strong>Rp. <?= number_format($this->app->sale($video->price,$video->sale),0,',','.')  ?>,-</strong></h3>
                 <h5 class="text-center"><del>Rp. <?= number_format($video->price,0,',','.')  ?>,- </del></h5>
