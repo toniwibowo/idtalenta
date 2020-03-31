@@ -184,32 +184,49 @@ class Orders extends MX_Controller
         $data['queryInvoice'] = $this->db->where('order_id', $primary_key)->get('orders');
         $data['user']         = $this->ion_auth->user($post_array['user_id'])->row();
         $row                  = $data['queryInvoice']->row();
+        $sid                  = $post_array['sid'];
 
         $email    = $data['user']->email;
         $subject  = "Selamat order anda dengan Invoice - ".$post_array['invoice'].' telah selesai diproses.';
         $message  = $this->load->view('notification/invoice',$data,true);
         $name     = "Billing ARTAdemi";
 
-        if ($this->email($email, $subject, $message, $name)) {
-          // NOTIFICATION TO MENTOR
-          $dataEmail = $this->db->where('order_id', $primary_key)->get('order_item');
+        $this->email($email, $subject, $message, $name);
 
-          if ($dataEmail->num_rows() > 0) {
-            foreach ($dataEmail->result() as $key => $mail) {
-              $this->notif_purchase_mentor($mail->product_id, $post_array['sid']);
-            }
+        // NOTIFICATION TO MENTOR
+        $dataEmail = $this->db->where('order_id', $row->order_id)->get('order_item');
+
+        if ($dataEmail->num_rows() > 0) {
+
+          foreach ($dataEmail->result() as $key => $mail) {
+            $this->notif_purchase_mentor($mail->product_id, $row->sid);
           }
-        }        
+
+        }
+
+      }
+    }
+
+    public function testing()
+    {
+      // NOTIFICATION TO MENTOR
+      $dataEmail = $this->db->where('order_id', 29)->get('order_item');
+      $sid = 'ec5g7o480u4nj71qeut9etmfdfgoena3100716';
+
+      if ($dataEmail->num_rows() > 0) {
+        foreach ($dataEmail->result() as $key => $mail) {
+          $this->notif_purchase_mentor($mail->product_id, $sid);
+        }
       }
     }
 
     public function email($email,$subject,$message,$name)
     {
       $config['protocol']   = 'smtp';
-      $config['smtp_host']  = 'mail.gravenza.com';
-      $config['smtp_user']  = 'info@gravenza.com';
-      $config['smtp_pass']  = 'gravenza2015';
-      $config['smtp_port']  = 465;
+      $config['smtp_host']  = 'smtp.gmail.com';
+      $config['smtp_user']  = 'abdullahazzam344@gmail.com';
+      $config['smtp_pass']  = 'wibowo8870204885';
+      $config['smtp_port']  = 587;
       $config['mailtype']   = 'html';
       $config['newline']    = "\r\n";
 
@@ -242,13 +259,11 @@ class Orders extends MX_Controller
       $email = $kelas->email;
       $name = "Billing ARTademi";
       $subject = "Hai ".$kelas->full_name." kelas anda dengan #ID".$kelas->mentor_class_id.$kelas->user_id." telah dibayarkan";
-      $message = $this->load->view('notification/mentor-purchased',$data,true);
+      $message = $this->load->view('notification/mentor-purchased',$data, true);
 
       //return $this->load->view('notification/mentor-purchased',$data);
 
-      $this->email($email,$subject,$message,$name);
-
-      return true;
+      return $this->email($email,$subject,$message,$name);
 
     }
 
