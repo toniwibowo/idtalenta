@@ -190,16 +190,16 @@ class Orders extends MX_Controller
         $message  = $this->load->view('notification/invoice',$data,true);
         $name     = "Billing ARTAdemi";
 
-        $this->email($email, $subject, $message, $name);
+        if ($this->email($email, $subject, $message, $name)) {
+          // NOTIFICATION TO MENTOR
+          $dataEmail = $this->db->where('order_id', $primary_key)->get('order_item');
 
-        // NOTIFICATION TO MENTOR
-        $dataEmail = $this->db->where('order_id', $primary_key)->get('order_item');
-
-        if ($dataEmail->num_rows() > 0) {
-          foreach ($dataEmail->result() as $key => $mail) {
-            $this->notif_purchase_mentor($mail->product_id, $post_array['sid']);
+          if ($dataEmail->num_rows() > 0) {
+            foreach ($dataEmail->result() as $key => $mail) {
+              $this->notif_purchase_mentor($mail->product_id, $post_array['sid']);
+            }
           }
-        }
+        }        
       }
     }
 
