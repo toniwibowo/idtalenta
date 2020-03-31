@@ -197,7 +197,7 @@ class Orders extends MX_Controller
 
         if ($dataEmail->num_rows() > 0) {
           foreach ($dataEmail->result() as $key => $mail) {
-            $this->notif_purchase_mentor($mail->product_id, $sid);
+            $this->notif_purchase_mentor($mail->product_id, $post_array['sid']);
           }
         }
       }
