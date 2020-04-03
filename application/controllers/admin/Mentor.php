@@ -322,14 +322,32 @@ class Mentor extends MX_Controller
 
     public function promo_start_date_callback($value,$primary_key)
     {
-      $row = $this->db->where('mentor_class_id', $primary_key)->get('mentor_promo')->row();
-      return '<input type="text" class="datepicker-input form-control" id="field-promo_start_date" name="promo_start_date" value="'.$row->start_date.'" /> <a class="datepicker-input-clear" tabindex="-1">Clear</a> (dd/mm/yyyy)';
+      $getDate = $this->db->where('mentor_class_id', $primary_key)->get('mentor_promo');
+
+      $row = $getDate->row();
+
+      if ($getDate->num_rows() > 0) {
+        $value = $row->start_date;
+      }else {
+        $value = '';
+      }
+
+      return '<input type="text" class="datepicker-input form-control" id="field-promo_start_date" name="promo_start_date" value="'.$value.'" /> <a class="datepicker-input-clear" tabindex="-1">Clear</a> (dd/mm/yyyy)';
     }
 
     public function promo_end_date_callback($value,$primary_key)
     {
-      $row = $this->db->where('mentor_class_id', $primary_key)->get('mentor_promo')->row();
-      return '<input type="text" class="datepicker-input form-control" id="field-promo_start_date" name="promo_start_date" value="'.$row->end_date.'" /> <a class="datepicker-input-clear" tabindex="-1">Clear</a> (dd/mm/yyyy)';
+      $getDate = $this->db->where('mentor_class_id', $primary_key)->get('mentor_promo');
+
+      $row = $getDate->row();
+
+      if ($getDate->num_rows() > 0) {
+        $value = $row->end_date;
+      }else {
+        $value = '';
+      }
+
+      return '<input type="text" class="datepicker-input form-control" id="field-promo_end_date" name="promo_end_date" value="'.$value.'" /> <a class="datepicker-input-clear" tabindex="-1">Clear</a> (dd/mm/yyyy)';
     }
 
     public function mentorclass()
