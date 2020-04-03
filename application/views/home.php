@@ -230,7 +230,7 @@
 			</div>
 
 			<div class="row my-5">
-				<div class="col appear-animation" data-appear-animation="bounceInUp" data-appear-animation-delay="300" data-appear-animation-duration="1s">
+				<div class="col-lg-12 appear-animation" data-appear-animation="bounceInUp" data-appear-animation-delay="300" data-appear-animation-duration="1s">
 					<div class="owl-carousel owl-theme nav-inside" data-plugin-options="{'items': 3, 'margin': 10, 'loop': false, 'nav': true, 'dots': false}">
 
 						<?php if ($queryMentor->num_rows() > 0): ?>
@@ -253,6 +253,17 @@
 						<?php endif; ?>
 
 					</div>
+				</div>
+
+				<div class="col-lg-6 offset-lg-3">
+					<form class="" action="<?= site_url('search/mentor') ?>" method="get">
+						<div class="input-group input-group-rounded">
+							<input class="form-control form-control-sm bg-light px-4 text-3" placeholder="Search Mentor..." name="src" type="text">
+							<span class="input-group-append">
+								<button class="btn btn-warning text-color-light text-2 py-3 px-4" type="submit"><strong class="text-dark">Search</strong></button>
+							</span>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
