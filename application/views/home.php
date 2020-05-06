@@ -1,339 +1,357 @@
-<div class="main" role="main">
-	<section class="section section-intro section-parallax section-center m-0 p-0">
-		<div class="owl-carousel owl-theme nav-inside" data-plugin-options="{'items': 1, 'margin': 0, 'loop': false, 'nav': true, 'dots': false}">
-			<?php if ($querySlider->num_rows() > 0): ?>
-				<?php foreach ($querySlider->result() as $key => $sl): ?>
-					<div>
-						<div class="parallax" data-plugin-parallax data-plugin-options="{'speed': 1.5}" data-image-src="<?= base_url('assets/uploads/sliders/'.$sl->file_image) ?>">
-							<div class="container">
-								<div class="row row-middle align-items-center">
-									<div class="col-lg-6 text-left appear-animation" data-appear-animation="bounceInLeft" data-appear-animation-delay="1000" data-appear-animation-duration="1s">
-										<h2 class="text-white">
-											<strong>
-												<?= $sl->caption ?>
-											</strong>
-										</h2>
-
-										<?php $link = $sl->link == '' ? '#' : $sl->link; ?>
-
-										<?php if ($sl->target == '' || $sl->target == 'SAME BROWSER'): ?>
-											<!-- <a class="btn btn-rounded btn-warning btn-modern" href="<?= $link ?>">Daftar Kelas</a> -->
-										<?php else: ?>
-											<!-- <a target="_blank" class="btn btn-rounded btn-warning btn-modern" href="<?= $link ?>">Daftar Kelas</a> -->
-										<?php endif; ?>
-
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				<?php endforeach; ?>
-			<?php endif; ?>
-
-		</div>
-
-	</section>
-
-	<section class="section section-service border-0 m-0" style="overflow:hidden">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-3 text-center">
-					<div class="heading text-primary heading-border heading-bottom-border">
-						<h1> <strong class="font-weight-extra-bold">KATEGORI</strong></h1>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col appear-animation" data-appear-animation="bounceInDown" data-appear-animation-delay="300" data-appear-animation-duration="1s">
-
-					<ul class="nav nav-pills sort-source sort-source-style-3 justify-content-center" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
-
-						<div class="owl-carousel owl-theme stage-margin" data-plugin-options="{'items': 6, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
-							<?php if ($queryCategory->num_rows() > 0): ?>
-								<?php foreach ($queryCategory->result() as $key => $row): ?>
-									<li class="card nav-item active" data-option-value=".<?= url_title($row->category_product_name,'-',true) ?>">
-										<a href="#">
-											<div class="card-body p-2 text-center">
-												<img alt="" class="img-fluid mb-2" src="<?= base_url('assets/uploads/files/'.$row->icon) ?>">
-												<h5 class="mb-0"><?= $row->category_product_name ?></h5>
-											</div>
-										</a>
-									</li>
-								<?php endforeach; ?>
-							<?php endif; ?>
-
-						</div>
-
-					</ul>
-
-				</div>
-			</div>
-
-			<div class="sort-destination-loader sort-destination-loader-showing">
-				<div class="row my-5 portfolio-list sort-destination" data-sort-id="portfolio">
+        <div class="slider-area">
+            <div class="container-fluid p-0">
+                <div class="main-slider-active-3 owl-carousel slider-dot-position-3 slider-dot-style-2">
+                  <?php if ($querySlider->num_rows() > 0): ?>
+                    <?php foreach ($querySlider->result() as $key => $slide): ?>
+                      <div class="single-main-slider slider-animated-1 bg-img slider-height-hm11 align-items-center custom-d-flex" style="background-image:url('assets/uploads/sliders/<?= $slide->file_image ?>');">
+                          <div class="row no-gutters width-100-percent">
+                              <div class="col-lg-12 col-md-12">
+                                  <div class="main-slider-content-11-1 text-center">
+                                      <!--<h1 class="animated">Scandinavian interior </h1>-->
+                                      <!--<div class="slider-btn-2 slider-btn-2-border-white">
+                                          <a class="animated" href="product-details.html">SHOP NOW </a>
+                                      </div>-->
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    <?php endforeach; ?>
+                  <?php endif; ?>
 
 
+                </div>
+            </div>
+        </div>
+        <div class="banner-area section-padding-1 banner-area-hm11 pt-130 pb-100">
+            <div class="container-fluid padding-70-row-col">
+                <div class="section-title-12 text-center mb-60">
+                    <h2>IDTALENTA COURSE</h2>
+                    <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer <br>condimentum sed mi ac efficitur. In sit amet ullamco</p>
+                </div>
+                <div class="row">
 
-						<?php if ($queryCategory->num_rows() > 0): ?>
-							<?php foreach ($queryCategory->result() as $key => $value): ?>
+                  <?php if ($queryBanner->num_rows() > 0): ?>
+                    <?php foreach ($queryBanner->result() as $key => $banner): ?>
+                      <div class="col-lg-4 col-md-4">
+                          <div class="banner-wrap default-overlay-2 banner-zoom mb-30">
+                              <div class="banner-img">
+                                <?php if ($banner->url == ''): ?>
+                                  <a href="#"><img src="<?= base_url('assets/uploads/files/'.$banner->file_banner) ?>" alt="banner"></a>
+                                  <?php else: ?>
+                                  <a href="<?= $banner->url ?>"><img src="<?= base_url('assets/uploads/files/'.$banner->file_banner) ?>" alt="banner"></a>
+                                <?php endif; ?>
 
-								<div class="col-12 isotope-item <?= url_title($value->category_product_name,'-',true) ?>">
+                              </div>
+                              <div class="banner-content-11 text-center">
+                                  <h3><a href="<?= $banner->url == '' ? $banner->url : '' ?>"><?= $banner->title ?></a></h3>
+                              </div>
+                          </div>
+                      </div>
+                    <?php endforeach; ?>
+                  <?php endif; ?>
 
-								<div class="owl-carousel owl-theme stage-margin" data-plugin-options="{'items': 4, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
+                </div>
+            </div>
+        </div>
 
-									<?php $videoCategory = $this->db->where('approve',1)->where('mentor_class.category_product_id', $value->category_product_id)->from('mentor_class')->join('category_product','category_product.category_product_id=mentor_class.category_product_id')->get(); ?>
+        <div class="product-area section-padding-1 pb-125">
+            <div class="container-fluid">
+                <div class="section-title-12 text-center mb-65">
+                    <h2>LATEST COURSE</h2>
+                    <p>Class aptent taciti sociosqu ad litora torquent per con</p>
+                </div>
+                <div class="row">
+                  <?php if ($queryCourse->num_rows() > 0): ?>
+                    <?php foreach ($queryCourse->result() as $key => $course): ?>
+                      <div class="custom-col-5">
+                          <div class="product-wrap mb-50">
+                              <div class="product-img default-overlay mb-25">
+                                  <a href="product-details.html">
+                                      <img class="default-img" src="<?= base_url('assets/uploads/files/'.$course->poster) ?>" alt="">
+                                  </a>
+                                  <div class="product-action product-action-sky product-action-position-1">
+                                      <a data-toggle="modal" data-target="#exampleModal" href="#"><i class="fa fa-eye"></i><span>Quick Shop</span></a>
+                                      <a title="Add to Wishlist" href="#"><i class="fa fa-heart"></i><span>Add to Wishlist</span></a>
+                                       <!--<a class="icon-blod" title="Add to Compare" href="#"><i class="dlicon arrows-4_compare"></i><span>Add to Compare</span></a>-->
+                                      <a title="Add to Cart" href="#"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a>
+                                  </div>
+                              </div>
+                              <div class="product-content-4 product-content-sky title-font-width-400 text-center">
+                                  <h3><a href="product-details.html"><?= $course->title ?></a></h3>
+                                  <div class="product-price product-price-red">
+                                    <?php if ($course->sale != 0): ?>
+                                      <span class="new-price">Rp. <?= number_format($this->app->sale($course->price,$course->sale),0,',','.')  ?>,-</span>
+                                      <?php else: ?>
+                                      <span class="new-price">Rp. <?= number_format($course->price,0,',','.')  ?>,-</span>
+                                    <?php endif; ?>
 
-									<?php if ($videoCategory->num_rows() > 0): ?>
-										<?php foreach ($videoCategory->result() as $key => $vid): ?>
-											<div class="<?= url_title($vid->category_product_name,'-',true) ?>">
-												<span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-centered-icons">
-													<span class="thumb-info-wrapper">
-														<div class="poster" style="background-image: url('<?= base_url('assets/uploads/files/'.$vid->poster) ?>')">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    <?php endforeach; ?>
+                  <?php endif; ?>
 
-														</div>
-														<!-- <img src="" class="img-fluid" alt="<?= substr($vid->poster,0,-4) ?>"> -->
-														<span class="thumb-info-action">
-															<a href="<?= site_url('video/detail/'.$vid->mentor_class_id.'/'.url_title($vid->title,'-',true)) ?>">
-																<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
-															</a>
-														</span>
-													</span>
-												</span>
-												<h4 class="mt-2 text-center mb-0 text-3">
-													<a class="text-dark" href="<?= site_url('video/detail/'.$vid->mentor_class_id.'/'.url_title($vid->title,'-',true)) ?>">
-														<?= $vid->title ?>
-													</a>
-												</h4>
+                    </div>
+                </div>
+                <div class="pro-view-all-3 text-center">
+                    <a href="<?= site_url('video/course') ?>">View all product</a>
+                </div>
+            </div>
+        </div>
 
-												<?php $mentor = $this->ion_auth->user($vid->user_id)->row(); ?>
-												<p class="text-center mb-2"><small class="text-2">Mentor: <?= $mentor->full_name ?></small></p>
+        <div class="choose-area jarallax parallax-img section-padding-1 pt-130 pb-100" style="background-image:url(images/bg/slider-middle-1.jpg);">
+            <div class="container-fluid">
+                <div class="section-title-12 title-12-white text-center mb-65">
+                    <h2>Why Choose Us</h2>
+                    <p>Class aptent taciti sociosqu ad litora torquent per con</p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="single-choose mb-30">
+                            <div class="choose-icon">
+                                <i class="dlicon shopping_cart"></i>
+                            </div>
+                            <div class="choose-content">
+                                <h3>Free Membership</h3>
+                                <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer condimentum sed mi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-choose mb-30">
+                            <div class="choose-icon">
+                                <i class="dlicon education_award-55"></i>
+                            </div>
+                            <div class="choose-content">
+                                <h3>Best Mentor</h3>
+                                <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer condimentum sed mi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-choose mb-30">
+                            <div class="choose-icon">
+                                <i class="dlicon envir_home"></i>
+                            </div>
+                            <div class="choose-content">
+                                <h3>Best Quality Video</h3>
+                                <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer condimentum sed mi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-												<?php if ($vid->sale != 0): ?>
-					                <h3 class="text-center mb-1"><strong>Rp. <?= number_format($this->app->sale($vid->price,$vid->sale),0,',','.')  ?>,-</strong></h3>
-					                <h5 class="text-center"><del>Rp. <?= number_format($vid->price,0,',','.')  ?>,- </del></h5>
-					              <?php else: ?>
-					                <h3 class="text-center"><strong>Rp. <?= number_format($vid->price,0,',','.')  ?>,-</strong></h3>
-					              <?php endif; ?>
+        <div class="product-area section-padding-1 pt-130 pb-125">
+            <div class="container-fluid">
+                <div class="section-title-12 text-center mb-65">
+                    <h2>Top Sale This Week</h2>
+                    <p>Class aptent taciti sociosqu ad litora torquent per con</p>
+                </div>
+                <div class="row">
+                  <?php if ($queryTopSale->num_rows() > 0): ?>
+                    <?php foreach ($queryTopSale->result() as $key => $sale): ?>
+                      <div class="custom-col-5">
+                          <div class="product-wrap mb-50">
+                              <div class="product-img default-overlay mb-25">
+                                  <a href="product-details.html">
+                                      <img class="default-img" src="<?= base_url('assets/uploads/files/'.$sale->poster) ?>" alt="">
+                                  </a>
+                                  <div class="product-action product-action-sky product-action-position-1">
+                                      <a data-toggle="modal" data-target="#exampleModal" href="#"><i class="fa fa-eye"></i><span>Quick Shop</span></a>
+                                      <a title="Add to Wishlist" href="#"><i class="fa fa-heart"></i><span>Add to Wishlist</span></a>
+                                      <!--<a class="icon-blod" title="Add to Compare" href="#"><i class="dlicon arrows-4_compare"></i><span>Add to Compare</span></a>-->
+                                      <a title="Add to Cart" href="#"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a>
+                                  </div>
+                              </div>
+                              <div class="product-content-4 product-content-sky title-font-width-400 text-center">
+                                  <h3><a href="#"><?= $sale->title ?></a></h3>
+                                  <div class="product-price product-price-red">
+                                    <?php if ($sale->sale != 0): ?>
+                                      <span class="new-price">Rp. <?= number_format($this->app->sale($sale->price,$sale->sale),0,',','.')  ?>,-</span>
+                                      <?php else: ?>
+                                      <span class="new-price">Rp. <?= number_format($sale->price,0,',','.')  ?>,-</span>
+                                    <?php endif; ?>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    <?php endforeach; ?>
+                  <?php endif; ?>
 
-												<div class="button-action">
-													<div class="row">
-														<div class="col">
-															<a class="btn btn-warning btn-rounded btn-outline btn-block" href="<?= site_url('video/detail/'.$vid->mentor_class_id.'/'.url_title($vid->title,'-',true)) ?>">Video Detail</a>
-														</div>
-														<div class="col">
-															<form class="" action="<?= site_url('cart/addtocart') ?>" method="post" enctype="application/x-www-form-urlencoded">
-						                    <input type="hidden" name="product_id" value="<?= $vid->mentor_class_id ?>">
-						                    <input type="hidden" name="qty" value="1">
-						                    <button type="submit" name="button" class="btn btn-outline btn-rounded btn-dark btn-block">Buy</button>
-						                  </form>
-														</div>
-													</div>
+                </div>
+                <div class="pro-view-all-3 text-center">
+                    <a href="#">View all product</a>
+                </div>
+            </div>
+        </div>
 
-												</div>
-											</div>
-										<?php endforeach; ?>
-									<?php endif; ?>
+        <div class="banner-area">
+            <div class="banner-slider-active-3 owl-carousel">
+                <div class="single-banner-slider bg-img pt-180 pb-180" style="background-image:url(images/banner/slider-middle-2.jpg);">
+                    <div class="single-banner-slider-wrap">
+                        <div class="single-banner-slider-content slider-animated-1">
+                            <span>Popular Course</span>
+                            <h3 class="slider-animated-1">Sales Force</h3>
+                            <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer condimentum sed mi</p>
+                            <div class="banner-slider-btn">
+                                <a href="#">DISCOVER</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-banner-slider bg-img pt-180 pb-180" style="background-image:url(images/banner/slider-middle-3.jpg);">
+                    <div class="single-banner-slider-wrap">
+                        <div class="single-banner-slider-content slider-animated-1">
+                            <span>Popular Course</span>
+                            <h3>Digital Marketing</h3>
+                            <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer condimentum sed mi</p>
+                            <div class="banner-slider-btn">
+                                <a href="#">DISCOVER</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-banner-slider bg-img pt-180 pb-180" style="background-image:url(images/banner/slider-middle-4.jpg);">
+                    <div class="single-banner-slider-wrap">
+                        <div class="single-banner-slider-content slider-animated-1">
+                            <span>Popular Course</span>
+                            <h3>Graphic Design</h3>
+                            <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer condimentum sed mi</p>
+                            <div class="banner-slider-btn">
+                                <a href="#">DISCOVER</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-								</div>
-								</div>
-
-							<?php endforeach; ?>
-						<?php endif; ?>
 
 
+        <!--
+        <div class="testimonial-area section-padding-1 pt-130 pb-125">
+            <div class="container-fluid">
+                <div class="section-title-12 text-center mb-70">
+                    <h2>Clients say</h2>
+                </div>
+                <div class="testimonial-active owl-carousel">
+                    <div class="single-testimonial-2 text-center">
+                        <img src="assets/images/icon-img/testimonial-icon-02.png" alt="testimonial">
+                        <p>Nulla vulputate nulla lectus, in vulputate metus lobortis id. Cras scelerisque urna sed urna tincidunt tempor. Quisque finibus ultrices mauris, sit amet</p>
+                        <div class="client-img-2">
+                            <img src="assets/images/testimonial/client-img-1.jpg" alt="testimonial">
+                        </div>
+                        <div class="client-info-2">
+                            <h3>John Borthwick</h3>
+                            <span>Founder & CEO</span>
+                        </div>
+                    </div>
+                    <div class="single-testimonial-2 text-center">
+                        <img src="assets/images/icon-img/testimonial-icon-02.png" alt="testimonial">
+                        <p>Nulla vulputate nulla lectus, in vulputate metus lobortis id. Cras scelerisque urna sed urna tincidunt tempor. Quisque finibus ultrices mauris, sit amet</p>
+                        <div class="client-img-2">
+                            <img src="assets/images/testimonial/client-img-1.jpg" alt="testimonial">
+                        </div>
+                        <div class="client-info-2">
+                            <h3>Jane Bill</h3>
+                            <span>Founder & CEO</span>
+                        </div>
+                    </div>
+                    <div class="single-testimonial-2 text-center">
+                        <img src="assets/images/icon-img/testimonial-icon-02.png" alt="testimonial">
+                        <p>Nulla vulputate nulla lectus, in vulputate metus lobortis id. Cras scelerisque urna sed urna tincidunt tempor. Quisque finibus ultrices mauris, sit amet</p>
+                        <div class="client-img-2">
+                            <img src="assets/images/testimonial/client-img-1.jpg" alt="testimonial">
+                        </div>
+                        <div class="client-info-2">
+                            <h3>Mary Scott</h3>
+                            <span>Founder & CEO</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
 
 
 
 
-				</div>
-			</div>
 
 
-		</div>
-	</section>
+        <div class="blog-area section-padding-1 bg-gray pt-130 pb-100">
+            <div class="container-fluid">
+                <div class="section-title-12 text-center mb-70">
+                    <h2>BLOGS</h2>
+                </div>
+                <div class="row">
+                  <?php if ($queryArticles->num_rows()): ?>
+                    <?php foreach ($queryArticles->result() as $key => $article): ?>
+                      <div class="col-lg-4 col-md-6">
+                          <div class="blog-wrap-2 mb-30 bg-white">
+                              <div class="blog-img-2 mb-50">
+                                  <a href="blog-details-1.php"><img src="<?= base_url('assets/uploads/blogs/'.$article->image_small) ?>" alt="blog"></a>
+                              </div>
+                              <div class="blog-content-2">
+                                  <h3>
+                                    <a href="<?= site_url('articles/detail/'.$article->articles_id.'/'.url_title($article->title,'-',true)) ?>">
+                                      Sekolah masa depan di era digital—belajar dan mengajar di mana saja
+                                    </a>
+                                  </h3>
+                                  <div class="blog-meta light-sky-meta">
+                                      <ul>
+                                          <li><a href="#">December 5, 2018</a></li>
+                                          <li>By <a href="#">Joe Doe</a></li>
+                                          <li><a href="#">Photography</a></li>
+                                      </ul>
+                                  </div>
+                                  <?= $article->resume ?>
+                                  <div class="blog-btn-2 blog-btn-2-sky">
+                                      <a href="<?= site_url('articles/detail/'.$article->articles_id.'/'.url_title($article->title,'-',true)) ?>">Read More</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    <?php endforeach; ?>
+                  <?php endif; ?>
 
-	<section class="section section-videos border-0 m-0 bg-warning">
-		<div class="container" style="overflow:hidden">
-			<div class="row justify-content-center">
-				<div class="col-lg-3 text-center">
-					<div class="heading text-primary heading-border heading-bottom-border">
-						<h1><strong class="font-weight-extra-bold">PROMO</strong></h1>
-					</div>
-				</div>
-			</div>
-
-			<div class="row mt-4 appear-animation" data-appear-animation="bounceInLeft" data-appear-animation-delay="300" data-appear-animation-duration="1s">
-
-				<?php if ($queryPromo->num_rows() > 0): ?>
-					<?php foreach ($queryPromo->result() as $key => $promo): ?>
-						<div class="col-lg-4 mb-4">
-							<span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-centered-icons">
-								<span class="thumb-info-wrapper">
-									<div class="poster" style="background-image: url('<?= base_url('assets/uploads/files/'.$promo->poster) ?>')">
-
-									</div>
-									<!-- <img src="" class="img-fluid" alt="<?= substr($promo->poster,0,-4) ?>"> -->
-									<span class="thumb-info-action">
-										<a href="<?= site_url('video/detail/'.$promo->mentor_class_id.'/'.url_title($promo->title,'-',true)) ?>">
-											<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
-										</a>
-									</span>
-								</span>
-							</span>
-							<h4 class="mt-2 text-center text-3 mb-0">
-								<a class="text-dark" href="<?= site_url('video/detail/'.$promo->mentor_class_id.'/'.url_title($promo->title,'-',true)) ?>">
-									<?= $promo->title ?>
-								</a>
-							</h4>
-
-							<?php $mentor = $this->ion_auth->user($promo->user_id)->row(); ?>
-							<p class="text-center mb-2"><small class="text-2">Mentor: <?= $mentor->full_name ?></small></p>
-
-							<?php if ($promo->sale != 0): ?>
-								<h3 class="text-center mb-1"><strong>Rp. <?= number_format($this->app->sale($promo->price,$promo->sale),0,',','.')  ?>,-</strong></h3>
-								<h5 class="text-center"><del>Rp. <?= number_format($promo->price,0,',','.')  ?>,- </del></h5>
-							<?php else: ?>
-								<h3 class="text-center"><strong>Rp. <?= number_format($promo->price,0,',','.')  ?>,-</strong></h3>
-							<?php endif; ?>
-
-							<div class="button-action">
-								<div class="row">
-									<div class="col">
-										<a class="btn btn-danger btn-rounded btn-outline btn-block" href="<?= site_url('video/detail/'.$promo->mentor_class_id.'/'.url_title($promo->title,'-',true)) ?>">Video Detail</a>
-									</div>
-									<div class="col">
-										<form class="" action="<?= site_url('cart/addtocart') ?>" method="post" enctype="application/x-www-form-urlencoded">
-											<input type="hidden" name="product_id" value="<?= $promo->mentor_class_id ?>">
-											<input type="hidden" name="qty" value="1">
-											<button type="submit" name="button" class="btn btn-outline btn-rounded btn-dark btn-block">Buy</button>
-										</form>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					<?php endforeach; ?>
-				<?php endif; ?>
-
-			</div>
-		</div>
-	</section>
-
-	<section class="section section-mentor border-0 m-0 bg-dark">
-		<div class="container" style="overflow:hidden">
-			<div class="row justify-content-center">
-				<div class="col-lg-3 text-center">
-					<div class="heading text-primary heading-border heading-bottom-border">
-						<h1 class="text-white"><strong class="font-weight-extra-bold">MENTOR</strong></h1>
-					</div>
-				</div>
-			</div>
-
-			<div class="row my-5">
-				<div class="col-lg-12 appear-animation" data-appear-animation="bounceInUp" data-appear-animation-delay="300" data-appear-animation-duration="1s">
-					<div class="owl-carousel owl-theme nav-inside" data-plugin-options="{'items': 3, 'margin': 10, 'loop': false, 'nav': true, 'dots': false}">
-
-						<?php if ($queryMentor->num_rows() > 0): ?>
-							<?php foreach ($queryMentor->result() as $key => $value): ?>
-								<div class="card">
-									<a href="<?= site_url('mentor/detail/'.$value->id_mentor.'/'.url_title($value->full_name,'-',true)) ?>" style="background-image:url('<?= $value->photo != '' ? base_url('images/avatars/'.$value->photo) : base_url('images/avatars/avatar.jpg') ?>')">
-
-									</a>
-
-									<div class="card-body p-3">
-										<h3>
-											<a class="text-dark" href="<?= site_url('mentor/detail/'.$value->id_mentor.'/'.url_title($value->full_name,'-',true)) ?>">
-												<?= $value->full_name ?>
-											</a>
-										</h3>
-										<?= $value->resume ?>
-									</div>
-								</div>
-							<?php endforeach; ?>
-						<?php endif; ?>
-
-					</div>
-				</div>
-
-				<div class="col-lg-6 offset-lg-3">
-					<form class="" action="<?= site_url('search/mentor') ?>" method="get">
-						<div class="input-group input-group-rounded">
-							<input class="form-control form-control-sm bg-light px-4 text-3" placeholder="Search Mentor..." name="src" type="text">
-							<span class="input-group-append">
-								<button class="btn btn-warning text-color-light text-2 py-3 px-4" type="submit"><strong class="text-dark">Search</strong></button>
-							</span>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="section section-blog border-0 m-0">
-		<div class="container" style="overflow:hidden">
-			<div class="row justify-content-center">
-				<div class="col-lg-3 text-center">
-					<div class="heading text-primary heading-border heading-bottom-border">
-						<h1><strong class="font-weight-extra-bold">BLOG</strong></h1>
-					</div>
-				</div>
-			</div>
-
-			<div class="row mt-4 appear-animation" data-appear-animation="bounceInRight" data-appear-animation-delay="300" data-appear-animation-duration="1s">
-				<?php if ($queryArticles->num_rows() > 0): ?>
-					<?php foreach ($queryArticles->result() as $key => $art): ?>
-						<div class="col-lg-4">
-							<div class="card">
-								<img class="img-fluid" src="<?= base_url('assets/uploads/blogs/'.$art->image_small) ?>" alt="">
-								<div class="card-body p-3">
-									<h4>
-										<a class="text-dark" href="<?= site_url('blog/detail/'.$art->articles_id.'/'.url_title($art->title,'-',true)) ?>"><?= $art->title ?></a>
-									</h4>
-									<?= $art->resume ?>
-									<p class="mb-0 text-center">
-										<a class="btn btn-rounded btn-warning btn-modern" href="<?= site_url('blog/detail/'.$art->articles_id.'/'.url_title($art->title,'-',true)) ?>"><strong>Lanjut</strong></a>
-									</p>
-								</div>
-							</div>
-						</div>
-					<?php endforeach; ?>
-				<?php endif; ?>
-
-			</div>
-
-			<div class="row mt-4">
-				<div class="col text-center">
-					<a class="btn btn-rounded btn-warning btn-modern text-dark" href="<?= site_url('blog/view') ?>"><strong>Artikel Lainnya</strong></a>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="section section-partner border-0 m-0 bg-dark">
-		<div class="container" style="overflow:hidden">
-			<div class="row justify-content-center">
-				<div class="col-lg-3 text-center">
-					<div class="heading text-primary heading-border heading-bottom-border">
-						<h1 class="text-white"><strong class="font-weight-extra-bold">REKANAN</strong></h1>
-					</div>
-				</div>
-			</div>
-
-			<div class="row mt-4 appear-animation" data-appear-animation="bounceInDown" data-appear-animation-delay="300" data-appear-animation-duration="1s">
-				<div class="col">
-					<div class="owl-carousel owl-theme stage-margin" data-plugin-options="{'items': 4, 'margin': 10, 'loop': true, 'nav': true, 'dots': false, 'stagePadding': 40}">
-						<?php if ($queryPartners->num_rows() > 0): ?>
-							<?php foreach ($queryPartners->result() as $key => $part): ?>
-								<div>
-									<img alt="" class="img-fluid mb-2" src="<?= base_url('assets/uploads/files/'.$part->logo) ?>">
-								</div>
-							<?php endforeach; ?>
-						<?php endif; ?>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-</div>
+                </div>
+            </div>
+        </div>
+        <div class="brand-area section-padding-3 pt-20 pb-20">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-2 col-md-4 col-6 col-sm-4">
+                        <div class="single-brand-logo-2 text-center">
+                            <a href="#"><img src="images/brand-logo/brand-logo-1.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 col-sm-4">
+                        <div class="single-brand-logo-2 text-center">
+                            <a href="#"><img src="images/brand-logo/brand-logo-2.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 col-sm-4">
+                        <div class="single-brand-logo-2 text-center">
+                            <a href="#"><img src="images/brand-logo/brand-logo-3.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 col-sm-4">
+                        <div class="single-brand-logo-2 text-center">
+                            <a href="#"><img src="images/brand-logo/brand-logo-4.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 col-sm-4">
+                        <div class="single-brand-logo-2 text-center">
+                            <a href="#"><img src="images/brand-logo/brand-logo-5.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 col-sm-4">
+                        <div class="single-brand-logo-2 text-center">
+                            <a href="#"><img src="images/brand-logo/brand-logo-6.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

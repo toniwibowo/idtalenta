@@ -1,238 +1,199 @@
-<footer id="footer" class="mt-0">
-	<div class="container my-4">
-		<div class="row py-5">
-			<div class="col-md-6 col-lg-4 col-ext mb-5 mb-lg-0">
-				<img class="img-fluid mb-4" src="<?= base_url('images/logo.png') ?>" alt="">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut viverra justo nec sem vulputate tempor.</p>
-			</div>
 
-			<div class="col-md-3 col-lg-1 col-ext mb-lg-0">
-				<h5 class="text-4 text-transform-none font-weight-semibold text-warning mb-4">Menu</h5>
-				<ul class="list-unstyled">
-					<li>
-						<a href="<?= site_url() ?>">Beranda</a>
-					</li>
-					<li>
-						<a href="<?= site_url('tentang-kami') ?>">Tentang Kami</a>
-					</li>
-					<li>
-						<a href="<?= site_url('mentor') ?>">Mentor</a>
-					</li>
+        <footer class="footer-area section-padding-1 bg-black-3">
+            <div class="container-fluid">
+                <div class="footer-top pt-100 pb-35">
+                    <div class="row">
+                        <div class="footer-column footer-width-24-2">
+                            <div class="footer-widget footer-info-list-2 footer-contect logo-width footer-info-font-inc mb-30">
+                                <a href="index.html">
+                                    <img src="<?= base_url() ?>images/logo/logo-2-white.png" alt="logo">
+                                </a>
+                                <ul>
+                                    <li><i class="dlicon ui-2_time-clock"></i> Monday - Friday: 8:30 - 17:00</li>
+                                    <li><i class="dlicon ui-1_email-83"></i>  support@idtalenta.com</li>
+                                    <li><i class="dlicon tech-2_rotate"></i> 0811849977</li>
+                                    <li><i class="dlicon ui-1_home-simple"></i> The City Tower Level 12 1N</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer-column footer-width-13">
+                            <div class="footer-widget footer-info-list mb-30 fi-sky-color">
+                                <h3 class="footer-title ft-letter-space-inc">Links</h3>
+                                <ul>
+                                    <li><a href="about-us.php">About Us</a></li>
+                                    <li><a href="#">Help Center</a></li>
+                                    <li><a href="blog.php">Blog</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
 
-
-					<li>
-						<a href="<?= site_url('blog/view') ?>">Blog</a>
-					</li>
-					<li>
-						<a href="<?= site_url('kontak') ?>">Kontak</a>
-					</li>
-
-										<li>
-						<a href="<?= site_url('faq') ?>">FAQ</a>
-					</li>
-
-										<li>
-						<a href="<?= site_url('syarat-ketentuan') ?>">Syarat & Ketentuan</a>
-					</li>
-
-										<li>
-						<a href="<?= site_url('kebijakan-privasi') ?>">Kebijakan Privacy</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="col-md-3 col-lg-1 col-ext mb-lg-0">
-				<h5 class="text-4 text-transform-none font-weight-semibold text-warning mb-4">Member</h5>
-				<ul class="list-unstyled">
-					<li>
-						<a href="#">Daftar</a>
-					</li>
-					<li>
-						<a href="#">Login</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="col-md-6 col-lg-2 col-ext mb-5 mb-lg-0">
-				<h5 class="text-4 text-transform-none font-weight-semibold text-warning mb-4">Kontak</h5>
-				<ul class="list list-icons list-icons-style-3">
-					<li>
-						<i class="fa fa-map-marker bg-warning text-dark"></i>
-						Jl. MH.Thamrin No.1 Lt.50<br> Regus Grand Indonesia<br>
-						Menara BCA, Jakarta, 10240
-					</li>
-					<li>
-						<i class="fa fa-phone bg-warning text-dark"></i>
-						<a href="tel:02123584473">021 - 2358 4473</a>
-					</li>
-					<li>
-						<i class="fa fa-envelope bg-warning text-dark"></i>
-						<a href="mailto:admin@artademi.com">admin@artademi.com</a>
-					</li>
-				</ul>
-			</div>
-
-
-			<div class="col-md-6 col-lg-4 col-ext">
-				<h5 class="text-4 text-transform-none font-weight-semibold text-warning mb-4">Langganan Newsletter</h5>
-				<div class="alert alert-success d-none" role="alert" id="newsletterSuccess">
-					<span class="d-inline float-right" aria-hidden="true">&times;</span>
-				</div>
-				<div class="alert alert-warning d-none" role="alert" id="newsletterWarning">
-
-					<span class="d-inline float-right" aria-hidden="true">&times;</span>
-				</div>
-				<div class="alert alert-danger d-none" id="newsletterError"></div>
-				<form id="subscribeForm" data-form-type="subscribe" method="POST" action="" class="mw-100">
-
-					<div class="input-group input-group-rounded">
-						<input class="form-control form-control-sm bg-light px-4 text-3" placeholder="Email Address..." name="newsletterEmail" id="email" type="email">
-						<span class="input-group-append">
-							<!-- <button id="subscribe" type="submit" class="btn btn-warning text-color-light text-2 py-3 px-4">Subscribe Button</button> -->
-							<button class="btn btn-warning text-color-light text-2 py-3 px-4" type="button"><strong class="text-dark">SUBSCRIBE</strong></button>
-
-							<!-- strong class="text-dark">SUBSCRIBE!</strong> -->
-						</span>
-					</div>
-				</form>
-</div>
-</div>
-</div>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer-column footer-width-11">
+                            <div class="footer-widget footer-info-list mb-30 fi-sky-color">
+                                <h3 class="footer-title">Userful Link</h3>
+                                <ul>
+                                    <li><a href="#">Guides & Articles</a></li>
+                                    <li><a href="#">Customer Reviews</a></li>
+                                    <li><a href="#">Coupon Codes</a></li>
+                                    <li><a href="#">Military Discount</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer-column footer-width-23">
+                            <div class="footer-widget footer-info-list footer-contect mb-30">
+                                <h3 class="footer-title ft-letter-space-inc">Join Our Newsletter</h3>
+                                <div class="subscribe-footer-wrap">
+                                    <p>Lorem ipsum dolor sit amet, magna habemus ius ad, qui minimum voluptaria in. </p>
+                                    <div id="mc_embed_signup" class="subscribe-form-3">
+                                        <form id="mc-embedded-subscribe-form" class="validate" novalidate="" target="_blank" name="mc-embedded-subscribe-form" method="post" action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef">
+                                            <div id="mc_embed_signup_scroll" class="mc-form-3">
+                                                <input class="email" type="email" required="" placeholder="E-Mail" name="EMAIL" value="">
+                                                <div class="mc-news-3" aria-hidden="true">
+                                                    <input type="text" value="" tabindex="-1" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef">
+                                                </div>
+                                                <div class="clear-3">
+                                                    <input id="mc-embedded-subscribe" class="button" type="submit" name="subscribe" value="Subscribe">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer-column footer-width-27 mb-30">
+                            <div class="instagram-feed-thumb">
+                                <div id="Instafeed-2" class="instagram-wrap-3" data-userid="6666120591" data-accesstoken="6666120591.1677ed0.297698fc79c1407f9c76c3cad4fa507f">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-botoom">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="copyright-2 copyright-sky text-center">
+                                <p>© 2020 <a href="http:///www.idtalenta.com">PT Talenta Anak Bangsa</a> All rights reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="support-lists">
+            <ul>
+                <li><a href="#"><i class="dlicon ui-3_chat-46"></i></a></li>
+                <li><a href="#"><i class=" dlicon ui-3_phone"></i></a></li>
+                <li><a href="#"><i class="dlicon ui-1_email-85"></i></a></li>
+            </ul>
+        </div>
 
 
-	<div class="footer-copyright footer-copyright-style-2 bg-warning">
-		<div class="container py-2">
-			<div class="row py-2">
-				<div class="col d-flex align-items-center justify-content-start mb-4 mb-lg-0">
-					<p>© Copyright 2019. All Rights Reserved.</p>
-				</div>
-				<div class="col d-flex align-items-center justify-content-end mb-4 mb-lg-0">
-					<h4 class="d-inline mb-0 mr-4 text-dark">follow us on</h4>
-					<ul class="social-icons social-icons-big">
-						<li>
-							<a class="bg-dark text-warning text-5" href="#"><i class="fab fa-facebook-f text-warning"></i> </a>
-						</li>
-						<li>
-							<a class="bg-dark text-warning text-5" href="#"><i class="fab fa-instagram text-warning"></i> </a>
-						</li>
-						<li>
-							<a class="bg-dark text-warning text-5" href="#"><i class="fab fa-youtube text-warning"></i> </a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
 
-</footer>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="dlicon ui-1_simple-remove" aria-hidden="true"></span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row no-gutters">
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                <div class="quickview-slider-active owl-carousel">
+                                    <a class="img-popup" href="<?= base_url() ?>images/product/quickview-1.jpg"><img src="<?= base_url() ?>images/product/quickview-1.jpg" alt=""><span>sold uot</span></a>
+                                    <a class="img-popup" href="<?= base_url() ?>images/product/quickview-2.jpg"><img src="<?= base_url() ?>images/product/quickview-2.jpg" alt=""><span>sold uot</span></a>
+                                </div>
+                                <!-- Thumbnail Large Image End -->
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                <div class="product-details-content">
+                                    <div class="pro-dec-next-prev">
+                                        <a class="prev" href="#"><i class="dlicon arrows-1_tail-left"></i></a>
+                                        <a class="next" href="#"><i class="dlicon arrows-1_tail-right"></i></a>
+                                    </div>
+                                    <h2 class="uppercase">Quilted parka with hood</h2>
+                                    <h3>$49.00</h3>
+                                    <div class="product-details-peragraph">
+                                        <p>Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci. Aliquam libero ac turpis pharetra, in vehicula scelerisque. Vestibulum ut sem laoreet, feugiat tellus at, hendrerit arcu.</p>
+                                    </div>
+                                    <div class="product-details-action-wrap">
+                                        <div class="product-details-quality">
+                                            <div class="cart-plus-minus">
+                                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="2">
+                                            </div>
+                                        </div>
+                                        <div class="product-details-cart">
+                                            <a title="Add to cart" href="#">Add to cart</a>
+                                        </div>
+                                        <div class="product-details-wishlist">
+                                            <a title="Add to wishlist" href="#"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                        <div class="product-details-compare">
+                                            <a title="Add to compare" href="#"><i class="dlicon arrows-4_compare"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-details-info">
+                                        <a href="#"><i class="dlicon location_pin"></i>Store availability</a>
+                                        <a href="#"><i class="dlicon envir_car"></i>Delivery and return</a>
+                                        <a href="#"><i class="dlicon design_measure-17"></i>Size Guide</a>
+                                    </div>
+                                    <div class="product-details-meta">
+                                        <span>SKU: REF. LA-140</span>
+                                        <span>Categories: <a href="#">Fashions</a>, <a href="#">Main 01</a>, <a href="#">Main 02</a></span>
+                                        <span>Tags: <a href="#">Blazer</a>, <a href="#">chair</a>, <a href="#">Coat</a>, <a href="#">dress</a>, <a href="#">light</a>, <a href="#">Living</a>, <a href="#">Main 01</a></span>
+                                    </div>
+                                    <div class="social-icon-style-3">
+                                        <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                                        <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                                        <a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+                                        <a class="pinterest" href="#"><i class="fa fa-pinterest-p"></i></a>
+                                        <a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal end -->
+    </div>
 
-<?php $uri = $this->uri->segment(1); ?>
+    <!-- All JS is here
+============================================ -->
 
-<!-- Vendor -->
-<script src="<?= base_url() ?>vendor/jquery/jquery.min.js"></script>
-<script src="<?= base_url() ?>vendor/jquery.appear/jquery.appear.min.js"></script>
-<script src="<?= base_url() ?>vendor/jquery.easing/jquery.easing.min.js"></script>
-<script src="<?= base_url() ?>vendor/jquery.cookie/jquery.cookie.min.js"></script>
-<script src="<?= base_url() ?>vendor/popper/umd/popper.min.js"></script>
-<script src="<?= base_url() ?>vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="<?= base_url() ?>vendor/common/common.min.js"></script>
-<script src="<?= base_url() ?>vendor/jquery.validation/jquery.validate.min.js"></script>
-<script src="<?= base_url() ?>vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-<script src="<?= base_url() ?>vendor/jquery.gmap/jquery.gmap.min.js"></script>
-<script src="<?= base_url() ?>vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
-<script src="<?= base_url() ?>vendor/isotope/jquery.isotope.min.js"></script>
-<script src="<?= base_url() ?>vendor/owl.carousel/owl.carousel.min.js"></script>
-<script src="<?= base_url() ?>vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-<script src="<?= base_url() ?>vendor/vide/jquery.vide.min.js"></script>
-<script src="<?= base_url() ?>vendor/vivus/vivus.min.js"></script>
-<script src="<?= base_url() ?>vendor/bootstrap-star-rating/js/star-rating.min.js"></script>
-<script src="<?= base_url() ?>vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.js"></script>
-
-<?php if ($uri == 'course'): ?>
-<script src="<?= base_url() ?>vendor/video.js/dist/video.min.js"></script>
-<script src="<?= base_url() ?>js/video-handlers.js"></script>	
-<?php endif; ?>
-
-<script src="<?= base_url() ?>js/tagsinput.js"></script>
-
-<!-- Theme Base, Components and Settings -->
-<script src="<?= base_url() ?>js/theme.js"></script>
-
-<!-- Current Page Vendor and Views -->
-<script src="<?= base_url() ?>vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-<script src="<?= base_url() ?>vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-
-<!-- Theme Custom -->
-<script src="<?= base_url() ?>js/custom.js"></script>
-
-<!-- Theme Initialization Files -->
-<script src="<?= base_url() ?>js/theme.init.js"></script>
-
-<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-12345678-1', 'auto');
-ga('send', 'pageview');
-</script>
--->
-
-<script>
-	// modal and cookie js
-	// $(".clear-cookie").on("click", function() {
-	// 		Cookies.remove('ModalShown');
-	// 		$(this).replaceWith("<p><em>Cookie cleared. Re-run demo</em></p>");
-	// });
-	//
-	// $(".subscribed,.close,.close2").on("click", function() {
-	// 		$('#modal-content').modal('hide');
-	// 		Cookies.set('ModalShown', 'yes', {  expires: 1});
-	// 		$(".clear-cookie").fadeIn();
-	// 		lastFocus.focus();
-	// });
-
-
-	//var lastFocus;
-	//var popupShown = Cookies.get('ModalShown');
-
-	// if (popupShown) {
-	// 		console.log("Cookie found. No action necessary");
-	// 		$(".clear-cookie").show();
-	// } else {
-	// 		console.log("No cookie found. Opening popup in 3 seconds");
-	// 		$(".clear-cookie").hide();
-	// 		setTimeout(function() {
-	// 				lastFocus = document.activeElement;
-	// 				$('#modal-content').modal('show');
-	// 				$("#yurEmail").focus();
-	// 		}, 3000);
-	// }
-
-/// ajax post request
-	// $(document).ready(function () {
-	//
-	// 		$("#subscribe").click(function(e) {
-	// 				e.preventDefault();
-	// 				var email = $("#yurEmail").val();
-	// 				var post_url = "<?= site_url('subscribe/add_new/') ?>";
-	// 				$.ajax({
-	// 						type: "POST",
-	// 						url: post_url,
-	// 						data : {"email" : email},
-	// 						dataType: "json",
-	// 						success: function (data) {
-	// 								console.log(data);
-	// 						}
-	// 				});
-	//
-	// 		});
-	//
-	// });
-
-</script>
-
+    <!-- Modernizer JS -->
+    <script src="<?= base_url() ?>js/vendor/modernizr-3.6.0.min.js"></script>
+    <!-- jquery -->
+    <script src="<?= base_url() ?>js/vendor/jquery-3.3.1.min.js"></script>
+    <!-- Popper JS -->
+    <script src="<?= base_url() ?>js/vendor/popper.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="<?= base_url() ?>js/vendor/bootstrap.min.js"></script>
+    <script src="<?= base_url() ?>js/plugins/owl-carousel.js"></script>
+    <script src="<?= base_url() ?>js/plugins/slick.js"></script>
+    <script src="<?= base_url() ?>js/plugins/jarallax.min.js"></script>
+    <script src="<?= base_url() ?>js/plugins/countdown.js"></script>
+    <script src="<?= base_url() ?>js/plugins/magnific-popup.js"></script>
+    <script src="<?= base_url() ?>js/plugins/instafeed.js"></script>
+    <script src="<?= base_url() ?>js/plugins/tilt.js"></script>
+    <script src="<?= base_url() ?>js/plugins/images-loaded.js"></script>
+    <script src="<?= base_url() ?>js/plugins/isotope.js"></script>
+    <script src="<?= base_url() ?>js/plugins/scrolloverflow-fullpage.js"></script>
+    <script src="<?= base_url() ?>js/plugins/fullpage.js"></script>
+    <script src="<?= base_url() ?>js/plugins/jquery-ui-touch-punch.js"></script>
+    <script src="<?= base_url() ?>js/plugins/jquery-ui.js"></script>
+    <script src="<?= base_url() ?>js/plugins/easyzoom.js"></script>
+    <script src="<?= base_url() ?>js/plugins/resizesensor.js"></script>
+    <script src="<?= base_url() ?>js/plugins/sticky-sidebar.js"></script>
+    <script src="<?= base_url() ?>js/plugins/scrollup.js"></script>
+    <script src="<?= base_url() ?>js/plugins/select2.min.js"></script>
+    <script src="<?= base_url() ?>js/plugins/cookie.js"></script>
+    <script src="<?= base_url() ?>js/plugins/bpopup.js"></script>
+    <script src="<?= base_url() ?>js/plugins/wow.js"></script>
+    <script src="<?= base_url() ?>js/plugins/ajax-mail.js"></script>
+    <!-- Main JS -->
+    <script src="<?= base_url() ?>js/main.js"></script>
 </body>
+
 </html>

@@ -18,7 +18,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 user_guide/
 application/config/database.php
 #application/views/include/header.php
-application/views/include/footer.php
+#application/views/include/footer.php
 .htaccess
 
 # IDE Files

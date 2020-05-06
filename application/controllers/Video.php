@@ -10,10 +10,10 @@ class Video extends CI_Controller{
     $this->load->model('video_model','video');
   }
 
-  function view($id,$slug)
+  function course()
   {
     $data = [
-      'mentorClass' => $this->db->where('category_product_id', $id)->get('mentor_class')
+      'mentorClass' => $this->db->order_by('mentor_class_id', 'desc')->get('mentor_class')
     ];
 
     $this->load->view('include/header');
