@@ -21,9 +21,9 @@
                                 <h3 class="footer-title ft-letter-space-inc">Links</h3>
                                 <ul>
                                     <li><a href="about-us.php">About Us</a></li>
-                                    <li><a href="#">Help Center</a></li>
-                                    <li><a href="blog.php">Blog</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="<?= site_url('pages/view/6/help-center') ?>">Help Center</a></li>
+                                    <li><a href="<?= site_url('blog') ?>">Blog</a></li>
+                                    <li><a href="<?= site_url('pages/view/5/privacy-policy') ?>">Privacy Policy</a></li>
 
                                 </ul>
                             </div>
