@@ -1,5 +1,3 @@
-<?php include_once "include/header.php"; ?>
-
 <div class="team-area section-padding-8 pt-100 pb-70">
 		<div class="container-fluid">
 				<div class="section-title-9 text-center mb-50">
@@ -117,5 +115,3 @@
 				</div>
 		</div>
 </div>
-
-<?php include_once "include/footer.php"; ?>
