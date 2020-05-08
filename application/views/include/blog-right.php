@@ -23,10 +23,10 @@
                                 <?php foreach ($queryArticles->result() as $key => $article): ?>
                                   <div class="single-sidebar-post">
                                       <div class="sidebar-post-img">
-                                          <a href="blog-details.php"><img src="<?= base_url('assets/uploads/blogs/'.$article->image_small) ?>" alt=""></a>
+                                          <a href="<?= site_url('articles/detail/'.$article->articles_id.'/'.url_title($article->title,'-',true)) ?>"><img src="<?= base_url('assets/uploads/blogs/'.$article->image_small) ?>" alt=""></a>
                                       </div>
                                       <div class="sidebar-post-content">
-                                          <h4><a href="blog-details.php"><?= $article->title ?></a></h4>
+                                          <h4><a href="<?= site_url('articles/detail/'.$article->articles_id.'/'.url_title($article->title,'-',true)) ?>"><?= $article->title ?></a></h4>
                                           <span><?= date('d M Y', strtotime($article->posting_date)) ?></span>
                                       </div>
                                   </div>
