@@ -12,9 +12,9 @@
 
 
 
-    public function sendEmail()
+    public function index()
     {
-      $email = $this->input->post('newsletterEmail',true);
+      $email = $this->input->post('email',true);
 
       if (trim($email) == '') {
         echo 3;

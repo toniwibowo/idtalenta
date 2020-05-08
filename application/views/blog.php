@@ -1,43 +1,43 @@
-<div class="main" role="main">
-	<section class="section section-blog border-0 m-0">
-		<div class="container" style="overflow:hidden">
-			<div class="row justify-content-center">
-				<div class="col-lg-3 text-center">
-					<div class="heading text-primary heading-border heading-bottom-border">
-						<h1><strong class="font-weight-extra-bold">BLOG</strong></h1>
-					</div>
-				</div>
-			</div>
+<!-- Blog start -->
+<div class="blog-area-2 pt-100 pb-100">
+		<div class="container">
+				<div class="row">
+						<div class="col-lg-9">
+							<?php if ($queryArticles->num_rows() > 0): ?>
+								<?php foreach ($queryArticles->result() as $key => $article): ?>
+									<div class="blog-wrap-3 mb-70">
+											<div class="blog-img-3 mb-20">
+													<a href="<?= site_url('articles/detail/'.$article->articles_id.'/'.url_title($article->title,'-',true)) ?>"><img src="<?= base_url('assets/uploads/blogs/'.$article->image_small) ?>" alt="blog"></a>
+											</div>
+											<div class="blog-content-3">
+													<!-- <div class="blog-category">
+															<a href="#">Technology</a>
+													</div> -->
+													<h3><a href="<?= site_url('articles/detail/'.$article->articles_id.'/'.url_title($article->title,'-',true)) ?>"><?= $article->title ?></a></h3>
+													<div class="blog-meta">
+															<ul>
+																	<li><a href="#">Posted on <?= date('d M Y', strtotime($article->posting_date)) ?></a></li>
+																	<li>By <a href="#">Admin</a></li>
+															</ul>
+													</div>
+													<?= $article->resume ?>
+													<div class="blog-btn-2 blog-btn-2-red">
+															<a href="<?= site_url('articles/detail/'.$article->articles_id.'/'.url_title($article->title,'-',true)) ?>">Read More</a>
+													</div>
+											</div>
+									</div>
+								<?php endforeach; ?>
+							<?php endif; ?>
 
-			<div class="row mt-4 appear-animation" data-appear-animation="bounceInRight" data-appear-animation-delay="300" data-appear-animation-duration="1s">
-
-				<?php if ($query->num_rows() > 0): ?>
-					<?php foreach ($query->result() as $key => $row): ?>
-						<div class="col-lg-4">
-							<div class="card mb-4">
-								<img class="img-fluid" src="<?= base_url('assets/uploads/blogs/'.$row->image_small) ?>" alt="<?= substr($row->image_small,0,-4) ?>">
-								<div class="card-body p-3">
-									<h5>
-										<a class="text-dark" href="<?= site_url('blog/detail/'.$row->articles_id.'/'.url_title($row->title,'-',true)) ?>"><?= $row->title ?></a>
-									</h5>
-									<?= $row->resume ?>
-									<p class="mb-0 text-center">
-										<a class="btn btn-rounded btn-warning btn-modern" href="<?= site_url('blog/detail/'.$row->articles_id.'/'.url_title($row->title,'-',true)) ?>"><strong>Lanjut</strong></a>
-									</p>
-								</div>
-							</div>
 						</div>
-					<?php endforeach; ?>
-				<?php endif; ?>
 
-			</div>
 
-			<div class="row mt-4">
-				<div class="col text-center">
-					<!-- <a class="btn btn-rounded btn-warning btn-modern text-dark" href="#"><strong>Artikel Lainnya</strong></a> -->
-					<?= $this->pagination->create_links(); ?>
-				</div>
+
+
+						<div class="col-lg-3">
+							<?php include "include/blog-right.php" ?>
+						</div>
+					</div>
 			</div>
-		</div>
-	</section>
 </div>
+<!-- Blog end -->

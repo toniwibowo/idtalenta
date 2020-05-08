@@ -44,15 +44,16 @@
                                 <h3 class="footer-title ft-letter-space-inc">Join Our Newsletter</h3>
                                 <div class="subscribe-footer-wrap">
                                     <p>Lorem ipsum dolor sit amet, magna habemus ius ad, qui minimum voluptaria in. </p>
+                                    <!-- http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef -->
                                     <div id="mc_embed_signup" class="subscribe-form-3">
-                                        <form id="mc-embedded-subscribe-form" class="validate" novalidate="" target="_blank" name="mc-embedded-subscribe-form" method="post" action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef">
+                                        <form id="mc-embedded-subscribe-form" class="validate" novalidate="" name="mc-embedded-subscribe-form" method="post" action="">
                                             <div id="mc_embed_signup_scroll" class="mc-form-3">
-                                                <input class="email" type="email" required="" placeholder="E-Mail" name="EMAIL" value="">
-                                                <div class="mc-news-3" aria-hidden="true">
+                                                <input class="email" type="email" required="" placeholder="E-Mail" name="email" value="">
+                                                <!-- <div class="mc-news-3" aria-hidden="true">
                                                     <input type="text" value="" tabindex="-1" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef">
-                                                </div>
+                                                </div> -->
                                                 <div class="clear-3">
-                                                    <input id="mc-embedded-subscribe" class="button" type="submit" name="subscribe" value="Subscribe">
+                                                    <input id="mc-embedded-subscribe" class="button" type="button" name="subscribe" value="Subscribe">
                                                 </div>
                                             </div>
                                         </form>
@@ -194,6 +195,7 @@
     <script src="<?= base_url() ?>js/plugins/ajax-mail.js"></script>
     <!-- Main JS -->
     <script src="<?= base_url() ?>js/main.js"></script>
+    <script src="<?= base_url() ?>js/custom.js"></script>
 </body>
 
 </html>

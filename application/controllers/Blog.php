@@ -57,6 +57,15 @@ class Blog extends MX_Controller{
         $this->load->model("M_blog");
   }
 
+  public function index()
+  {
+    $data['queryArticles']  = $this->db->order_by('posting_date', 'desc')->limit(3)->get('articles');
+
+    $this->load->view('include/header');
+    $this->load->view('blog',$data);
+    $this->load->view('include/footer');
+  }
+
   public function view(){
     $data = $this->M_blog->viewjoin();
     $this->load->view('blog',$data);

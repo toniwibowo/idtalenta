@@ -45,5 +45,11 @@ class Pages extends MX_Controller
 		$this->load->view('pages',$data);
 		$this->load->view('include/footer');
   	}
+
+	public function about_us()
+	{
+		$this->load->view('include/header');
+		$this->load->view('about-us');
+		$this->load->view('include/footer');
+	}
 }
-?>

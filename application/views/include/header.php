@@ -90,7 +90,7 @@
                                         <li class="position-static"><a class="active" href="<?= site_url() ?>">Home</a>
 
                                         </li>
-                                        <li><a href="about-us.php">About Us</a>
+                                        <li><a href="<?= site_url('about-us') ?>">About Us</a>
                                             <!--<ul class="sub-menu-width">
                                                 <li><a href="#">Profile</a></li>
                                                 <li><a href="#">Vision & Mission</a></li>-->
@@ -154,7 +154,7 @@
                                                 <li><a href="category.php">Graphic Design</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="blog.php">Blog</a>
+                                        <li><a href="<?= site_url('blog') ?>">Blog</a>
                                            </li>
 
                                     </ul>

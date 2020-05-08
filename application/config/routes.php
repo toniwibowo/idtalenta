@@ -95,6 +95,6 @@ $route['rekanan/view'] = "partners/view";
 $route['rekanan/detail/(:num)/(:any)'] = "partners/detail/$1/tes";
 
 
-$route['woy'] = "member";
+$route['about-us'] = "pages/about_us";
 
 $route['kontak'] = "contactus";
