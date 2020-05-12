@@ -19,6 +19,11 @@
     <!-- Icon Font CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>css/vendor/font-awesome.css">
     <link rel="stylesheet" href="<?= base_url() ?>css/vendor/dlicon.css">
+    <link rel="stylesheet" href="<?= base_url() ?>vendor/alertifyjs/css/alertify.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>vendor/alertifyjs/css/themes/default.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>vendor/alertifyjs/css/themes/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>vendor/alertifyjs/css/themes/default.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>vendor/alertifyjs/css/themes/semantic.min.css">
     <!-- Others CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>css/plugins/owl-carousel.css">
     <link rel="stylesheet" href="<?= base_url() ?>css/plugins/slick.css">

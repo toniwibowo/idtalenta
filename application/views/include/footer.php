@@ -171,6 +171,7 @@
     <script src="<?= base_url() ?>js/vendor/popper.js"></script>
     <!-- Bootstrap JS -->
     <script src="<?= base_url() ?>js/vendor/bootstrap.min.js"></script>
+    <script src="<?= base_url() ?>vendor/alertifyjs/alertify.min.js"></script>
     <script src="<?= base_url() ?>js/plugins/owl-carousel.js"></script>
     <script src="<?= base_url() ?>js/plugins/slick.js"></script>
     <script src="<?= base_url() ?>js/plugins/jarallax.min.js"></script>
