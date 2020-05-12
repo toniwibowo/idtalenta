@@ -1,4 +1,5 @@
-var baseUrl = window.location.protocol+ "//" +window.location.host+"/idtalenta/";
+var urisegment = window.location.pathname.split('/');
+var baseUrl = window.location.protocol+ "//" +window.location.host+"/"+ urisegment[0] +"/";
 
 $(document).ready(function(){
 
