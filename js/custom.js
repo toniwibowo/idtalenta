@@ -1,5 +1,7 @@
 var urisegment = window.location.pathname.split('/');
-var baseUrl = window.location.protocol+ "//" +window.location.host+"/"+ urisegment[0] +"/";
+var baseUrl = window.location.protocol+ "//" +window.location.host+"/"+ urisegment[1] +"/";
+
+// console.log('ini uri '+ urisegment +'pisah'+ urisegment[0] +' - '+ urisegment[1] );
 
 $(document).ready(function(){
 
