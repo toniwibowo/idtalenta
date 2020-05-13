@@ -68,16 +68,11 @@ $route['forgot-password']        = 'sketsanet/forgot_password';
 $route['reset-password/(:any)']  = 'sketsanet/reset_password/$1';
 
 $route['tentang-kami']           = 'pages/view/1/tentang-kami';
-$route['faq']           		 = 'pages/view/3/faq';
-$route['syarat-ketentuan']           		 = 'pages/view/4/syarat';
-$route['kebijakan-privasi']           	 = 'pages/view/5/kebijakan';
+$route['faq']           		     = 'pages/view/3/faq';
+$route['syarat-ketentuan']       = 'pages/view/4/syarat';
+$route['kebijakan-privasi']      = 'pages/view/5/kebijakan';
 
-
-
-
-
-
-
+$route['classroom/(:any)']       = 'course/view/$1';
 
 
 $route['blog/view'] = "articles/view";

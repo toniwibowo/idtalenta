@@ -14,6 +14,14 @@ class Course extends CI_Controller{
 
   }
 
+  public function view($slug='')
+  {
+    $this->load->view('include/header');
+    //$this->load->view('course', $data);
+    echo '<h1>PAGE CATEGORY</h1>';
+    $this->load->view('include/footer');
+  }
+
   public function lecture($sid, $id, $slug)
   {
     $checkOrder = $this->db->where('sid', $sid)->get('orders')->row();

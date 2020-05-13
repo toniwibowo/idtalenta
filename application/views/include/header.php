@@ -154,13 +154,20 @@
                                         </li>-->
                                         <li><a href="#">Course </a>
                                             <ul class="sub-menu-width">
-                                                <li><a href="category.php">Financial</a></li>
-                                                <li><a href="category.php">Digital Marketing</a></li>
-                                                <li><a href="category.php">Graphic Design</a></li>
+                                              <?php $category = $this->db->get('category_product'); ?>
+                                              <?php if ($category->num_rows() > 0): ?>
+                                                <?php foreach ($category->result() as $key => $value): ?>
+                                                  <li><a href="<?= site_url('classroom/'.url_title($value->category_product_name,'-',true)) ?>"><?= $value->category_product_name ?></a></li>
+                                                <?php endforeach; ?>
+                                              <?php endif; ?>
                                             </ul>
                                         </li>
-                                        <li><a href="<?= site_url('blog') ?>">Blog</a>
-                                           </li>
+                                        <li>
+                                          <a href="<?= site_url('blog') ?>">Blog</a>
+                                        </li>
+                                        <li>
+                                          <a href="#">Login</a>
+                                        </li>
 
                                     </ul>
                                 </nav>
