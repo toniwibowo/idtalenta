@@ -166,7 +166,12 @@
                                           <a href="<?= site_url('blog') ?>">Blog</a>
                                         </li>
                                         <li>
-                                          <a href="#">Login</a>
+                                          <?php if (!$this->ion_auth->logged_in()): ?>
+                                            <a href="#" data-toggle="modal" data-target="#defaultModal">Login</a>
+                                            <?php else: ?>
+                                            <a href="<?= site_url('logout') ?>">Logout</a>  
+                                          <?php endif; ?>
+
                                         </li>
 
                                     </ul>
@@ -470,3 +475,59 @@
                 </div>
             </div>
         </div>
+
+        <!-- MODAL LOGIN -->
+
+        <!-- LOGIN -->
+  			<div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+  				<div class="modal-dialog">
+  					<div class="modal-content" style="overflow:hidden">
+
+  						<div id="loginBox" class="modal-body p-5 appear-animation" data-appear-animation="bounceInDown" data-appear-animation-delay="300" data-appear-animation-duration="1s">
+  							<h4>Masuk ke <strong>IDTALENTA</strong></h4>
+  							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  							<form id="loginForm" class="mb-0" action="" method="post" enctype="application/x-www-form-urlencoded">
+  								<div class="form-group">
+  									<input class="form-control" type="text" name="identity" value="" placeholder="Email/Username">
+  								</div>
+  								<div class="form-group">
+  									<input class="form-control" type="password" name="password" value="" placeholder="Password">
+  								</div>
+  								<div class="form-row">
+  									<div class="form-group col-lg-4 mb-0">
+  										<button type="button" name="button" class="btn btn-warning btn-rounded">Masuk</button>
+  									</div>
+  									<div class="form-group col-lg-4 mb-0">
+  										<div class="custom-control custom-checkbox mr-sm-2 py-2">
+  							        <input type="checkbox" name="remember" class="custom-control-input" id="customControlAutosizing">
+  							        <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
+  							      </div>
+  									</div>
+  									<div class="col-lg-4 py-2">
+  										<a class="text-warning py-2" href="#" id="forgotPassword">
+  											Lupa kata sandi?
+  										</a>
+  									</div>
+  									<div class="col-lg-12 mt-3 d-none">
+  										<a class="btn btn-rounded btn-info btn-block btn-modern" href="#"><small>Masuk dengan</small> Facebook</a>
+  									</div>
+  								</div>
+  							</form>
+  						</div>
+
+  						<div id="forgotPasswordBox" class="modal-body p-5 d-none appear-animation" data-appear-animation="bounceInUp" data-appear-animation-delay="300" data-appear-animation-duration="1s">
+  							<h4>Lupa <strong>Password?</strong></h4>
+  							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  							<form class="" action="<?= site_url('member/doforgot') ?>" method="post" enctype="application/x-www-form-urlencoded">
+  								<div class="form-group">
+  									<input type="email" name="email" class="form-control" placeholder="Email..." value="">
+  								</div>
+  								<div class="form-group mb-0">
+  									<button type="button" class="btn btn-dark btn-rounded" name="buttonBack">KEMBALI</button>
+  									<button type="submit" class="btn btn-warning btn-rounded" name="button">KIRIM</button>
+  								</div>
+  							</form>
+  						</div>
+  					</div>
+  				</div>
+  			</div>

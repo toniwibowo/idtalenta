@@ -117,13 +117,13 @@ class Home extends MX_Controller
 
       $data['querySlider']    = $this->db->where('start_date <=', date('Y-m-d'))->where('end_date >=', date('Y-m-d'))->get('slider');
 
-      $data['queryBanner'] = $this->db->where('start_date <=', date('Y-m-d'))->where('end_date >=', date('Y-m-d'))->limit(3)->get('banner');
+      $data['queryBanner']    = $this->db->where('start_date <=', date('Y-m-d'))->where('end_date >=', date('Y-m-d'))->limit(3)->get('banner');
 
       $data['queryCategory']  = $this->db->order_by('category_product_id', 'asc')->get('category_product');
 
-      $data['queryCourse'] = $this->db->order_by('mentor_class_id', 'desc')->limit(8)->get('mentor_class');
+      $data['queryCourse']    = $this->db->order_by('mentor_class_id', 'desc')->limit(8)->get('mentor_class');
 
-      $data['queryTopSale'] = $this->db->order_by('hits', 'desc')->limit(8)->get('mentor_class');
+      $data['queryTopSale']   = $this->db->order_by('hits', 'desc')->limit(8)->get('mentor_class');
 
       $data['queryArticles']  = $this->db->order_by('posting_date', 'desc')->limit(3)->get('articles');
 

@@ -5,7 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Name : Sketsa.cms base controller.
- * 
+ *
  * @version 1.0.0
  *
  * @author : Arief Budiyono
@@ -75,23 +75,23 @@ class Banner extends MX_Controller
                 //echo $this->default_page;
             }
         } else {
-           
 
-              /*==============tampilan grucery crud====================================================*/
-              $table_name = 'banner';
-              $this->db->where('table_name', $table_name);
+
+        /*==============tampilan grucery crud====================================================*/
+        $table_name = 'banner';
+        $this->db->where('table_name', $table_name);
         $table = $this->db->get('table')->row();
         //echo $table->action.'';
 
          $this->load->library('Grocery_CRUD');
         $this->load->library('Grocery_CRUD_Multiuploader');
         //$crud = new grocery_CRUD();
-        $crud = new Grocery_CRUD_Multiuploader(); 
+        $crud = new Grocery_CRUD_Multiuploader();
 
         $crud->set_table($table_name);
         $crud->set_subject($table->subject);
 
-        // Required field       
+        // Required field
         if ($table->required != '') {
             $crud->required_fields(json_decode($table->required));
         }
@@ -126,7 +126,7 @@ class Banner extends MX_Controller
 
         /* Show allowed file types while editing ? */
         "show_allowed_types"      => true,
-    
+
         /* No file text */
         "no_file_text"            =>'No Pictures',
 
@@ -137,7 +137,7 @@ class Banner extends MX_Controller
         "enable_download_button"  => true,
 
         /* One can restrict this button for specific types...*/
-        "download_allowed"        => 'jpg'      
+        "download_allowed"        => 'jpg'
      );
 
 
@@ -151,7 +151,7 @@ class Banner extends MX_Controller
 
         //============END TAMBAHAN MULTIUPLOAD =================================================
 
-        
+
         // Relation 1-n
         if ($table->relation_1 != 'null') {
             $fields_relation = json_decode($table->relation_1);
