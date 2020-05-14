@@ -24,6 +24,9 @@
         </div>
         <div class="banner-area section-padding-1 banner-area-hm11 pt-130 pb-100">
             <div class="container-fluid padding-70-row-col">
+              <?php if ($this->session->flashdata('validate')): ?>
+                <p class="alert alert-info mb-4" role="alert">Your email has successfully validate, you may login now.</p>
+              <?php endif; ?>
                 <div class="section-title-12 text-center mb-60">
                     <h2>IDTALENTA COURSE</h2>
                     <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer <br>condimentum sed mi ac efficitur. In sit amet ullamco</p>

