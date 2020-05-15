@@ -42,9 +42,9 @@ $config['route'] = [
 // Email Configuration
 $config['email'] = [
     'protocol' => 'smtp',
-    'smtp_host' => 'mail.gravenza.com',
-    'smtp_user' => 'tonny@gravenza.com',
-    'smtp_pass' => 'gravenza2015',
+    'smtp_host' => 'mail.greatindonesia.com',
+    'smtp_user' => 'tonny@greatindonesia.com',
+    'smtp_pass' => 'n4-7mjddAZ0c',
     'smtp_port' => 465,
     'mailtype' => 'html',
     'charset' => 'iso-8859-1'
