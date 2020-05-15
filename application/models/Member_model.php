@@ -8,15 +8,17 @@ class Member_model extends CI_Model{
     parent::__construct();
     //Codeigniter : Write Less Do More
     $this->load->helper('cookie');
+    $this->config->load('sketsanet');
   }
 
   public function email($email,$subject,$message,$name='Info ARTademi')
   {
+    $mail = $this->config->item('email');
     $config['protocol']   = 'smtp';
-    $config['smtp_host']  = 'mail.greatindonesia.com';
-    $config['smtp_user']  = 'tonny@greatindonesia.com';
-    $config['smtp_pass']  = '4E0%f3(UKP^(';
-    $config['smtp_port']  = 465;
+    $config['smtp_host']  = $mail['smtp_host'];
+    $config['smtp_user']  = $mail['smtp_user'];
+    $config['smtp_pass']  = $mail['smtp_pass'];
+    $config['smtp_port']  = $mail['smtp_port'];
     $config['mailtype']   = 'html';
     $config['newline']    = "\r\n";
 

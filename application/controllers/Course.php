@@ -18,7 +18,7 @@ class Course extends CI_Controller{
   {
     $this->load->view('include/header');
     //$this->load->view('course', $data);
-    echo '<h1>PAGE CATEGORY</h1>';
+    // echo '<h1>PAGE CATEGORY</h1>';
     $this->load->view('include/footer');
   }
 

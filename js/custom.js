@@ -123,6 +123,10 @@ $(document).ready(function(){
       return false;
     }
 
+    console.log(fullName.val());
+    console.log(identity.val());
+    console.log(password.val());
+
     $(this).text('proccessing...');
 
     $.post(baseUrl +'member/doregister', {full_name: fullName.val(), identity: identity.val(), password: password.val()})
@@ -144,6 +148,7 @@ $(document).ready(function(){
         alertify.error('Your register is failed, please try again.', 5);
         $('#loginForm button[name="register"]').text('Daftar');
         $('#loginForm')[0].reset();
+        console.log(data);
       }
     })
     .fail(function(err){

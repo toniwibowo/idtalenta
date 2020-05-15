@@ -95,10 +95,10 @@
                             <div class="main-menu menu-lh-1 main-menu-light-black menu-padding-li-none menu-padding-a main-menu-border-none">
                                 <nav>
                                     <ul>
-                                        <li class="position-static"><a class="active" href="<?= site_url() ?>">Home</a>
+                                        <li class="position-static"><a class="<?= activate_menu('home') ?>" href="<?= site_url() ?>">Home</a>
 
                                         </li>
-                                        <li><a href="<?= site_url('about-us') ?>">About Us</a>
+                                        <li><a class="<?= activate_menu('pages') ?>" href="<?= site_url('about-us') ?>">About Us</a>
                                             <!--<ul class="sub-menu-width">
                                                 <li><a href="#">Profile</a></li>
                                                 <li><a href="#">Vision & Mission</a></li>-->
@@ -155,7 +155,7 @@
                                                 </li>
                                             </ul>
                                         </li>-->
-                                        <li><a href="#">Course </a>
+                                        <li><a class="<?= activate_menu('course') ?>" href="#">Course </a>
                                             <ul class="sub-menu-width">
                                               <?php $category = $this->db->get('category_product'); ?>
                                               <?php if ($category->num_rows() > 0): ?>
@@ -166,11 +166,11 @@
                                             </ul>
                                         </li>
                                         <li>
-                                          <a href="<?= site_url('blog') ?>">Blog</a>
+                                          <a class="<?= activate_menu('blog') ?>" href="<?= site_url('blog') ?>">Blog</a>
                                         </li>
                                         <li>
                                           <?php if (!$this->ion_auth->logged_in()): ?>
-                                            <a href="#" data-toggle="modal" data-target="#defaultModal">Login</a>
+                                            <a href="#" data-toggle="modal" data-target="#defaultModal">Login / Register</a>
                                             <?php else: ?>
                                             <a href="<?= site_url('logout') ?>">Logout</a>
                                           <?php endif; ?>

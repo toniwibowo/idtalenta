@@ -179,25 +179,28 @@ class Member extends CI_Controller{
       $emaildata['name'] = $fullname;
       $emaildata['email'] = base64_encode(bin2hex($email));
       $message = $this->load->view('notification/registration',$emaildata,true);
-      $this->member->email($email,$subject,$message,$name="Info IDTALENTA");
-
-      //$this->ion_auth->login($identity, $password, $remember);
-
-      $identity = $email;
-      $remember = FALSE; // remember the user
-
-      //$this->ion_auth->login($identity, $password, $remember);
-
-      // $this->session->set_flashdata('validasi_email',true);
-
-      // redirect('member/register');
+      // $this->member->email($email,$subject,$message,$name="Info IDTALENTA");
 
       echo 1;
 
+    }else {
+
+      echo 2;
+
     }
 
+  }
 
+  public function test_email($value='')
+  {
+    $fullname = 'Toni Wibowo';
+    $email = 'toniewibowo@gmail.com';
 
+    $subject = 'Hai '.$fullname.' Registrasi anda Berhasil';
+    $emaildata['name'] = $fullname;
+    $emaildata['email'] = base64_encode(bin2hex($email));
+    $message = $this->load->view('notification/registration',$emaildata,true);
+    // $this->member->email($email,$subject,$message,$name="Info IDTALENTA");
   }
 
   public function update()

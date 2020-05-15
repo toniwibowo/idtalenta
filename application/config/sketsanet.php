@@ -22,7 +22,7 @@ $config['template'] = [
     'backend_template_maps' => 'template/admin_template_maps', // Default backend template
     'auth_template' => 'template/auth_template', // Default auth template
 
-    'home'=>'template/home', // 
+    'home'=>'template/home', //
 ];
 
 // Auth view
@@ -40,12 +40,12 @@ $config['route'] = [
 ];
 
 // Email Configuration
-$config['email_config'] = [ 
+$config['email'] = [
     'protocol' => 'smtp',
-    'smtp_host' => '',
-    'smtp_user' => '',
-    'smtp_pass' => '',
-    'smtp_port' => 587,
+    'smtp_host' => 'mail.gravenza.com',
+    'smtp_user' => 'tonny@gravenza.com',
+    'smtp_pass' => 'gravenza2015',
+    'smtp_port' => 465,
     'mailtype' => 'html',
     'charset' => 'iso-8859-1'
 ];
