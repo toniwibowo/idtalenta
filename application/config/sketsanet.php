@@ -39,7 +39,7 @@ $config['route'] = [
     'login_success' => 'sketsanet/dashboard' // Default redirect after success logedin
 ];
 
-// Email Configuration
+// Default Email Configuration
 $config['email'] = [
     'protocol' => 'smtp',
     'smtp_host' => 'mail.greatindonesia.com',
