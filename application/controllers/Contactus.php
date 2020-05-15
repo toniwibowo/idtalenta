@@ -91,15 +91,15 @@ class Contactus  extends MX_Controller {
     // $keinginan_lain        = $this->input->post('keinginan_lain',TRUE);
     $comment          = $this->input->post('message',TRUE);
 		$captcha = $this->input->post('captcha',TRUE);
-		
-			
+
+
 
 			  $data = array(
                   'nama' => $nama,
                   'subject' => $subject,
-                  
+
                   'email' => $email,
-                  
+
                   'comment' => $comment,
 
       );
@@ -110,7 +110,7 @@ class Contactus  extends MX_Controller {
 			if($insert)
 			{
 				$captcha_result = 'Contact Us Indosan';
-				    $text = "Name : " . $nama . "<br>";
+				  $text = "Name : " . $nama . "<br>";
           $text .= "Subject : " . $subject . "<br>";
           $text .= "E-mail : " . $email . "<br>";
           //$text .= "Nama Perusahaan : " . $nama_perusahaan . "<br>";
@@ -130,7 +130,7 @@ class Contactus  extends MX_Controller {
           'allow_self_signed' => true
           )
           );
-				
+
 				$mail->isSMTP(); // Set mailer to use SMTP
 $mail->Host = "mail.indosan.com";
 $mail->SMTPAuth = true; // Enable SMTP authentication
@@ -156,24 +156,24 @@ $mail->SMTPAutoTLS = false;
 				//$mail->Body = $this->load->view('email/mailing_view','',TRUE);
 				$mail->Body       = $text;
 				//$mail->AltBody = "This is the text-only body";
-	
+
 		*/
 
 				$headers  = 'MIME-Version: 1.0' . "\r\n";
 				$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-// Additional headers
-				$headers .= 'To: arief <klayabancom@gmail.com>' . "\r\n";
-$headers .= 'From: '.$nama.' <'.$email.'>' . "\r\n";
-//$headers .= 'Cc: birthdayarchive@example.com' . "\r\n";
-$headers .= 'Bcc: hey_abud@yahoo.com' . "\r\n";
+        // Additional headers
+				$headers .= 'To: Admin <toniewibowo@gmail.com>' . "\r\n";
+        $headers .= 'From: '.$nama.' <'.$email.'>' . "\r\n";
+        //$headers .= 'Cc: birthdayarchive@example.com' . "\r\n";
+        $headers .= 'Bcc: toniewibowo@gmail.com' . "\r\n";
 
 
-				$subject = 'Contact to INDOSAN';
-	
-	//$headers = 'From: BIOR <noreply@bior.com>'."\r\n".'Content-Type: text/html; charset=UTF-8';#FOR TEST
+				$subject = 'Contact to IDTALENTA';
 
-	$sending = mail('admin@indosan.com', $subject, $text, $headers);
+	      //$headers = 'From: BIOR <noreply@bior.com>'."\r\n".'Content-Type: text/html; charset=UTF-8';#FOR TEST
+
+	      $sending = mail('tonny.wbw84@gmail.com', $subject, $text, $headers);
 
 				//if(!$mail->Send())
 				if(!$sending)
@@ -203,6 +203,6 @@ $headers .= 'Bcc: hey_abud@yahoo.com' . "\r\n";
   //      //$this->load->view('include/header');
 		// $this->load->view('contactus',$data);
 		// $this->load->view('include/footer');
-	
+
 
 ?>

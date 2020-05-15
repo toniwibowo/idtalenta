@@ -84,7 +84,7 @@
             <ul>
                 <li><a href="#"><i class="dlicon ui-3_chat-46"></i></a></li>
                 <li><a href="#"><i class=" dlicon ui-3_phone"></i></a></li>
-                <li><a href="#"><i class="dlicon ui-1_email-85"></i></a></li>
+                <li><a href="<?= site_url('contact-us') ?>"><i class="dlicon ui-1_email-85"></i></a></li>
             </ul>
         </div>
 

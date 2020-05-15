@@ -17,8 +17,8 @@
         <div class="overflow-hidden mb-4 pb-3">
           <p class="mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="400">Feel free to ask for details, don't save any questions!</p>
         </div>
-        <?php echo form_open('contactus/send'); ?>
-        <form id="contactForm" class="contact-form" action="" method="POST">
+
+        <form id="contactForm" class="contact-form" action="<?= site_url('contactus/send') ?>" method="POST">
           <div class="contact-form-success alert alert-success d-none mt-4" id="contactSuccess">
             <strong>Success!</strong> Your message has been sent to us.
           </div>
@@ -52,7 +52,7 @@
           </div>
           <div class="form-row">
             <div class="form-group col">
-              <input type="submit" value="Send Message" class="btn btn-primary btn-modern" data-loading-text="Loading...">
+              <input type="submit" value="Send Message" class="btn btn-info btn-modern" data-loading-text="Loading...">
             </div>
           </div>
         </form>
@@ -60,16 +60,16 @@
       </div>
       <div class="col-lg-6">
 
-        <div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="800">
+        <div class="appear-animation mb-4" data-appear-animation="fadeIn" data-appear-animation-delay="800">
           <h4 class="mt-2 mb-1">Our <strong>Office</strong></h4>
           <ul class="list list-icons list-icons-style-2 mt-2">
-            <li><i class="fas fa-map-marker-alt top-6"></i> <strong class="text-dark">Address:</strong> 1234 Street Name, City Name, United States</li>
-            <li><i class="fas fa-phone top-6"></i> <strong class="text-dark">Phone:</strong> (123) 456-789</li>
-            <li><i class="fas fa-envelope top-6"></i> <strong class="text-dark">Email:</strong> <a href="mailto:mail@example.com">mail@example.com</a></li>
+            <li><i class="fas fa-map-marker-alt top-6"></i> <strong class="text-dark">Address:</strong> 1234 Street Name, City Name, Indonesia</li>
+            <li><i class="dlicon ui-3_phone top-6"></i> <strong class="text-dark">Phone:</strong> (123) 456-789</li>
+            <li><i class="dlicon ui-1_email-85 top-6"></i> <strong class="text-dark">Email:</strong> <a href="mailto:mail@example.com">mail@example.com</a></li>
           </ul>
         </div>
 
-        <div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="950">
+        <div class="appear-animation mb-4" data-appear-animation="fadeIn" data-appear-animation-delay="950">
           <h4 class="pt-5">Business <strong>Hours</strong></h4>
           <ul class="list list-icons list-dark mt-2">
             <li><i class="far fa-clock top-6"></i> Monday - Friday - 9am to 5pm</li>

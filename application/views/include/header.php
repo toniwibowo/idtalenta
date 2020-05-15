@@ -170,7 +170,7 @@
                                         </li>
                                         <li>
                                           <?php if (!$this->ion_auth->logged_in()): ?>
-                                            <a href="#" data-toggle="modal" data-target="#defaultModal">Login / Register</a>
+                                            <a href="#" data-toggle="modal" data-target="#defaultModal">Login | Register</a>
                                             <?php else: ?>
                                             <a href="<?= site_url('logout') ?>">Logout</a>
                                           <?php endif; ?>
