@@ -15,7 +15,7 @@ class Member_model extends CI_Model{
     $config['protocol']   = 'smtp';
     $config['smtp_host']  = 'mail.greatindonesia.com';
     $config['smtp_user']  = 'tonny@greatindonesia.com';
-    $config['smtp_pass']  = 'sketsa2020';
+    $config['smtp_pass']  = '4E0%f3(UKP^(';
     $config['smtp_port']  = 465;
     $config['mailtype']   = 'html';
     $config['newline']    = "\r\n";

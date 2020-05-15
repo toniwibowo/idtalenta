@@ -142,6 +142,7 @@ $(document).ready(function(){
       }else {
         alertify.set('notifier','position', 'top-center');
         alertify.error('Your register is failed, please try again.', 5);
+        $('#loginForm button[name="register"]').text('Daftar');
         $('#loginForm')[0].reset();
       }
     })
