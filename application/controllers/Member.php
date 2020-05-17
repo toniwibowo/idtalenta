@@ -8,8 +8,7 @@ class Member extends CI_Controller{
     parent::__construct();
     //Codeigniter : Write Less Do More
     $this->load->model('member_model','member');
-    $this->load->helper('cookie');
-    $this->load->helper('string');
+    $this->load->helper(array('cookie','string'));
     $this->load->library('encryption');
   }
 
@@ -193,6 +192,9 @@ class Member extends CI_Controller{
 
   public function test_email($value='')
   {
+    $this->config->load('sketsanet');
+    $config = $this->config->item('email');
+
     $fullname = 'Toni Wibowo';
     $email = 'toniewibowo@gmail.com';
 
@@ -200,7 +202,39 @@ class Member extends CI_Controller{
     $emaildata['name'] = $fullname;
     $emaildata['email'] = base64_encode(bin2hex($email));
     $message = $this->load->view('notification/registration',$emaildata,true);
-    $this->member->email($email,$subject,$message,$name="Info IDTALENTA");
+
+    $this->load->library('PHPMailerAutoload');
+
+    $mail = new PHPMailer(true);
+
+    $auth = true;
+
+    if ($auth)
+    {
+        $mail->IsSMTP();
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = "ssl";
+        $mail->Host = $config['smtp_host'];;
+        $mail->Port = 465;
+        $mail->Username = $config['smtp_user'];
+        $mail->Password = $config['smtp_pass'];
+
+        //$mail->Debugoutput = 'html';
+        //$mail->SMTPDebug = 2;
+
+    }
+
+    $mail->AddAddress('toniewibowo@gmail.com');
+    $mail->AddBCC('tonny.wbw84@gmail.com');
+    $mail->SetFrom("admin@idtalenta.com", "no-reply");
+
+    $mail->isHTML(true);
+    $mail->Subject = 'Registration New Member @ KMN STORE ';
+    $mail->Body = $message;
+
+    $kirimEmail = $mail->Send();
+
+    // $this->member->email($email,$subject,$message,$name="Info IDTALENTA");
   }
 
   public function update()
