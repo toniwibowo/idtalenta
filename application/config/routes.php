@@ -63,9 +63,12 @@ $route['login']                  = 'sketsanet/login';
 $route['activate/(:num)/(:any)'] = 'sketsanet/activate/$1/$2';
 $route['logout']                 = 'sketsanet/logout';
 $route['register']               = 'sketsanet/register';
+
+
 $route['member-register']        = 'member/register';
 $route['forgot-password']        = 'sketsanet/forgot_password';
 $route['reset-password/(:any)']  = 'sketsanet/reset_password/$1';
+$route['signout']                = 'member/logout';
 
 $route['tentang-kami']           = 'pages/view/1/tentang-kami';
 $route['faq']           		     = 'pages/view/3/faq';

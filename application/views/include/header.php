@@ -184,7 +184,7 @@
                                                 <a href="<?= site_url('my-course') ?>">My Course</a>
                                               </li>
                                               <li>
-                                                <a href="<?= site_url('logout') ?>">Logout</a>
+                                                <a href="<?= site_url('signout') ?>">Logout</a>
                                               </li>
                                             </ul>
                                           </li>
