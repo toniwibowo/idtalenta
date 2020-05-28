@@ -168,14 +168,30 @@
                                         <li>
                                           <a class="<?= activate_menu('blog') ?>" href="<?= site_url('blog') ?>">Blog</a>
                                         </li>
-                                        <li>
-                                          <?php if (!$this->ion_auth->logged_in()): ?>
-                                            <a href="#" data-toggle="modal" data-target="#defaultModal">Login | Register</a>
-                                            <?php else: ?>
-                                            <a href="<?= site_url('logout') ?>">Logout</a>
-                                          <?php endif; ?>
 
-                                        </li>
+                                        <?php if (!$this->ion_auth->logged_in()): ?>
+                                          <li>
+                                            <a href="#" data-toggle="modal" data-target="#defaultModal">Login | Register</a>
+                                          </li>
+                                          <?php else: ?>
+                                          <li>
+                                            <a href="#">My Account</a>
+                                            <ul class="sub-menu-width">
+                                              <li>
+                                                <a href="<?= site_url('profile') ?>">My Profile</a>
+                                              </li>
+                                              <li>
+                                                <a href="<?= site_url('my-course') ?>">My Course</a>
+                                              </li>
+                                              <li>
+                                                <a href="<?= site_url('logout') ?>">Logout</a>
+                                              </li>
+                                            </ul>
+                                          </li>
+
+                                        <?php endif; ?>
+
+
 
                                     </ul>
                                 </nav>

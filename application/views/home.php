@@ -73,14 +73,15 @@
                                       <img class="default-img" src="<?= base_url('assets/uploads/files/'.$course->poster) ?>" alt="">
                                   </a>
                                   <div class="product-action product-action-sky product-action-position-1">
-                                      <a data-toggle="modal" data-target="#exampleModal" href="#"><i class="fa fa-eye"></i><span>Quick Shop</span></a>
+                                      <!-- <a data-toggle="modal" data-target="#exampleModal" href="#"><i class="fa fa-eye"></i><span>Quick Shop</span></a> -->
+                                      <a href="<?= site_url('course/'.$course->mentor_class_id.'/'.url_title($course->title,'-',true)) ?>"><i class="fa fa-eye"></i><span>Quick Shop</span></a>
                                       <a title="Add to Wishlist" href="#"><i class="fa fa-heart"></i><span>Add to Wishlist</span></a>
                                        <!--<a class="icon-blod" title="Add to Compare" href="#"><i class="dlicon arrows-4_compare"></i><span>Add to Compare</span></a>-->
                                       <a title="Add to Cart" href="#"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a>
                                   </div>
                               </div>
                               <div class="product-content-4 product-content-sky title-font-width-400 text-center">
-                                  <h3><a href="product-details.html"><?= $course->title ?></a></h3>
+                                  <h3><a href="<?= site_url('course/'.$course->mentor_class_id.'/'.url_title($course->title,'-',true)) ?>"><?= $course->title ?></a></h3>
                                   <div class="product-price product-price-red">
                                     <?php if ($course->sale != 0): ?>
                                       <span class="new-price">Rp. <?= number_format($this->app->sale($course->price,$course->sale),0,',','.')  ?>,-</span>
@@ -163,14 +164,15 @@
                                       <img class="default-img" src="<?= base_url('assets/uploads/files/'.$sale->poster) ?>" alt="">
                                   </a>
                                   <div class="product-action product-action-sky product-action-position-1">
-                                      <a data-toggle="modal" data-target="#exampleModal" href="#"><i class="fa fa-eye"></i><span>Quick Shop</span></a>
+                                      <!-- <a data-toggle="modal" data-target="#exampleModal" href="#"><i class="fa fa-eye"></i><span>Quick Shop</span></a> -->
+                                      <a href="<?= site_url('course/'.$sale->mentor_class_id.'/'.url_title($sale->title,'-',true)) ?>"><i class="fa fa-eye"></i><span>Quick Shop</span></a>
                                       <a title="Add to Wishlist" href="#"><i class="fa fa-heart"></i><span>Add to Wishlist</span></a>
                                       <!--<a class="icon-blod" title="Add to Compare" href="#"><i class="dlicon arrows-4_compare"></i><span>Add to Compare</span></a>-->
                                       <a title="Add to Cart" href="#"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a>
                                   </div>
                               </div>
                               <div class="product-content-4 product-content-sky title-font-width-400 text-center">
-                                  <h3><a href="#"><?= $sale->title ?></a></h3>
+                                  <h3><a href="<?= site_url('course/'.$sale->mentor_class_id.'/'.url_title($sale->title,'-',true)) ?>"><?= $sale->title ?></a></h3>
                                   <div class="product-price product-price-red">
                                     <?php if ($sale->sale != 0): ?>
                                       <span class="new-price">Rp. <?= number_format($this->app->sale($sale->price,$sale->sale),0,',','.')  ?>,-</span>

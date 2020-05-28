@@ -73,6 +73,7 @@ $route['syarat-ketentuan']       = 'pages/view/4/syarat';
 $route['kebijakan-privasi']      = 'pages/view/5/kebijakan';
 
 $route['classroom/(:any)']       = 'course/view/$1';
+$route['course/(:num)/(:any)']   = 'course/detail/$1/$2';
 
 
 $route['blog/view'] = "articles/view";
