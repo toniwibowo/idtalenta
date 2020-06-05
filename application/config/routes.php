@@ -90,7 +90,7 @@ $route['artikel/detail/(:num)/(:any)'] = "articles/detail/$1/tes";
 
 
 
-$route['rekanan/view'] = "partners/view";
+$route['teaching'] = "mentor/register";
 $route['rekanan/detail/(:num)/(:any)'] = "partners/detail/$1/tes";
 
 

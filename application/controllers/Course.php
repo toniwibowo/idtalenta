@@ -34,11 +34,20 @@ class Course extends MX_Controller{
     $this->load->view('include/footer');
   }
 
-  public function view($id,$slug='')
+  public function view($id, $slug='')
   {
+    $category_slug  = ucwords(str_replace('-',' ', $this->uri->segment(2)));
+    $category_id    = $this->db->where('category_product_name', $category_slug)->get('category_product')->row()->category_product_id;
+
+    $data['title'] = 'Category Course';
+    $data['category_title'] = $category_slug;
+
+    $sql = "SELECT * FROM mentor_class a INNER JOIN category_product b ON a.category_product_id = b.category_product_id WHERE a.category_product_id = $category_id";
+
+    $data['queryCategory'] = $this->db->query($sql);
+
     $this->load->view('include/header');
-    //$this->load->view('course', $data);
-    // echo '<h1>PAGE CATEGORY</h1>';
+    $this->load->view('course-category', $data);
     $this->load->view('include/footer');
   }
 

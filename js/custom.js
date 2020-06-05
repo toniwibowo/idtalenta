@@ -157,4 +157,22 @@ $(document).ready(function(){
 
   })
 
+  $('a#addtocart').click(function(e){
+
+    e.preventDefault();
+
+    var product_id = $(this).data('product');
+
+    $.post(baseUrl +'cart/addtocart', {product_id: product_id, qty: 1})
+    .done(function(){
+      alertify.set('notifier','position', 'top-center');
+      alertify.success('Item success add to cart', 5);
+      setTimeout(function(){
+        window.location.reload()
+      }, 3000)
+
+    })
+
+  })
+
 })

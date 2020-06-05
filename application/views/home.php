@@ -69,7 +69,7 @@
                       <div class="custom-col-5">
                           <div class="product-wrap mb-50">
                               <div class="product-img default-overlay mb-25">
-                                  <a href="product-details.html">
+                                  <a href="<?= site_url('course/'.$course->mentor_class_id.'/'.url_title($course->title,'-',true)) ?>">
                                       <img class="default-img" src="<?= base_url('assets/uploads/files/'.$course->poster) ?>" alt="">
                                   </a>
                                   <div class="product-action product-action-sky product-action-position-1">
@@ -77,7 +77,7 @@
                                       <a href="<?= site_url('course/'.$course->mentor_class_id.'/'.url_title($course->title,'-',true)) ?>"><i class="fa fa-eye"></i><span>Quick Shop</span></a>
                                       <a title="Add to Wishlist" href="#"><i class="fa fa-heart"></i><span>Add to Wishlist</span></a>
                                        <!--<a class="icon-blod" title="Add to Compare" href="#"><i class="dlicon arrows-4_compare"></i><span>Add to Compare</span></a>-->
-                                      <a title="Add to Cart" href="#"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a>
+                                      <a id="addtocart" data-product="<?= $course->mentor_class_id ?>" title="Add to Cart" href="#"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a>
                                   </div>
                               </div>
                               <div class="product-content-4 product-content-sky title-font-width-400 text-center">
@@ -160,7 +160,7 @@
                       <div class="custom-col-5">
                           <div class="product-wrap mb-50">
                               <div class="product-img default-overlay mb-25">
-                                  <a href="product-details.html">
+                                  <a href="<?= site_url('course/'.$sale->mentor_class_id.'/'.url_title($sale->title,'-',true)) ?>">
                                       <img class="default-img" src="<?= base_url('assets/uploads/files/'.$sale->poster) ?>" alt="">
                                   </a>
                                   <div class="product-action product-action-sky product-action-position-1">
@@ -168,7 +168,7 @@
                                       <a href="<?= site_url('course/'.$sale->mentor_class_id.'/'.url_title($sale->title,'-',true)) ?>"><i class="fa fa-eye"></i><span>Quick Shop</span></a>
                                       <a title="Add to Wishlist" href="#"><i class="fa fa-heart"></i><span>Add to Wishlist</span></a>
                                       <!--<a class="icon-blod" title="Add to Compare" href="#"><i class="dlicon arrows-4_compare"></i><span>Add to Compare</span></a>-->
-                                      <a title="Add to Cart" href="#"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a>
+                                      <a id="addtocart" data-product="<?= $sale->mentor_class_id ?>" title="Add to Cart" href="#"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a>
                                   </div>
                               </div>
                               <div class="product-content-4 product-content-sky title-font-width-400 text-center">

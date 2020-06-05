@@ -1,5 +1,5 @@
-<div class="main" role="main">
-  <section class="section section-cart m-0 border-0">
+<div class="main d-flex" role="main">
+  <section class="section section-cart my-5 border-0 bg-white">
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
