@@ -160,7 +160,20 @@
                                               <?php $category = $this->db->get('category_product'); ?>
                                               <?php if ($category->num_rows() > 0): ?>
                                                 <?php foreach ($category->result() as $key => $value): ?>
-                                                  <li><a href="<?= site_url('classroom/'.url_title($value->category_product_name,'-',true)) ?>"><?= $value->category_product_name ?></a></li>
+                                                  <?php $sub = $this->db->where('category_product_id', $value->category_product_id)->get('subcategory_product'); ?>
+                                                  <li>
+                                                    <a href="<?= site_url('classroom/'.url_title($value->category_product_name,'-',true)) ?>"><?= $value->category_product_name ?></a>
+                                                    <?php if ($sub->num_rows() > 0): ?>
+                                                      <ul>
+                                                        <?php foreach ($sub->result() as $key => $s): ?>
+                                                          <li>
+                                                            <a href="<?= site_url('classroom/'.url_title($value->category_product_name,'-',true).'/'.url_title($s->name,'-',true)) ?>"><?= $s->name ?></a>
+                                                          </li>
+                                                        <?php endforeach; ?>
+                                                      </ul>
+                                                    <?php endif; ?>
+
+                                                  </li>
                                                 <?php endforeach; ?>
                                               <?php endif; ?>
                                             </ul>
