@@ -36,11 +36,20 @@ class Course extends MX_Controller{
 
   public function view($id, $slug='')
   {
+    $uri3 = $this->uri->segment(3);
+
     $category_slug  = ucwords(str_replace('-',' ', $this->uri->segment(2)));
     $category_id    = $this->db->where('category_product_name', $category_slug)->get('category_product')->row()->category_product_id;
 
     $data['title'] = 'Category Course';
-    $data['category_title'] = $category_slug;
+
+    if ($uri3 != '') {
+      $subcategory_slug  = ucwords(str_replace('-',' ', $this->uri->segment(3)));
+      $data['category_title'] = $subcategory_slug;
+    }else {
+      $data['category_title'] = $category_slug;
+    }
+
 
     $sql = "SELECT * FROM mentor_class a INNER JOIN category_product b ON a.category_product_id = b.category_product_id WHERE a.category_product_id = $category_id";
 
