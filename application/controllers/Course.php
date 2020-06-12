@@ -36,22 +36,41 @@ class Course extends MX_Controller{
 
   public function view($id, $slug='')
   {
-    $uri3 = $this->uri->segment(3);
-
+    // SEGMENT CATEGORY
     $category_slug  = ucwords(str_replace('-',' ', $this->uri->segment(2)));
     $category_id    = $this->db->where('category_product_name', $category_slug)->get('category_product')->row()->category_product_id;
+
+    // SEGMENT SUBCATEGORY
+    $uri3 = $this->uri->segment(3);
+    $subcategory_slug  = ucwords(str_replace('-',' ', $uri3));
+    $sub    = $this->db->where('name', $subcategory_slug)->get('subcategory_product')->row();
 
     $data['title'] = 'Category Course';
 
     if ($uri3 != '') {
       $subcategory_slug  = ucwords(str_replace('-',' ', $this->uri->segment(3)));
+
       $data['category_title'] = $subcategory_slug;
+
+      $sql =
+      "SELECT *
+      FROM mentor_class a
+      INNER JOIN category_product b
+      ON a.category_product_id = b.category_product_id
+      INNER JOIN subcategory_product c
+      ON a.subcategory_product_id = c.subcategory_product_id
+      WHERE a.category_product_id = $sub->subcategory_product_id";
+
     }else {
+
       $data['category_title'] = $category_slug;
+
+      $sql = "SELECT * FROM mentor_class a INNER JOIN category_product b ON a.category_product_id = b.category_product_id WHERE a.category_product_id = $category_id";
+
     }
 
 
-    $sql = "SELECT * FROM mentor_class a INNER JOIN category_product b ON a.category_product_id = b.category_product_id WHERE a.category_product_id = $category_id";
+
 
     $data['queryCategory'] = $this->db->query($sql);
 

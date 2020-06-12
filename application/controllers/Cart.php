@@ -23,21 +23,18 @@ class Cart extends CI_Controller{
 
   function index()
   {
-    if ($this->ion_auth->logged_in()) {
-      $user = $this->ion_auth->user()->row();
-      //$this->db->where('user_id',$user->id);
-      $this->db->where('sid',$_COOKIE['cart']);
-    }else {
-      if (isset($_COOKIE['cart'])) {
-        $this->db->where('sid',$_COOKIE['cart']);
-      }
-    }
-
-    $this->db->where('checkout',0);
+    $this->db->where('sid', $_COOKIE['cart']);
     $data['mainCart'] = $this->db->get('cart');
+
+    $data['numrows'] = $data['mainCart']->num_rows();
+
     $data['d'] = $data['mainCart']->row();
 
-    $data['cartItem'] = $this->db->where('cart_id',$data['d']->cart_id)->from('cart_item')->join('mentor_class','mentor_class.mentor_class_id=cart_item.product_id')->get();
+    if ($data['mainCart']->num_rows() > 0) {
+
+      $data['cartItem'] = $this->db->where('cart_id',$data['d']->cart_id)->from('cart_item')->join('mentor_class','mentor_class.mentor_class_id=cart_item.product_id')->get();
+
+    }
 
     $data['queryProvince'] = $this->member->province();
 

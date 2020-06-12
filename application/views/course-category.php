@@ -35,11 +35,22 @@
                   </div>
               </div>
             <?php endforeach; ?>
+            <?php else: ?>
+              <div class="col">
+                <div class="alert alert-info" role="alert">
+                  The <?= $category_title  ?>'s data not found!
+                </div>
+              </div>
+
           <?php endif; ?>
 
         </div>
-        <div class="pro-view-all-3 text-center">
-            <a href="#">View all product</a>
-        </div>
+
+        <?php if ($queryCategory->num_rows() > 0): ?>
+          <div class="pro-view-all-3 text-center">
+              <a href="#">View all product</a>
+          </div>
+        <?php endif; ?>
+
     </div>
 </div>

@@ -213,6 +213,24 @@
                                 </nav>
                             </div>
                         </div>
+
+                        <?php
+                        $cart = $this->db->where('sid', $_COOKIE['cart'])->get('cart');
+                        $row = $cart->row_array();
+
+                        $cartrows = $cart->num_rows();
+
+                        // GET ITEM CART
+
+                        if ($cartrows > 0) {
+                          $cartItem   = $this->db->where( 'cart_id', $row['cart_id'] )->from( 'cart_item' )->join('mentor_class','mentor_class.mentor_class_id = cart_item.product_id')->get();
+                          $itemAmount = $cartItem->num_rows();
+                        }else {
+                          $itemAmount = 0;
+                        }
+
+                        ?>
+
                         <div class="col-xl-3 col-lg-2">
                             <div class="header-right-wrap header-right-flex">
                                 <div class="same-style header-wishlist">
@@ -221,7 +239,7 @@
                                 <div class="same-style cart-wrap">
                                     <a href="#" class="cart-active">
                                         <i class="dlicon shopping_bag-20"></i>
-                                        <span class="count-style">02</span>
+                                        <span class="count-style"><?= $itemAmount ?></span>
                                     </a>
                                 </div>
                                 <div class="same-style header-search">
@@ -266,7 +284,7 @@
                                 <div class="same-style cart-wrap">
                                     <a href="#" class="cart-active">
                                         <i class="dlicon shopping_bag-20"></i>
-                                        <span class="count-style">02</span>
+                                        <span class="count-style">03</span>
                                     </a>
                                 </div>
                                 <div class="same-style header-off-canvas">
@@ -298,49 +316,48 @@
                 <div class="cart-content">
                     <h3>Shopping Cart</h3>
                     <ul>
-                        <li class="single-product-cart">
-                            <div class="cart-img">
-                                <a href="#"><img src="assets/images/product/course3.jpg" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h4><a href="#">WORKSHOP LEARN HOW TO ADVERTISE ON SOCIAL MEDIA TO GROW YOUR BUSINESS</a></h4>
-                                <span> 1 × Rp.245.000	</span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#">×</a>
-                            </div>
-                        </li>
-                        <li class="single-product-cart">
-                            <div class="cart-img">
-                                <a href="#"><img src="assets/images/product/course1.jpg" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h4><a href="#">WORKSHOP (HYBRID LEARNING) INTRODUCTION TO DIGITAL MARKETING WITH JOURDAN KAMAL</a></h4>
-                                <span> 1 × Rp.2.500.000	</span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#">×</a>
-                            </div>
-                        </li>
+
+                      <?php $subtotal = 0; ?>
+
+                      <?php if ($cartrows > 0): ?>
+                        <?php foreach ($cartItem->result_array() as $key => $value): ?>
+                          <?php
+                          if ($value['sale'] == 0) {
+                            $price = $value['qty'] * $value['price'];
+                          }else {
+                            $preprice = $value['price'] - ($value['sale'] / 100 * $value['price']);
+                            $price = $preprice;
+                          }
+
+                          $subtotal = $subtotal + $price;
+                          ?>
+                          <li class="single-product-cart">
+                              <div class="cart-img">
+                                  <a href="#"><img src="<?= base_url('assets/uploads/files/'.$value['poster']) ?>" alt=""></a>
+                              </div>
+                              <div class="cart-title">
+                                  <h4><a href="#"><?= $value['title'] ?></a></h4>
+                                  <span> <?= $value['qty'] ?> × <?= number_format($price,0,',','.') ?>	</span>
+                              </div>
+                              <div class="cart-delete">
+                                  <a href="<?= site_url('cart/delete/'.$row['cart_id'].'/'.$value['product_id']) ?>">×</a>
+                              </div>
+                          </li>
+                        <?php endforeach; ?>
+                      <?php endif; ?>
+
+
                     </ul>
                     <div class="cart-total">
-                        <h4>Subtotal: <span>Rp.2.745.000</span></h4>
+                        <h4>Subtotal: <span>Rp. <?= number_format($subtotal,0,',','.') ?></span></h4>
                     </div>
                     <div class="cart-checkout-btn">
-                        <a class="btn-hover cart-btn-style" href="cart.html">view cart</a>
-                        <a class="no-mrg btn-hover cart-btn-style" href="checkout.html">checkout</a>
+                        <a class="btn-hover cart-btn-style" href="<?= site_url('cart') ?>">view cart</a>
+                        <a class="no-mrg btn-hover cart-btn-style" href="#">checkout</a>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
 
         <!-- aside start -->
         <div class="header-aside-active">

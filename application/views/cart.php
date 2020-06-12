@@ -7,7 +7,7 @@
             <h4>Ringkasan Belanja</h4>
           </div>
 
-          <?php if ($cartItem->num_rows() > 0): ?>
+          <?php if ($numrows > 0): ?>
             <?php foreach ($cartItem->result() as $key => $value): ?>
               <div class="media mb-4">
                 <img class="img-fluid rounded mx-4" width="20%" src="<?= base_url('assets/uploads/files/'.$value->poster) ?>" alt="">
@@ -49,7 +49,7 @@
                   </form>
 
                 <?php else: ?>
-                  <a class="btn btn-rounded btn-outline btn-warning btn-block mb-2" href="#" data-toggle="modal" data-target="#defaultModal">Beli(<?= $cartItem->num_rows() ?>)</a>
+                  <a class="btn btn-rounded btn-outline btn-warning btn-block mb-2" href="#" data-toggle="modal" data-target="#defaultModal">Beli(<?= $numrows ?>)</a>
                 <?php endif; ?>
 
                 <a class="btn btn-rounded btn-outline btn-dark btn-block" href="<?= site_url('mentor') ?>">Lanjut Belanja</a>
