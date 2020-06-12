@@ -215,7 +215,12 @@
                         </div>
 
                         <?php
-                        $cart = $this->db->where('sid', $_COOKIE['cart'])->get('cart');
+                        if (isset($_COOKIE['cart'])) {
+                          $sid = $_COOKIE['cart'];
+                        }else {
+                          $sid = '';
+                        }
+                        $cart = $this->db->where('sid', $sid)->get('cart');
                         $row = $cart->row_array();
 
                         $cartrows = $cart->num_rows();
