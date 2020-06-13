@@ -194,7 +194,7 @@
                                             <a href="#">My Account</a>
                                             <ul class="sub-menu-width">
                                               <li>
-                                                <a href="<?= site_url('profile') ?>">My Profile</a>
+                                                <a href="<?= site_url('member/myaccount') ?>">My Profile</a>
                                               </li>
                                               <li>
                                                 <a href="<?= site_url('my-course') ?>">My Course</a>
