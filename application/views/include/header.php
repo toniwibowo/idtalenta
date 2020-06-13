@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>css/plugins/fullpage.css">
     <link rel="stylesheet" href="<?= base_url() ?>css/plugins/jquery-ui.css">
     <link rel="stylesheet" href="<?= base_url() ?>css/plugins/select2.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>css/theme-elements.css">
     <link rel="stylesheet" href="<?= base_url() ?>css/style.css">
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>css/custom.css">
@@ -183,10 +184,12 @@
                                         </li>
 
                                         <?php if (!$this->ion_auth->logged_in()): ?>
+
                                           <li>
                                             <a href="#" data-toggle="modal" data-target="#defaultModal">Login | Register</a>
                                           </li>
                                           <?php else: ?>
+                                          <?php $user = $this->ion_auth->user()->row() ?>
                                           <li>
                                             <a href="#">My Account</a>
                                             <ul class="sub-menu-width">
@@ -196,9 +199,30 @@
                                               <li>
                                                 <a href="<?= site_url('my-course') ?>">My Course</a>
                                               </li>
-                                              <li>
-                                                <a href="<?= site_url('teaching') ?>">Be a Teacher</a>
-                                              </li>
+
+                                              <?php if ($this->ion_auth->in_group(4)): ?>
+            																	<?php $check_mentor_active = $this->db->where('user_id', $user->id)->where('active',1)->get('mentor'); ?>
+            																	<?php if ($check_mentor_active->num_rows() > 0): ?>
+            																		<li>
+            																			<a class="dropdown-item text-warning" href="#!">MENTOR AREA</a>
+            																		</li>
+            																		<li>
+            																			<a class="dropdown-item text-light" href="<?= site_url('mentor/profile') ?>">Profile Mentor</a>
+            																		</li>
+            																		<!-- <li>
+            																			<a class="dropdown-item text-light" href="<?= site_url('mentor/upload') ?>">Upload Video</a>
+            																		</li>
+            																		<li>
+            																			<a class="dropdown-item text-light" href="<?= site_url('mentor/dashboard') ?>">Video yang diupload</a>
+            																		</li> -->
+            																	<?php endif; ?>
+            																	<!-- END CHECK MENTOR ACTIVE -->
+            																	<?php else: ?>
+            																	<li>
+            																		<a class="dropdown-item text-light" href="<?= site_url('mentor/register') ?>">Be a Mentor</a>
+            																	</li>
+            																	<?php endif; ?>
+
                                               <li>
                                                 <a href="<?= site_url('signout') ?>">Logout</a>
                                               </li>

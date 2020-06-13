@@ -175,4 +175,12 @@ $(document).ready(function(){
 
   })
 
+  //GET CITY
+  $('select#province').on('change',function(){
+    var id = this.value;
+    $.get(baseUrl + 'member/city/'+ id, function(data){
+      $('select#city').html(data);
+    })
+  })
+
 })

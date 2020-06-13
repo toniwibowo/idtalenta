@@ -92,7 +92,7 @@
 									<?php echo form_error('classcategory', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row d-none">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">Video Profile Mentor</label>
                 <div class="col-lg-9">
 									<input class="form-control-file" name="videoprofile" required type="file" value="<?= set_value('videoprofile')  ?>" >
@@ -128,16 +128,10 @@
                 <div class="col-lg-9">
                     <select class="form-control" name="province" id="province" required>
 											<option value="">==Provinsi==</option>
-                      <?php if ($user->province_id != 0): ?>
-                        <option value="<?= $province['rajaongkir']['results']['province_id'] ?>"><?= $province['rajaongkir']['results']['province'] ?></option>
-												<?php else: ?>
-
-													<?php if ($queryProvince['rajaongkir']['status']['code'] == 200): ?>
-		                        <?php foreach ($queryProvince['rajaongkir']['results'] as $key => $value): ?>
-		                          <option value="<?= $value['province_id'] ?>"><?= $value['province'] ?></option>
-		                        <?php endforeach; ?>
-		                      <?php endif; ?>
-
+                      <?php if ($queryProvince['rajaongkir']['status']['code'] == 200): ?>
+                        <?php foreach ($queryProvince['rajaongkir']['results'] as $key => $value): ?>
+                          <option value="<?= $value['province_id'] ?>"><?= $value['province'] ?></option>
+                        <?php endforeach; ?>
                       <?php endif; ?>
 
 
@@ -150,10 +144,6 @@
                 <div class="col-lg-6">
                     <select class="form-control" name="city" id="city" required>
 											<option value="">==Pilih Kota==</option>
-                      <?php if ($user->province_id != 0 && $user->city_id != 0): ?>
-                        <option value="<?= $city['rajaongkir']['results']['city_id'] ?>"><?= $city['rajaongkir']['results']['city_name'] ?></option>
-                      <?php endif; ?>
-
                     </select>
                     <?php echo form_error('city', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>
