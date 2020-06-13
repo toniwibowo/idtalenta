@@ -55,3 +55,17 @@ button.close{
 .main-menu > nav > ul > li > ul > li:hover > ul {
   display: block;
 }
+
+.section.section-mentor .card a{
+  width: 100%;
+  height:360px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.section-mentor .card .card-body{
+  background: #F5C52C;
+  height: 123px;
+  overflow: hidden;
+}

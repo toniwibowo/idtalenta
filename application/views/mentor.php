@@ -1,4 +1,4 @@
-<div class="main" role="main">
+<div class="main d-flex" role="main">
   <section class="section section-mentor border-0 m-0">
 		<div class="container" style="overflow:hidden">
 			<div class="row justify-content-center">
@@ -10,7 +10,8 @@
 			</div>
 
 			<div class="row my-5">
-				<div class="col appear-animation" data-appear-animation="bounceInUp" data-appear-animation-delay="300" data-appear-animation-duration="1s">
+        <!-- appear-animation -->
+				<div class="col" data-appear-animation="bounceInUp" data-appear-animation-delay="300" data-appear-animation-duration="1s">
           <div class="row">
 
             <?php if ($queryMentor->num_rows() > 0): ?>
