@@ -35,7 +35,10 @@
     <link rel="stylesheet" href="<?= base_url() ?>css/plugins/fullpage.css">
     <link rel="stylesheet" href="<?= base_url() ?>css/plugins/jquery-ui.css">
     <link rel="stylesheet" href="<?= base_url() ?>css/plugins/select2.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>vendor/animate/animate.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>css/theme.css">
     <link rel="stylesheet" href="<?= base_url() ?>css/theme-elements.css">
+    <link rel="stylesheet" href="<?= base_url() ?>css/skins/skin-corporate-7.css">
     <link rel="stylesheet" href="<?= base_url() ?>css/style.css">
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>css/custom.css">
@@ -87,7 +90,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-2">
                             <div class="logo logo-width">
-                                <a href="index.php">
+                                <a href="<?= site_url() ?>">
                                     <img src="<?= base_url() ?>images/logo/logo-2.png" alt="logo">
                                 </a>
                             </div>

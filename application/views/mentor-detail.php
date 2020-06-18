@@ -2,7 +2,7 @@
 
 <?php $videoType = substr($row->mentor_video,-3) ?>
 
-<div class="main" role="main">
+<div class="main d-inline-block" role="main">
   <section class="section section-mentor m-0 border-0">
     <div class="container">
       <div class="row justify-content-center">
