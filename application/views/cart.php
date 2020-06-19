@@ -49,7 +49,7 @@
                   </form>
 
                 <?php else: ?>
-                  <a class="btn btn-rounded btn-outline btn-warning btn-block mb-2" href="#" data-toggle="modal" data-target="#defaultModal">Beli(<?= $numrows ?>)</a>
+                  <a class="btn btn-rounded btn-outline btn-warning btn-block mb-2" href="#" data-toggle="modal" data-target="#defaultModal">Beli(<?= $cartItem->num_rows() ?>)</a>
                 <?php endif; ?>
 
                 <a class="btn btn-rounded btn-outline btn-dark btn-block" href="<?= site_url('mentor') ?>">Lanjut Belanja</a>

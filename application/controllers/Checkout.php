@@ -27,12 +27,7 @@ class Checkout extends CI_Controller{
 
     if (!empty($sid)) {
 
-      if (!isset($_COOKIE['cart'])) {
-  			$sess_id = session_id().date('His');
-  			setcookie('cart', $sess_id, time() + (86400), "/"); // 86400 = 1 day
-  		}
-
-
+      $sid = hex2bin(base64_decode($sid));
 
       $user = $this->ion_auth->user()->row();
 
@@ -79,19 +74,21 @@ class Checkout extends CI_Controller{
 
     if (isset($_POST['sid'])) {
 
-      $sid = $this->input->post('sid',true);
+      $sid_post = $this->input->post('sid',true);
+
+      $sid = base64_encode(bin2hex($sid_post));
 
       //GET DATA FROM CART
-      $getCart = $this->db->query("INSERT INTO orders (order_id, user_id, sid, ip_address, checkout, payment, uniq_code, total, order_date, order_time) SELECT cart_id, user_id, sid, ip_address, checkout, payment, uniq_code, total, order_date, order_time FROM cart WHERE sid='".$sid."'");
+      $getCart = $this->db->query("INSERT INTO orders (order_id, user_id, sid, ip_address, payment, uniq_code, total, order_date, order_time) SELECT cart_id, user_id, sid, ip_address, payment, uniq_code, total, order_date, order_time FROM cart WHERE sid = '".$sid_post."'");
 
       //GET ITEM ORDER
-      $cart   = $this->db->where('sid', $sid)->get('cart')->row();
+      $cart   = $this->db->where('sid', $sid_post)->get('cart')->row();
       $order  = $this->db->order_by('order_id','desc')->get('orders')->row();
 
       $insertItem = $this->db->query('INSERT INTO order_item (order_id, product_id, qty, order_date, order_time) SELECT cart_id, product_id, qty, order_date, order_time FROM cart_item WHERE cart_id = "'.$cart->cart_id.'"');
 
       if ($getCart) {
-        $this->db->where('sid', $sid)->delete('cart');
+        $this->db->where('sid', $sid_post)->delete('cart');
       }
 
       if ($insertItem) {
@@ -109,13 +106,13 @@ class Checkout extends CI_Controller{
           $invoice = $inv->invoice + 1;
         }
 
-        $updateInvoice = $this->db->where('sid',$sid)->set('invoice', $invoice)->update('orders');
+        $updateInvoice = $this->db->where('sid',$sid_post)->set('invoice', $invoice)->update('orders');
 
         if ($updateInvoice) {
 
           // SEND EMAIL INVOICE FOR BUYER
           $data = [
-            'queryInvoice' => $this->db->where('sid', $sid)->order_by('order_id','desc')->get('orders'),
+            'queryInvoice' => $this->db->where('sid', $sid_post)->order_by('order_id','desc')->get('orders'),
             'user' => $this->ion_auth->user()->row()
           ];
 
@@ -134,7 +131,7 @@ class Checkout extends CI_Controller{
 
           if ($dataEmail->num_rows() > 0) {
             foreach ($dataEmail->result() as $key => $mail) {
-              $this->checkout->notif_purchase_mentor($mail->product_id, $sid);
+              $this->checkout->notif_purchase_mentor($mail->product_id, $sid_post);
             }
           }
         }
@@ -160,9 +157,9 @@ class Checkout extends CI_Controller{
       redirect('/');
     }
 
-    $data['sid'] = $sid;
+    $data['sid'] = hex2bin(base64_decode($sid));
 
-    $data['payment'] = $this->db->where('sid', $sid)->get('orders')->row();
+    $data['payment'] = $this->db->where('sid', $data['sid'])->get('orders')->row();
 
     $this->load->view('include/header');
     $this->load->view('payment',$data);
@@ -203,7 +200,7 @@ class Checkout extends CI_Controller{
       $insertData = $this->db->insert('payment_confirmation',$data);
 
       if ($insertData) {
-        $name = "Billing ARTAdemi";
+        $name = "Billing IDTalenta";
         $email = "yudisketsa@gmail.com";
         $subject = "Konfirmasi Pembayaran Invoice ".$invoice;
         $message = "Data Konfirmasi: <br>
@@ -216,7 +213,7 @@ class Checkout extends CI_Controller{
 
         $this->session->set_flashdata('confirmation',true);
 
-        redirect('payment/'.$sid);
+        redirect('payment/'.base64_encode(bin2hex($sid)));
       }
     }
 

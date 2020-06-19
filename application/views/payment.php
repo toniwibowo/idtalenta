@@ -38,7 +38,7 @@
                   <div class="card-body p-3 text-center">
                     <img class="img-fluid" src="<?= base_url('images/bank/bca.png') ?>" alt="">
                     <h4><strong>BCA</strong></h4>
-                    <p>145-00-131-855-21 <br> PT. ARTAdemi Pendidikan Nusantara</p>
+                    <p>145-00-131-855-21 <br> IDTalenta</p>
                   </div>
                 </div>
               </div>
@@ -48,7 +48,7 @@
                   <div class="card-body p-3 text-center">
                     <img class="img-fluid" src="<?= base_url('images/bank/mandiri.png') ?>" alt="">
                     <h4><strong>Mandiri</strong></h4>
-                    <p>145-00-131-855-21 <br> PT. ARTAdemi Pendidikan Nusantara</p>
+                    <p>145-00-131-855-21 <br> IDTalenta</p>
                   </div>
                 </div>
               </div>
@@ -58,7 +58,7 @@
                   <div class="card-body p-3 text-center">
                     <img class="img-fluid" src="<?= base_url('images/bank/bni.png') ?>" alt="">
                     <h4><strong>BNI</strong></h4>
-                    <p>145-00-131-855-21 <br> PT. ARTAdemi Pendidikan Nusantara</p>
+                    <p>145-00-131-855-21 <br> IDTalenta</p>
                   </div>
                 </div>
               </div>
@@ -99,7 +99,7 @@
 
             <div class="form-group col-lg-6">
               <label for="">No. Invoice</label>
-              <input type="text" class="form-control" name="invoice" value="<?= set_value('invoice')  ?>">
+              <input type="text" class="form-control" name="invoice" value="<?= set_value('invoice')  ?>" autocomplete="off">
               <?php echo form_error('invoice', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
             </div>
 
@@ -123,7 +123,7 @@
 
             <div class="form-group col-lg-6">
               <label for="">Jumlah Transfer</label>
-              <input type="text" class="form-control" name="ammount" value="<?= set_value('ammount')  ?>">
+              <input type="text" class="form-control" name="ammount" value="<?= set_value('ammount')  ?>" autocomplete="off">
               <?php echo form_error('ammount', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
             </div>
 
