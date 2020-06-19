@@ -17,7 +17,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>css/vendor/bootstrap.min.css">
     <!-- Icon Font CSS -->
-    <link rel="stylesheet" href="<?= base_url() ?>css/vendor/font-awesome.css">
+    <link rel="stylesheet" href="<?= base_url() ?>vendor/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>css/vendor/dlicon.css">
     <!-- ALERTIFY (FOR NOTIFICATION ALERT) -->
     <link rel="stylesheet" href="<?= base_url() ?>vendor/alertifyjs/css/alertify.min.css">

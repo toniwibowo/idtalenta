@@ -5,6 +5,14 @@ var baseUrl = window.location.protocol+ "//" +window.location.host+"/"+ urisegme
 
 $(document).ready(function(){
 
+  //TEXTAREA
+  $('textarea').each(function(index){
+
+    $(this).html($(this).html().trim());
+
+    //console.log($(this).val());
+  });
+
   // SUBSCRIBE
   $('input[type="button"][name="subscribe"]').click(function(){
     var email = $('#mc-embedded-subscribe-form input[name="email"]').val();
@@ -181,6 +189,34 @@ $(document).ready(function(){
     $.get(baseUrl + 'member/city/'+ id, function(data){
       $('select#city').html(data);
     })
-  })
+  });
+
+  // UPLOAD PHOTO PROFILE
+
+  $('#uploadPhoto #file').on('change',function(){
+    var dataUpload = new FormData();
+    var files = $('#file')[0].files[0];
+    var user_id = $('#uploadPhoto input[name="user_id"]').val();
+    dataUpload.append('photo',files);
+    dataUpload.append('user_id',user_id);
+
+    console.log('photo: '+files);
+
+    $.ajax({
+      url: baseUrl + '/mentor/uploadPhoto',
+      type:'post',
+      data: dataUpload,
+      contentType: false,
+      processData: false,
+      success: function(val){
+        if (val == 'uploaded') {
+          window.location.reload();
+        }else {
+          alert(val);
+        }
+      }
+    })
+
+  });
 
 })
