@@ -69,7 +69,7 @@
           <p class="mb-0 d-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
 
-        <form role="form" method="post" action="<?= site_url('mentor/doregister') ?>" enctype="multipart/form-data" class="needs-validation">
+        <form id="mentor_registration" role="form" method="post" action="<?= site_url('mentor/doregister') ?>" enctype="multipart/form-data" class="needs-validation">
             <div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Nama Kelas</label>
                 <div class="col-lg-9">
@@ -80,7 +80,7 @@
             <div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Kategori Kelas</label>
                 <div class="col-lg-9">
-									<select class="form-control" name="classcategory" required>
+									<select class="form-control" id="classcategory" name="classcategory" required>
 										<option value="">==Pilih Kategori==</option>
 										<?php if ($queryCategory->num_rows() > 0): ?>
 											<?php foreach ($queryCategory->result() as $key => $value): ?>
@@ -91,6 +91,14 @@
 
 									<?php echo form_error('classcategory', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Subkategori Kelas</label>
+              <div class="col-lg-9">
+                <select class="form-control" id="subcategory" name="subcategory">
+                  <option value="">==Pilih Subkategori==</option>
+                </select>
+              </div>
             </div>
             <div class="form-group row d-none">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">Video Profile Mentor</label>

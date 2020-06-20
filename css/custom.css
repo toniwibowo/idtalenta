@@ -2,6 +2,13 @@
   opacity: 1;
 }
 
+.thumb-info-wrapper .poster{
+  height: 160px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 button.close{
   position: absolute;
   right: 20px;

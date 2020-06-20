@@ -47,14 +47,14 @@
                   <div class="poster" style="background-image:url('<?= base_url('assets/uploads/files/'.$video->poster) ?>')"></div>
     							<!-- <img src="<?= base_url('assets/uploads/files/'.$video->poster) ?>" class="img-fluid" alt="<?= substr($video->poster,0,-4) ?>"> -->
     							<span class="thumb-info-action">
-    								<a href="<?= site_url('video/detail/'.$video->mentor_class_id.'/'.url_title($video->title,'-',true)) ?>">
+    								<a href="<?= site_url('course/'.$video->mentor_class_id.'/'.url_title($video->title,'-',true)) ?>">
     									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
     								</a>
     							</span>
     						</span>
     					</span>
     					<h4 class="mt-2 text-center mb-0">
-    						<a class="text-dark" href="<?= site_url('video/detail/'.$video->mentor_class_id.'/'.url_title($video->title,'-',true)) ?>">
+    						<a class="text-dark" href="<?= site_url('course/'.$video->mentor_class_id.'/'.url_title($video->title,'-',true)) ?>">
     							<?= $video->title ?>
     						</a>
     					</h4>
@@ -71,7 +71,7 @@
 
               <div class="row">
                 <div class="col">
-                  <a class="btn btn-outline btn-rounded btn-warning btn-block" href="<?= site_url('video/detail/'.$video->mentor_class_id.'/'.url_title($video->title,'-',true)) ?>">Video Detail</a>
+                  <a class="btn btn-outline btn-rounded btn-warning btn-block" href="<?= site_url('course/'.$video->mentor_class_id.'/'.url_title($video->title,'-',true)) ?>">Video Detail</a>
                 </div>
                 <div class="col">
                   <form class="" action="<?= site_url('cart/addtocart') ?>" method="post" enctype="application/x-www-form-urlencoded">

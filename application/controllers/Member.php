@@ -15,12 +15,29 @@ class Member extends CI_Controller{
   function register()
   {
     if ($this->ion_auth->logged_in()) {
-      redirect('/');
+      //redirect('/');
     }
 
     $this->load->view('include/header');
     $this->load->view('member-register');
     $this->load->view('include/footer');
+  }
+
+  public function subcategory($value='')
+  {
+    if(!$this->input->is_ajax_request()){
+      redirect('/');
+    }
+
+    $sub = $this->db->where('category_product_id', $value)->get('subcategory_product');
+
+    if ($sub->num_rows() > 0) {
+      echo '<option value="" class="text-danger">==Pilih Subkategori==</option>';
+      foreach ($sub->result_array() as $key => $row) {
+        echo '<option value="'.$row['subcategory_product_id'].'">'.$row['name'].'</option>';
+      }
+    }
+
   }
 
   public function validate($slug)

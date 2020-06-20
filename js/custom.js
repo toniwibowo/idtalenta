@@ -219,4 +219,12 @@ $(document).ready(function(){
 
   });
 
+  // GET SUBCATEGORY MENTOR REGISTRATION
+  $('select[name="classcategory"]#classcategory').on('change', function(){
+    var id = this.value;
+    $.get(baseUrl + 'member/subcategory/'+ id, function(data){
+      $('select#subcategory').html(data);
+    })
+  })
+
 })

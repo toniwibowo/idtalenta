@@ -81,7 +81,7 @@
             <div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Kategori Kelas</label>
                 <div class="col-lg-9">
-									<select class="form-control" name="classcategory" required>
+									<select class="form-control" id="classcategory" name="classcategory" required>
 										<option value="">==Pilih Kategori==</option>
 										<?php if ($queryCategory->num_rows() > 0): ?>
 											<?php foreach ($queryCategory->result() as $key => $value): ?>
@@ -94,6 +94,14 @@
                 </div>
             </div>
             <div class="form-group row">
+              <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Subkategori Kelas</label>
+              <div class="col-lg-9">
+                <select class="form-control" id="subcategory" name="subcategory">
+                  <option value="">==Pilih Subkategori==</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row d-none">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">Video Profil Mentor</label>
                 <div class="col-lg-9">
 									<div class="upload-box" id="mainVideo" data-id="16">
