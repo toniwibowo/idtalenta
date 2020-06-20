@@ -64,9 +64,9 @@
                     <div class="row align-items-center">
                         <div class="col-xl-4 col-lg-3">
                             <div class="social-icon-style-4">
-                                <a href="https://www.facebook.com/TalentaAnakBangsa/" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a href="https://www.facebook.com/TalentaAnakBangsa/" target="_blank"><i class="fab fa-facebook"></i></a>
                                 <!--<a href="#"><i class="fa fa-twitter"></i></a>-->
-                                <a href="https://instagram.com/idtalenta.academy" target="_blank"><i class="fa fa-instagram"></i></a>
+                                <a href="https://instagram.com/idtalenta.academy" target="_blank"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4">
