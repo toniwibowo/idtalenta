@@ -59,7 +59,7 @@ class Course extends MX_Controller{
       ON a.category_product_id = b.category_product_id
       INNER JOIN subcategory_product c
       ON a.subcategory_product_id = c.subcategory_product_id
-      WHERE a.category_product_id = $sub->subcategory_product_id";
+      WHERE a.category_product_id = $sub->category_product_id";
 
     }else {
 
