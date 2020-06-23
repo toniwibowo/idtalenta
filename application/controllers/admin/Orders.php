@@ -94,7 +94,15 @@ class Orders extends MX_Controller
 
         $crud->fields('invoice','user_id', 'total', 'uniq_code', 'payment', 'order_date','order_time');
 
+        $crud->display_as('uniq_code', 'Purchased Item');
+
+        if ($this->uri->segment(4) == 'edit') {
+          $crud->field_type('uniq_code','hidden');
+        }
+
         $crud->callback_column('user_id',array($this, 'customer_name_callback'));
+        $crud->callback_column('total', array($this,'total_callback'));
+        $crud->callback_column('uniq_code', array($this,'purchased_item_link_callback'));
 
         $crud->callback_after_update(array($this, 'email_order_callback'));
 
@@ -168,6 +176,29 @@ class Orders extends MX_Controller
         /*===============end tampilan grocery crud================================================*/
 
         }
+    }
+
+    public function item($value='')
+    {
+      $data['title'] = 'Purchased Item - '.$value;
+      $data['order'] = $this->db->where('order_id', $value)->from('orders')->join('users','users.id = orders.order_id')->get();
+      $data['orderItem'] = $this->db->where('order_id', $value)->from('order_item')->join('mentor_class','mentor_class_id = order_item.product_id')->get();
+
+      $this->load->view('template/purchased-item', $data);
+    }
+
+    public function purchased_item_link_callback($value, $row)
+    {
+      $order_id = $row->order_id;
+
+      return '<a onclick="window.open(\''.site_url('admin/orders/item/'.$order_id).'\',\'\',\'width=700, height=400\')" href="#"><i class="fa fa-shopping-cart"></i> Course Item</a>';
+    }
+
+    public function total_callback($value, $row)
+    {
+      $value = $row->total + $row->uniq_code;
+
+      return number_format($value,0,',','.');
     }
 
     public function customer_name_callback($value, $row)
