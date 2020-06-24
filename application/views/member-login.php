@@ -1,4 +1,4 @@
-<div class="main" role="main">
+<div class="main d-flex" role="main">
   <section class="section section-login border-0 m-0">
     <div class="container">
       <div class="row py-5">

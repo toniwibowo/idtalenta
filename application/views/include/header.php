@@ -197,6 +197,9 @@
                                             <a href="#">My Account</a>
                                             <ul class="sub-menu-width">
                                               <li>
+                                                <a href="<?= site_url('member/dashboard') ?>">Dashboard</a>
+                                              </li>
+                                              <li>
                                                 <a href="<?= site_url('member/myaccount') ?>">My Profile</a>
                                               </li>
                                               <li>
@@ -208,6 +211,9 @@
             																	<?php if ($check_mentor_active->num_rows() > 0): ?>
             																		<li>
             																			<a class="dropdown-item text-warning" href="#!">MENTOR AREA</a>
+            																		</li>
+                                                <li>
+            																			<a class="dropdown-item text-light" href="<?= site_url('mentor/dashboard') ?>">Dashboard</a>
             																		</li>
             																		<li>
             																			<a class="dropdown-item text-light" href="<?= site_url('mentor/profile') ?>">Profile Mentor</a>
@@ -335,8 +341,8 @@
             <a class="search-close"><i class="dlicon ui-1_simple-remove"></i></a>
             <div class="search-content">
                 <p>Start typing and press Enter to search</p>
-                <form class="search-form" action="#">
-                    <input type="text" placeholder="Search">
+                <form class="search-form" action="<?= site_url('search') ?>" method="get">
+                    <input type="text" name="src" placeholder="Search">
                     <button class="button-search"><i class="dlicon ui-1_zoom"></i></button>
                 </form>
             </div>
@@ -600,7 +606,7 @@
   										</a>
   									</div>
   									<div class="col-lg-12 mt-3">
-  										<a class="btn btn-rounded btn-info btn-block btn-modern" id="btnRegister" href="#"><small>Belum punya akun?</small> Daftar disini.</a>
+  										<a class="btn btn-rounded btn-info btn-block btn-modern" id="btnRegister" href="#">Belum punya akun? Daftar disini.</a>
   									</div>
   								</div>
   							</form>

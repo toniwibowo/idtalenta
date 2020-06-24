@@ -106,17 +106,9 @@
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2"></label>
                 <div class="col-lg-9">
                     <select class="form-control" name="province" id="province">
-
-                      <?php if ($user->province_id != 0): ?>
-                        <option value="<?= $province['rajaongkir']['results']['province_id'] ?>"><?= $province['rajaongkir']['results']['province'] ?></option>
-                        <?php else: ?>
-                        <option value="">==Pilih Provinsi==</option>
-                        <option value="<?= $province['rajaongkir']['results']['province_id'] ?>" <?= $province['rajaongkir']['results']['province_id'] == $user->province_id ? 'selected':'' ?>><?= $province['rajaongkir']['results']['province'] ?></option>  
-                      <?php endif; ?>
-
                       <?php if ($queryProvince['rajaongkir']['status']['code'] == 200): ?>
                         <?php foreach ($queryProvince['rajaongkir']['results'] as $key => $value): ?>
-                          <option value="<?= $value['province_id'] ?>"><?= $value['province'] ?></option>
+                          <option value="<?= $value['province_id'] ?>" <?= $value['province_id'] == $user->province_id ? 'selected' : ''  ?>><?= $value['province'] ?></option>
                         <?php endforeach; ?>
                       <?php endif; ?>
                     </select>

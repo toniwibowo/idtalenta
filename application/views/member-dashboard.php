@@ -1,4 +1,4 @@
-<div class="main" role="main">
+<div class="main d-inline-block" role="main">
   <section class="section section-dashboard section-dashboard-banner m-0 border-0">
     <div class="container">
       <div class="row no-gutters">

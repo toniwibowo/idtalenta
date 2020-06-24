@@ -54,12 +54,21 @@ button.close{
   color: #37bbb0;
 }
 
+.main-menu > nav > ul > li > ul.sub-menu-width{
+  padding: 14px 0;
+}
+
+.main-menu.menu-lh-1 > nav > ul > li > a {
+    line-height: 80px;
+}
+
 .main-menu > nav > ul > li > ul > li > ul {
   position: absolute;
-  top: 0;
+  top: -14px;
   left: 100%;
   background-color: #262626;
   width: 220px;
+  padding: 14px 0;
   display: none;
 }
 
