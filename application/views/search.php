@@ -1,4 +1,4 @@
-<div class="main" role="main">
+<div class="main" style="display:grid" role="main">
   <section class="page-header page-header-classic page-header-sm">
     <div class="container">
       <div class="row">
@@ -39,14 +39,14 @@
   									</div>
   									<!-- <img src="" class="img-fluid" alt="<?= substr($src->poster,0,-4) ?>"> -->
   									<span class="thumb-info-action">
-  										<a href="<?= site_url('video/detail/'.$src->mentor_class_id.'/'.url_title($src->title,'-',true)) ?>">
+  										<a href="<?= site_url('course/'.$src->mentor_class_id.'/'.url_title($src->title,'-',true)) ?>">
   											<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
   										</a>
   									</span>
   								</span>
   							</span>
   							<h4 class="mt-2 text-center text-3 mb-0">
-  								<a class="text-dark" href="<?= site_url('video/detail/'.$src->mentor_class_id.'/'.url_title($src->title,'-',true)) ?>">
+  								<a class="text-dark" href="<?= site_url('course/'.$src->mentor_class_id.'/'.url_title($src->title,'-',true)) ?>">
   									<?= $src->title ?>
   								</a>
   							</h4>
@@ -64,7 +64,7 @@
   							<div class="button-action">
   								<div class="row">
   									<div class="col">
-  										<a class="btn btn-danger btn-rounded btn-outline btn-block" href="<?= site_url('video/detail/'.$src->mentor_class_id.'/'.url_title($src->title,'-',true)) ?>">Video Detail</a>
+  										<a class="btn btn-danger btn-rounded btn-outline btn-block" href="<?= site_url('course/'.$src->mentor_class_id.'/'.url_title($src->title,'-',true)) ?>">Video Detail</a>
   									</div>
   									<div class="col">
   										<form class="" action="<?= site_url('cart/addtocart') ?>" method="post" enctype="application/x-www-form-urlencoded">

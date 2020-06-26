@@ -227,4 +227,31 @@ $(document).ready(function(){
     })
   })
 
+  //VALIDATE PASSWORD MATCH CONFIRM PASSWORD
+  $('#myAccount input[name="password"]').on('blur', () => {
+    const password = $('#myAccount input[name="password"]').val();
+    $('#myAccount input[value="Save"]').attr('type','button');
+  });
+
+  $('#myAccount input[value="Save"]').click(() => {
+
+    const attr = $('#myAccount input[value="Save"]').attr('type');
+    const password = $('#myAccount input[name="password"]').val();
+    const cpassword = $('#myAccount input[name="cpassword"]').val();
+
+    alertify.set('notifier','position', 'top-right');
+
+    if (attr == 'button') {
+
+      if (cpassword == '') {
+        alertify.error('Confirmation Password is required', 5);
+      }else if (cpassword != '' && cpassword != password) {
+        alertify.error('Your confirmation Password doesn\'t matches with password field.', 5);
+      }else {
+        $('#myAccount').submit();
+      }
+    }
+  })
+
+
 })

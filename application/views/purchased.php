@@ -1,4 +1,4 @@
-<div class="main" role="main">
+<div class="main" style="display:grid" role="main">
   <section class="page-header page-header-classic page-header-sm mb-0">
     <div class="container">
       <div class="row">

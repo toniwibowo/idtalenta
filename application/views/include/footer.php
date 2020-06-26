@@ -63,8 +63,7 @@
                         </div>
                         <div class="footer-column footer-width-27 mb-30">
                             <div class="instagram-feed-thumb">
-                                <div id="Instafeed-2" class="instagram-wrap-3" data-userid="6666120591" data-accesstoken="6666120591.1677ed0.297698fc79c1407f9c76c3cad4fa507f">
-                                </div>
+                              <!-- for IG -->
                             </div>
                         </div>
                     </div>

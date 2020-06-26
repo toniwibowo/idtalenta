@@ -4,6 +4,9 @@ $site_lang = !empty($this->session->userdata('site_lang'))?$this->session->userd
 
  ?>
 
+ <div id="Instafeed-2" class="instagram-wrap-3" data-userid="6666120591" data-accesstoken="6666120591.1677ed0.297698fc79c1407f9c76c3cad4fa507f">
+ </div>
+
 <footer id="footer">
     <div class="footer-top">
       <div class="container">
@@ -61,18 +64,18 @@ $site_lang = !empty($this->session->userdata('site_lang'))?$this->session->userd
 
             </ul>
 
-               <?php endif; ?> 
+               <?php endif; ?>
 
-            
+
           </div>
           <div class="col-lg-3 col-md-6 footer-contact">
              <?php if($site_lang=='en'): ?>
               <h4>Contact</h4>
-              
+
               <?php else: ?>
                 <h4>Kontak</h4>
              <?php endif; ?>
-            
+
             <div>
             <p>
               PT Indosan Berkat Bersama<br />

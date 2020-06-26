@@ -63,7 +63,7 @@
           <p class="mb-0 d-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
 
-        <form role="form" method="post" action="<?= site_url('member/update') ?>" enctype="application/x-www-form-urlencoded" class="needs-validation">
+        <form role="form" id="myAccount" method="post" action="<?= site_url('member/update') ?>" enctype="application/x-www-form-urlencoded" class="needs-validation">
             <div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">First name</label>
                 <div class="col-lg-9">
@@ -134,7 +134,7 @@
             <div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Password</label>
                 <div class="col-lg-9">
-                    <input class="form-control" type="password" name="password" value="">
+                    <input onchange="validatePass()" class="form-control" type="password" name="password" value="">
                     <?php echo form_error('password', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>
             </div>
@@ -162,3 +162,10 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+  function validatePass() {
+    var buttonSubmit = document.querySelector('input[value="Save"]');
+    buttonSubmit.style.color = 'yellow';
+  }
+</script>

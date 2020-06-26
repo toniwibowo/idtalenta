@@ -264,6 +264,7 @@ class Member extends CI_Controller{
     $city = $this->input->post('city',true);
     $postalcode = $this->input->post('postal-code',true);
     $password = $this->input->post('password',true);
+    $cpassword = $this->input->post('cpassword',true);
     $user_id = $this->input->post('user_id',true);
 
     $this->form_validation->set_rules('firstname', 'First Name', 'required');
@@ -273,22 +274,7 @@ class Member extends CI_Controller{
     //$this->form_validation->set_rules('city', 'City', 'trim|required');
     //$this->form_validation->set_rules('postal_code', 'Postal Code', 'trim|required');
 
-    if (trim($password) != '') {
-      $this->form_validation->set_rules('cpassword', 'Password Confirmation', 'trim|required|matches[password]');
-    }
-
-    if ($this->form_validation->run() == FALSE) {
-
-      $user = $this->ion_auth->user()->row();
-      $data['queryProvince'] = $this->member->province();
-      $data['queryAddress'] = $this->db->where('id',$user->id)->get('users');
-
-      $this->load->view('include/header');
-      $this->load->view('my-account',$data);
-      $this->load->view('include/footer');
-    }else {
-
-      if (trim($password) != '') {
+      if (isset($password)) {
         $data = array(
           'first_name' => $firstname,
           'last_name' => $lastname,
@@ -312,12 +298,23 @@ class Member extends CI_Controller{
       $update = $this->ion_auth->update($user_id,$data);
 
       if ($update) {
+        $this->session->set_flashdata('alert-update','Your profile was successfully update');
         redirect('member/myaccount');
       }else {
-        echo '<script type="text/javascript">alert("Data gagal terupdate")</script>';
+        $this->session->set_flashdata('alert-update','Your profile failed to update');
         redirect('member/myaccount');
       }
 
+
+  }
+
+  public function matches_password_check($cpassword, $password)
+  {
+    if ($cpassword != $password) {
+      $this->form_validation->set_message('matches_password_check', 'The confirmation '.$cpassword.' password field doesn\'t match with password '.$password);
+      return FALSE;
+    }else {
+      return TRUE;
     }
   }
 

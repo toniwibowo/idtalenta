@@ -89,6 +89,8 @@ $route['artikel/view'] = "articles/view";
 $route['artikel/view/(:num)'] = "articles/view";
 $route['artikel/detail/(:num)/(:any)'] = "articles/detail/$1/tes";
 
+$route['my-course'] = "mentor/purchased";
+
 
 
 $route['teaching'] = "mentor/register";
