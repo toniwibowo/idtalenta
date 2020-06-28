@@ -263,14 +263,14 @@
                           <img class="hover-img" src="<?= base_url('assets/uploads/files/'.$pop->poster) ?>" alt="">
                       </a>
                       <div class="product-action product-action-position-1">
-                          <a data-toggle="modal" data-target="#exampleModal" href="#"><i class="fa fa-eye"></i><span>Quick Shop</span></a>
+                          <!-- <a data-toggle="modal" data-target="#exampleModal" href="#"><i class="fa fa-eye"></i><span>Quick Shop</span></a>
                           <a title="Add to Wishlist" href="#"><i class="fa fa-heart"></i><span>Add to Wishlist</span></a>
                           <a class="icon-blod" title="Add to Compare" href="#"><i class="dlicon arrows-4_compare"></i><span>Add to Compare</span></a>
-                          <a title="Add to Cart" href="#"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a>
+                          <a title="Add to Cart" href="#"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a> -->
                       </div>
                   </div>
                   <div class="product-content-2 title-font-width-400 text-center">
-                      <h3><a href="product-details.html"><?= $pop->title ?></a></h3>
+                      <h3><a href="<?= site_url('course/'.$pop->mentor_class_id.'/'.url_title($pop->title,'-',true)) ?>"><?= $pop->title ?></a></h3>
                       <div class="product-price">
                         <?php if ($pop->sale != 0): ?>
                           <span class="new-price">Rp. <?= number_format($this->app->sale($pop->price,$pop->sale),0,',','.')  ?></span><br>
