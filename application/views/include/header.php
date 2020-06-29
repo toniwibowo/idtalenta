@@ -538,10 +538,10 @@
                     <div class="header-aside-menu">
                         <nav>
                             <ul>
-                                <li><a href="index.php">Home</a></li>
-                                <li><a href="about-us.php">About Us</a></li>
+                                <li><a href="<?= site_url() ?>">Home</a></li>
+                                <li><a href="<?= site_url('about-us') ?>">About Us</a></li>
                                 <li><a href="#">Course</a></li>
-                                <li><a href="blog.php">Blog</a></li>
+                                <li><a href="<?= site_url('blog') ?>">Blog</a></li>
                             </ul>
                         </nav>
                     </div>
