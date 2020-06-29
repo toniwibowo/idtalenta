@@ -63,9 +63,16 @@ class Blog extends MX_Controller{
     if (isset($_GET['cat'])) {
 
       $slug = str_replace('-',' ', $_GET['cat']);
-      $category = $this->db->where('category_name', $slug)->get('category_article')->row();
+      $category = $this->db->where('category_name', $slug)->get('category_article');
 
-      $data['queryArticles']  = $this->db->where('category_article_id', $category->category_article_id)->where('posting_date <=', date('Ymd'))->limit(3)->get('articles');
+      if ($category->num_rows() > 0) {
+        $cat = $category->->row();
+        $data['queryArticles']  = $this->db->where('category_article_id', $cat->category_article_id)->where('posting_date <=', date('Ymd'))->limit(3)->get('articles');
+      }else {
+        $data['queryArticles']  = $this->db->order_by('posting_date', 'desc')->limit(3)->get('articles');
+      }
+
+
 
     }else {
 
