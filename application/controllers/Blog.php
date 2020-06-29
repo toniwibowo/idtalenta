@@ -66,7 +66,7 @@ class Blog extends MX_Controller{
       $category = $this->db->where('category_name', $slug)->get('category_article');
 
       if ($category->num_rows() > 0) {
-        $cat = $category->->row();
+        $cat = $category->row();
         $data['queryArticles']  = $this->db->where('category_article_id', $cat->category_article_id)->where('posting_date <=', date('Ymd'))->limit(3)->get('articles');
       }else {
         $data['queryArticles']  = $this->db->order_by('posting_date', 'desc')->limit(3)->get('articles');
