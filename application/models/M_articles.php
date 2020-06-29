@@ -9,8 +9,20 @@ class M_articles extends CI_Model  {
 
 	function view()
 	{
-		$sekarangL = date("Y-n-d");
-		$string_query       = "select * from articles where posting_date <= now()  order by posting_date desc";
+			$sekarangL = date("Y-n-d");
+			if (isset($_GET['cat'])) {
+
+				$slug = str_replace('-',' ', $_GET['cat']);
+				$category = $this->db->where('category_name', $slug)->get('category_article')->row();
+
+				$string_query       = "SELECT * FROM articles WHERE category_article_id = ".$category->category_article_id." AND posting_date <= now()  ORDER BY posting_date DESC";
+
+			}else {
+
+				$string_query       = "select * from articlessss where posting_date <= now()  order by posting_date desc";
+
+			}
+
 	  	$query          	  = $this->db->query($string_query);
 	  	$config['base_url']     = base_url().'artikel/view';
 	  	$config['total_rows']   = $query->num_rows();

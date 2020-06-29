@@ -47,7 +47,7 @@ class Articles  extends MX_Controller {
   {
     $data = $this->M_articles->view();
     $this->load->view('include/header');
-    $this->load->view('blog',$data);
+    $this->load->view('blogs',$data);
     $this->load->view('include/footer');
   }
 
