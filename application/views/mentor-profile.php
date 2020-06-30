@@ -163,18 +163,19 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">Address</label>
+                <!-- <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">Address</label>
                 <div class="col-lg-9">
 									<textarea name="address" class="form-control" id="address" rows="4" cols="80" placeholder="Jalan, Kelurahan, Kecamatan" required>
                     <?= $row->address  ?>
 									</textarea>
 									<?php echo form_error('address', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
-                </div>
+                </div> -->
             </div>
             <div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2"></label>
                 <div class="col-lg-9">
-                    <select class="form-control" name="province_id" id="province" required>
+
+                    <!-- <select class="form-control" name="province_id" id="province" readonly required>
 											<option value="">==Provinsi==</option>
                       <?php if ($queryProvince['rajaongkir']['status']['code'] == 200): ?>
                         <?php foreach ($queryProvince['rajaongkir']['results'] as $key => $value): ?>
@@ -183,26 +184,26 @@
                       <?php endif; ?>
 
 
-                    </select>
+                    </select> -->
                     <?php echo form_error('province', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2"></label>
                 <div class="col-lg-6">
-                    <select class="form-control" name="city_id" id="city" required>
+                    <!-- <select class="form-control" name="city_id" id="city" required>
 											<option value="">==Pilih Kota==</option>
                       <?php foreach ($city['rajaongkir']['results'] as $key => $value): ?>
                         <option value="<?= $value['city_id'] ?>" <?= $value['city_id'] == $row->city_id ? 'selected' : '' ?> ><?= $value['city_name'] ?></option>
                       <?php endforeach; ?>
 
-                    </select>
+                    </select> -->
                     <?php echo form_error('city', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>
-                <div class="col-lg-3">
+                <!-- <div class="col-lg-3">
                     <input class="form-control" type="text" name="postal_code" value="<?= $row->postal_code  ?>" placeholder="Postal Code" required>
                     <?php echo form_error('postal_code', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
-                </div>
+                </div> -->
             </div>
 
 
