@@ -88,13 +88,16 @@
 
             <div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Tgl. posting</label>
-                <div class="col-lg-3">
+                <div class="col-lg-9">
                   <input type="date" name="posting_date" class="form-control" required value="<?= set_value('posting_date') ?>">
                   <?php echo form_error('posting_date', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>
-                <label class="col-lg-2 font-weight-bold text-dark col-form-label form-control-label text-2 required text-right">Kategori</label>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Kategori</label>
                 <div class="col-lg-4">
-                  <select class="form-control" name="category_class_id" required>
+                  <select class="form-control" id="classcategory" name="classcategory" required>
                     <option value="">==Pilih==</option>
                     <?php $dataCategory = $this->db->get('category_product'); ?>
                     <?php if ($dataCategory->num_rows() > 0): ?>
@@ -102,6 +105,15 @@
                         <option value="<?= $value->category_product_id ?>"><?= $value->category_product_name ?></option>
                       <?php endforeach; ?>
                     <?php endif; ?>
+                  </select>
+                  <?php echo form_error('category_class_id', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
+                </div>
+
+                <label class="col-lg-2 font-weight-bold text-dark col-form-label form-control-label text-2 required">Subkategori</label>
+                <div class="col-lg-3">
+                  <select class="form-control" id="subcategory" name="subcategory_product_id" required>
+                    <option value="">==Pilih Subkategori==</option>
+
                   </select>
                   <?php echo form_error('category_class_id', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>

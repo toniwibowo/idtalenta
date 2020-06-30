@@ -1,4 +1,4 @@
-var baseUrl = window.location.protocol +'//'+ window.location.host;
+var siteUrl = window.location.protocol +'//'+ window.location.host;
 var urisegment = window.location.pathname.split('/');
 
 console.log(urisegment);
@@ -39,7 +39,7 @@ $(document).ready(function(){
       $('#loginForm').prepend('<div class="alert alert-warning">Field email or password is required</div>')
     }else {
       var dataLogin = $('#loginForm').serialize();
-      $.post(baseUrl + '/artademidemo/member/dologin', dataLogin)
+      $.post(siteUrl + '/artademidemo/member/dologin', dataLogin)
       .done(function(val){
         if (val == 1) {
           window.location.reload();
@@ -62,7 +62,7 @@ $(document).ready(function(){
     console.log('photo: '+files);
 
     $.ajax({
-      url: baseUrl + '/artademidemo/mentor/uploadPhoto',
+      url: siteUrl + '/artademidemo/mentor/uploadPhoto',
       type:'post',
       data: dataUpload,
       contentType: false,
@@ -81,7 +81,7 @@ $(document).ready(function(){
   //GET CITY
   $('select#province').on('change',function(){
     var id = this.value;
-    $.get(baseUrl + '/artademidemo/member/city/'+ id, function(data){
+    $.get(siteUrl + '/artademidemo/member/city/'+ id, function(data){
       $('select#city').html(data);
     })
   })
@@ -90,7 +90,7 @@ $(document).ready(function(){
   $('#subscribeForm').each(function(event){
     $('#subscribeForm button[type="button"]').click(function(){
       var dataSubscribe = $('#subscribeForm').serialize();
-      $.post(baseUrl +'/artademidemo/subscribe/sendEmail', dataSubscribe)
+      $.post(siteUrl +'/artademidemo/subscribe/sendEmail', dataSubscribe)
       .done(function(val){
         if (val == 1) {
           alert('working')
@@ -116,7 +116,7 @@ $(document).ready(function(){
     var class_id = $(this).data('class'),
     user_id = $(this).data('user');
 
-    $.post(baseUrl +'/artademidemo/wishlist/add',{user_id: user_id, mentor_class_id: class_id})
+    $.post(siteUrl +'/artademidemo/wishlist/add',{user_id: user_id, mentor_class_id: class_id})
     .done(function(val){
       alert(val)
     })
@@ -193,7 +193,7 @@ $(document).ready(function(){
       formData.append('mentor_id',id);
       formData.append('update',update);
 
-      var url = baseUrl + '/artademidemo/mentor/updatevideo';
+      var url = siteUrl + '/artademidemo/mentor/updatevideo';
 
       var success = function(val){
         thisInput.parent().parent().find('.progress').find('.progress-bar').hide();
@@ -251,7 +251,7 @@ $(document).ready(function(){
 
       console.log('video-id', video_id);
 
-      var url = baseUrl + '/artademidemo/mentor/uploadvideo';
+      var url = siteUrl + '/artademidemo/mentor/uploadvideo';
 
       var formData = new FormData();
       formData.append('videomentor',file);
@@ -263,7 +263,7 @@ $(document).ready(function(){
         thisdiv.parent().parent().find('.progress').find('.progress-bar').hide();
         thisdiv.parent().parent().find('.progress').css('height','auto').html('<div class="alert alert-success w-100" role="alert">'+ data +'</div>');
 
-        $.get( baseUrl + "/artademidemo/mentor/preview", function( val ) {
+        $.get( siteUrl + "/artademidemo/mentor/preview", function( val ) {
           thisdiv.parent().parent().find('#preview').addClass('mb-3').html( val );
         });
         //console.log("selesai");
@@ -310,7 +310,7 @@ $(document).ready(function(){
         formData.append('filemateri[]',files[i]);
       }
 
-      var url       = baseUrl +'/artademidemo/mentor/uploadvideo';
+      var url       = siteUrl +'/artademidemo/mentor/uploadvideo';
       var data      = formData;
       var progress  = $(this);
       var success   = function(val){
@@ -364,7 +364,7 @@ $(document).ready(function(){
       var value = $(this).val();
       var id    = $(this).data('id');
 
-      $.post(baseUrl + '/artademidemo/mentor/updatevideo',{video_description : value, mentor_video_id: id})
+      $.post(siteUrl + '/artademidemo/mentor/updatevideo',{video_description : value, mentor_video_id: id})
       .done(function(val){
         if (val == 1) {
           alert('Deskripsi berhasil update');
@@ -399,7 +399,7 @@ $(document).ready(function(){
       var pid    = $(this).data('parent');
       var slug  = $(this).data('slug');
 
-      window.location.href = baseUrl + '/artademidemo/mentor/deletelistvideo/'+ pid +'/'+ id +'/'+ slug;
+      window.location.href = siteUrl + '/artademidemo/mentor/deletelistvideo/'+ pid +'/'+ id +'/'+ slug;
     }
   })
 
@@ -420,7 +420,7 @@ $(document).ready(function(){
     formData.append('mentor_class_id', id);
 
     $.ajax({
-      url: baseUrl + '/artademidemo/mentor/updatevideo',
+      url: siteUrl + '/artademidemo/mentor/updatevideo',
       type:'POST',
       contentType: false,
       cache: false,
@@ -452,7 +452,7 @@ $(document).ready(function(){
     formData.append('user_id', uid);
 
     $.ajax({
-      url: baseUrl + '/artademidemo/mentor/uploadvideo',
+      url: siteUrl + '/artademidemo/mentor/uploadvideo',
       type:'POST',
       contentType: false,
       cache: false,
@@ -522,7 +522,7 @@ $(document).ready(function(){
     formData.append('mentor_class_id', id);
 
     $.ajax({
-      url: baseUrl + '/artademidemo/mentor/updatevideo',
+      url: siteUrl + '/artademidemo/mentor/updatevideo',
       type:'POST',
       contentType: false,
       cache: false,
@@ -594,7 +594,7 @@ $(document).ready(function(){
     formData.append('old_video', oldvideo);
 
     $.ajax({
-      url: baseUrl + '/artademidemo/mentor/updatevideo',
+      url: siteUrl + '/artademidemo/mentor/updatevideo',
       type:'POST',
       contentType: false,
       cache: false,
@@ -639,7 +639,7 @@ $(document).ready(function(){
         thisdiv.parent().parent().find('.progress').find('.progress-bar').hide();
         thisdiv.parent().parent().find('.progress').css('height','auto').html('<div class="alert alert-success w-100" role="alert">'+ data +'</div>');
 
-        // $.get( baseUrl + "/artademidemo/admin/mentor/preview/"+ video_id, function( data ) {
+        // $.get( siteUrl + "/artademidemo/admin/mentor/preview/"+ video_id, function( data ) {
         //   thisdiv.parent().parent().parent().parent().parent().parent().find('#preview').addClass('mb-3').html( data );
         // });
 

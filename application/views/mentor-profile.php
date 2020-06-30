@@ -19,6 +19,7 @@
 
     <?php $user = $this->ion_auth->user()->row(); ?>
     <?php $row = $mentor->row() ?>
+    <?php $submentor = $this->db->where('subcategory_class_id', $row->subcategory_class_id)->from('mentor')->join('subcategory_product','subcategory_product.subcategory_product_id = mentor.subcategory_class_id')->get(); ?>
 		<?php $queryProvince = $this->member->province() ?>
     <?php $city = $this->member->state('', $row->province_id) ?>
 
@@ -96,8 +97,12 @@
             <div class="form-group row">
               <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Subkategori Kelas</label>
               <div class="col-lg-9">
-                <select class="form-control" id="subcategory" name="subcategory">
+                <select class="form-control" id="subcategory" name="subcategory_class_id">
                   <option value="">==Pilih Subkategori==</option>
+                  <?php if ($submentor->num_rows() > 0): ?>
+                    <?php $sub = $submentor->row() ?>
+                    <option value="<?= $sub->subcategory_class_id ?>" selected><?= $sub->name ?></option>
+                  <?php endif; ?>
                 </select>
               </div>
             </div>

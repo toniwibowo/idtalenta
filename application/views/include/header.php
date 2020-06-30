@@ -218,12 +218,10 @@
             																		<li>
             																			<a class="dropdown-item text-light" href="<?= site_url('mentor/profile') ?>">Profile Mentor</a>
             																		</li>
-            																		<!-- <li>
+            																		 <li>
             																			<a class="dropdown-item text-light" href="<?= site_url('mentor/upload') ?>">Upload Video</a>
             																		</li>
-            																		<li>
-            																			<a class="dropdown-item text-light" href="<?= site_url('mentor/dashboard') ?>">Video yang diupload</a>
-            																		</li> -->
+
             																	<?php endif; ?>
             																	<!-- END CHECK MENTOR ACTIVE -->
             																	<?php else: ?>
@@ -391,7 +389,11 @@
                     </div>
                     <div class="cart-checkout-btn">
                         <a class="btn-hover cart-btn-style" href="<?= site_url('cart') ?>">view cart</a>
-                        <a class="no-mrg btn-hover cart-btn-style" href="#">checkout</a>
+                        <form id="checkout" class="" action="<?= site_url('checkout/docheckout') ?>" method="post">
+                          <input type="hidden" name="sid" value="<?= $_COOKIE['cart'] ?>">
+                          <a id="checkoutsubmit" class="no-mrg btn-hover cart-btn-style" href="#">checkout</a>
+                        </form>
+
                     </div>
                 </div>
             </div>

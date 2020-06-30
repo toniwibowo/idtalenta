@@ -345,6 +345,7 @@ class Mentor extends CI_Controller{
   {
     if (isset($_POST['btnUpdateProfile']) && $_POST['btnUpdateProfile'] == 'Save') {
       $data['category_class_id']  = $this->input->post('classcategory',true);
+      $data['subcategory_class_id']  = $this->input->post('subcategory_class_id',true);
       $data['class_name']         = $this->input->post('classname',true);
       $data['account_name']       = $this->input->post('accountname',true);
       $data['account_number']     = $this->input->post('accountnumber',true);
@@ -397,7 +398,8 @@ class Mentor extends CI_Controller{
     }
 
     $data['user_id']             = $this->input->post('user_id',true);
-    $data['category_product_id'] = $this->input->post('category_class_id',true);
+    $data['category_product_id'] = $this->input->post('classcategory',true);
+    $data['subcategory_product_id'] = $this->input->post('subcategory_product_id',true);
     $data['title']               = $this->input->post('title',true);
     $data['resume']              = $this->input->post('resume',true);
     $data['description']         = $this->input->post('description',true);
