@@ -31,24 +31,24 @@ $(document).ready(function(){
   //END MENTOR CAROUSEL
 
   //LOGIN
-  $('#loginForm button').click(function(){
-    var identity = $('#loginForm input[name="identity"]').val();
-    var password = $('#loginForm input[name="password"]').val();
-
-    if (identity == '' || password == '') {
-      $('#loginForm').prepend('<div class="alert alert-warning">Field email or password is required</div>')
-    }else {
-      var dataLogin = $('#loginForm').serialize();
-      $.post(siteUrl + 'member/dologin', dataLogin)
-      .done(function(val){
-        if (val == 1) {
-          window.location.reload();
-        }else {
-          $('#loginForm').prepend('<div class="alert alert-warning">Login gagal, email atau password salah</div>')
-        }
-      })
-    }
-  });
+  // $('#loginForm button').click(function(){
+  //   var identity = $('#loginForm input[name="identity"]').val();
+  //   var password = $('#loginForm input[name="password"]').val();
+  //
+  //   if (identity == '' || password == '') {
+  //     $('#loginForm').prepend('<div class="alert alert-warning">Field email or password is required</div>')
+  //   }else {
+  //     var dataLogin = $('#loginForm').serialize();
+  //     $.post(siteUrl + 'member/dologin', dataLogin)
+  //     .done(function(val){
+  //       if (val == 1) {
+  //         window.location.reload();
+  //       }else {
+  //         $('#loginForm').prepend('<div class="alert alert-warning">Login gagal, email atau password salah</div>')
+  //       }
+  //     })
+  //   }
+  // });
 
   //UPLOAD PHOTO MENTOR
 
