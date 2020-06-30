@@ -9,8 +9,8 @@ if (urisegment[3] != 'upload') {
 }
 
 if (urisegment[2] == "") {
-  location.hash = "graphic-design";
-  window.location = location.hash;
+  // location.hash = "graphic-design";
+  // window.location = location.hash;
 }
 
 $(document).ready(function(){
