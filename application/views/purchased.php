@@ -58,6 +58,12 @@
               <?php endforeach; ?>
             <?php endif; ?>
           <?php endforeach; ?>
+          <?php else: ?>
+            <div class="col-12">
+              <div class="alert alert-info" role="alert">
+                You don't have a course video yet or payment has not been made.
+              </div>
+            </div>
         <?php endif; ?>
       </div>
     </div>

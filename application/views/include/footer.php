@@ -196,6 +196,7 @@
     <!-- Main JS -->
     <script src="<?= base_url() ?>js/main.js"></script>
     <script src="<?= base_url() ?>js/custom.js"></script>
+    <script src="<?= base_url() ?>js_old/custom.js"></script>
 </body>
 
 </html>

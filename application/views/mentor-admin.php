@@ -1,6 +1,6 @@
 <?php $row = $classData->row() ?>
 
-<div class="main d-inline-block" role="main">
+<div class="main d-grid" role="main">
 
   <section class="page-header page-header-classic page-header-sm mb-0">
     <div class="container">

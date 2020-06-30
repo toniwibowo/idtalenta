@@ -1,3 +1,7 @@
+.d-grid{
+  display: grid;
+}
+
 .star-box-wrap .single-ratting-star.active i{
   color: #f5b223;
 }
@@ -112,4 +116,36 @@ button.close{
   background: #F5C52C;
   height: 123px;
   overflow: hidden;
+}
+
+.upload-box{
+  border: solid thin #ccc;
+  padding: 10px;
+}
+
+.upload-box .upload-box-body{
+  background: #ddd;
+  border: dotted 4px #ccc;
+  position: relative;
+  display: table;
+  width: 100%;
+  height: 65px;
+}
+
+.upload-box-body input[type="file"]{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 3;
+  outline: none;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.upload-box-body p{
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 14px;
 }
