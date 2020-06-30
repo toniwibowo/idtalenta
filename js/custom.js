@@ -13,6 +13,23 @@ $(document).ready(function(){
     //console.log($(this).val());
   });
 
+  $('.dropdown-item.text-warning').click(function(e){
+    e.preventDefault();
+  });
+
+  // RATTING STAR
+  $('.star-box-wrap .single-ratting-star').click(function(e){
+    e.preventDefault();
+    var star = $(this).children().length;
+
+    $('.star-box-wrap .single-ratting-star').removeClass('active');
+    $(this).addClass('active');
+
+    $('input[name="star"]').val(star);
+
+    console.log('Bintang saya adalah '+ star);
+  })
+
   // SUBSCRIBE
   $('input[type="button"][name="subscribe"]').click(function(){
     var email = $('#mc-embedded-subscribe-form input[name="email"]').val();

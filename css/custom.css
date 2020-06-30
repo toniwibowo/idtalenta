@@ -1,3 +1,27 @@
+.star-box-wrap .single-ratting-star.active i{
+  color: #f5b223;
+}
+
+.dropdown-item{
+  padding: .25rem 0;
+}
+
+.dropdown-item:focus, .dropdown-item:hover{
+  background: none;
+}
+
+.dropdown-item.active, .dropdown-item:active{
+  background: none;
+}
+
+.dropdown-item.text-warning{
+  cursor: default;
+}
+
+.dropdown-item:hover.text-warning{
+  text-decoration: none !important;
+}
+
 .appear-animation{
   opacity: 1;
 }

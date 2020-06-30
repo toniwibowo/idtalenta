@@ -52,13 +52,39 @@
 
                             <div class="product-details-ratting-wrap">
                                 <div class="product-details-ratting">
-                                  <i class="yellow fa fa-star"></i>
-                                  <i class="yellow fa fa-star"></i>
-                                  <i class="yellow fa fa-star"></i>
-                                  <i class="yellow fa fa-star"></i>
-                                  <i class="fa fa-star"></i>
+
+                                  <?php $rating = floor($this->mentor->star($row->mentor_class_id)) ?>
+                                  <?php if ($rating > 0):
+
+                                    for ($i=0; $i < $rating ; $i++) {
+                                      echo '<i class="yellow fa fa-star"></i>';
+                                    }
+
+                                    if ($rating == 4) {
+                                      echo '<i class=" fa fa-star"></i>';
+                                    }elseif ($rating == 3) {
+                                      echo '<i class=" fa fa-star"></i>';
+                                      echo '<i class=" fa fa-star"></i>';
+                                    }elseif ($rating == 2) {
+                                      echo '<i class=" fa fa-star"></i>';
+                                      echo '<i class=" fa fa-star"></i>';
+                                      echo '<i class=" fa fa-star"></i>';
+                                    }elseif ($rating == 1) {
+                                      echo '<i class=" fa fa-star"></i>';
+                                      echo '<i class=" fa fa-star"></i>';
+                                      echo '<i class=" fa fa-star"></i>';
+                                      echo '<i class=" fa fa-star"></i>';
+                                    }else {
+                                      echo '';
+                                    }
+
+                                  ?>
+
+                                  <?php endif; ?>
+
+
                                 </div>
-                                <a href="#"> (1 customer review)</a>
+                                <a href="#"> (<?= $queryReview->num_rows()  ?> customer review)</a>
                             </div>
 
                             <?php if ($row->sale != 0): ?>
@@ -107,6 +133,16 @@
 
 <div class="description-review-area section-padding-7 pb-100">
     <div class="container-fluid">
+      <?php if ($this->session->flashdata('rating-alert')): ?>
+        <div class="row">
+          <div class="col-12">
+            <div class="alert alert-warning" role="alert">
+              <?= $this->session->flashdata('rating-alert') ?>
+            </div>
+          </div>
+        </div>
+
+      <?php endif; ?>
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="description-review-wrapper">
@@ -147,14 +183,39 @@
                                         <div class="review-content">
                                             <div class="review-top-wrap">
                                                 <div class="review-name">
-                                                    <h5><span><?= $rev->full_name ?></span> - March 14, 2020</h5>
+                                                    <h5><span><?= $rev->full_name ?> - </span></h5>
                                                 </div>
+
                                                 <div class="review-rating">
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class="yellow fa fa-star"></i>
-                                                    <i class=" fa fa-star"></i>
+                                                  <?php $rating = floor($rev->star) ?>
+                                                  <?php if ($rating > 0):
+
+                                                    for ($i=0; $i < $rating ; $i++) {
+                                                      echo '<i class="yellow fa fa-star"></i>';
+                                                    }
+
+                                                    if ($rating == 4) {
+                                                      echo '<i class=" fa fa-star"></i>';
+                                                    }elseif ($rating == 3) {
+                                                      echo '<i class=" fa fa-star"></i>';
+                                                      echo '<i class=" fa fa-star"></i>';
+                                                    }elseif ($rating == 2) {
+                                                      echo '<i class=" fa fa-star"></i>';
+                                                      echo '<i class=" fa fa-star"></i>';
+                                                      echo '<i class=" fa fa-star"></i>';
+                                                    }elseif ($rating == 1) {
+                                                      echo '<i class=" fa fa-star"></i>';
+                                                      echo '<i class=" fa fa-star"></i>';
+                                                      echo '<i class=" fa fa-star"></i>';
+                                                      echo '<i class=" fa fa-star"></i>';
+                                                    }else {
+                                                      echo '';
+                                                    }
+
+                                                  ?>
+
+                                                  <?php endif; ?>
+
                                                 </div>
                                             </div>
                                             <?= $rev->description ?>
@@ -169,7 +230,7 @@
                                 <span>Add a Review</span>
                                 <p>Your email address will not be published. Required fields are marked <span>*</span></p>
                                 <div class="ratting-form">
-                                    <form action="#">
+                                    <form action="<?= site_url('mentor/review') ?>" id="submitReview" method="post" class="needs-validation" enctype="application/x-www-form-urlencoded">
                                         <div class="row">
                                             <div class="col-lg-3 col-md-6">
                                                 <div class="rating-form-style mb-20">
@@ -215,12 +276,16 @@
                                             <div class="col-md-12">
                                                 <div class="rating-form-style mb-20">
                                                     <label>Your review <span>*</span></label>
-                                                    <textarea name="Your Review"></textarea>
+                                                    <textarea name="review"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-submit">
                                                     <input type="submit" value="Submit">
+                                                    <input type="hidden" name="class_id" value="<?= $row->mentor_class_id ?>">
+                                                    <input type="hidden" name="user_id" value="<?= $user->id ?>">
+                                                    <input type="hidden" name="slug" value="<?= url_title($row->title,'-',true) ?>">
+                                                    <input type="hidden" name="star" value="0">
                                                 </div>
                                             </div>
                                         </div>

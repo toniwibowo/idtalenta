@@ -1,5 +1,5 @@
 <?php $row = $queryOrder->row() ?>
-<div class="main" role="main">
+<div class="main" role="main" style="display:grid">
   <section class="section section-cart m-0 border-0">
     <div class="container">
       <div class="row">

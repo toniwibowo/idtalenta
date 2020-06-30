@@ -303,7 +303,7 @@ class Mentor extends CI_Controller{
       $this->session->set_flashdata('rating-alert','Review gagal, star rating harus diisi.');
     }
 
-    redirect('mentor/videodetail/'.$_POST['class_id'].'/'.$_POST['slug']);
+    redirect('course/'.$_POST['class_id'].'/'.$_POST['slug']);
   }
 
   public function videodetail($id,$slug)
