@@ -19,7 +19,10 @@
 
     <?php $user = $this->ion_auth->user()->row(); ?>
     <?php $row = $mentor->row() ?>
-    <?php $submentor = $this->db->where('subcategory_class_id', $row->subcategory_class_id)->from('mentor')->join('subcategory_product','subcategory_product.subcategory_product_id = mentor.subcategory_class_id')->get(); ?>
+    <?php if ($row->subcategory_class_id != 0): ?>
+      <?php $submentor = $this->db->where('subcategory_class_id', $row->subcategory_class_id)->from('mentor')->join('subcategory_product','subcategory_product.subcategory_product_id = mentor.subcategory_class_id')->get(); ?>
+    <?php endif; ?>
+
 		<?php $queryProvince = $this->member->province() ?>
     <?php $city = $this->member->state('', $row->province_id) ?>
 
@@ -99,10 +102,13 @@
               <div class="col-lg-9">
                 <select class="form-control" id="subcategory" name="subcategory_class_id">
                   <option value="">==Pilih Subkategori==</option>
-                  <?php if ($submentor->num_rows() > 0): ?>
-                    <?php $sub = $submentor->row() ?>
-                    <option value="<?= $sub->subcategory_class_id ?>" selected><?= $sub->name ?></option>
+                  <?php if ($row->subcategory_class_id != 0): ?>
+                    <?php if ($submentor->num_rows() > 0): ?>
+                      <?php $sub = $submentor->row() ?>
+                      <option value="<?= $sub->subcategory_class_id ?>" selected><?= $sub->name ?></option>
+                    <?php endif; ?>
                   <?php endif; ?>
+
                 </select>
               </div>
             </div>
