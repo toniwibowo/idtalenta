@@ -334,7 +334,7 @@ class Mentor extends CI_Controller{
 
     $data['queryCategory'] = $this->db->get('category_product');
 
-    $data['mentor'] = $this->db->where('user_id', $user->id)->from('mentor')->join('category_product','category_product.category_product_id=mentor.category_class_id')->join('users','users.id=mentor.user_id')->get();
+    $data['mentor'] = $this->db->where('user_id', $user->id)->from('mentor')->join('users','users.id = mentor.user_id')->get();
 
     $this->load->view('include/header');
     $this->load->view('mentor-profile',$data);

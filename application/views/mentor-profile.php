@@ -18,13 +18,13 @@
   <div class="container py-2">
 
     <?php $user = $this->ion_auth->user()->row(); ?>
-    <?php $row = $mentor->row() ?>
-    <?php if ($row->subcategory_class_id != 0): ?>
-      <?php $submentor = $this->db->where('subcategory_class_id', $row->subcategory_class_id)->from('mentor')->join('subcategory_product','subcategory_product.subcategory_product_id = mentor.subcategory_class_id')->get(); ?>
+    <?php $row = $mentor->row_array() ?>
+    <?php if ($row['subcategory_class_id'] != 0): ?>
+      <?php $submentor = $this->db->where('subcategory_class_id', $row['subcategory_class_id'])->from('mentor')->join('subcategory_product','subcategory_product.subcategory_product_id = mentor.subcategory_class_id')->get(); ?>
     <?php endif; ?>
 
 		<?php $queryProvince = $this->member->province() ?>
-    <?php $city = $this->member->state('', $row->province_id) ?>
+    <?php $city = $this->member->state('', $row['province_id']) ?>
 
     <div class="row">
       <div class="col-lg-3 mt-4 mt-lg-0">
@@ -78,7 +78,7 @@
             <div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Nama Kelas</label>
                 <div class="col-lg-9">
-                    <input class="form-control" name="classname" required type="text" value="<?= $row->class_name  ?>">
+                    <input class="form-control" name="classname" required type="text" value="<?= $row['class_name']  ?>">
                     <?php echo form_error('classname', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>
             </div>
@@ -89,7 +89,7 @@
 										<option value="">==Pilih Kategori==</option>
 										<?php if ($queryCategory->num_rows() > 0): ?>
 											<?php foreach ($queryCategory->result() as $key => $value): ?>
-												<option value="<?= $value->category_product_id ?>" <?= $value->category_product_id == $row->category_class_id ? 'selected' : '' ?>><?= $value->category_product_name ?></option>
+												<option value="<?= $value->category_product_id ?>" <?= $value->category_product_id == $row['category_class_id'] ? 'selected' : '' ?>><?= $value->category_product_name ?></option>
 											<?php endforeach; ?>
 										<?php endif; ?>
 									</select>
@@ -102,7 +102,7 @@
               <div class="col-lg-9">
                 <select class="form-control" id="subcategory" name="subcategory_class_id">
                   <option value="">==Pilih Subkategori==</option>
-                  <?php if ($row->subcategory_class_id != 0): ?>
+                  <?php if ($row['subcategory_class_id'] != 0): ?>
                     <?php if ($submentor->num_rows() > 0): ?>
                       <?php $sub = $submentor->row() ?>
                       <option value="<?= $sub->subcategory_class_id ?>" selected><?= $sub->name ?></option>
@@ -119,13 +119,13 @@
 
                     <div id="preview">
                       <div class="embed-responsive embed-responsive-16by9 mb-3">
-                        <video controls controlsList="nodownload" src="<?= base_url('assets/uploads/videos/'.$row->mentor_video) ?>"></video>
+                        <video controls controlsList="nodownload" src="<?= base_url('assets/uploads/videos/'.$row['mentor_video']) ?>"></video>
                       </div>
                     </div>
 
                     <div class="upload-box-body">
                       <p><i class="fa fa-upload"></i> Klik pilih video atau tarik video ke kotak ini</p>
-                      <input class="form-control-file" name="videomentor" id="videomentor" type="file" value="<?= set_value('videomentor')  ?>" data-id="<?= $row->mentor_id ?>" data-update="mentor">
+                      <input class="form-control-file" name="videomentor" id="videomentor" type="file" value="<?= set_value('videomentor')  ?>" data-id="<?= $row['mentor_id'] ?>" data-update="mentor">
                     </div>
 
                     <div class="progress mt-3">
@@ -144,7 +144,7 @@
               <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required" for="">Resume Profil</label>
               <div class="col-lg-9">
                 <textarea name="resume" class="form-control" rows="4" cols="80" required>
-                  <?= $row->resume ?>
+                  <?= $row['resume'] ?>
                 </textarea>
               </div>
             </div>
@@ -153,7 +153,7 @@
               <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required" for="">Profil Mentor</label>
               <div class="col-lg-9">
                 <textarea name="description" class="form-control" rows="6" cols="80" required>
-                  <?= $row->description ?>
+                  <?= $row['profile'] ?>
                 </textarea>
               </div>
             </div>
@@ -161,15 +161,15 @@
 						<div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Akun Bank</label>
 								<div class="col-lg-3">
-									<input class="form-control" name="accountname" required type="text" value="<?= $row->account_name  ?>" placeholder="Nama Rekening" >
+									<input class="form-control" name="accountname" required type="text" value="<?= $row['account_name']  ?>" placeholder="Nama Rekening" >
 									<?php echo form_error('accountname', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>
                 <div class="col-lg-3">
-                    <input class="form-control" name="accountnumber" required type="text" value="<?= $row->account_number  ?>" placeholder="Nomor Rekening" >
+                    <input class="form-control" name="accountnumber" required type="text" value="<?= $row['account_number']  ?>" placeholder="Nomor Rekening" >
                     <?php echo form_error('accountnumber', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>
 								<div class="col-lg-3">
-                    <input class="form-control" name="bankname" required type="text" value="<?= $row->account_bank  ?>" placeholder="Nama Bank">
+                    <input class="form-control" name="bankname" required type="text" value="<?= $row['account_bank']  ?>" placeholder="Nama Bank">
                     <?php echo form_error('bankname', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>
             </div>
@@ -190,7 +190,7 @@
 											<option value="">==Provinsi==</option>
                       <?php if ($queryProvince['rajaongkir']['status']['code'] == 200): ?>
                         <?php foreach ($queryProvince['rajaongkir']['results'] as $key => $value): ?>
-                          <option value="<?= $value['province_id'] ?>" <?= $value['province_id'] == $row->province_id ? 'selected' : '' ?> ><?= $value['province'] ?></option>
+                          <option value="<?= $value['province_id'] ?>" <?= $value['province_id'] == $row['province_id'] ? 'selected' : '' ?> ><?= $value['province'] ?></option>
                         <?php endforeach; ?>
                       <?php endif; ?>
 
@@ -205,14 +205,14 @@
                     <!-- <select class="form-control" name="city_id" id="city" required>
 											<option value="">==Pilih Kota==</option>
                       <?php foreach ($city['rajaongkir']['results'] as $key => $value): ?>
-                        <option value="<?= $value['city_id'] ?>" <?= $value['city_id'] == $row->city_id ? 'selected' : '' ?> ><?= $value['city_name'] ?></option>
+                        <option value="<?= $value['city_id'] ?>" <?= $value['city_id'] == $row['city_id'] ? 'selected' : '' ?> ><?= $value['city_name'] ?></option>
                       <?php endforeach; ?>
 
                     </select> -->
                     <?php echo form_error('city', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>
                 <!-- <div class="col-lg-3">
-                    <input class="form-control" type="text" name="postal_code" value="<?= $row->postal_code  ?>" placeholder="Postal Code" required>
+                    <input class="form-control" type="text" name="postal_code" value="<?= $row['postal_code']  ?>" placeholder="Postal Code" required>
                     <?php echo form_error('postal_code', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div> -->
             </div>
@@ -223,7 +223,7 @@
 
             </div>
             <div class="form-group col-lg-3">
-              <input type="hidden" name="mentor_id" value="<?= $row->mentor_id ?>">
+              <input type="hidden" name="mentor_id" value="<?= $row['mentor_id'] ?>">
               <input type="submit" value="Save" name="btnUpdateProfile" class="btn btn-dark btn-modern float-right" data-loading-text="Loading...">
             </div>
             </div>
