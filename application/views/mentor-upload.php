@@ -61,7 +61,7 @@
           <p class="mb-0 d-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
 
-        <form id="formUploadVideo" role="form" method="post" action="<?= site_url('mentor/uploadvideo') ?>" enctype="multipart/form-data" class="needs-validation">
+        <form id="formUploadVideo" role="form" method="post" action="<?= site_url('mentor/uploadvideo') ?>" enctype="multipart/form-data" class="needs-validationsss">
             <div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Judul</label>
                 <div class="col-lg-9">
@@ -199,7 +199,7 @@
                     </div>
 
                     <div class="upload-box-description mt-3">
-                      <?= form_textarea(['name' => 'video_description[]', 'class' => 'form-control', 'rows' => 3, 'placeholder' => 'Deskripsi Video', 'id' => 'video_description', 'required' => 'required'], set_value('video_description')) ?>
+                      <?= form_textarea(['name' => 'video_description[]', 'class' => 'form-control', 'rows' => 3, 'placeholder' => 'Deskripsi Video', 'id' => 'video_description'], set_value('video_description')) ?>
                     </div>
                   </div>
                   <div class="additional-video">

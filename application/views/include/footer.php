@@ -166,6 +166,7 @@
     <script src="<?= base_url() ?>js/vendor/modernizr-3.6.0.min.js"></script>
     <!-- jquery -->
     <script src="<?= base_url() ?>js/vendor/jquery-3.3.1.min.js"></script>
+    <script src="<?= base_url() ?>vendor/jquery.validation/jquery.validate.min.js"></script>
     <!-- Popper JS -->
     <script src="<?= base_url() ?>js/vendor/popper.js"></script>
     <!-- Bootstrap JS -->

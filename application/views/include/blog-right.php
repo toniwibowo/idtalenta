@@ -1,10 +1,11 @@
-  <div class="sidebar-search">
+  <!-- <div class="sidebar-search">
                             <form class="search-form" action="#">
                                 <input type="text" placeholder="Search here…">
                                 <button class="button-search"><i class="dlicon ui-1_zoom"></i></button>
                             </form>
-                        </div>
-                        <div class="sidebar-widget mt-60 mb-55">
+                        </div> -->
+                        <!-- mt-60 -->
+                        <div class="sidebar-widget mb-55">
                             <h4 class="pro-sidebar-title2">Kategori Blog </h4>
                             <div class="sidebar-widget-list mt-40">
                               <?php $categoryBlog = $this->db->get('category_article'); ?>
@@ -42,7 +43,7 @@
 
                             </div>
                         </div>
-                        <div class="sidebar-widget mb-60">
+                        <!-- <div class="sidebar-widget mb-60">
                             <h4 class="pro-sidebar-title2">Archives </h4>
                             <div class="archives-wrap mt-40">
                                 <select>
@@ -52,8 +53,8 @@
                                     <option> November 2018 </option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="sidebar-widget mb-50">
+                        </div> -->
+                        <!-- <div class="sidebar-widget mb-50">
                             <h4 class="pro-sidebar-title2">Tags</h4>
                             <div class="sidebar-widget-tag mt-35">
                                 <ul>
@@ -69,7 +70,7 @@
                                     <li><a href="#">Travel.</a></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="sidebar-widget">
                             <div class="banner-sidebar-banner">
                                 <a href="#"><img alt="" src="assets/images/blog/banner-blog.jpg"></a>

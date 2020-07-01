@@ -261,7 +261,7 @@ $(document).ready(function(){
       var success = function(val){
         //alert(data);
         thisdiv.parent().parent().find('.progress').find('.progress-bar').hide();
-        thisdiv.parent().parent().find('.progress').css('height','auto').html('<div class="alert alert-success w-100" role="alert">'+ data +'</div>');
+        thisdiv.parent().parent().find('.progress').css('height','auto').html('<div class="alert alert-success w-100" role="alert">'+ val +'</div>');
 
         $.get( siteUrl + "mentor/preview", function( val ) {
           thisdiv.parent().parent().find('#preview').addClass('mb-3').html( val );
