@@ -43,31 +43,21 @@
 
           <div class="col-7">
   					<div class="heading text-primary heading-border heading-bottom-border">
-  						<h3><strong class="font-weight-extra-bold">Video Populer</strong></h3>
+  						<h3><strong class="font-weight-extra-bold">Video Populer Testing</strong></h3>
   					</div>
   				</div>
 
           <div class="col-12">
-            <div class="media mb-4">
-              <img class="img-fluid rounded mr-4" src="<?= base_url('images/video/video-1.jpg') ?>" width="120" alt="">
-              <div class="media-body">
-                <a class="text-dark" href="#">What Are the Seven Elements of Art and How Do They Work Together?</a>
-              </div>
-            </div>
-
-            <div class="media mb-4">
-              <img class="img-fluid rounded mr-4" src="<?= base_url('images/video/video-2.jpg') ?>" width="120" alt="">
-              <div class="media-body">
-                <a class="text-dark" href="#">What Are the Seven Elements of Art and How Do They Work Together?</a>
-              </div>
-            </div>
-
-            <div class="media">
-              <img class="img-fluid rounded mr-4" src="<?= base_url('images/video/video-3.jpg') ?>" width="120" alt="">
-              <div class="media-body">
-                <a class="text-dark" href="#">What Are the Seven Elements of Art and How Do They Work Together?</a>
-              </div>
-            </div>
+            <?php if ($popularVideo->num_rows() > 0): ?>
+              <?php foreach ($popularVideo->result_array() as $key => $value): ?>
+                <div class="media mb-4">
+                  <img class="img-fluid rounded mr-4" src="<?= base_url('assets/uploads/files/'.$value['poster']) ?>" width="120" alt="">
+                  <div class="media-body">
+                    <a class="text-dark" href="<?= site_url('course/'.$value['mentor_class_id'].'/'.url_title($value['title'],'-',true)) ?>"><?= $value['title'] ?></a>
+                  </div>
+                </div>
+              <?php endforeach; ?>
+            <?php endif; ?>
 
           </div>
 

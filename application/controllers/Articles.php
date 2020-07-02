@@ -55,6 +55,7 @@ class Articles  extends MX_Controller {
   {
     $data['query'] = $this->db->query("select * from articles where articles_id = '$id'");
     $data['queryOtherBlog'] = $this->db->query("SELECT * FROM articles WHERE articles_id <> '$id' AND articles_id != '$id' ORDER BY rand() LIMIT 3");
+    $data['popularVideo'] = $this->db->order_by('hits','desc')->get('mentor_class', 3, 0);
 
     //$data['query2'] =$this->db->query("select * from imagenews where news_id = '$news_id'");
 
