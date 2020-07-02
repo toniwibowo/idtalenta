@@ -43,7 +43,7 @@
 
           <div class="col-7">
   					<div class="heading text-primary heading-border heading-bottom-border">
-  						<h3><strong class="font-weight-extra-bold">Video Populer Testing</strong></h3>
+  						<h3><strong class="font-weight-extra-bold">Video Populer</strong></h3>
   					</div>
   				</div>
 
