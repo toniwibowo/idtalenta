@@ -37,10 +37,21 @@ class Video_model extends CI_Model{
       $data['view_date']        = date('Y-m-d');
       $data['mentor_class_id']  = $id;
 
-      $insertlog = $this->db->insert('log_class_view', $data);
+      if ($this->ion_auth->logged_in()) {
+        $user = $this->ion_auth->user()->row();
+        $data['user_id'] = $user->id;
+      }else {
+        $data['user_id'] = 0;
+      }
+
+      $dataLogView = $this->db->where('mentor_class_id', $id)->where('view_date', date('Y-m-d'))->where('ip_address', $data['ip_address'])->get('log_class_view');
+
+      if ($dataLogView->num_rows() < 1) {
+        $insertlog = $this->db->insert('log_class_view', $data);
+      }
 
       if ($insertlog) {
-        
+
         $hit = $this->get_class_by_id($id)->hits + 1;
 
         $this->db->where('mentor_class_id', $id)->set('hits', $hit)->update('mentor_class');

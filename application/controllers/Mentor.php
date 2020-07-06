@@ -38,6 +38,8 @@ class Mentor extends CI_Controller{
 
     $user = $this->ion_auth->user()->row();
 
+    $data['fullName'] = $user->full_name;
+
     $data['userID'] = $user->id;
 
     $this->load->view('include/header');

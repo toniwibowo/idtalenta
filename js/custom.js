@@ -191,10 +191,10 @@ $(document).ready(function(){
     $.post(baseUrl +'cart/addtocart', {product_id: product_id, qty: 1})
     .done(function(){
       alertify.set('notifier','position', 'top-center');
-      alertify.success('Item success add to cart', 5);
+      alertify.success('Item success add to cart', 3);
       setTimeout(function(){
         window.location.reload()
-      }, 3000)
+      }, 1500)
 
     })
 
@@ -274,7 +274,51 @@ $(document).ready(function(){
   $('#checkoutsubmit').click(function(e){
     e.preventDefault();
     $('#checkout').submit();
+  });
+
+  // LATEST VIEW VIDEO CAROUSEL
+  $('#latestViewVideo.owl-carousel').owlCarousel({
+    loop: false,
+    dots: true,
+    responsiveClass:true,
+    margin: 10,
+    responsive: {
+      0:{
+        items: 1
+      },
+      768: {
+        items: 3
+      }
+    }
+
+  });
+
+  // WISHLIST START
+  $('a#btn-wishlist').click(function(e){
+
+    e.preventDefault();
+
+    var class_id = $(this).data('class'),
+    user_id = $(this).data('user');
+
+    $.post(siteUrl +'wishlist/add',{user_id: user_id, mentor_class_id: class_id})
+
+    .done(function(val){
+
+      alertify.set('notifier','position', 'top-center');
+
+      if (val == 'exist') {
+
+        alertify.success('Item already exist in your wishlist', 3);
+
+      }else {
+
+        alertify.success('Item successfully added to wishlist', 3);
+
+      }
+    })
   })
+  // WISHLIST END
 
 
 })

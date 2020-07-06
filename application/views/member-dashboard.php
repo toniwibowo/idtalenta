@@ -1,4 +1,4 @@
-<div class="main d-inline-block" role="main">
+<div class="main d-grid" role="main">
   <section class="section section-dashboard section-dashboard-banner m-0 border-0">
     <div class="container">
       <div class="row no-gutters">
@@ -65,83 +65,49 @@
 
         <div class="col-lg-12">
 
-          <div class="latest-video mt-5">
-            <div class="entry-title text-right">
-              <h3><strong>Video Terakhir di Ikuti</strong></h3>
-            </div>
+          <div class="related-product-area section-padding-1 pb-95">
+              <div class="container-fluid">
+                  <div class="section-title-6 mb-50">
+                      <h2 class="text-center">Video Terakhir Diikuti</h2>
+                  </div>
+                  <div class="owl-carousel" id="latestViewVideo">
 
-            <div class="row mt-4 appear-animation" data-appear-animation="bounceInLeft" data-appear-animation-delay="300" data-appear-animation-duration="1s">
-      				<div class="col-lg-4">
-      					<span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-centered-icons">
-      						<span class="thumb-info-wrapper">
-      							<img src="<?= base_url('images/video/video-1.jpg') ?>" class="img-fluid" alt="">
-      							<span class="thumb-info-action">
-      								<a href="#">
-      									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
-      								</a>
-      							</span>
-      						</span>
-      					</span>
-      					<h5 class="mt-2 text-center">
-      						<a class="text-dark" href="#">
-      							4 Steps of The Creative Process
-      						</a>
-      					</h5>
-                <div class="button-action text-center">
-                  <a class="btn btn-outline btn-rounded btn-dark btn-modern mb-2" href="#">Unduh Materi</a>
-                  <a class="btn btn-outline btn-rounded btn-warning btn-modern" href="#">Unggak Karya</a>
-                </div>
-      				</div>
+                    <?php if ($videoLatestView->num_rows() > 0): ?>
+                      <?php foreach ($videoLatestView->result() as $key => $pop): ?>
+                        <div class="product-wrap">
+                            <div class="product-img default-overlay mb-25">
+                                <a href="<?= site_url('course/'.$pop->mentor_class_id.'/'.url_title($pop->title,'-',true)) ?>">
+                                    <img class="default-img" src="<?= base_url('assets/uploads/files/'.$pop->poster) ?>" alt="">
+                                    <img class="hover-img" src="<?= base_url('assets/uploads/files/'.$pop->poster) ?>" alt="">
+                                </a>
+                                <div class="product-action product-action-position-1">
+                                    <!-- <a data-toggle="modal" data-target="#exampleModal" href="#"><i class="fa fa-eye"></i><span>Quick Shop</span></a>
+                                    <a title="Add to Wishlist" href="#"><i class="fa fa-heart"></i><span>Add to Wishlist</span></a>
+                                    <a class="icon-blod" title="Add to Compare" href="#"><i class="dlicon arrows-4_compare"></i><span>Add to Compare</span></a>
+                                    <a title="Add to Cart" href="#"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a> -->
+                                </div>
+                            </div>
+                            <div class="product-content-2 title-font-width-400 text-center">
+                                <h3><a href="<?= site_url('course/'.$pop->mentor_class_id.'/'.url_title($pop->title,'-',true)) ?>"><?= $pop->title ?></a></h3>
+                                <div class="product-price">
+                                  <?php if ($pop->sale != 0): ?>
+                                    <span class="new-price">Rp. <?= number_format($this->app->sale($pop->price,$pop->sale),0,',','.')  ?></span><br>
+                    								<span class="new-price"><del>Rp. <?= number_format($pop->price,0,',','.')  ?> </del></span>
 
-      				<div class="col-lg-4">
-      					<span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-centered-icons">
-      						<span class="thumb-info-wrapper">
-      							<img src="<?= base_url('images/video/video-2.jpg') ?>" class="img-fluid" alt="">
-      							<span class="thumb-info-action">
-      								<a href="#">
-      									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
-      								</a>
-      							</span>
-      						</span>
-      					</span>
-      					<h5 class="mt-2 text-center">
-      						<a class="text-dark" href="#">
-      							How to Make a Clay Pot by Wheel: 14 Steps
-      						</a>
-      					</h5>
+                    							<?php else: ?>
+                    								<span class="text-center"><strong>Rp. <?= number_format($pop->price,0,',','.')  ?>,-</strong></span>
+                    							<?php endif; ?>
 
-                <div class="button-action text-center">
-                  <a class="btn btn-outline btn-rounded btn-dark btn-modern mb-2" href="#">Unduh Materi</a>
-                  <a class="btn btn-outline btn-rounded btn-warning btn-modern" href="#">Unggak Karya</a>
-                </div>
+                                </div>
+                            </div>
+                        </div>
+                      <?php endforeach; ?>
+                    <?php endif; ?>
 
+                  </div>
               </div>
-
-      				<div class="col-lg-4">
-      					<span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-centered-icons">
-      						<span class="thumb-info-wrapper">
-      							<img src="<?= base_url('images/video/video-3.jpg') ?>" class="img-fluid" alt="">
-      							<span class="thumb-info-action">
-      								<a href="#">
-      									<span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
-      								</a>
-      							</span>
-      						</span>
-      					</span>
-      					<h5 class="mt-2 text-center">
-      						<a class="text-dark" href="#">
-      							Dig Into Digital Illustration with Procreate
-      						</a>
-      					</h5>
-                <div class="button-action text-center">
-                  <a class="btn btn-outline btn-rounded btn-dark btn-modern mb-2" href="#">Unduh Materi</a>
-                  <a class="btn btn-outline btn-rounded btn-warning btn-modern" href="#">Unggak Karya</a>
-                </div>
-      				</div>
-
-      			</div>
-
           </div>
+
         </div>
       </div>
     </div>

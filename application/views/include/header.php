@@ -222,8 +222,11 @@
             																		<li>
             																			<a class="dropdown-item text-light" href="<?= site_url('mentor/profile') ?>">Profile Mentor</a>
             																		</li>
-            																		 <li>
+            																		<li>
             																			<a class="dropdown-item text-light" href="<?= site_url('mentor/upload') ?>">Upload Video</a>
+            																		</li>
+                                                <li>
+            																			<a class="dropdown-item text-light" href="<?= site_url('wishlist') ?>">Wishlist</a>
             																		</li>
 
             																	<?php endif; ?>
@@ -394,10 +397,14 @@
                     <div class="cart-checkout-btn">
                         <a class="btn-hover cart-btn-style" href="<?= site_url('cart') ?>">view cart</a>
                         <?php if ($this->ion_auth->logged_in()): ?>
-                          <form id="checkout" class="" action="<?= site_url('checkout/docheckout') ?>" method="post">
-                            <input type="hidden" name="sid" value="<?= $_COOKIE['cart'] ?>">
-                            <a id="checkoutsubmit" class="no-mrg btn-hover cart-btn-style" href="#">checkout</a>
-                          </form>
+
+                          <?php if ($subtotal != 0): ?>
+                            <form id="checkout" class="" action="<?= site_url('checkout/docheckout') ?>" method="post">
+                              <input type="hidden" name="sid" value="<?= $_COOKIE['cart'] ?>">
+                              <a id="checkoutsubmit" class="no-mrg btn-hover cart-btn-style" href="#">checkout</a>
+                            </form>
+                          <?php endif; ?>
+
                           <?php else: ?>
                             <a class="no-mrg btn-hover cart-btn-style" href="#" data-toggle="modal" data-target="#defaultModal">checkout</a>
                         <?php endif; ?>

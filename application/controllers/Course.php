@@ -70,9 +70,6 @@ class Course extends MX_Controller{
 
     }
 
-
-
-
     $data['queryCategory'] = $this->db->query($sql);
 
     $this->load->view('include/header');

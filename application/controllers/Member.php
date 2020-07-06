@@ -78,8 +78,12 @@ class Member extends CI_Controller{
       redirect('/');
     }
 
+    $data['user'] = $this->ion_auth->user()->row();
+
+    $data['videoLatestView'] = $this->db->where('ip_address', $this->input->ip_address())->or_where('log_class_view.user_id', $data['user']->id)->from('log_class_view')->join('mentor_class', 'mentor_class.mentor_class_id = log_class_view.mentor_class_id')->get();
+
     $this->load->view('include/header');
-    $this->load->view('member-dashboard');
+    $this->load->view('member-dashboard',$data);
     $this->load->view('include/footer');
   }
 

@@ -36,7 +36,7 @@ class Wishlist extends CI_Controller{
     $check = $this->db->where('user_id', $user->id)->where('mentor_class_id',$class_id)->get('wishlist');
 
     if ($check->num_rows() > 0) {
-      echo "Materi kursus ini sudah ada dalam wishlist anda";
+      echo "exist";
     }else {
       $data = array(
         'user_id' => $user->id,
@@ -46,7 +46,7 @@ class Wishlist extends CI_Controller{
       $insert = $this->db->insert('wishlist', $data);
 
       if ($insert) {
-        echo "Berhasil menambahkan ke wishlist anda.";
+        echo "success";
       }
     }
   }

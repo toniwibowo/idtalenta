@@ -5,7 +5,7 @@
         <div class="col parallax m-0 p-0" data-plugin-parallax data-plugin-options="{'speed': 1.5}" data-image-src="<?= base_url('images/mentor/darwis-triadi.jpg')  ?>">
           <div class="row dashboard-banner-box align-items-center">
             <div class="col text-center">
-              <h3 class="text-white mb-0"><strong>Selamat Datang, Darwis</strong></h3>
+              <h3 class="text-dark mb-0"><strong>Selamat Datang, <?= $fullName ?></strong></h3>
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@
                   <div class="card-body p-3">
                     <div class="row no-gutters">
                       <div class="col-lg-8">
-                        <h2 class="mb-0 text-warning"><strong>200</strong></h2>
+                        <h2 class="mb-0 text-warning"><strong><?= $this->mentor->total_view($userID)->row()->amountHits ?></strong></h2>
                         <p class="mb-0">Total video ditonton</p>
                       </div>
                       <div class="col-lg-4 align-self-center">

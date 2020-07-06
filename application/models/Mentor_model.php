@@ -238,4 +238,9 @@ class Mentor_model extends CI_Model{
 
   }
 
+  public function total_view($user_id)
+  {
+    return $this->db->select('*, SUM(hits) as amountHits')->where('user_id', $user_id)->get('mentor_class');
+  }
+
 }
