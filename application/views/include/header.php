@@ -393,10 +393,15 @@
                     </div>
                     <div class="cart-checkout-btn">
                         <a class="btn-hover cart-btn-style" href="<?= site_url('cart') ?>">view cart</a>
-                        <form id="checkout" class="" action="<?= site_url('checkout/docheckout') ?>" method="post">
-                          <input type="hidden" name="sid" value="<?= $_COOKIE['cart'] ?>">
-                          <a id="checkoutsubmit" class="no-mrg btn-hover cart-btn-style" href="#">checkout</a>
-                        </form>
+                        <?php if ($this->ion_auth->logged_in()): ?>
+                          <form id="checkout" class="" action="<?= site_url('checkout/docheckout') ?>" method="post">
+                            <input type="hidden" name="sid" value="<?= $_COOKIE['cart'] ?>">
+                            <a id="checkoutsubmit" class="no-mrg btn-hover cart-btn-style" href="#">checkout</a>
+                          </form>
+                          <?php else: ?>
+                            <a class="no-mrg btn-hover cart-btn-style" href="#" data-toggle="modal" data-target="#defaultModal">checkout</a>
+                        <?php endif; ?>
+
 
                     </div>
                 </div>
