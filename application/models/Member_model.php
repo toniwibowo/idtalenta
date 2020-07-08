@@ -11,7 +11,7 @@ class Member_model extends CI_Model{
     $this->config->load('sketsanet');
   }
 
-  public function email($email,$subject,$message,$name='Info ARTademi')
+  public function email($email,$subject,$message,$name='Info IDTALENTA')
   {
     $mail = $this->config->item('email');
     $config['protocol']   = 'smtp';

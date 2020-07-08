@@ -224,9 +224,9 @@ class Member extends CI_Controller{
     $emaildata['email'] = base64_encode(bin2hex($email));
     $message = $this->load->view('notification/registration',$emaildata,true);
 
-    $this->load->library('PHPMailerAutoload');
+    require_once(APPPATH.'libraries/PHPMailer/PHPMailerAutoload.php');
 
-    $mail = new PHPMailer(true);
+    $mail = new PHPMailer();
 
     $auth = true;
 
@@ -235,7 +235,7 @@ class Member extends CI_Controller{
         $mail->IsSMTP();
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = "ssl";
-        $mail->Host = $config['smtp_host'];;
+        $mail->Host = $config['smtp_host'];
         $mail->Port = 465;
         $mail->Username = $config['smtp_user'];
         $mail->Password = $config['smtp_pass'];
@@ -253,7 +253,7 @@ class Member extends CI_Controller{
     $mail->Subject = 'Registration New Member @ KMN STORE ';
     $mail->Body = $message;
 
-    $kirimEmail = $mail->Send();
+    $mail->Send();
 
     // $this->member->email($email,$subject,$message,$name="Info IDTALENTA");
   }
@@ -310,6 +310,15 @@ class Member extends CI_Controller{
       }
 
 
+  }
+
+  public function email_test($value='')
+  {
+    $email = 'toniewibowo@gmail.com';
+    $subject = 'Test Email';
+    $message = 'message email';
+
+    $this->member->email($email,$subject,$message,$name='Info IDTALENTA');
   }
 
   public function matches_password_check($cpassword, $password)
