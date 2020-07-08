@@ -73,33 +73,49 @@
                   <div class="owl-carousel" id="latestViewVideo">
 
                     <?php if ($videoLatestView->num_rows() > 0): ?>
-                      <?php foreach ($videoLatestView->result() as $key => $pop): ?>
+                      <?php foreach ($videoLatestView->result() as $key => $view): ?>
                         <div class="product-wrap">
-                            <div class="product-img default-overlay mb-25">
-                                <a href="<?= site_url('course/'.$pop->mentor_class_id.'/'.url_title($pop->title,'-',true)) ?>">
-                                    <img class="default-img" src="<?= base_url('assets/uploads/files/'.$pop->poster) ?>" alt="">
-                                    <img class="hover-img" src="<?= base_url('assets/uploads/files/'.$pop->poster) ?>" alt="">
+                          <span class="thumb-info thumb-info-no-borders thumb-info-no-borders-rounded thumb-info-centered-icons">
+                            <span class="thumb-info-wrapper">
+                              <div class="poster" style="background-image: url('<?= base_url('assets/uploads/files/'.$view->poster) ?>')">
+
+                              </div>
+                              <!-- <img src="" class="img-fluid" alt="<?= substr($view->poster,0,-4) ?>"> -->
+                              <span class="thumb-info-action">
+                                <a href="<?= site_url('course/'.$view->mentor_class_id.'/'.url_title($view->title,'-',true)) ?>">
+                                  <span class="thumb-info-action-icon thumb-info-action-icon-light"><i class="fas fa-play-circle fa-5x text-dark text-dark"></i></span>
                                 </a>
-                                <div class="product-action product-action-position-1">
-                                    <!-- <a data-toggle="modal" data-target="#exampleModal" href="#"><i class="fa fa-eye"></i><span>Quick Shop</span></a>
-                                    <a title="Add to Wishlist" href="#"><i class="fa fa-heart"></i><span>Add to Wishlist</span></a>
-                                    <a class="icon-blod" title="Add to Compare" href="#"><i class="dlicon arrows-4_compare"></i><span>Add to Compare</span></a>
-                                    <a title="Add to Cart" href="#"><i class="fa fa-shopping-cart"></i><span>Add to Cart</span></a> -->
-                                </div>
-                            </div>
-                            <div class="product-content-2 title-font-width-400 text-center">
-                                <h3><a href="<?= site_url('course/'.$pop->mentor_class_id.'/'.url_title($pop->title,'-',true)) ?>"><?= $pop->title ?></a></h3>
-                                <div class="product-price">
-                                  <?php if ($pop->sale != 0): ?>
-                                    <span class="new-price">Rp. <?= number_format($this->app->sale($pop->price,$pop->sale),0,',','.')  ?></span><br>
-                    								<span class="new-price"><del>Rp. <?= number_format($pop->price,0,',','.')  ?> </del></span>
+                              </span>
+                            </span>
+                          </span>
+                          <h4 class="mt-2 text-center text-3">
+                            <a class="text-dark" href="<?= site_url('course/'.$view->mentor_class_id.'/'.url_title($view->title,'-',true)) ?>">
+                              <?= $view->title ?>
+                            </a>
+                          </h4>
 
-                    							<?php else: ?>
-                    								<span class="text-center"><strong>Rp. <?= number_format($pop->price,0,',','.')  ?>,-</strong></span>
-                    							<?php endif; ?>
+                          <?php if ($view->sale != 0): ?>
+                            <h3 class="text-center mb-1"><strong>Rp. <?= number_format($this->app->sale($view->price,$view->sale),0,',','.')  ?>,-</strong></h3>
+                            <h5 class="text-center"><del>Rp. <?= number_format($view->price,0,',','.')  ?>,- </del></h5>
+                          <?php else: ?>
+                            <h3 class="text-center"><strong>Rp. <?= number_format($view->price,0,',','.')  ?>,-</strong></h3>
+                          <?php endif; ?>
 
-                                </div>
+                          <div class="button-action">
+                            <div class="row">
+                              <div class="col">
+                                <a class="btn btn-danger btn-rounded btn-outline btn-block" href="<?= site_url('course/'.$view->mentor_class_id.'/'.url_title($view->title,'-',true)) ?>">Video Detail</a>
+                              </div>
+                              <div class="col">
+                                <form class="" action="<?= site_url('cart/addtocart') ?>" method="post" enctype="application/x-www-form-urlencoded">
+                                  <input type="hidden" name="product_id" value="<?= $view->mentor_class_id ?>">
+                                  <input type="hidden" name="qty" value="1">
+                                  <button type="submit" name="button" class="btn btn-outline btn-rounded btn-dark btn-block">Buy</button>
+                                </form>
+                              </div>
                             </div>
+
+                          </div>
                         </div>
                       <?php endforeach; ?>
                     <?php endif; ?>
