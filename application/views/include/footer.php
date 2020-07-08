@@ -194,6 +194,14 @@
     <script src="<?= base_url() ?>js/plugins/bpopup.js"></script>
     <script src="<?= base_url() ?>js/plugins/wow.js"></script>
     <script src="<?= base_url() ?>js/plugins/ajax-mail.js"></script>
+
+    <?php if ($uri == 'course'): ?>
+    <script src="<?= base_url() ?>vendor/video.js/dist/video.min.js"></script>
+    <script src="<?= base_url() ?>js/video-handlers.js"></script>
+    <?php endif; ?>
+
+    <script src="<?= base_url() ?>js/tagsinput.js"></script>
+
     <!-- Main JS -->
     <script src="<?= base_url() ?>js/main.js"></script>
     <script src="<?= base_url() ?>js/custom.js"></script>

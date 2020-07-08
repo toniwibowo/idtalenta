@@ -143,6 +143,14 @@
             </div>
 
             <div class="form-group row">
+                <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">YouTube Embeded [',']</label>
+                <div class="col-lg-9">
+                  <input id="YouTubeEmbeded" type="text" name="youTubeEmbeded" class="form-control" data-role="tagsinput" required value="<?= set_value('youTubeEmbeded') ?>" placeholder="1qeTgTYvGJ0,2keRgTYvGYl,5qeTgKLvGD2">
+                  <?php echo form_error('youTubeEmbeded', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">File Materi (jpg|png|gif)</label>
 
                 <div class="col-lg-9">
@@ -216,8 +224,16 @@
             <div class="form-group col-lg-6">
               <input type="hidden" name="user_id" value="<?= $user->id ?>">
               <input type="hidden" name="video_id" id="videoID" value="<?= $this->session->userdata('video_id') ?>">
-              <input type="submit" value="Upload" name="submitVideo" class="btn btn-dark btn-modern float-right" data-loading-text="Loading...">
-              <button type="button" class="btn btn-warning btn-modern float-right mr-2 text-dark" name="addvideo"><i class="fa fa-plus-circle"></i> Tambah Video</button>
+              <div class="row">
+                <div class="col">
+                  <input type="submit" value="Upload" name="submitVideo" class="btn btn-dark btn-modern float-right" data-loading-text="Loading...">
+                </div>
+                <div class="col">
+                  <button type="button" class="btn btn-warning btn-modern btn-block mr-2 text-dark" name="addvideo"><i class="fa fa-plus-circle"></i> Tambah Video</button>
+                </div>
+              </div>
+
+
             </div>
             </div>
         </form>

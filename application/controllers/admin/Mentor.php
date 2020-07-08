@@ -382,7 +382,7 @@ class Mentor extends MX_Controller
       $crud->callback_column('poster',array($this,'countvideo'));
 
       // Field view
-      $crud->fields('user_id','category_product_id','subcategory_product_id','title','resume','description','posting_date','tags','price','sale','poster','thriller','video_id','approve','promo_start_date','promo_end_date');
+      $crud->fields('user_id','category_product_id','subcategory_product_id','title','resume','description','posting_date','tags','price','sale','poster','thriller','video_id','ytube_embeded','approve','promo_start_date','promo_end_date');
 
       $crud->field_type('approve','dropdown', array('0' => 'No', '1' => 'Yes'));
 
@@ -396,6 +396,7 @@ class Mentor extends MX_Controller
       $crud->display_as('user_id','Mentor');
       $crud->display_as('category_product_id','Class Category');
       $crud->display_as('subcategory_product_id','Class Subcategory');
+      $crud->display_as('ytube_embeded','YouTube Embeded[]');
 
       $crud->set_relation('user_id','users','full_name');
       $crud->set_relation('category_product_id','category_product','category_product_name');
