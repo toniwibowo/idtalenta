@@ -162,6 +162,8 @@
     <!-- All JS is here
 ============================================ -->
 
+    <?php $uri = $this->uri->segment(1); ?>
+
     <!-- Modernizer JS -->
     <script src="<?= base_url() ?>js/vendor/modernizr-3.6.0.min.js"></script>
     <!-- jquery -->
