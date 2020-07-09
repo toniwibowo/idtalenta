@@ -254,9 +254,9 @@ class Member extends CI_Controller{
     $mail->Body = $message;
 
     if ($mail->Send()) {
-      echo "PESAN TERKIRIM";
+      echo "<h3>PESAN TERKIRIM</h3>";
     }else {
-      echo "PESAN TIDAK TERKIRIM";
+      echo "<h3>PESAN TIDAK TERKIRIM</h3>";
     }
 
     // $this->member->email($email,$subject,$message,$name="Info IDTALENTA");
