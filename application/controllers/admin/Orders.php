@@ -178,10 +178,10 @@ class Orders extends MX_Controller
         }
     }
 
-    public function item($value='')
+    public function item($value)
     {
       $data['title'] = 'Purchased Item - '.$value;
-      $data['order'] = $this->db->where('order_id', $value)->from('orders')->join('users','users.id = orders.order_id')->get();
+      $data['order'] = $this->db->where('orders.order_id', $value)->from('orders')->join('users','users.id = orders.user_id')->get();
       $data['orderItem'] = $this->db->where('order_id', $value)->from('order_item')->join('mentor_class','mentor_class_id = order_item.product_id')->get();
 
       $this->load->view('template/purchased-item', $data);
