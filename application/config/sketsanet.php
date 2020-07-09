@@ -42,7 +42,7 @@ $config['route'] = [
 // Default Email Configuration
 $config['email'] = [
     'protocol' => 'smtp',
-    'smtp_host' => 'mail.greatindonesia.com',
+    'smtp_host' => 'allamanda.ardetamedia.net',
     'smtp_user' => 'tonny@greatindonesia.com',
     'smtp_pass' => 'n4-7mjddAZ0c',
     'smtp_port' => 465,
