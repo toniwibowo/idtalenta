@@ -253,7 +253,7 @@ class Member extends CI_Controller{
     $mail->Subject = 'Registration New Member @ KMN STORE ';
     $mail->Body = $message;
 
-    if ($mail->Send();) {
+    if ($mail->Send()) {
       echo "PESAN TERKIRIM";
     }else {
       echo "PESAN TIDAK TERKIRIM";
