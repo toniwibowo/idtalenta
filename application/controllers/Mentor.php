@@ -545,7 +545,7 @@ class Mentor extends CI_Controller{
 
     $user = $this->ion_auth->user()->row();
 
-    $data['getOrder'] = $this->db->where('payment', 0)->where('user_id', $user->id)->get('orders');
+    $data['getOrder'] = $this->db->where('payment', 1)->where('user_id', $user->id)->get('orders');
 
     $this->load->view('include/header');
     $this->load->view('purchased',$data);
