@@ -253,7 +253,11 @@ class Member extends CI_Controller{
     $mail->Subject = 'Registration New Member @ KMN STORE ';
     $mail->Body = $message;
 
-    $mail->Send();
+    if ($mail->Send();) {
+      echo "PESAN TERKIRIM";
+    }else {
+      echo "PESAN TIDAK TERKIRIM";
+    }
 
     // $this->member->email($email,$subject,$message,$name="Info IDTALENTA");
   }
