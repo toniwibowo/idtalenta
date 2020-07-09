@@ -1,3 +1,6 @@
+h1, h2, h3, h4, h5, h6 {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !important;
+}
 .d-grid{
   display: grid;
 }
@@ -35,6 +38,10 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.blog-wrap-3 .blog-content-3 h3, .sidebar-widget h4.pro-sidebar-title2, .sidebar-post-wrap .single-sidebar-post .sidebar-post-content h4{
+  font-family: inherit !important;
 }
 
 button.close{
