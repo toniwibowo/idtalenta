@@ -11,31 +11,72 @@ class Member_model extends CI_Model{
     $this->config->load('sketsanet');
   }
 
-  public function email($email,$subject,$message,$name='Info IDTALENTA')
+  public function email($email,$subject,$message,$name)
   {
-    $mail = $this->config->item('email');
-    $config['protocol']   = 'smtp';
-    $config['smtp_host']  = $mail['smtp_host'];
-    $config['smtp_user']  = $mail['smtp_user'];
-    $config['smtp_pass']  = $mail['smtp_pass'];
-    $config['smtp_port']  = $mail['smtp_port'];
-    $config['mailtype']   = 'html';
-    $config['newline']    = "\r\n";
 
-    $this->load->library('email', $config);
+    $this->config->load('sketsanet');
+    $config = $this->config->item('email');
 
-    $this->email->from('info@idtalenta.com', $name);
-    $this->email->to($email);
-    $this->email->set_mailtype("html");
-    //$this->email->cc('another@another-example.com');
-    $this->email->bcc('tonny.wbw84@gmail.com,yudisketsa@gmail.com');
+    require_once(APPPATH.'libraries/PHPMailer/PHPMailerAutoload.php');
 
-    $this->email->subject($subject);
-    $this->email->message($message);
+    $mail = new PHPMailer();
 
-    $this->email->send();
+    $auth = true;
 
-    return true;
+    if ($auth)
+    {
+        $mail->IsSMTP();
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = "ssl";
+        $mail->Host = $config['smtp_host'];
+        $mail->Port = 465;
+        $mail->Username = $config['smtp_user'];
+        $mail->Password = $config['smtp_pass'];
+
+        //$mail->Debugoutput = 'html';
+        //$mail->SMTPDebug = 2;
+
+    }
+
+    $mail->AddAddress($email);
+    $mail->AddBCC('tonny.wbw84@gmail.com');
+    $mail->SetFrom("admin@idtalenta.com", "no-reply");
+
+    $mail->isHTML(true);
+    $mail->Subject = $subject;
+    $mail->Body = $message;
+
+    if ($mail->Send()) {
+
+      return false;
+
+    }else {
+
+      $config['protocol']   = 'smtp';
+      $config['smtp_host']  = $config['smtp_host'];
+      $config['smtp_user']  = $config['smtp_user'];
+      $config['smtp_pass']  = $config['smtp_pass'];
+      $config['smtp_port']  = 465;
+      $config['mailtype']   = 'html';
+      $config['newline']    = "\r\n";
+
+      $this->load->library('email', $config);
+
+      $this->email->from('no-reply@idtalenta.com', $name);
+      $this->email->to($email);
+      $this->email->set_mailtype("html");
+      //$this->email->cc('another@another-example.com');
+      $this->email->bcc('yudisketsa@gmail.com');
+      $this->email->bcc('tonny.wbw84@gmail.com');
+
+      $this->email->subject($subject);
+      $this->email->message($message);
+
+      $this->email->send();
+
+      return false;
+
+    }
 
   }
 

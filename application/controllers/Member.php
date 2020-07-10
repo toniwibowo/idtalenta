@@ -199,7 +199,7 @@ class Member extends CI_Controller{
       $emaildata['name'] = $fullname;
       $emaildata['email'] = base64_encode(bin2hex($email));
       $message = $this->load->view('notification/registration',$emaildata,true);
-      // $this->member->email($email,$subject,$message,$name="Info IDTALENTA");
+      $this->member->email($email,$subject,$message,$name="Info IDTALENTA");
 
       echo 1;
 
