@@ -166,7 +166,7 @@
                                                 <?php foreach ($category->result() as $key => $value): ?>
                                                   <?php $sub = $this->db->where('category_product_id', $value->category_product_id)->get('subcategory_product'); ?>
                                                   <li>
-                                                    <a href="<?= site_url('classroom/'.url_title($value->category_product_name,'-',true)) ?>"><?= $value->category_product_name ?></a>
+                                                    <a href="<?= site_url('classroom/'.url_title($value->category_product_name,'-',true)) ?>"><?= str_replace(' dan ', '&', $value->category_product_name)  ?></a>
                                                     <?php if ($sub->num_rows() > 0): ?>
                                                       <ul>
                                                         <?php foreach ($sub->result() as $key => $s): ?>
