@@ -45,7 +45,7 @@
                 <?php if ($this->ion_auth->logged_in()): ?>
                   <form class="" action="<?= site_url('checkout/docheckout') ?>" method="post" enctype="application/x-www-form-urlencoded">
                     <input type="hidden" name="sid" value="<?= $_COOKIE['cart'] ?>">
-                    <button class="btn btn-rounded btn-outline btn-warning btn-block mb-2" type="submit">Beli(<?= $cartItem->num_rows() ?>)</button>
+                    <button class="btn btn-rounded btn-outline btn-warning btn-block mb-2" type="submit">Beli(<?= isset($cartItem) ? $cartItem->num_rows() : $numrows ?>)</button>
                   </form>
 
                 <?php else: ?>

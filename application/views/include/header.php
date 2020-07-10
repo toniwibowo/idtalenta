@@ -316,8 +316,8 @@
                 <div class="row align-items-center">
                     <div class="col-6">
                         <div class="mobile-logo logo-width">
-                            <a href="index.php">
-                                <img alt="" src="assets/images/logo/logo.png">
+                            <a href="<?= site_url() ?>">
+                                <img alt="" src="<?= base_url() ?>images/logo/logo-2.png">
                             </a>
                         </div>
                     </div>
@@ -327,7 +327,7 @@
                                 <div class="same-style cart-wrap">
                                     <a href="#" class="cart-active">
                                         <i class="dlicon shopping_bag-20"></i>
-                                        <span class="count-style">03</span>
+                                        <span class="count-style"><?= $itemAmount ?></span>
                                     </a>
                                 </div>
                                 <div class="same-style header-off-canvas">
@@ -433,10 +433,10 @@
                                 <!-- mobile menu navigation start -->
                                 <nav>
                                     <ul class="mobile-menu">
-                                        <li class="menu-item-has-children"><a href="index.php">Home</a>
+                                        <li class="menu-item-has-children"><a href="<?= site_url() ?>">Home</a>
 
                                         </li>
-                                        <li class="menu-item-has-children"><a href="about-us.php">About Us</a>
+                                        <li class="menu-item-has-children"><a href="<?= site_url('about-us') ?>">About Us</a>
                                             <!--<ul class="dropdown">
                                                 <li><a href="#">Profile</a></li>
                                                 <li><a href="#">Vision & Mission</a></li>-->
@@ -491,14 +491,33 @@
 
 
 
-                                        <li class="menu-item-has-children "><a href="#">Course</a>
-                                            <ul class="dropdown">
-                                                <li><a href="category.php">Financial</a></li>
-                                                <li><a href="category.php">Digital Marketing</a></li>
-                                                <li><a href="category.php">Graphic Design</a></li>
-                                            </ul>
+                                        <li class="menu-item-has-children"><a href="#">Course</a>
+                                          <ul class="dropdown">
+                                            <?php $category = $this->db->get('category_product'); ?>
+                                            <?php if ($category->num_rows() > 0): ?>
+                                              <?php foreach ($category->result() as $key => $value): ?>
+                                                <?php $sub = $this->db->where('category_product_id', $value->category_product_id)->get('subcategory_product'); ?>
+                                                <li>
+                                                  <a href="<?= site_url('classroom/'.url_title($value->category_product_name,'-',true)) ?>"><?= $value->category_product_name ?></a>
+                                                  <?php if ($sub->num_rows() > 0): ?>
+                                                    <ul>
+                                                      <?php foreach ($sub->result() as $key => $s): ?>
+                                                        <li>
+                                                          <a href="<?= site_url('classroom/'.url_title($value->category_product_name,'-',true).'/'.url_title($s->name,'-',true)) ?>"><?= $s->name ?></a>
+                                                        </li>
+                                                      <?php endforeach; ?>
+                                                    </ul>
+                                                  <?php endif; ?>
+
+                                                </li>
+                                              <?php endforeach; ?>
+                                            <?php endif; ?>
+                                          </ul>
                                         </li>
-                                        <li class="menu-item-has-children "><a href="blog.php">Blog</a>
+                                        <li class="menu-item-has-children">
+                                          <a href="<?= site_url('mentor') ?>">Mentor</a>
+                                        </li>
+                                        <li class="menu-item-has-children "><a href="<?= site_url('blog') ?>">Blog</a>
                                             <!--<ul class="dropdown">
                                                 <li><a href="blog.html">Blog Style 01</a></li>
                                                 <li><a href="blog-2.html">Blog Style 02</a></li>
@@ -520,7 +539,7 @@
 
 
                         <div class="mobile-curr-lang-wrap">
-                            <div class="single-mobile-curr-lang">
+                            <!-- <div class="single-mobile-curr-lang">
                                 <a class="mobile-language-active" href="#">Language <i class="fa fa-angle-down"></i></a>
                                 <div class="lang-curr-dropdown lang-dropdown-active">
                                     <ul>
@@ -529,8 +548,8 @@
                                         <li><a href="#">Spanish</a></li>
                                     </ul>
                                 </div>
-                            </div>
-                            <div class="single-mobile-curr-lang">
+                            </div> -->
+                            <!-- <div class="single-mobile-curr-lang">
                                 <a class="mobile-currency-active" href="#">Currency <i class="fa fa-angle-down"></i></a>
                                 <div class="lang-curr-dropdown curr-dropdown-active">
                                     <ul>
@@ -540,14 +559,62 @@
                                         <li><a href="#">BDT</a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="single-mobile-curr-lang">
                                 <a class="mobile-account-active" href="#">My Account <i class="fa fa-angle-down"></i></a>
                                 <div class="lang-curr-dropdown account-dropdown-active">
                                     <ul>
-                                        <li><a href="#">Login</a></li>
-                                        <li><a href="#">Creat Account</a></li>
-                                        <li><a href="my-account.html">My Account</a></li>
+
+                                        <?php if ( !$this->ion_auth->logged_in() ): ?>
+                                          <li><a href="#" data-toggle="modal" data-target="#defaultModal">Login/Register</a></li>
+                                        <?php else: ?>
+                                        <?php $user = $this->ion_auth->user()->row() ?>
+                                          <li>
+                                            <a href="#">My Account</a>
+                                            <ul class="sub-menu-width">
+                                              <li>
+                                                <a href="<?= site_url('member/dashboard') ?>">Dashboard</a>
+                                              </li>
+                                              <li>
+                                                <a href="<?= site_url('member/myaccount') ?>">My Profile</a>
+                                              </li>
+                                              <li>
+                                                <a href="<?= site_url('my-course') ?>">My Course</a>
+                                              </li>
+
+                                              <?php if ($this->ion_auth->in_group(4)): ?>
+                                              <?php $check_mentor_active = $this->db->where('user_id', $user->id)->where('active',1)->get('mentor'); ?>
+                                              <?php if ($check_mentor_active->num_rows() > 0): ?>
+                                                <li>
+                                                  <a class="dropdown-item text-warning" href="#!">MENTOR AREA</a>
+                                                </li>
+                                                <li>
+                                                  <a class="dropdown-item text-light" href="<?= site_url('mentor/dashboard') ?>">Dashboard</a>
+                                                </li>
+                                                <li>
+                                                  <a class="dropdown-item text-light" href="<?= site_url('mentor/profile') ?>">Profile Mentor</a>
+                                                </li>
+                                                <li>
+                                                  <a class="dropdown-item text-light" href="<?= site_url('mentor/upload') ?>">Upload Video</a>
+                                                </li>
+                                                <li>
+                                                  <a class="dropdown-item text-light" href="<?= site_url('wishlist') ?>">Wishlist</a>
+                                                </li>
+
+                                              <?php endif; ?>
+                                              <!-- END CHECK MENTOR ACTIVE -->
+                                              <?php else: ?>
+                                              <li>
+                                                <a class="dropdown-item text-light" href="<?= site_url('mentor/register') ?>">Be a Mentor</a>
+                                              </li>
+                                              <?php endif; ?>
+
+                                              <li>
+                                                <a href="<?= site_url('signout') ?>">Logout</a>
+                                              </li>
+                                            </ul>
+                                          </li>
+                                        <?php endif; ?>
                                     </ul>
                                 </div>
                             </div>
@@ -575,8 +642,8 @@
                         </ul>
                     </div>
                     <div class="social-icon-style mb-25">
-                        <a class="facebook" href="https://www.facebook.com/TalentaAnakBangsa/" taget="_blank"><i class="fa fa-facebook"></i></a>
-                        <a class="twitter" href="https://instagram.com/idtalenta.academy"><i class="fa fa-instagram" taget="_blank"></i></a>
+                        <a class="facebook" href="https://www.facebook.com/TalentaAnakBangsa/" taget="_blank"><i class="fab fa-facebook"></i></a>
+                        <a class="twitter" href="https://instagram.com/idtalenta.academy"><i class="fab fa-instagram" taget="_blank"></i></a>
                     </div>
                     <div class="copyright">
                         <p>© 2020 <a href="http://www.idtalenta.com">IDTALENTA</a> All rights reserved</p>
