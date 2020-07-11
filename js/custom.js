@@ -97,9 +97,17 @@ $(document).ready(function(){
   });
 
   // OPEN REGISTER
+
+
   $('#btnRegister').click(function(e){
     e.preventDefault();
     $('div#registerField, button[name="login"], button[name="register"], #rememberMe, #forgotPassword').toggleClass('d-none');
+
+    var text = $(this).text();
+    $(this).text(text == 'Belum punya akun? Daftar disini.' ? 'Sudah punya akun?, silahkan login disini' : 'Belum punya akun? Daftar disini.')
+
+
+
     $('input[name="identity"]').attr('placeholder','Email');
   });
 
