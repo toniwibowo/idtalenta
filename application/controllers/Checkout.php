@@ -235,7 +235,11 @@ class Checkout extends CI_Controller{
 
   public function testing()
   {
-    echo $this->checkout->getAllOrders()->num_rows();
+    $data = [
+      'queryInvoice' => $this->db->where('sid', 'dql5bjj4muud7rqlrtmvjlh279sf14sd101824')->order_by('order_id','desc')->get('orders'),
+      'user' => $this->ion_auth->user()->row()
+    ];
+    $this->load->view('notification/invoice',$data);
   }
 
 }
