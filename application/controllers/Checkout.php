@@ -95,13 +95,12 @@ class Checkout extends CI_Controller{
         //$this->db->where('order_id', $cart->cart_id)->set('order_id',$order->order_id)->update('order_item');
         $this->db->where('cart_id', $cart->cart_id)->delete('cart_item');
 
-
         // UPDATE INVOICE
 
         $inv = $this->db->order_by('invoice', 'DESC')->get('orders')->row();
 
-        if ($this->checkout->getAllOrders()->num_rows() > 0) {
-          $invoice = 4010;
+        if ($this->checkout->getAllOrders()->num_rows() == 0) {
+          $invoice = 4011;
         }else {
           $invoice = $inv->invoice + 1;
         }
@@ -119,7 +118,7 @@ class Checkout extends CI_Controller{
           $row      = $data['queryInvoice']->row();
           $user     = $this->ion_auth->user()->row();
 
-          $name     = "Billing ARTAdemi";
+          $name     = "Billing IDTalenta";
           $email    = $user->email;
           $subject  = "Invoice - ".$invoice.' telah dibuat.';
           $message  = $this->load->view('notification/invoice',$data,true);
@@ -232,6 +231,11 @@ class Checkout extends CI_Controller{
     $data['user'] = $this->ion_auth->user()->row();
 
     $this->load->view('notification/invoice',$data);
+  }
+
+  public function testing()
+  {
+    echo $this->checkout->getAllOrders()->num_rows();
   }
 
 }
