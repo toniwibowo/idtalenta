@@ -17,7 +17,7 @@
             <td align="center">
               <img src="<?= base_url('images/logo-dark.png') ?>" style="max-width:180px" alt="">
               <p style="margin-top:4px; letter-spacing: 3px; color:#ccc;font-size:12px">This wording for tagline</p>
-              <h4 style="margin:0">No. Transaksi : <?= 'ARTDM'.$row->order_id.'-'.$row->user_id.$row->invoice ?></h4>
+              <h4 style="margin:0">No. Transaksi : <?= 'IDTLA'.$row->order_id.'-'.$row->user_id.$row->invoice ?></h4>
             </td>
           </tr>
         </table>
@@ -30,7 +30,7 @@
               Tempo :
             </td>
             <td align="left" style="line-height:2;">
-              <?= 'ART - '.$row->invoice; ?> <br />
+              <?= 'IDT - '.$row->invoice; ?> <br />
               <?= date('d-m-Y',strtotime($row->order_date));  ?> <br>
               <?= date('d-m-Y',strtotime($this->app->due_date($row->order_date, 1)));  ?>
             </td>
@@ -102,12 +102,12 @@
 
         </table>
 
-        <p style="text-align:right">Terima kasih sudah berbelanja di ARTademi.</p>
+        <p style="text-align:right">Terima kasih sudah berbelanja di IDTalenta.</p>
 
         <table width="100%">
           <tr>
             <td style="background-color:#ddd; padding:10px">
-Segala bentuk informasi seperti nomor kontak, alamat e-mail, atau password kamu bersifat rahasia. Jangan menginformasikan data-data tersebut kepada siapa pun, termasuk kepada pihak yang mengatasnamakan ARTAdemi.
+Segala bentuk informasi seperti nomor kontak, alamat e-mail, atau password kamu bersifat rahasia. Jangan menginformasikan data-data tersebut kepada siapa pun, termasuk kepada pihak yang mengatasnamakan IDTalenta.
             </td>
           </tr>
         </table>
@@ -117,11 +117,11 @@ Segala bentuk informasi seperti nomor kontak, alamat e-mail, atau password kamu 
             <td align="right" width="50%"><span style="color:#fff; margin-right:15px;">Follow Us :</span></td>
             <td align="left" style="padding:6px 0 2px">
 
-              <a style="display:inline-block; background:#fff; color:#0088CC; border-radius:50%; width:30px; height:30px; position:relative" target="_blank" href="https://www.facebook.com/gravenzadigital">
-                <i style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);font-size:16px" class="fa fa-facebook"></i>
+              <a style="display:inline-block; background:#fff; color:#0088CC; border-radius:50%; width:37px; height:37px; position:relative" target="_blank" href="https://www.facebook.com/">
+                <img src="<?= base_url('images/facebook_icon.png') ?>" alt="">
               </a>
-              <a style="display:inline-block; background:#fff; color:#0088CC; border-radius:50%; width:30px; height:30px; position:relative" target="_blank" href="https://www.instagram.com/">
-                <i style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);font-size:16px" class="fa fa-instagram"></i>
+              <a style="display:inline-block; background:#fff; color:#0088CC; border-radius:50%; width:37px; height:37px; position:relative" target="_blank" href="https://www.instagram.com/">
+                <img src="<?= base_url('images/ig_icon.png') ?>" alt="">
               </a>
             </td>
           </tr>

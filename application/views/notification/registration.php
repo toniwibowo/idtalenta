@@ -15,14 +15,14 @@
             <table style="width:100%; border:0;" cellpadding="15" cellspacing="0">
               <tr>
                 <td align="center" style="border-bottom:solid thin #ccc">
-                  <img src="<?= base_url('images/logo-dark.png') ?>" style="max-width:200px" alt="artademi">
+                  <img src="<?= base_url('images/logo-dark.png') ?>" style="max-width:200px" alt="IDTalenta">
                 </td>
               </tr>
               <tr>
                 <td>
                   <h4>Dear <?= $name ?></h4>
                   <p>
-                    Selamat datang di Artademi, akun anda telah dibuat, silahkan melakukan konfirmasi email anda dengan cara klik button dibawah ini.
+                    Selamat datang di IDTalenta, akun anda telah dibuat, silahkan melakukan konfirmasi email anda dengan cara klik button dibawah ini.
                     <br>
                     <br>
                     <a href="<?= site_url('member/validate/'.$email) ?>" style="background:#0088CC; color:#fff; border-radius:5px; padding:10px; text-decoration:none; font-size:14px;" name="button">Validasi Email</a>
