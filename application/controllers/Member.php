@@ -385,7 +385,8 @@ class Member extends CI_Controller{
 
         $email = $this->input->post('email');
         $message = 'Silahkan klik <a href="'.base_url().'member/password_reset/'.$forgotten['forgotten_password_code'].'">disini</a> untuk reset password anda.';
-        $this->member->email($email, $subject = 'Reset Password', $message);
+        $name = 'Support IDTalenta';
+        $this->member->email($email, $subject = 'Reset Password', $message, $name);
 
         $this->session->set_flashdata('message', $this->ion_auth->messages());
         redirect("member/login", 'refresh'); //we should display a confirmation page here instead of the login page
