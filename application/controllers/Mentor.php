@@ -109,9 +109,24 @@ class Mentor extends CI_Controller{
       }
     }
 
+    if (isset($_POST['youtube_link'])) {
+      $classID = $this->input->post('class_id');
+      $link = $this->input->post('youtube_link');
+
+      $data = array(
+        'ytube_embeded' => $link
+      );
+
+      $updateLinkYoutube = $this->db->where('mentor_class_id', $classID)->set($data)->update('mentor_class');
+
+      if ($updateLinkYoutube) {
+        echo 1;
+      }else {
+        echo 0;
+      }
+    }
+
     if (isset($_FILES['video_list']['tmp_name'])) {
-
-
 
       $id = $this->input->post('mentor_video_id',true);
 

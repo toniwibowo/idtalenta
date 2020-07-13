@@ -309,7 +309,7 @@ $(document).ready(function(){
     var class_id = $(this).data('class'),
     user_id = $(this).data('user');
 
-    $.post(siteUrl +'wishlist/add',{user_id: user_id, mentor_class_id: class_id})
+    $.post(baseUrl +'wishlist/add',{user_id: user_id, mentor_class_id: class_id})
 
     .done(function(val){
 
@@ -327,6 +327,26 @@ $(document).ready(function(){
     })
   })
   // WISHLIST END
+
+  // UPDATE YOUTUBE LINK FROM MENTOR DASHBOARD
+  $('#youtubeLink').on('change', function(){
+    var classID = $(this).data('id');
+    var link = this.value;
+    console.log('DATA YOUTUBE '+ classID +' - '+link);
+    alertify.set('notifier','position', 'top-center');
+
+    $.post(baseUrl+ 'mentor/updatevideo', {class_id: classID, youtube_link: link})
+    .done(function(val){
+      if (val == 1) {
+        alertify.success('Link video successfully update', 3);
+      }else {
+        alertify.error('Your link video failed to update', 3);
+      }
+    })
+    .fail(function(err){
+      console.log(err);
+    })
+  })
 
 
 })

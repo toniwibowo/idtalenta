@@ -68,8 +68,37 @@
 
               </div>
 
+              <!-- YOUTUBE VIDEO LIST -->
               <div class="heading heading-border heading-bottom-double-border">
-								<h4 class="font-weight-normal">List <strong class="font-weight-extra-bold">Video</strong></h4>
+								<h4 class="font-weight-normal">YOUTUBE <strong class="font-weight-extra-bold">Video</strong> List</h4>
+							</div>
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <form class="" action="" method="post" enctype="application/x-www-form-urlencoded">
+                    <div class="form-group">
+                      <label for="">Youtube Link</label>
+                      <input id="youtubeLink" type="text" name="youtube-link" value="<?= $row->ytube_embeded ?>" data-id="<?= $this->uri->segment(4) ?>">
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <?php if ($row->ytube_embeded != ''): ?>
+                <?php $dataYoutube = explode(',',trim($row->ytube_embeded)) ?>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <?php foreach ($dataYoutube as $key => $link): ?>
+                      <div class="embed-responsive embed-responsive-16by9 mb-4">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $link ?>?rel=1"></iframe>
+                      </div>
+                    <?php endforeach; ?>
+                  </div>
+                </div>
+              <?php endif; ?>
+
+              <div class="heading heading-border heading-bottom-double-border">
+								<h4 class="font-weight-normal">UPLOAD <strong class="font-weight-extra-bold">Video</strong> List</h4>
 							</div>
 
               <div class="row">
@@ -100,6 +129,8 @@
               </div>
 
               <!-- LIST VIDEOS -->
+
+              <!-- UPLOAD VIDEO LIST -->
               <div id="listVideoParent">
                 <?php if ($listVideo->num_rows() > 0): ?>
                   <?php foreach ($listVideo->result() as $key => $vd): ?>
