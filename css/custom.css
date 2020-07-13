@@ -1,8 +1,15 @@
 h1, h2, h3, h4, h5, h6 {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !important;
 }
+
 .d-grid{
   display: grid;
+}
+
+.owl-nav div[class*="owl-"] {
+  position: absolute;
+  background-color: #ffc837;
+  color: #fff;
 }
 
 .star-box-wrap .single-ratting-star.active i{
