@@ -339,6 +339,7 @@ $(document).ready(function(){
     .done(function(val){
       if (val == 1) {
         alertify.success('Link video successfully update', 3);
+        window.location.reload();
       }else {
         alertify.error('Your link video failed to update', 3);
       }
