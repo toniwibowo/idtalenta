@@ -10,6 +10,16 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   background-color: #ffc837;
   color: #fff;
+  font-size: 48px;
+  padding: 10px;
+}
+
+.owl-nav .owl-prev{
+  left: 0;
+}
+
+.owl-nav .owl-next{
+  right: 0;
 }
 
 .star-box-wrap .single-ratting-star.active i{
