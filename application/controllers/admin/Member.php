@@ -72,7 +72,7 @@ class Member extends MX_Controller
             if ($this->default_page == '') {
                 $this->login();
             } else {
-               $this->page($this->default_page);
+               redirect('login');
                 //echo $this->default_page;
             }
         } else {
