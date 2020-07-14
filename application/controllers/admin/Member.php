@@ -91,6 +91,7 @@ class Member extends MX_Controller
         $crud->set_subject('Member');
         $crud->where('member_id', 2);
         $crud->unset_add();
+        $crud->order_by('id', 'DESC');
 
         // Required field
         $crud->required_fields();

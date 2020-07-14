@@ -1,5 +1,5 @@
-<div class="main d-inline-block" role="main">
-  <section class="section section-dashboard section-dashboard-banner m-0 border-0">
+<div class="main d-grid bg-white" role="main">
+  <section class="section section-dashboard section-dashboard-banner m-0 border-0 bg-white">
     <div class="container">
       <div class="row no-gutters">
         <div class="col parallax m-0 p-0" data-plugin-parallax data-plugin-options="{'speed': 1.5}" data-image-src="<?= base_url('images/mentor/darwis-triadi.jpg')  ?>">
@@ -13,7 +13,7 @@
     </div>
   </section>
 
-  <section class="section section-dashboard-content m-0 border-0 pt-0">
+  <section class="section section-dashboard-content m-0 border-0 pt-0 bg-white">
     <div class="container">
       <div class="row">
         <?php if ($this->session->flashdata('upload') == true): ?>
