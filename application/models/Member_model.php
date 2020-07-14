@@ -48,7 +48,7 @@ class Member_model extends CI_Model{
 
     if ($mail->Send()) {
 
-      return false;
+      return true;
 
     }else {
 
@@ -66,15 +66,17 @@ class Member_model extends CI_Model{
       $this->email->to($email);
       $this->email->set_mailtype("html");
       //$this->email->cc('another@another-example.com');
-      $this->email->bcc('yudisketsa@gmail.com');
+      //$this->email->bcc('yudisketsa@gmail.com');
       $this->email->bcc('tonny.wbw84@gmail.com');
 
       $this->email->subject($subject);
       $this->email->message($message);
 
-      $this->email->send();
-
-      return false;
+      if ($this->email->send()) {
+        return true;
+      }else {
+        return false;
+      }
 
     }
 

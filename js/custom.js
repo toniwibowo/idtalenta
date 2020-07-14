@@ -164,6 +164,7 @@ $(document).ready(function(){
 
     $.post(baseUrl +'member/doregister', {full_name: fullName.val(), identity: identity.val(), password: password.val()})
     .done(function(data){
+      console.log(data);
       if (data == 1) {
         alertify.set('notifier','position', 'top-center');
         alertify.success('Your register has successfully, please validate your email to login', 5);
