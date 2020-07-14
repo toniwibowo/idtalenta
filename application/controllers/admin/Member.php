@@ -39,6 +39,7 @@ class Member extends MX_Controller
         parent::__construct();
         $this->config->load('sketsanet');
         $this->load->library('output_view');
+        $this->load->model('member_model', 'member');
 
         // Site
         $site = $this->config->item('site');
@@ -95,12 +96,14 @@ class Member extends MX_Controller
         $crud->required_fields();
 
         // Columns view
-        $crud->columns('full_name','email','referal_code','active');
+        $crud->columns('full_name','email','active');
 
         //$crud->callback_column('full_name',array($this,'list_member'));
 
         // Field view
-        $crud->fields('username','email','full_name','photo','password');
+        $crud->fields('username','email','full_name','photo','province_id','city_id','password');
+        $crud->callback_field('province_id', array($this, 'province_callback'));
+        $crud->callback_field('city_id', array($this, 'city_callback'));
 
         //$crud->set_relation('user_id','users','username');
 
@@ -165,6 +168,49 @@ class Member extends MX_Controller
 
 
         }
+    }
+
+    public function province_callback($value = '', $primary_key = null)
+    {
+      $queryProvince = $this->member->province();
+
+      $field = '';
+
+      $field .= '<select class="form-control" name="province_id" id="province" readonly required>';
+      $field .= '<option value="">==Provinsi==</option>';
+
+      if ($queryProvince['rajaongkir']['status']['code'] == 200) {
+        foreach ($queryProvince['rajaongkir']['results'] as $key => $pro) {
+          $selected = $pro['province_id'] == $value ? 'selected' : '';
+          $field .= '<option value="'. $pro['province_id'] .'" '.$selected.'  > ' .$pro['province']. '</option>';
+        }
+      }
+
+      $field .= '</select>';
+
+      return $field;
+    }
+
+    public function city_callback($value = '', $primary_key = null)
+    {
+      $row = $this->db->where('id', $primary_key)->get('users')->row();
+
+      $city = $this->member->state('', $row->province_id);
+
+      $field = '';
+      $field .= '<select class="form-control" name="city_id" id="city" required>';
+
+      $field .= '<option value="">==Pilih Kota '.$value.'==</option>';
+      foreach ($city['rajaongkir']['results'] as $key => $state) {
+
+        $selected = $state['city_id'] == $value ? 'selected' : '';
+
+        $field .= '<option value="'.$state["city_id"].'" '.$selected.' >'.$state["city_name"].'</option>';
+      }
+      $field .= '</select>';
+
+      return $field;
+
     }
 
     public function list_member($value,$row)
