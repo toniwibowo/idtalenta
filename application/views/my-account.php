@@ -81,14 +81,14 @@
             <div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Email</label>
                 <div class="col-lg-9">
-                    <input class="form-control" name="email" required type="email" value="<?= $user->email ?>" readonly>
+                    <input class="form-control" name="email" required type="email" value="<?= $user->email ?>">
                     <?php echo form_error('email', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">Phone</label>
                 <div class="col-lg-9">
-                    <input class="form-control" name="phone" type="text" value="<?= $user->phone ?>" readonly>
+                    <input class="form-control" name="phone" type="text" value="<?= $user->phone ?>">
                     <?php echo form_error('phone', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>
             </div>

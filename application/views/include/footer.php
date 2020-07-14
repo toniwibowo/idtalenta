@@ -11,7 +11,7 @@
                                 <ul>
                                     <li><i class="dlicon ui-2_time-clock"></i> Monday - Friday: 8:30 - 17:00</li>
                                     <li><i class="dlicon ui-1_email-83"></i>  support@idtalenta.com</li>
-                                    <li><i class="dlicon tech-2_rotate"></i> 0811849977</li>
+                                    <li><i class="fab fa-whatsapp"></i> 0811849977</li>
                                     <li><i class="dlicon ui-1_home-simple"></i> The City Tower Level 12 1N</li>
                                 </ul>
                             </div>
@@ -82,7 +82,7 @@
         <div class="support-lists">
             <ul>
                 <li><a href="#"><i class="dlicon ui-3_chat-46"></i></a></li>
-                <li><a href="#"><i class=" dlicon ui-3_phone"></i></a></li>
+                <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
                 <li><a href="<?= site_url('contact-us') ?>"><i class="dlicon ui-1_email-85"></i></a></li>
             </ul>
         </div>

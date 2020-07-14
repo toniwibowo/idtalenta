@@ -265,15 +265,19 @@ class Member extends CI_Controller{
   public function update()
   {
 
-    $firstname = $this->input->post('firstname',true);
-    $lastname = $this->input->post('lastname',true);
-    $address = $this->input->post('address',true);
-    $province = $this->input->post('province',true);
-    $city = $this->input->post('city',true);
+    $firstname  = $this->input->post('firstname',true);
+    $lastname   = $this->input->post('lastname',true);
+
+    $email      = $this->input->post('email',true);
+    $phone      = $this->input->post('phone',true);
+
+    $address    = $this->input->post('address',true);
+    $province   = $this->input->post('province',true);
+    $city       = $this->input->post('city',true);
     $postalcode = $this->input->post('postal-code',true);
-    $password = $this->input->post('password',true);
-    $cpassword = $this->input->post('cpassword',true);
-    $user_id = $this->input->post('user_id',true);
+    $password   = $this->input->post('password',true);
+    $cpassword  = $this->input->post('cpassword',true);
+    $user_id    = $this->input->post('user_id',true);
 
     $this->form_validation->set_rules('firstname', 'First Name', 'required');
     $this->form_validation->set_rules('lastname', 'Last Name', 'required');
@@ -286,6 +290,8 @@ class Member extends CI_Controller{
         $data = array(
           'first_name' => $firstname,
           'last_name' => $lastname,
+          'email' => $email,
+          'phone' => $phone,
           'province_id' => $province,
           'city_id' => $city,
           'address' => $address,
@@ -296,6 +302,8 @@ class Member extends CI_Controller{
         $data = array(
           'first_name' => $firstname,
           'last_name' => $lastname,
+          'email' => $email,
+          'phone' => $phone,
           'province_id' => $province,
           'city_id' => $city,
           'address' => $address,

@@ -101,7 +101,7 @@
       <div class="row justify-content-center">
 				<div class="col-lg-4 text-center">
 					<div class="heading text-primary heading-border heading-bottom-border">
-						<h1><strong class="font-weight-extra-bold">Profil Kontributor</strong></h1>
+						<h1><strong class="font-weight-extra-bold">Profil Mentor</strong></h1>
 					</div>
 				</div>
 			</div>
@@ -118,6 +118,20 @@
             <div class="media-body p-4">
               <h3><strong><?= $row->full_name ?></strong></h3>
               <?= $row->profile ?>
+              <div class="socmed mt-4">
+                <?php if ($row->facebook != ''): ?>
+                  <a class="facebook" href="<?= $row->facebook ?>"> <i class="fab fa-facebook-square"></i> </a>
+                <?php endif; ?>
+                <?php if ($row->instagram != ''): ?>
+                  <a class="instagram" href="<?= $row->instagram ?>"> <i class="fab fa-instagram"></i> </a>
+                <?php endif; ?>
+                <?php if ($row->twitter != ''): ?>
+                  <a class="twitter" href="<?= $row->twitter ?>"> <i class="fab fa-twitter-square"></i> </a>
+                <?php endif; ?>
+                <?php if ($row->linkedin != ''): ?>
+                  <a class="linkedin" href="<?= $row->linkedin ?>"> <i class="fab fa-linkedin"></i> </a>
+                <?php endif; ?>
+              </div>
             </div>
           </div>
         </div>

@@ -367,6 +367,12 @@ class Mentor extends CI_Controller{
       $data['account_name']       = $this->input->post('accountname',true);
       $data['account_number']     = $this->input->post('accountnumber',true);
       $data['account_bank']       = $this->input->post('bankname',true);
+
+      $data['facebook']           = $this->input->post('facebook',true);
+      $data['instagram']          = $this->input->post('instagram',true);
+      $data['twitter']            = $this->input->post('twitter',true);
+      $data['linkedin']           = $this->input->post('linkedin',true);
+
       $data['province_id']        = $this->input->post('province_id',true);
       $data['city_id']            = $this->input->post('city_id',true);
       $data['address']            = $this->input->post('address',true);

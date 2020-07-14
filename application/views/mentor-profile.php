@@ -173,6 +173,39 @@
                     <?php echo form_error('bankname', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">Facebook</label>
+								<div class="col-lg-9">
+									<input class="form-control" name="facebook" type="text" value="<?= $row['facebook']  ?>" placeholder="Facebook" >
+									<?php echo form_error('facebook', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">Instagram</label>
+								<div class="col-lg-9">
+                    <input class="form-control" name="instagram" type="text" value="<?= $row['instagram']  ?>" placeholder="Instagram">
+                    <?php echo form_error('instagram', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">Twitter</label>
+								<div class="col-lg-9">
+									<input class="form-control" name="twitter" type="text" value="<?= $row['twitter']  ?>" placeholder="Twitter" >
+									<?php echo form_error('twitter', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">LinkedIn</label>
+								<div class="col-lg-9">
+                    <input class="form-control" name="linkedin" type="text" value="<?= $row['linkedin']  ?>" placeholder="Linkedin">
+                    <?php echo form_error('linkedin', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
+                </div>
+            </div>
+
             <div class="form-group row">
                 <!-- <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">Address</label>
                 <div class="col-lg-9">
