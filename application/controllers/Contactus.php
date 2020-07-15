@@ -30,6 +30,7 @@ class Contactus  extends MX_Controller {
         $this->config->load('sketsanet');
         $this->load->library('output_view');
         $this->load->library('pagination');
+        $this->load->model('member_model', 'member');
 
 
         // Site
@@ -77,132 +78,50 @@ class Contactus  extends MX_Controller {
 
 	function send()
 	{
-		 $nama             = $this->input->post('name',TRUE);
-     $subject           = $this->input->post('subject',TRUE);
-    // $budget          = $this->input->post('budget',TRUE);
-    // $harapan_area        = $this->input->post('harapan_area',TRUE);
-    // $nama_apartemen        = $this->input->post('nama_apartemen',TRUE);
-    // $nama_perusahaan       = $this->input->post('nama_perusahaan',TRUE);
+		$nama             = $this->input->post('name',TRUE);
+    $subject          = $this->input->post('subject',TRUE);
     $email            = $this->input->post('email',TRUE);
-    // $jadwal_showing      = $this->input->post('jadwal_showing',TRUE);
-    // $jadwal_movin        = $this->input->post('jadwal_movin',TRUE);
-    // $perkiraan_include_pajak = $this->input->post('perkiraan_include_pajak',TRUE);
-    // $alamat_kantor       = $this->input->post('alamat_kantor',TRUE);
-    // $keinginan_lain        = $this->input->post('keinginan_lain',TRUE);
-    $comment          = $this->input->post('message',TRUE);
-		$captcha = $this->input->post('captcha',TRUE);
+    $message          = $this->input->post('message',TRUE);
+		$captcha          = $this->input->post('captcha',TRUE);
+
+		$data = array(
+      'nama' => $nama,
+      'subject' => $subject,
+      'email' => $email,
+      'comment' => $message,
+    );
+
+    $insert = $this->db->insert('contact', $data);
+
+		if($insert)
+		{
+				// $captcha_result = 'Contact Us Indosan';
+				$text = "Name : " . $nama . "<br>";
+        $text .= "Subject : " . $subject . "<br>";
+        $text .= "E-mail : " . $email . "<br>";
+        $text .= "Message :  <br>";
+        $text .= $message;
+
+        if ($this->member->email($email = 'yudisketsa@gmail.com',$subject,$text,$name)) {
+          $this->session->set_flashdata('message', 'Your message has been sent, thanks for contacting us. Your message will be process soon');
+          redirect('contact-us');
+        } else {
+
+          $this->session->set_flashdata('message', 'Your message was inserted to our database, thanks for contact us');
+
+          redirect('contact-us');
+
+        }
 
 
+			}else {
 
-			  $data = array(
-                  'nama' => $nama,
-                  'subject' => $subject,
+        $this->session->set_flashdata('message', 'Your message was not sent, please try again');
 
-                  'email' => $email,
+        redirect('contact-us');
 
-                  'comment' => $comment,
+      }
 
-      );
-
-      $insert = $this->db->insert('contact', $data);
-
-
-			if($insert)
-			{
-				$captcha_result = 'Contact Us Indosan';
-				  $text = "Name : " . $nama . "<br>";
-          $text .= "Subject : " . $subject . "<br>";
-          $text .= "E-mail : " . $email . "<br>";
-          //$text .= "Nama Perusahaan : " . $nama_perusahaan . "<br>";
-          $text .= "Comment :  <br>";
-          $text .= $comment;
-
-          /*
-				$this->load->library('PHPMailerAutoload');
-
-				$mail = new phpmailer();
-				# Principal settings
-
- $mail->SMTPOptions = array(
-          'ssl' => array(
-          'verify_peer' => false,
-          'verify_peer_name' => false,
-          'allow_self_signed' => true
-          )
-          );
-
-				$mail->isSMTP(); // Set mailer to use SMTP
-$mail->Host = "mail.indosan.com";
-$mail->SMTPAuth = true; // Enable SMTP authentication
-            $mail->Username = "admin@indosan.com";  // SMTP username
-        $mail->Password = "f;iMyuVRb}&g"; //
-$mail->SMTPSecure = 'none'; // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 587; // TCP port to connect to
-$mail->SMTPAutoTLS = false;
-//$mail->SMTPDebug = 1; // enables SMTP debug information (for testing)
-
-				$mail->From     = $email;
-				$mail->FromName = $nama;
-				//$mail->AddAddress("lix_factor@yahoo.com","Felix Wijoyo");
-				//$mail->AddAddress("lady_belle@ymail.com","Emmy");
-				$mail->AddAddress("yudi@sketsa.net","Yudi");
-				$mail->AddBCC("hey_abud@yahoo.com","Arief");
-
-				$mail->IsHTML(true); // send as HTML
-				# Embed images
-				//$mail->AddEmbeddedImage('img/mailings/logo.gif', "logo_header");
-
-				$mail->Subject = 'Contact to INDOSAN';
-				//$mail->Body = $this->load->view('email/mailing_view','',TRUE);
-				$mail->Body       = $text;
-				//$mail->AltBody = "This is the text-only body";
-
-		*/
-
-				$headers  = 'MIME-Version: 1.0' . "\r\n";
-				$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
-        // Additional headers
-				$headers .= 'To: Admin <toniewibowo@gmail.com>' . "\r\n";
-        $headers .= 'From: '.$nama.' <'.$email.'>' . "\r\n";
-        //$headers .= 'Cc: birthdayarchive@example.com' . "\r\n";
-        $headers .= 'Bcc: toniewibowo@gmail.com' . "\r\n";
-
-
-				$subject = 'Contact to IDTALENTA';
-
-	      //$headers = 'From: BIOR <noreply@bior.com>'."\r\n".'Content-Type: text/html; charset=UTF-8';#FOR TEST
-
-	      $sending = mail('tonny.wbw84@gmail.com', $subject, $text, $headers);
-
-				//if(!$mail->Send())
-				if(!$sending)
-				{
-					echo "Message was not sent <br>";
-					//echo "Mailer Error: " . $mail->ErrorInfo;
-					exit;
-				}
-				else {
-					echo "<script language='javascript'>alert('Thank you for your attention');</script>";
-					?><meta http-equiv='refresh' content='0;URL=<?php echo site_url('contactus'); ?>'><?php
-				}
-			}
 		}
-		// else
-		// {
-		// 	$captcha_result = 'Security Code Invalid';
-		}
-	 //  $data['name'] = $nama;
-  //     //$data['phone'] = $phone;
-  //     $data['email'] = $email;
-  //     $data['subject'] = $subject;
-  //     $data['comment'] = $comment;
-  //     $data['captcha'] = $comment;
-  //     // $data['cap_img'] = $this -> _make_captcha();
-  //     // $data['cap_msg'] = $captcha_result;;
-  //      //$this->load->view('include/header');
-		// $this->load->view('contactus',$data);
-		// $this->load->view('include/footer');
 
-
-?>
+}

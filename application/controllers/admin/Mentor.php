@@ -40,6 +40,7 @@ class Mentor extends MX_Controller
         $this->config->load('sketsanet');
         $this->load->library('output_view');
         $this->load->library('upload');
+        $this->load->model('member_model', 'member');
 
         // Site
         $site = $this->config->item('site');
@@ -96,6 +97,8 @@ class Mentor extends MX_Controller
         if ($table->required != '') {
             $crud->required_fields(json_decode($table->required));
         }
+        $crud->callback_field('province_id', array($this, 'province_callback'));
+        $crud->callback_field('city_id', array($this, 'city_callback'));
         // Columns view
         if ($table->columns != '') {
             $crud->columns(json_decode($table->columns));
@@ -209,7 +212,50 @@ class Mentor extends MX_Controller
 
 
         }
+  }
+
+  public function province_callback($value = '', $primary_key = null)
+  {
+    $queryProvince = $this->member->province();
+
+    $field = '';
+
+    $field .= '<select class="form-control" name="province_id" id="province" readonly required>';
+    $field .= '<option value="">==Provinsi==</option>';
+
+    if ($queryProvince['rajaongkir']['status']['code'] == 200) {
+      foreach ($queryProvince['rajaongkir']['results'] as $key => $pro) {
+        $selected = $pro['province_id'] == $value ? 'selected' : '';
+        $field .= '<option value="'. $pro['province_id'] .'" '.$selected.'  > ' .$pro['province']. '</option>';
+      }
     }
+
+    $field .= '</select>';
+
+    return $field;
+  }
+
+  public function city_callback($value = '', $primary_key = null)
+  {
+    $row = $this->db->where('mentor_id', $primary_key)->get('mentor')->row();
+
+    $city = $this->member->state('', $row->province_id);
+
+    $field = '';
+    $field .= '<select class="form-control" name="city_id" id="city" required>';
+
+    $field .= '<option value="">==Pilih Kota '.$value.'==</option>';
+    foreach ($city['rajaongkir']['results'] as $key => $state) {
+
+      $selected = $state['city_id'] == $value ? 'selected' : '';
+
+      $field .= '<option value="'.$state["city_id"].'" '.$selected.' >'.$state["city_name"].'</option>';
+    }
+    $field .= '</select>';
+
+    return $field;
+
+  }
 
    public function view()
     {
