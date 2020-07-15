@@ -99,12 +99,12 @@ $( document ).ready(function() {
                         <li class="dropdown user user-menu" >
                             <?php $user = $this->ion_auth->user()->row() ?>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="<?php echo $user->photo == '' ? base_url('assets/img/logo/sk.png') : base_url('assets/uploads/image/'.$user->photo) ?>" class="user-image" alt="User Image"/>
+                                <img src="<?php echo $user->photo == '' ? base_url('assets/img/logo/sk.png') : base_url('assets/uploads/files/'.$user->photo) ?>" class="user-image" alt="User Image"/>
                                 <span class="hidden-xs"><?php echo $user->username ?></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="user-header">
-                                    <img src="<?php echo $user->photo == '' ? base_url('assets/img/logo/kotaxdev.png') : base_url('assets/uploads/image/'.$user->photo) ?>" class="img-circle" alt="User Image" />
+                                    <img src="<?php echo $user->photo == '' ? base_url('assets/img/logo/kotaxdev.png') : base_url('assets/uploads/files/'.$user->photo) ?>" class="img-circle" alt="User Image" />
                                     <p>
                                       <?php echo $user->full_name ?>
                                       <small>Last login <?php echo ' '.date('d/m/Y H:i', $user->last_login); ?></small>
