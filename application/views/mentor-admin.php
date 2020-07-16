@@ -31,9 +31,13 @@
                 <div class="card-body p-3">
                   <?php if ($row->thriller != ''): ?>
                     <div class="embed-responsive embed-responsive-16by9">
-                      <video controls controlsList="nodownload" src="<?= base_url('assets/uploads/videos/'.$row->thriller) ?>">
+                      <?php $filetype = strtolower(pathinfo($row->thriller,PATHINFO_EXTENSION)); ?>
+                      <?php if ($filetype == 'mp4'): ?>
+                        <video controls controlsList="nodownload" src="<?= base_url('assets/uploads/videos/'.$row->thriller) ?>"></video>
+                        <?php else: ?>
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $row->thriller ?>?rel=0"></iframe>
+                      <?php endif; ?>
 
-                      </video>
                     </div>
                   <?php else: ?>
                     <div id="thriller" class="thriller">
@@ -55,6 +59,12 @@
 
                           </div>
                         </div>
+
+                        <div class="form-group">
+                          <label for="">Youtube Link</label>
+                          <input type="text" name="thriller-youtube" value="<?= $row->thriller ?>" data-user="<?= $row->user_id ?>" data-id="<?= $row->mentor_class_id ?>">
+                        </div>
+
                       </form>
                     </div>
                   <?php endif; ?>
@@ -78,7 +88,7 @@
                   <form class="" action="" method="post" enctype="application/x-www-form-urlencoded">
                     <div class="form-group">
                       <label for="">Youtube Link</label>
-                      <input id="youtubeLink" type="text" name="youtube-link" value="<?= $row->ytube_embeded ?>" data-id="<?= $this->uri->segment(4) ?>">
+                      <input id="youtubeLink" type="text" name="youtube-link" value="<?= $row->ytube_embeded ?>" data-video_id="<?= $row->video_id ?>" data-user="<?= $row->user_id ?>" data-id="<?= $this->uri->segment(4) ?>">
                     </div>
                   </form>
                 </div>
@@ -90,8 +100,15 @@
                   <div class="col-lg-12">
                     <?php foreach ($dataYoutube as $key => $link): ?>
                       <div class="embed-responsive embed-responsive-16by9 mb-4">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $link ?>?rel=1"></iframe>
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $link ?>?rel=0"></iframe>
                       </div>
+                      <?php $ttl = $this->db->where('youtube_link', $link)->get('mentor_video')->row();  ?>
+                      <form class="" action="#" method="post">
+                        <div class="form-group">
+                          <label for="">Title</label>
+                          <input class="form-control" type="text" data-link="<?= $link ?>" name="youtube-title" value="<?= $ttl->description ?>">
+                        </div>
+                      </form>
                     <?php endforeach; ?>
                   </div>
                 </div>

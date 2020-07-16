@@ -332,11 +332,13 @@ $(document).ready(function(){
   // UPDATE YOUTUBE LINK FROM MENTOR DASHBOARD
   $('#youtubeLink').on('change', function(){
     var classID = $(this).data('id');
+    var videoID = $(this).data('video_id');
+    var userID = $(this).data('user');
     var link = this.value;
-    console.log('DATA YOUTUBE '+ classID +' - '+link);
+    console.log('DATA YOUTUBE '+ classID +' - '+link+' - '+videoID);
     alertify.set('notifier','position', 'top-center');
 
-    $.post(baseUrl+ 'mentor/updatevideo', {class_id: classID, youtube_link: link})
+    $.post(baseUrl+ 'mentor/updatevideo', {class_id: classID, user_id: userID, video_id: videoID, youtube_link: link})
     .done(function(val){
       if (val == 1) {
         alertify.success('Link video successfully update', 3);
@@ -348,6 +350,55 @@ $(document).ready(function(){
     .fail(function(err){
       console.log(err);
     })
+  });
+
+  // UPDATE TITLE YOUTUBE VIDEO
+  $('input[name="youtube-title"]').on('change', function(){
+    var link  = $(this).data('link');
+    var title = this.value;
+
+    $.post(baseUrl+ 'mentor/updatevideo', {link: link, title: title})
+    .done(function(val){
+      if (val == 1) {
+
+        alertify.success('Title video successfully update', 3);
+
+      }else {
+
+        alertify.error('Title video failed to update', 3);
+
+      }
+    })
+    .fail(function(err){
+      console.log(err);
+    })
+
+  })
+
+  // UPDATE THRILLER YOUTUBE
+
+  // UPDATE TITLE YOUTUBE VIDEO
+  $('input[name="thriller-youtube"]').on('change', function(){
+    var classID   = $(this).data('id');
+    var link      = this.value;
+
+    $.post(baseUrl+ 'mentor/updatevideo', {thriller_youtube: link, class_id: classID})
+    .done(function(val){
+      if (val == 1) {
+
+        alertify.success('Thriller video successfully update', 3);
+        window.location.reload();
+
+      }else {
+
+        alertify.error('Thriller video failed to update', 3);
+
+      }
+    })
+    .fail(function(err){
+      console.log(err);
+    })
+
   })
 
 

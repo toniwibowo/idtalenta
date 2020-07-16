@@ -27,9 +27,14 @@
                 <div class="product-details-tab">
 
                   <div class="embed-responsive embed-responsive-16by9 mb-4">
-                    <video controls poster="<?= base_url('assets/uploads/files/'.$row->poster) ?>">
-                      <source src="<?= base_url('assets/uploads/videos/'.$row->thriller) ?>" type="video/<?= $videoType ?>">
-                    </video>
+                    <?php if ($videoType == 'mp4'): ?>
+                      <video controls poster="<?= base_url('assets/uploads/files/'.$row->poster) ?>">
+                        <source src="<?= base_url('assets/uploads/videos/'.$row->thriller) ?>" type="video/<?= $videoType ?>">
+                      </video>
+                      <?php else: ?>
+                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $row->thriller ?>?rel=0"></iframe>  
+                    <?php endif; ?>
+
                   </div>
 
                   <div class="author mt-5">

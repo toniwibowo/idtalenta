@@ -109,8 +109,23 @@ class Mentor extends CI_Controller{
       }
     }
 
+    if (isset($_POST['thriller_youtube'])) {
+      $link     = $this->input->post('thriller_youtube', true);
+      $class_id = $this->input->post('class_id', true);
+
+      $updateThriller = $this->db->where('mentor_class_id', $class_id)->set('thriller',$link)->update('mentor_class');
+
+      if ($updateThriller) {
+        echo 1;
+      }else {
+        echo 0;
+      }
+    }
+
     if (isset($_POST['youtube_link'])) {
       $classID = $this->input->post('class_id');
+      $userID = $this->input->post('user_id');
+      $videoID = $this->input->post('video_id');
       $link = $this->input->post('youtube_link');
 
       $data = array(
@@ -120,6 +135,33 @@ class Mentor extends CI_Controller{
       $updateLinkYoutube = $this->db->where('mentor_class_id', $classID)->set($data)->update('mentor_class');
 
       if ($updateLinkYoutube) {
+
+        $links = explode(',', trim($link));
+
+        foreach ($links as $key => $value) {
+          $exist = $this->db->where('youtube_link', $value)->get('mentor_video');
+
+          if ($exist->num_rows() > 0) {
+            $this->db->where('youtube_link', $value)->set('youtube_link',$value)->update('mentor_video');
+          }else {
+            $this->db->insert('mentor_video', array('user_id' => $userID, 'video_id' => $videoID, 'youtube_link' => $value));
+          }
+
+        }
+
+        echo 1;
+      }else {
+        echo 0;
+      }
+    }
+
+    if (isset($_POST['title']) && isset($_POST['link'])) {
+      $title  = $this->input->post('title', true);
+      $link   = $this->input->post('link', true);
+
+      $updateTitle = $this->db->where('youtube_link', $link)->set('description', $title)->update('mentor_video');
+
+      if ($updateTitle) {
         echo 1;
       }else {
         echo 0;
