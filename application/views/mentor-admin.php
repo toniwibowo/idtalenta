@@ -102,11 +102,11 @@
                       <div class="embed-responsive embed-responsive-16by9 mb-4">
                         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $link ?>?rel=0"></iframe>
                       </div>
-                      <?php $ttl = $this->db->where('youtube_link', $link)->get('mentor_video')->row();  ?>
+                      <?php $ttl = $this->db->where('youtube_link', $link)->get('mentor_video')->row_array();  ?>
                       <form class="" action="#" method="post">
                         <div class="form-group">
                           <label for="">Title</label>
-                          <input class="form-control" type="text" data-link="<?= $link ?>" name="youtube-title" value="<?= $ttl->description ?>">
+                          <input class="form-control" type="text" data-link="<?= $link ?>" name="youtube-title" value="<?= $ttl['description'] ?>">
                         </div>
                       </form>
                     <?php endforeach; ?>
