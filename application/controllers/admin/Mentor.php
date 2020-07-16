@@ -92,6 +92,7 @@ class Mentor extends MX_Controller
 
         $crud->set_table($table_name);
         $crud->set_subject($table->subject);
+        $crud->order_by('mentor_id','DESC');
 
         // Required field
         if ($table->required != '') {
