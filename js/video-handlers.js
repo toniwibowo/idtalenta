@@ -51,7 +51,7 @@ function showSlides(n) {
 
   //slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
-  video.src({type: 'video/mp4', src: 'http://www.localhost/artademidemo/assets/uploads/videos/'+ videoSource[slideIndex-1]});
+  video.src({type: 'video/mp4', src: 'http://www.greatindonesia.com/idtalentademo/assets/uploads/videos/'+ videoSource[slideIndex-1]});
   //console.log('Data Video: '+ dots[slideIndex-1].dataVideo);
 }
 
