@@ -27,6 +27,7 @@
                           <div class="product-price product-price-red">
                             <?php if ($value->sale != 0): ?>
                               <span class="new-price">Rp. <?= number_format($this->app->sale($value->price,$value->sale),0,',','.')  ?>,-</span>
+                              <span class="new-price"> <del>Rp. <?= number_format($value->price,0,',','.')  ?>,-</del> </span>
                               <?php else: ?>
                               <span class="new-price">Rp. <?= number_format($value->price,0,',','.')  ?>,-</span>
                             <?php endif; ?>

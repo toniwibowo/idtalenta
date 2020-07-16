@@ -85,6 +85,7 @@
                                   <div class="product-price product-price-red">
                                     <?php if ($course->sale != 0): ?>
                                       <span class="new-price">Rp. <?= number_format($this->app->sale($course->price,$course->sale),0,',','.')  ?>,-</span>
+                                      <span class="new-price"><del>Rp. <?= number_format($course->price,0,',','.')  ?>,-</del> </span>
                                       <?php else: ?>
                                       <span class="new-price">Rp. <?= number_format($course->price,0,',','.')  ?>,-</span>
                                     <?php endif; ?>
@@ -176,6 +177,7 @@
                                   <div class="product-price product-price-red">
                                     <?php if ($sale->sale != 0): ?>
                                       <span class="new-price">Rp. <?= number_format($this->app->sale($sale->price,$sale->sale),0,',','.')  ?>,-</span>
+                                      <span class="new-price"><del>Rp. <?= number_format($sale->price,0,',','.')  ?>,-</del> </span>
                                       <?php else: ?>
                                       <span class="new-price">Rp. <?= number_format($sale->price,0,',','.')  ?>,-</span>
                                     <?php endif; ?>
@@ -301,7 +303,7 @@
                               <div class="blog-content-2">
                                   <h3>
                                     <a href="<?= site_url('articles/detail/'.$article->articles_id.'/'.url_title($article->title,'-',true)) ?>">
-                                      Sekolah masa depan di era digital—belajar dan mengajar di mana saja
+                                      <?= $article->title ?>
                                     </a>
                                   </h3>
                                   <div class="blog-meta light-sky-meta">
