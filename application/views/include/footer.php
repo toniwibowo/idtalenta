@@ -200,6 +200,7 @@
     <?php if ($uri == 'course'): ?>
     <script src="<?= base_url() ?>vendor/video.js/dist/video.min.js"></script>
     <script src="<?= base_url() ?>js/video-handlers.js"></script>
+    <script src="<?= base_url() ?>js/videojs-youtube/dist/Youtube.min.js"></script>
     <?php endif; ?>
 
     <script src="<?= base_url() ?>js/tagsinput.js"></script>

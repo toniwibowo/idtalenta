@@ -20,9 +20,16 @@
 			<div class="row">
 				<div class="col-lg-9">
 					<?php if ($list_video->num_rows() > 0): ?>
-						<video id="my-video" class="video-js" controls preload="auto" >
+						<video
+						id="my-video"
+						class="video-js"
+						controls preload="auto"
+						>
 							<!-- <source src	" type="video/mp4" /> -->
 						</video>
+
+
+
 					<?php endif; ?>
 
 					<div class="content-body mt-5">
@@ -80,7 +87,7 @@
 						<div class="list-group">
 							<?php if ($list_video->num_rows() > 0): ?>
 								<?php foreach ($list_video->result() as $key => $desc): ?>
-									<a onclick="currentSlide(<?= $key + 1 ?>)" class="list-group-item list-group-item-action btn-indicator" data-video="<?= $desc->video ?>" href="#">Bagian <?= $key + 1 ?>: <?= $desc->description ?></a>
+									<a onclick="currentSlide(<?= $key + 1 ?>)" class="list-group-item list-group-item-action btn-indicator" data-video="<?= $desc->video ? $desc->video : $desc->youtube_link  ?>" href="#">Bagian <?= $key + 1 ?>: <?= $desc->description ?></a>
 								<?php endforeach; ?>
 							<?php endif; ?>
 						</div>

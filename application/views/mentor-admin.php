@@ -103,6 +103,7 @@
                         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $link ?>?rel=0"></iframe>
                       </div>
                       <?php $ttl = $this->db->where('youtube_link', $link)->get('mentor_video')->row_array();  ?>
+                      
                       <form class="" action="#" method="post">
                         <div class="form-group">
                           <label for="">Title</label>

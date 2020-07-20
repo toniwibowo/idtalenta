@@ -50,7 +50,7 @@ class Mentor extends CI_Controller{
 
       $row = $data['classData']->row();
 
-      $data['listVideo'] = $this->db->where('video_id', $row->video_id)->get('mentor_video');
+      $data['listVideo'] = $this->db->where('video_id', $row->video_id)->where('youtube_link', '')->get('mentor_video');
       $this->load->view('mentor-admin',$data);
     }else {
       $data['mentorClass'] = $this->db->where('user_id', $user->id)->where('approve',1)->get('mentor_class');
