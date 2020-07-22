@@ -91,13 +91,13 @@ class Course extends MX_Controller{
       redirect('/');
     }
 
-    $data['row'] = $this->db->where('order_id', $checkOrder->order_id)->where('product_id',$id)->from('order_item')->join('mentor_class','mentor_class.mentor_class_id=order_item.product_id')->get()->row_array();
+    $data['row'] = $this->db->where('order_id', $checkOrder->order_id)->where('product_id',$id)->from('order_item')->join('mentor_class','mentor_class.mentor_class_id=order_item.product_id')->get()->row();
 
     $singleData = json_encode($data['row']);
 
     echo 'SINGLE DATA '. $singleData.
 
-    $data['list_video'] = $this->db->where('video_id', $data['row']['video_id'])->get('mentor_video');
+    $data['list_video'] = $this->db->where('video_id', $data['row']->video_id)->get('mentor_video');
 
     $jsonList = json_encode($data['list_video']->result_array());
 
