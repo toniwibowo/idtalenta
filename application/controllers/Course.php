@@ -81,10 +81,6 @@ class Course extends MX_Controller{
   {
     $checkOrder = $this->db->where('sid', $sid)->get('orders')->row();
 
-    $json = json_encode($checkOrder);
-
-    echo $json;
-
     $user = $this->ion_auth->user()->row();
 
     if (!$this->ion_auth->logged_in() || $user->id != $checkOrder->user_id) {
@@ -95,15 +91,7 @@ class Course extends MX_Controller{
 
     $videoID = $data['row']['video_id'];
 
-    $singleData = json_encode($data['row']);
-
-    echo 'SINGLE DATA '. $singleData.
-
     $data['list_video'] = $this->db->where('video_id', $videoID)->get('mentor_video');
-
-    $jsonList = json_encode($data['list_video']->result_array());
-
-    echo 'List Video '.$jsonList;
 
     $data['list_materi'] = $this->db->where('video_id', $videoID)->get('mentor_materi');
 
