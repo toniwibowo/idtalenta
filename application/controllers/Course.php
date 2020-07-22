@@ -103,7 +103,7 @@ class Course extends MX_Controller{
 
     echo 'List Video '.$jsonList;
 
-    $data['list_materi'] = $this->db->where('video_id', $data['row']['video_id'])->get('mentor_materi');
+    $data['list_materi'] = $this->db->where('video_id', $data['row']->video_id)->get('mentor_materi');
 
     $this->load->view('include/header');
     $this->load->view('course', $data);
