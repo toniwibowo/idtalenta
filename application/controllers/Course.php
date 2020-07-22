@@ -99,7 +99,7 @@ class Course extends MX_Controller{
 
     echo 'SINGLE DATA '. $singleData.
 
-    $data['list_video'] = $this->db->query("SELECT * FROM mentor_video WHERE video_id = '".$videoID."' );
+    $data['list_video'] = $this->db->where('video_id', $videoID)->get('mentor_video');
 
     $jsonList = json_encode($data['list_video']->result_array());
 
