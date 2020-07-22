@@ -95,7 +95,7 @@ class Course extends MX_Controller{
 
     $data['list_video'] = $this->db->where('video_id', $data['row']['video_id'])->get('mentor_video');
 
-    $jsonList = json_encode($data['list_video']);
+    $jsonList = json_encode($data['list_video']->result_array());
 
     echo 'List Video '.$jsonList;
 
