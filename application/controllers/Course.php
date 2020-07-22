@@ -81,6 +81,10 @@ class Course extends MX_Controller{
   {
     $checkOrder = $this->db->where('sid', $sid)->get('orders')->row();
 
+    $json = json_encode($checkOrder);
+
+    echo $json;
+
     $user = $this->ion_auth->user()->row();
 
     if (!$this->ion_auth->logged_in() || $user->id != $checkOrder->user_id) {
