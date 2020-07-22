@@ -91,19 +91,21 @@ class Course extends MX_Controller{
       redirect('/');
     }
 
-    $data['row'] = $this->db->where('order_id', $checkOrder->order_id)->where('product_id',$id)->from('order_item')->join('mentor_class','mentor_class.mentor_class_id=order_item.product_id')->get()->row();
+    $data['row'] = $this->db->where('order_id', $checkOrder->order_id)->where('product_id',$id)->from('order_item')->join('mentor_class','mentor_class.mentor_class_id=order_item.product_id')->get()->row_array();
+
+    $videoID = $data['row']['video_id'];
 
     $singleData = json_encode($data['row']);
 
     echo 'SINGLE DATA '. $singleData.
 
-    $data['list_video'] = $this->db->where('video_id', $data['row']->video_id)->get('mentor_video');
+    $data['list_video'] = $this->db->where('video_id', $videoID)->get('mentor_video');
 
     $jsonList = json_encode($data['list_video']->result_array());
 
     echo 'List Video '.$jsonList;
 
-    $data['list_materi'] = $this->db->where('video_id', $data['row']->video_id)->get('mentor_materi');
+    $data['list_materi'] = $this->db->where('video_id', $videoID)->get('mentor_materi');
 
     $this->load->view('include/header');
     $this->load->view('course', $data);
