@@ -91,6 +91,7 @@ class Orders extends MX_Controller
 
         $crud->set_table($table_name);
         $crud->set_subject('Orders');
+        $crud->order_by('order_id', 'desc');
 
         $crud->fields('invoice','user_id', 'total', 'uniq_code', 'payment', 'order_date','order_time');
 
