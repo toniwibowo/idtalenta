@@ -20,6 +20,7 @@
 			<div class="row">
 				<div class="col-lg-9">
 					<?php if ($list_video->num_rows() > 0): ?>
+						<h3><?= $row['title'] ?></h3>
 						<video
 						id="my-video"
 						class="video-js"
