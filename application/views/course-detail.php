@@ -1,4 +1,4 @@
-<?php $row = $classDetail->row() ?>
+<?php $rowclass = $classDetail->row() ?>
 
 <?php $videoType = substr($row->thriller,-3) ?>
 
@@ -32,7 +32,7 @@
                         <source src="<?= base_url('assets/uploads/videos/'.$row->thriller) ?>" type="video/<?= $videoType ?>">
                       </video>
                       <?php else: ?>
-                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $row->thriller ?>?rel=0"></iframe>  
+                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $row->thriller ?>?rel=0"></iframe>
                     <?php endif; ?>
 
                   </div>

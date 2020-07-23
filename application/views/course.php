@@ -32,14 +32,17 @@
 
 					<?php endif; ?>
 
-					<div class="content-body mt-5">
+					<div class="content-body mt-4">
 						<div class="tabs">
 							<ul class="nav nav-tabs nav-justified flex-column flex-md-row">
-								<li class="nav-item active">
+								<li class="nav-item">
 									<a class="nav-link text-center text-dark" href="#popular10" data-toggle="tab">Ikhtisar</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link text-center text-dark" href="#recent10" data-toggle="tab">Download Materi</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-center text-dark" href="#review" data-toggle="tab">Review (<?= $queryReview->num_rows()  ?>)</a>
 								</li>
 							</ul>
 							<div class="tab-content">
@@ -72,6 +75,129 @@
 											</div>
 									<?php endif; ?>
 
+								</div>
+								<div id="review" class="tab-pane">
+									<div class="review-wrapper">
+											<h2><?= $queryReview->num_rows()  ?> <?= $queryReview->num_rows() > 1 ? 'Reviews' : 'Review' ?> for <?= $row['title'] ?></h2>
+
+											<?php if ($queryReview->num_rows() > 0): ?>
+												<?php foreach ($queryReview->result() as $key => $rev): ?>
+													<div class="single-review">
+															<div class="review-img">
+																	<img src="assets/images/product-details/client-1.jpg" alt="">
+															</div>
+															<div class="review-content">
+																	<div class="review-top-wrap">
+																			<div class="review-name">
+																					<h5><span><?= $rev->full_name ?> - </span></h5>
+																			</div>
+
+																			<div class="review-rating">
+																				<?php $rating = floor($rev->star) ?>
+																				<?php if ($rating > 0):
+
+																					for ($i=0; $i < $rating ; $i++) {
+																						echo '<i class="yellow fa fa-star"></i>';
+																					}
+
+																					if ($rating == 4) {
+																						echo '<i class=" fa fa-star"></i>';
+																					}elseif ($rating == 3) {
+																						echo '<i class=" fa fa-star"></i>';
+																						echo '<i class=" fa fa-star"></i>';
+																					}elseif ($rating == 2) {
+																						echo '<i class=" fa fa-star"></i>';
+																						echo '<i class=" fa fa-star"></i>';
+																						echo '<i class=" fa fa-star"></i>';
+																					}elseif ($rating == 1) {
+																						echo '<i class=" fa fa-star"></i>';
+																						echo '<i class=" fa fa-star"></i>';
+																						echo '<i class=" fa fa-star"></i>';
+																						echo '<i class=" fa fa-star"></i>';
+																					}else {
+																						echo '';
+																					}
+
+																				?>
+
+																				<?php endif; ?>
+
+																			</div>
+																	</div>
+																	<?= $rev->description ?>
+															</div>
+													</div>
+												<?php endforeach; ?>
+											<?php endif; ?>
+
+									</div>
+
+									<div class="ratting-form-wrapper">
+											<span>Add a Review</span>
+											<p>Your email address will not be published. Required fields are marked <span>*</span></p>
+											<div class="ratting-form">
+													<form action="<?= site_url('mentor/review') ?>" id="submitReview" method="post" class="needs-validation" enctype="application/x-www-form-urlencoded">
+															<div class="row">
+																	<div class="col-lg-3 col-md-6">
+																			<div class="rating-form-style mb-20">
+																					<label>Name <span>*</span></label>
+																					<input type="text" name="name" value="<?= $user->full_name  ?>">
+																			</div>
+																	</div>
+																	<div class="col-lg-3 col-md-6">
+																			<div class="rating-form-style mb-20">
+																					<label>Email <span>*</span></label>
+																					<input type="email" name="email" value="<?= $user->email  ?>">
+																			</div>
+																	</div>
+																	<div class="col-lg-12">
+																			<div class="star-box-wrap">
+																					<div class="single-ratting-star">
+																							<a href="#"><i class="fa fa-star"></i></a>
+																					</div>
+																					<div class="single-ratting-star">
+																							<a href="#"><i class="fa fa-star"></i></a>
+																							<a href="#"><i class="fa fa-star"></i></a>
+																					</div>
+																					<div class="single-ratting-star">
+																							<a href="#"><i class="fa fa-star"></i></a>
+																							<a href="#"><i class="fa fa-star"></i></a>
+																							<a href="#"><i class="fa fa-star"></i></a>
+																					</div>
+																					<div class="single-ratting-star">
+																							<a href="#"><i class="fa fa-star"></i></a>
+																							<a href="#"><i class="fa fa-star"></i></a>
+																							<a href="#"><i class="fa fa-star"></i></a>
+																							<a href="#"><i class="fa fa-star"></i></a>
+																					</div>
+																					<div class="single-ratting-star">
+																							<a href="#"><i class="fa fa-star"></i></a>
+																							<a href="#"><i class="fa fa-star"></i></a>
+																							<a href="#"><i class="fa fa-star"></i></a>
+																							<a href="#"><i class="fa fa-star"></i></a>
+																							<a href="#"><i class="fa fa-star"></i></a>
+																					</div>
+																			</div>
+																	</div>
+																	<div class="col-md-12">
+																			<div class="rating-form-style mb-20">
+																					<label>Your review <span>*</span></label>
+																					<textarea name="review"></textarea>
+																			</div>
+																	</div>
+																	<div class="col-lg-12">
+																			<div class="form-submit">
+																					<input type="submit" value="Submit">
+																					<input type="hidden" name="class_id" value="<?= $row['mentor_class_id'] ?>">
+																					<input type="hidden" name="user_id" value="<?= $user->id ?>">
+																					<input type="hidden" name="slug" value="<?= url_title($row['title'],'-',true) ?>">
+																					<input type="hidden" name="star" value="0">
+																			</div>
+																	</div>
+															</div>
+													</form>
+											</div>
+									</div>
 								</div>
 							</div>
 						</div>

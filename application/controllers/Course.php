@@ -95,6 +95,10 @@ class Course extends MX_Controller{
 
     $data['list_materi'] = $this->db->where('video_id', $videoID)->get('mentor_materi');
 
+    $data['user'] = $this->ion_auth->user()->row();
+
+    $data['queryReview'] = $this->db->where('mentor_class_id', $id) -> from('review') -> join('users','users.id = review.user_id') -> get();
+
     $this->load->view('include/header');
     $this->load->view('course', $data);
     $this->load->view('include/footer');
