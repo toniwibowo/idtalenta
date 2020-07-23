@@ -83,13 +83,14 @@ class Subscribe extends MX_Controller
         $table = $this->db->get('table')->row();
         //echo $table->action.'';
 
-         $this->load->library('Grocery_CRUD');
+        $this->load->library('Grocery_CRUD');
         $this->load->library('Grocery_CRUD_Multiuploader');
         //$crud = new grocery_CRUD();
         $crud = new Grocery_CRUD_Multiuploader();
 
         $crud->set_table($table_name);
         $crud->set_subject($table->subject);
+        $crud->order_by('subscribe_id', 'desc');
 
         // Required field
         if ($table->required != '') {

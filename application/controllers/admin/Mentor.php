@@ -419,6 +419,7 @@ class Mentor extends MX_Controller
 
       $crud->unset_add();
       $crud->unset_read();
+      $crud->order_by('mentor_class_id', 'desc');
 
       // Required field
       $crud->required_fields();
