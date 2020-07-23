@@ -236,7 +236,8 @@ $(document).ready(function(){
       processData: false,
       success: function(val){
         if (val == 'uploaded') {
-          window.location.reload();
+          //window.location.reload();
+          alertify.success('Your photo successfully updated', 5);
         }else {
           alert(val);
         }

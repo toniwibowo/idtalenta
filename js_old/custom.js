@@ -52,31 +52,31 @@ $(document).ready(function(){
 
   //UPLOAD PHOTO MENTOR
 
-  $('#uploadPhoto #file').on('change',function(){
-    var dataUpload = new FormData();
-    var files = $('#file')[0].files[0];
-    var user_id = $('#uploadPhoto input[name="user_id"]').val();
-    dataUpload.append('photo',files);
-    dataUpload.append('user_id',user_id);
-
-    console.log('photo: '+files);
-
-    $.ajax({
-      url: siteUrl + 'mentor/uploadPhoto',
-      type:'post',
-      data: dataUpload,
-      contentType: false,
-      processData: false,
-      success: function(val){
-        if (val == 'uploaded') {
-          window.location.reload();
-        }else {
-          alert(val);
-        }
-      }
-    })
-
-  });
+  // $('#uploadPhoto #file').on('change',function(){
+  //   var dataUpload = new FormData();
+  //   var files = $('#file')[0].files[0];
+  //   var user_id = $('#uploadPhoto input[name="user_id"]').val();
+  //   dataUpload.append('photo',files);
+  //   dataUpload.append('user_id',user_id);
+  //
+  //   console.log('photo: '+files);
+  //
+  //   $.ajax({
+  //     url: siteUrl + 'mentor/uploadPhoto',
+  //     type:'post',
+  //     data: dataUpload,
+  //     contentType: false,
+  //     processData: false,
+  //     success: function(val){
+  //       if (val == 'uploaded') {
+  //         window.location.reload();
+  //       }else {
+  //         alert(val);
+  //       }
+  //     }
+  //   })
+  //
+  // });
 
   //GET CITY
   $('select#province').on('change',function(){

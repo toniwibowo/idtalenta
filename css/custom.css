@@ -23,6 +23,11 @@ h1, h2, h3, h4, h5, h6 {
   color: #3c93ec;
 }
 
+.list-group-item.active {
+  background-color: #fb9343 !important;
+  border-color: #fb9343 !important;
+}
+
 .d-grid{
   display: grid;
 }
