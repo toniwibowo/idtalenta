@@ -400,7 +400,35 @@ $(document).ready(function(){
       console.log(err);
     })
 
-  })
+  });
+
+  // STICKY HEADER MENU
+  const header = $('.header-bottom');
+  const sticky = header.offset().top;
+  
+  $(window).scroll(function() {
+
+
+
+    console.log(sticky);
+
+    header.myfunction();
+
+
+  });
+
+
+
+  (function( $ ){
+   $.fn.myfunction = function() {
+     if (window.pageYOffset > sticky) {
+       header.addClass('sticky')
+     }else {
+       header.removeClass('sticky')
+     }
+      return this;
+   };
+  })( jQuery );
 
 
 })
