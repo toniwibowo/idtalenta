@@ -405,7 +405,7 @@ $(document).ready(function(){
   // STICKY HEADER MENU
   const header = $('.header-bottom');
   const sticky = header.offset().top;
-  
+
   $(window).scroll(function() {
 
 
@@ -429,6 +429,5 @@ $(document).ready(function(){
       return this;
    };
   })( jQuery );
-
 
 })

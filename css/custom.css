@@ -42,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .owl-nav div[class*="owl-"] {
   position: absolute;
-  background-color: #ffc837;
+  background-color: #ffc837; 
   color: #fff;
   font-size: 48px;
 }
