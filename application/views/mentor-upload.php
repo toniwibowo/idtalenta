@@ -58,6 +58,11 @@
           <h2 class="font-weight-normal text-7 mb-0"><strong class="font-weight-extra-bold">Upload</strong> Video</h2>
         </div>
         <div class="overflow-hidden mb-4 pb-3">
+          <?php if ($this->session->userdata('upload')): ?>
+            <div class="alert alert-info" role="alert">
+              <?= $this->session->userdata('upload') ?>
+            </div>
+          <?php endif; ?>
           <p class="mb-0 d-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
 

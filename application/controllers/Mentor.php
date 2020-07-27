@@ -497,7 +497,7 @@ class Mentor extends CI_Controller{
 
         $this->session->unset_userdata('video_id');
 
-        $this->session->set_flashdata('upload',true);
+        $this->session->set_flashdata('upload', 'Your class data successfully update');
 
         redirect('mentor/dashboard');
       }
@@ -530,6 +530,8 @@ class Mentor extends CI_Controller{
 
           echo $filename.' upload failed - error: '.$_FILES['videomentor']['error'];
         }
+
+        $this->session->set_flashdata('upload', 'Video successfully update');
 
       }elseif (isset($_FILES['filemateri']['name'])) {
 
@@ -564,6 +566,8 @@ class Mentor extends CI_Controller{
         //   $filename = random_string('alnum',5).'-'. $_FILES['filemateri']['name'][$key];
         //   echo $filename.'<br />';
         // }
+
+        $this->session->set_flashdata('upload', 'Material Video successfully update');
 
       }
       else {
