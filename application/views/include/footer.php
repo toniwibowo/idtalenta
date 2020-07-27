@@ -62,9 +62,13 @@
                             </div>
                         </div>
                         <div class="footer-column footer-width-27 mb-30">
-                            <div class="instagram-feed-thumb">
+                            <!-- <div class="instagram-feed-thumb"> -->
                               <!-- for IG -->
-                            </div>
+                            <!-- </div> -->
+
+                            <!-- SnapWidget -->
+<iframe src="https://snapwidget.com/embed/849569" class="snapwidget-widget" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden;  width:255px; height:255px"></iframe>
+
                         </div>
                     </div>
                 </div>
