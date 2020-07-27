@@ -127,6 +127,9 @@
                                 <a class="pinterest" href="#"><i class="fab fa-pinterest-p"></i></a>
                                 <a class="google-plus" href="#"><i class="fab fa-google-plus"></i></a>
                             </div>
+
+                            <!-- ShareThis BEGIN --><div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
+                            
                         </div>
                     </div>
 
