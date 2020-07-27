@@ -1,4 +1,4 @@
-<?php $rowclass = $classDetail->row() ?>
+<?php $row = $classDetail->row() ?>
 
 <?php $videoType = substr($row->thriller,-3) ?>
 

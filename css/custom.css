@@ -2,6 +2,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !important;
 }
 
+.subscribe-footer-wrap .subscribe-form-3 form .mc-form-3 input.button{
+  background-color: #ffc837 !important;
+}
+
 .socmed a{
   font-size: 38px;
   color: #666;
@@ -42,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .owl-nav div[class*="owl-"] {
   position: absolute;
-  background-color: #ffc837; 
+  background-color: #ffc837;
   color: #fff;
   font-size: 48px;
 }
