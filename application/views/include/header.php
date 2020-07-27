@@ -49,6 +49,8 @@
 		<link rel="stylesheet" href="<?= base_url() ?>vendor/video.js/dist/video-js.css">
 		<link rel="stylesheet" href="<?= base_url() ?>css/video-slide.css">
 		<?php endif; ?>
+
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5bdc03418509a10011c44721&product=sop' async='async'></script>
 
 
 </head>
