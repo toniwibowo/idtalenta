@@ -120,16 +120,16 @@
                             </div>
 
 
-                            <div class="social-icon-style-3">
+                            <!-- <div class="social-icon-style-3">
                                 <a class="facebook" href="#"><i class="fab fa-facebook"></i></a>
                                 <a class="twitter" href="#"><i class="fab fa-twitter"></i></a>
                                 <a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a>
                                 <a class="pinterest" href="#"><i class="fab fa-pinterest-p"></i></a>
                                 <a class="google-plus" href="#"><i class="fab fa-google-plus"></i></a>
-                            </div>
+                            </div> -->
 
                             <!-- ShareThis BEGIN --><div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
-                            
+
                         </div>
                     </div>
 
