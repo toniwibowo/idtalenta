@@ -165,7 +165,7 @@ class Checkout extends CI_Controller{
     $this->load->view('include/footer');
   }
 
-  public function confirmation()
+  public function confirmation($sid)
   {
     $emailuser    = $this->input->post('email',true);
     $user_id      = $this->input->post('user_id',true);
