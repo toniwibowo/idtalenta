@@ -17,27 +17,26 @@
                             </div>
                         </div>
                         <div class="footer-column footer-width-13">
-                            <div class="footer-widget footer-info-list mb-30 fi-sky-color">
-                                <h3 class="footer-title ft-letter-space-inc">Links</h3>
-                                <ul>
-                                    <li><a href="<?= site_url('about-us') ?>">About Us</a></li>
-                                    <li><a href="<?= site_url('pages/view/6/help-center') ?>">Help Center</a></li>
-                                    <li><a href="<?= site_url('blog') ?>">Blog</a></li>
-                                    <li><a href="<?= site_url('pages/view/5/privacy-policy') ?>">Privacy Policy</a></li>
-
-                                </ul>
-                            </div>
+                          <div class="footer-widget footer-info-list mb-30 fi-sky-color">
+                              <h3 class="footer-title ft-letter-space-inc">Links</h3>
+                              <ul>
+                                  <li><a href="<?= site_url('about-us') ?>">About Us</a></li>
+                                  <li><a href="<?= site_url('mentor') ?>">Mentor</a></li>
+                                  <li><a href="<?= site_url('blog') ?>">Blog</a></li>
+                              </ul>
+                          </div>
                         </div>
                         <div class="footer-column footer-width-11">
-                            <div class="footer-widget footer-info-list mb-30 fi-sky-color">
-                                <h3 class="footer-title">Userful Link</h3>
-                                <ul>
-                                    <li><a href="#">Guides & Articles</a></li>
-                                    <li><a href="#">Customer Reviews</a></li>
-                                    <li><a href="#">Coupon Codes</a></li>
-                                    <li><a href="#">Military Discount</a></li>
-                                </ul>
-                            </div>
+                          <div class="footer-widget footer-info-list mb-30 fi-sky-color">
+                              <h3 class="footer-title">Userful Link</h3>
+                              <ul>
+                                  <li><a href="<?= site_url('pages/view/3/faq') ?>">FAQ</a></li>
+                                  <li><a href="<?= site_url('pages/view/4/help-center') ?>">Syarat & Ketentuan</a></li>
+                                  <li><a href="<?= site_url('pages/view/5/privacy-policy') ?>">Privacy Policy</a></li>
+                                  <!--<li><a href="#">Coupon Codes</a></li>-->
+                                  <!--<li><a href="#">Military Discount</a></li>-->
+                              </ul>
+                          </div>
                         </div>
                         <div class="footer-column footer-width-23">
                             <div class="footer-widget footer-info-list footer-contect mb-30">
