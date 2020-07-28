@@ -177,7 +177,7 @@ class Checkout extends CI_Controller{
     $ammount      = $this->input->post('ammount',true);
     $transferdate = $this->input->post('transfer-date',true);
 
-    $this->form_validation->set_rules('invoice', 'No. Invoive', 'required');
+    $this->form_validation->set_rules('invoice', 'No. Invoive', 'required|callback_invoice_check');
 		//$this->form_validation->set_rules('bank-account', 'No. Rekening', 'required');
     //$this->form_validation->set_rules('bankfrom', 'Bank Dari', 'required');
     //$this->form_validation->set_rules('bankto', 'Bank Tujuan', 'required');
@@ -185,9 +185,9 @@ class Checkout extends CI_Controller{
     $this->form_validation->set_rules('transfer-date', 'Tanggal Transfer', 'required');
 
     if ($this->form_validation->run() == FALSE) {
-      // $this->load->view('include/header');
-      // $this->load->view('payment');
-      // $this->load->view('include/footer');
+      $this->load->view('include/header');
+      $this->load->view('payment');
+      $this->load->view('include/footer');
       redirect('payment/'.base64_encode(bin2hex($sid)));
     }else {
       $data = array(
@@ -215,6 +215,20 @@ class Checkout extends CI_Controller{
 
         redirect('payment/'.base64_encode(bin2hex($sid)));
       }
+    }
+
+  }
+
+  public function invoice_check($value)
+  {
+    // CHECK INVOICE NUMBER
+    $getNum = $this->db->where('invoice', $value)->get('orders');
+
+    if ($getNum->num_rows() > 0) {
+      return true;
+    } else {
+      $this->form_validation->set_message('invoice_check', 'The {field} field not match with invoice number');
+      return false;
     }
 
   }
