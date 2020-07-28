@@ -188,7 +188,7 @@ class Checkout extends CI_Controller{
       $this->load->view('include/header');
       $this->load->view('payment');
       $this->load->view('include/footer');
-      redirect('payment/'.base64_encode(bin2hex($sid)));
+      //redirect('payment/'.base64_encode(bin2hex($sid)));
     }else {
       $data = array(
         'user_id' => $user_id,
