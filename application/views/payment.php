@@ -88,13 +88,13 @@
         <?php endif; ?>
 
         <?php $uri_2 = $this->uri->segment(2);  ?>
-        <form action="<?= site_url('checkout/confirmation/'.$uri_2)  ?>" method="post" enctype="application/x-www-form-urlencoded">
+        <form action="<?= site_url('confirmation/'.$uri_2)  ?>" method="post" enctype="application/x-www-form-urlencoded">
           <div class="form-row">
             <div class="form-group col-lg-6">
               <label for="">Email</label>
               <input type="email" class="form-control" name="email" value="<?= $user->email ?>" readonly>
               <input type="hidden" class="form-control" name="user_id" value="<?= $user->id ?>" >
-              
+
             </div>
 
             <div class="form-group col-lg-6">
