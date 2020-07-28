@@ -152,7 +152,7 @@ class Checkout extends CI_Controller{
   public function payment($sid)
   {
 
-    if (!isset($_COOKIE['checkout']) || !$this->ion_auth->logged_in() ) {
+    if (!isset($_COOKIE['checkout']) || !$this->ion_auth->logged_in() || !$sid ) {
       redirect('/');
     }
 
@@ -167,6 +167,10 @@ class Checkout extends CI_Controller{
 
   public function confirmation($sid)
   {
+    if (!$sid) {
+      redirect('/');
+    }
+
     $emailuser    = $this->input->post('email',true);
     $user_id      = $this->input->post('user_id',true);
     $invoice      = $this->input->post('invoice',true);
