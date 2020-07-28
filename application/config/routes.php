@@ -82,6 +82,7 @@ $route['course/(:num)/(:any)']    = 'course/detail/$1/$2';
 
 $route['blog/view'] = "articles/view";
 $route['payment/(:any)'] = "checkout/payment/$1";
+$route['confirmation/(:any)'] = "checkout/confirmation/$1";
 
 
 
