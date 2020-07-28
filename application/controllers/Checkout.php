@@ -218,7 +218,7 @@ class Checkout extends CI_Controller{
 
         $this->session->set_flashdata('confirmation',true);
 
-        redirect('payment/'.base64_encode(bin2hex($sid)));
+        redirect('payment/'.$sid);
       }
     }
 
