@@ -117,10 +117,10 @@ Segala bentuk informasi seperti nomor kontak, alamat e-mail, atau password kamu 
             <td align="right" width="50%"><span style="color:#fff; margin-right:15px;">Follow Us :</span></td>
             <td align="left" style="padding:6px 0 2px">
 
-              <a style="display:inline-block; background:#fff; color:#0088CC; border-radius:50%; width:37px; height:37px; position:relative" target="_blank" href="https://www.facebook.com/">
+              <a style="display:inline-block; background:#fff; color:#0088CC; border-radius:50%; width:37px; height:37px; position:relative" target="_blank" href="https://www.facebook.com/Talenta-Anak-Bangsa-102061761343919/?modal=admin_todo_tour">
                 <img src="<?= base_url('images/facebook_icon.png') ?>" alt="">
               </a>
-              <a style="display:inline-block; background:#fff; color:#0088CC; border-radius:50%; width:37px; height:37px; position:relative" target="_blank" href="https://www.instagram.com/">
+              <a style="display:inline-block; background:#fff; color:#0088CC; border-radius:50%; width:37px; height:37px; position:relative" target="_blank" href="https://www.instagram.com/idtalenta.academy/">
                 <img src="<?= base_url('images/ig_icon.png') ?>" alt="">
               </a>
             </td>

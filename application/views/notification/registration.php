@@ -15,7 +15,7 @@
             <table style="width:100%; border:0;" cellpadding="15" cellspacing="0">
               <tr>
                 <td align="center" style="border-bottom:solid thin #ccc">
-                  <img src="<?= base_url('images/logo-dark.png') ?>" style="max-width:200px" alt="IDTalenta">
+                  <img src="<?= base_url('images/logo/logo-2.png') ?>" style="max-width:200px" alt="IDTalenta">
                 </td>
               </tr>
               <tr>
