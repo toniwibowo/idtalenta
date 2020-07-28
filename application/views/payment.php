@@ -94,7 +94,7 @@
               <label for="">Email</label>
               <input type="email" class="form-control" name="email" value="<?= $user->email ?>" readonly>
               <input type="hidden" class="form-control" name="user_id" value="<?= $user->id ?>" >
-              <input type="hidden" class="form-control" name="sid" value="<?= $sid ?>" >
+              
             </div>
 
             <div class="form-group col-lg-6">
