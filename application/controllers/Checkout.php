@@ -185,8 +185,13 @@ class Checkout extends CI_Controller{
     $this->form_validation->set_rules('transfer-date', 'Tanggal Transfer', 'required');
 
     if ($this->form_validation->run() == FALSE) {
+
+      $data['sid'] = hex2bin(base64_decode($sid));
+
+      $data['payment'] = $this->db->where('sid', $data['sid'])->get('orders')->row();
+
       $this->load->view('include/header');
-      $this->load->view('payment');
+      $this->load->view('payment',$data);
       $this->load->view('include/footer');
       //redirect('payment/'.base64_encode(bin2hex($sid)));
     }else {

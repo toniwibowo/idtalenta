@@ -87,8 +87,8 @@
           </div>
         <?php endif; ?>
 
-
-        <form action="<?= site_url('checkout/confirmation')  ?>" method="post" enctype="application/x-www-form-urlencoded">
+        <?php $uri_2 = $this->uri->segment(2);  ?>
+        <form action="<?= site_url('checkout/confirmation/'.$uri_2)  ?>" method="post" enctype="application/x-www-form-urlencoded">
           <div class="form-row">
             <div class="form-group col-lg-6">
               <label for="">Email</label>
