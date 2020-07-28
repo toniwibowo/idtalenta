@@ -170,7 +170,7 @@ class Checkout extends CI_Controller{
     $emailuser    = $this->input->post('email',true);
     $user_id      = $this->input->post('user_id',true);
     $invoice      = $this->input->post('invoice',true);
-    $sid          = $this->input->post('sid',true);
+    // $sid          = $this->input->post('sid',true);
     //$bankaccount  = $this->input->post('bank-account',true);
     //$bankfrom     = $this->input->post('bankfrom',true);
     //$bankto       = $this->input->post('bankto',true);
