@@ -148,6 +148,14 @@
             </div>
 
             <div class="form-group row">
+                <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">Thriller</label>
+                <div class="col-lg-9">
+                  <input id="thriller" type="text" name="thriller" class="form-control" required value="<?= set_value('thriller') ?>" placeholder="Thriller | YouTube Embed ID">
+                  <?php echo form_error('thriller', '<div class="alert alert-danger mt-3 mb-0">', '</div>'); ?>
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">YouTube Embeded [',']</label>
                 <div class="col-lg-9">
                   <input id="YouTubeEmbeded" type="text" name="youTubeEmbeded" class="form-control" data-role="tagsinput" required value="<?= set_value('youTubeEmbeded') ?>" placeholder="1qeTgTYvGJ0,2keRgTYvGYl,5qeTgKLvGD2">

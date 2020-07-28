@@ -473,6 +473,7 @@ class Mentor extends CI_Controller{
     $data['price']               = $this->input->post('price',true);
     $data['sale']                = $this->input->post('sale',true);
     $data['ytube_embeded']       = $this->input->post('youTubeEmbeded',true);
+    $data['thriller']            = $this->input->post('thriller',true);
     $data['video_id']            = strtoupper($this->input->post('video_id',true));
 
 
