@@ -646,7 +646,7 @@ class Mentor extends CI_Controller{
     $data['user_id']            = $this->input->post('user_id',true);
     $data['class_name']         = $this->input->post('classname',true);
     $data['category_class_id']  = $this->input->post('classcategory',true);
-    $data['mentor_video']       = $filename;
+    //$data['mentor_video']       = $filename;
     $data['account_name']       = $this->input->post('accountname',true);
     $data['account_number']     = $this->input->post('accountnumber',true);
     $data['account_bank']       = $this->input->post('bankname',true);
@@ -681,15 +681,15 @@ class Mentor extends CI_Controller{
         echo '<script type="text/javascript">alert("Anda sudah terdaftar sebagai mentor"); window.location.href="'.site_url().'";</script>';
       }else {
 
-        if (isset($filename)) {
-          $input = 'videoprofile';
-          $size= 4000;
-          $path='./assets/uploads/videos/';
-          $type='3gp|flv|mp4|mp3|avi';
-
-          $uploadvideo = $this->mentor->uploadFile($filename,$input,$size,$path,$type);
-
-        }//END FILENAME
+        // if (isset($filename)) {
+        //   $input = 'videoprofile';
+        //   $size= 4000;
+        //   $path='./assets/uploads/videos/';
+        //   $type='3gp|flv|mp4|mp3|avi';
+        //
+        //   $uploadvideo = $this->mentor->uploadFile($filename,$input,$size,$path,$type);
+        //
+        // }//END FILENAME
 
         $inserMentor = $this->db->insert('mentor',$data);
 
