@@ -535,11 +535,10 @@ class Member extends CI_Controller{
     if (!$this->ion_auth->logged_in()) {
       redirect('/');
     }
-    $this->ion_auth->logout();
+    //$this->ion_auth->logout();
+    $this->session->sess_destroy();
     delete_cookie('cart');
     delete_cookie('checkout');
-
-    ob_start();
 
     redirect('/');
   }
