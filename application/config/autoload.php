@@ -60,7 +60,7 @@ $autoload['packages'] = array(APPPATH.'third_party/codeigniter-debugbar');
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 
-$autoload['libraries'] = array('database', 'ion_auth','pagination','form_validation','encryption','app');
+$autoload['libraries'] = array('database','session','ion_auth','pagination','form_validation','encryption','app');
 
 /*
 | -------------------------------------------------------------------
