@@ -322,7 +322,8 @@ class Sketsanet extends MX_Controller
      **/
     public function logout()
     {
-        $logout = $this->ion_auth->logout();
+        //$logout = $this->ion_auth->logout();
+        $this->session->sess_destroy();
         redirect('login');
     }
 
