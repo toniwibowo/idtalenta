@@ -640,8 +640,8 @@ class Mentor extends CI_Controller{
       redirect('/');
     }
 
-    $filename = $_FILES['videoprofile']['name'];
-    $filename = random_string('alnum',5).'-'.$filename;
+    //$filename = $_FILES['videoprofile']['name'];
+    //$filename = random_string('alnum',5).'-'.$filename;
 
     $data['user_id']            = $this->input->post('user_id',true);
     $data['class_name']         = $this->input->post('classname',true);
