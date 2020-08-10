@@ -539,6 +539,8 @@ class Member extends CI_Controller{
     delete_cookie('cart');
     delete_cookie('checkout');
 
+    ob_start();
+
     redirect('/');
   }
 
