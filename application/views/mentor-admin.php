@@ -103,7 +103,7 @@
                         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $link ?>?rel=0"></iframe>
                       </div>
                       <?php $ttl = $this->db->where('youtube_link', $link)->get('mentor_video')->row_array();  ?>
-                      
+
                       <form class="" action="#" method="post">
                         <div class="form-group">
                           <label for="">Title</label>
@@ -261,12 +261,12 @@
 
                   <div class="form-group col-lg-12 textarea">
                     <label for="">Resume</label>
-                    <textarea class="form-control" name="resume" rows="4" cols="80" data-string="<?= $row->resume ?>"></textarea>
+                    <textarea class="form-control" name="resume" rows="4" cols="80" data-string="<?= strip_tags($row->resume) ?>"></textarea>
                   </div>
 
                   <div class="form-group col-lg-12 textarea">
                     <label for="">Deskripsi</label>
-                    <textarea class="form-control" name="description" rows="8" cols="80" data-string="<?= $row->description ?>"></textarea>
+                    <textarea class="form-control" name="description" rows="8" cols="80" data-string="<?= strip_tags($row->description) ?>"></textarea>
                   </div>
 
                   <div class="form-group col-lg-6">
