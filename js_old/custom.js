@@ -252,10 +252,10 @@ $(document).ready(function(){
         thisdiv.parent().parent().find('.progress').find('.progress-bar').hide();
         thisdiv.parent().parent().find('.progress').css('height','auto').html('<div class="alert alert-success w-100" role="alert">'+ val +'</div>');
 
-        // $.get( siteUrl + "mentor/preview", function( val ) {
-        //   thisdiv.parent().parent().find('#preview').addClass('mb-3').html( val );
-        // });
-        console.log("selesai");
+        var html = '<img src="'+siteUrl+'assets/uploads/files/'+val+'" alt="" />'
+
+        thisdiv.parent().parent().find('#previewPoster').addClass('mb-3').html( html );
+        //console.log("selesai");
       }
 
       ajaxFunction(url, formData, thisdiv, success);

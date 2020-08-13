@@ -549,13 +549,13 @@ class Mentor extends CI_Controller{
             $updatePoster = $this->db->where('video_id', $data['video_id'])->set('poster', $filename)->update('mentor_class');
 
             if ($updatePoster) {
-              echo "Poster successfully updated";
+              echo "Poster successfully updated,". $filename;
             }
           }else {
             $insertPoster = $this->db->insert('mentor_class', array('poster' => $filename, 'video_id' => $data['video_id']));
 
             if ($insertPoster) {
-              echo "Poster successfully uploaded";
+              echo "Poster successfully uploaded,". $filename;
             }
           }
         } else {

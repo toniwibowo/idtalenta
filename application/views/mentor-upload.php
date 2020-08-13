@@ -169,6 +169,10 @@
               <div class="col-lg-9">
                 <div class="upload-box" id="mainVideo">
 
+                  <div id="previewPoster">
+
+                  </div>
+
                   <div class="upload-box-body">
                     <p><i class="fa fa-upload"></i> Klik atau tarik image poster ke kotak ini</p>
                     <input class="form-control-file" name="posterUpload" id="posterUpload" type="file" value="" accept=".jpg,.png,.gif">
