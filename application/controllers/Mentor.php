@@ -273,7 +273,7 @@ class Mentor extends CI_Controller{
             if (file_exists($path.$row->poster)) {
               unlink($path.$row->poster);
             }
-          }          
+          }
 
           $updatePoster = $this->db->where('mentor_class_id', $id)->set('poster',$filename)->update('mentor_class');
 
@@ -482,19 +482,27 @@ class Mentor extends CI_Controller{
 
     if (isset($_POST['submitVideo']) && $_POST['submitVideo'] == 'Upload') {
 
-      $insertDataclass = $this->db->insert('mentor_class', $data);
+      $checkVideoID = $this->db->where('video_id', $data['video_id'])->get('mentor_class');
+
+      if ($checkVideoID->num_rows() > 0) {
+        $insertDataclass = $this->db->where('video_id', $data['video_id'])->set($data)->update('mentor_class');
+      }else {
+        $insertDataclass = $this->db->insert('mentor_class', $data);
+      }
 
       if ($insertDataclass) {
 
-        $videoDescription = $_POST['video_description'];
-        $getvideo         = $this->db->where('video_id',$data['video_id'])->order_by('mentor_video_id','asc')->get('mentor_video');
+        if (isset($_POST['video_description'])) {
+          $videoDescription = $_POST['video_description'];
+          $getvideo         = $this->db->where('video_id',$data['video_id'])->order_by('mentor_video_id','asc')->get('mentor_video');
 
 
-        if ($getvideo->num_rows() > 0) {
-          foreach ($getvideo->result() as $key => $value) {
+          if ($getvideo->num_rows() > 0) {
+            foreach ($getvideo->result() as $key => $value) {
 
-            $this->db->where('video_id',$value->video_id)->where('mentor_video_id',$value->mentor_video_id)->set('description',$videoDescription[$key])->update('mentor_video');
+              $this->db->where('video_id',$value->video_id)->where('mentor_video_id',$value->mentor_video_id)->set('description',$videoDescription[$key])->update('mentor_video');
 
+            }
           }
         }
 
