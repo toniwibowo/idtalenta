@@ -544,26 +544,7 @@ class Mentor extends CI_Controller{
         $path   ='./assets/uploads/files/';
         $type   ='jpg|jpeg|gif|png';
 
-        if ($this->mentor->uploadFile($filename, $input, $size, $path,$type)) {
-          // CHECK VIDEO ID
-          $checkVideoID = $this->db->where('video_id', $data['video_id'])->get('mentor_class');
-
-          if ($checkVideoID->num_rows() > 0) {
-            $updatePoster = $this->db->where('video_id', $data['video_id'])->set('poster', $filename)->update('mentor_class');
-
-            if ($updatePoster) {
-              echo "Poster successfully updated";
-            }
-          }else {
-            $insertPoster = $this->db->insert('mentor_class', array('poster' => $filename));
-
-            if ($insertPoster) {
-              echo "Poster successfully uploaded";
-            }
-          }
-        } else {
-          echo "Poster failed to upload";
-        }
+        echo "OK";
 
       } elseif (isset($_FILES['filemateri']['name'])) {
 
