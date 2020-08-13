@@ -536,15 +536,12 @@ class Mentor extends CI_Controller{
 
       }elseif (isset($_FILES['posterUpload']['name']) && !empty($_FILES['posterUpload']['name'])) {
 
-        $filename = $_FILES['posterUpload']['name'];
-        $filename = random_string('alnum',5).'-'.str_replace(' ','-',$filename);
+        $filename     = $_FILES['posterUpload']['name'];
+        $filename     = random_string('alnum',5).'-'.str_replace(' ','-',$filename);
+        $tmpname      = $_FILES['posterUpload']['tmp_name'];
+        $upload_path  = './assets/uploads/files/';
 
-        $input  = 'posterUpload';
-        $size   = 2000;
-        $path   ='./assets/uploads/files/';
-        $type   ='jpg|jpeg|gif|png';
-
-        if ($this->mentor->uploadFile($filename, $input, $size, $path,$type)) {
+        if (move_uploaded_file($tmpname,$upload_path.$filename)) {
           // CHECK VIDEO ID
           $checkVideoID = $this->db->where('video_id', $data['video_id'])->get('mentor_class');
 
