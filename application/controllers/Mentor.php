@@ -269,9 +269,11 @@ class Mentor extends CI_Controller{
           //UNLINK FILE BEFORE UPDATE
           $row = $this->db->where('mentor_class_id', $id)->get('mentor_class')->row();
 
-          if (file_exists($path.$row->poster)) {
-            unlink($path.$row->poster);
-          }
+          if ($row->poster != '') {
+            if (file_exists($path.$row->poster)) {
+              unlink($path.$row->poster);
+            }
+          }          
 
           $updatePoster = $this->db->where('mentor_class_id', $id)->set('poster',$filename)->update('mentor_class');
 
