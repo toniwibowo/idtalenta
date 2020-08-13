@@ -236,8 +236,6 @@ $(document).ready(function(){
       var user_id           = $('#formUploadVideo input[name="user_id"]').val();
       var video_id          = $('#videoID').val();
 
-      alert('WORKING');
-
       console.log('video-id', video_id);
 
       var url = siteUrl + 'mentor/uploadvideo';
