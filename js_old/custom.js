@@ -243,7 +243,7 @@ $(document).ready(function(){
       var url = siteUrl + 'mentor/uploadvideo';
 
       var formData = new FormData();
-      formData.append('poster', file);
+      formData.append('posterUpload', file);
       formData.append('user_id', user_id);
       formData.append('video_id', video_id);
 
