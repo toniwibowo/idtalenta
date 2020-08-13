@@ -559,7 +559,7 @@ class Mentor extends CI_Controller{
             }
           }
         } else {
-          echo "Poster failed to upload";
+          echo "Poster failed to upload,alert";
         }
 
       } elseif (isset($_FILES['filemateri']['name'])) {

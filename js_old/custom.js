@@ -247,10 +247,12 @@ $(document).ready(function(){
 
       var success = function(val){
         //alert(data);
+        var poster = val.split(',');
         thisdiv.parent().parent().find('.progress').find('.progress-bar').hide();
-        thisdiv.parent().parent().find('.progress').css('height','auto').html('<div class="alert alert-success w-100" role="alert">'+ val +'</div>');
+        thisdiv.parent().parent().find('.progress').css('height','auto').html('<div class="alert alert-success w-100" role="alert">'+ poster[0] +'</div>');
 
-        var html = '<img src="'+siteUrl+'assets/uploads/files/'+val+'" alt="" />'
+
+        var html = '<img src="'+siteUrl+'assets/uploads/files/'+poster[1]+'" alt="" />'
 
         thisdiv.parent().parent().find('#previewPoster').addClass('mb-3').html( html );
         //console.log("selesai");
