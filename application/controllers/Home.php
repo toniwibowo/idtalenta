@@ -121,9 +121,9 @@ class Home extends MX_Controller
 
       $data['queryCategory']  = $this->db->order_by('category_product_id', 'asc')->get('category_product');
 
-      $data['queryCourse']    = $this->db->order_by('mentor_class_id', 'desc')->limit(8)->get('mentor_class');
+      $data['queryCourse']    = $this->db->where('approve', 1)->order_by('mentor_class_id', 'desc')->limit(8)->get('mentor_class');
 
-      $data['queryTopSale']   = $this->db->order_by('hits', 'desc')->limit(8)->get('mentor_class');
+      $data['queryTopSale']   = $this->db->where('approve', 1)->order_by('hits', 'desc')->limit(8)->get('mentor_class');
 
       $data['queryArticles']  = $this->db->order_by('posting_date', 'desc')->limit(3)->get('articles');
 

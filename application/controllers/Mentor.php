@@ -255,7 +255,7 @@ class Mentor extends CI_Controller{
       }
     }
 
-    if (isset($_FILES['poster']['tmp_name'])) {
+    if (!empty($_FILES['poster']['tmp_name'])) {
 
       $id = $this->input->post('mentor_class_id',true);
 
