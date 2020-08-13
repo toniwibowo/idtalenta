@@ -258,7 +258,7 @@ $(document).ready(function(){
         console.log("selesai");
       }
 
-      // ajaxFunction(url, formData, thisdiv, success);
+      ajaxFunction(url, formData, thisdiv, success);
 
       console.log(file);
     });
