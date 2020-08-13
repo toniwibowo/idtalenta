@@ -230,7 +230,7 @@ $(document).ready(function(){
 
     // UPLOAD POSTER VIDEO
 
-    $('#formUploadVideo input[name="poster"]').on('change',function(){
+    $('#formUploadVideo input[name="posterUpload"]').on('change',function(){
       var thisdiv           = $(this);
       var file              = $(this)[0].files[0];
       var user_id           = $('#formUploadVideo input[name="user_id"]').val();

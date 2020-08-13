@@ -171,7 +171,7 @@
 
                   <div class="upload-box-body">
                     <p><i class="fa fa-upload"></i> Klik atau tarik image poster ke kotak ini</p>
-                    <input class="form-control-file" name="poster" id="poster" type="file" value="<?= set_value('poster')  ?>" accept=".jpg,.png,.gif">
+                    <input class="form-control-file" name="posterUpload" id="posterUpload" type="file" value="" accept=".jpg,.png,.gif">
                   </div>
 
                   <div class="progress mt-3">
