@@ -164,6 +164,27 @@
             </div>
 
             <div class="form-group row">
+              <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">Cover Video</label>
+
+              <div class="col-lg-9">
+                <div class="upload-box" id="mainVideo">
+
+                  <div class="upload-box-body">
+                    <p><i class="fa fa-upload"></i> Klik atau tarik image poster ke kotak ini</p>
+                    <input class="form-control-file" name="poster" id="poster" type="file" value="<?= set_value('poster')  ?>" accept=".jpg,.png,.gif">
+                  </div>
+
+                  <div class="progress mt-3">
+                    <div class="progress-bar progress-bar-primary progress-bar-striped progress-bar-animated active" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                      <span class="sr-only">100% Complete</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
                 <label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">File Materi (jpg|png|gif)</label>
 
                 <div class="col-lg-9">

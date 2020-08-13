@@ -228,6 +228,39 @@ $(document).ready(function(){
 
     });
 
+    // UPLOAD POSTER VIDEO
+
+    $('#formUploadVideo input[name="poster"]').on('change',function(){
+      var thisdiv           = $(this);
+      var file              = $(this)[0].files[0];
+      var user_id           = $('#formUploadVideo input[name="user_id"]').val();
+      var video_id          = $('#videoID').val();
+
+      console.log('video-id', video_id);
+
+      var url = siteUrl + 'mentor/uploadvideo';
+
+      var formData = new FormData();
+      formData.append('poster', file);
+      formData.append('user_id', user_id);
+      formData.append('video_id', video_id);
+
+      var success = function(val){
+        //alert(data);
+        thisdiv.parent().parent().find('.progress').find('.progress-bar').hide();
+        thisdiv.parent().parent().find('.progress').css('height','auto').html('<div class="alert alert-success w-100" role="alert">'+ val +'</div>');
+
+        // $.get( siteUrl + "mentor/preview", function( val ) {
+        //   thisdiv.parent().parent().find('#preview').addClass('mb-3').html( val );
+        // });
+        console.log("selesai");
+      }
+
+      ajaxFunction(url, formData, thisdiv, success);
+
+      console.log(file);
+    });
+
     $('#formUploadVideo input[name="videomentor"]').on('change',function(){
       var thisdiv           = $(this);
       var file              = $(this)[0].files[0];

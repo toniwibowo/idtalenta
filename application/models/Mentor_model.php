@@ -18,7 +18,7 @@ class Mentor_model extends CI_Model{
     return $this->db->where('mentor_class_id',$id)->set('thriller','')->update('mentor_class');
   }
 
-  public function uploadPhoto($user_id, $filename, $input, $size=100, $path='./images/avatars/',$type='gif|jpg|png')
+  public function uploadPhoto($user_id, $filename, $input, $size=100, $path='./assets/uploads/files/',$type='gif|jpg|png')
   {
     $config['upload_path']      = $path;
     $config['allowed_types']    = $type;
@@ -30,6 +30,7 @@ class Mentor_model extends CI_Model{
     $this->load->library('upload', $config);
 
     if ($this->upload->do_upload($input)) {
+
       $dataPhoto = array(
         'photo' => $filename
       );
@@ -67,7 +68,7 @@ class Mentor_model extends CI_Model{
 
   }
 
-  public function uploadImage($filename, $input, $size=2000, $path='./images/avatars/',$type='gif|jpg|png')
+  public function uploadPoster($filename, $input, $size=2000, $path='./images/avatars/',$type='gif|jpg|png')
   {
     $config['upload_path']      = $path;
     $config['allowed_types']    = $type;
