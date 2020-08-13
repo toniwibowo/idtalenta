@@ -534,7 +534,7 @@ class Mentor extends CI_Controller{
 
         $this->session->set_flashdata('upload', 'Video successfully update');
 
-      }elseif (isset($_FILES['posterUpload']['name']) && !empty($_FILES['posterUpload']['name'])) {
+      }elseif (isset($_FILES['posterUpload']['name'])) {
 
         $filename = $_FILES['posterUpload']['name'];
         $filename = random_string('alnum',5).'-'.str_replace(' ','-',$filename);
