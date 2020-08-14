@@ -83,8 +83,8 @@ $( document ).ready(function() {
     <div class="wrapper">
         <header class="main-header">
             <a href="<?php echo site_url(); ?>" class="logo">
-               <span class="logo-mini"><b>Sketsa.net</b></span>
-               <span class="logo-lg">Sketsa.net CMS</span>
+               <span class="logo-mini"><b>IDTALENTA</b></span>
+               <span class="logo-lg">IDTALENTA CMS</span>
             </a>
 
             <nav class="navbar navbar-static-top" role="navigation">
@@ -198,7 +198,7 @@ $( document ).ready(function() {
             <div class="pull-right hidden-xs">
                 <b>Version</b> 1.0.0
             </div>
-            <strong>Copyright &copy; 2011-<?= date('Y') ?> <a href="http://www.sketsa.net">Sketsa.net</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2011-<?= date('Y') ?> <a href="#">IDTALENTA</a>.</strong> All rights reserved.
         </footer>
     </div><!-- ./wrapper -->
     <?php
