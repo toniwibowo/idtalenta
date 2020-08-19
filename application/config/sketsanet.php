@@ -10,7 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 // Site
 $config['site'] = [
-    'title' => 'Sketsa.net CMS', // Default Title entire page
+    'title' => 'IDTALENTA CMS', // Default Title entire page
     'favicon' => 'assets/img/favicon-96x96.png', // Default Favicon
     'logo' => 'assets/img/logo/myIgniter.png' // Default Logo
 ];
